@@ -55,6 +55,24 @@ app.config.from_object(Config)
 # ==========================
 
 db.init_app(app)
+from werkzeug.security import generate_password_hash
+from models.user import User
+
+with app.app_context():
+    db.create_all()
+
+    # Create demo user if not exists
+    if not User.query.filter_by(email="admin@example.com").first():
+
+        demo = User(
+            full_name="Admin User",
+            email="admin@example.com",
+            password_hash=generate_password_hash("admin123"),
+            role="student"
+        )
+
+        db.session.add(demo)
+        db.session.commit()
 
 
 # ==========================
