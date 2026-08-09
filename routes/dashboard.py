@@ -25,30 +25,25 @@ dashboard = Blueprint(
 def home():
 
     # ----------------------------------
-    # Login Check
+    # If user is not logged in
+    # Show animated landing page
     # ----------------------------------
 
     if "user_id" not in session:
 
-        return redirect(
-            url_for("auth.login")
-        )
+        return render_template("home/hero.html")
 
     # ----------------------------------
     # Current User
     # ----------------------------------
 
-    user = User.query.get(
-        session["user_id"]
-    )
+    user = User.query.get(session["user_id"])
 
     # ----------------------------------
     # Student Profile
     # ----------------------------------
 
-    profile = get_student_profile(
-        user.id
-    )
+    profile = get_student_profile(user.id)
 
     # ----------------------------------
     # AI Recommendations
@@ -56,9 +51,7 @@ def home():
 
     if profile:
 
-        recommendations = OpportunityHub.get_all(
-            profile
-        )[:10]
+        recommendations = OpportunityHub.get_all(profile)[:10]
 
     else:
 
@@ -93,7 +86,7 @@ def home():
     ).count()
 
     # ----------------------------------
-    # Render Page
+    # Render Dashboard
     # ----------------------------------
 
     return render_template(

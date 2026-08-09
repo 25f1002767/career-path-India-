@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}CareerPath India{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <canvas id="particles"></canvas>
+
+    <div class="hero-content">
+
+        <h1 id="hero-title">CAREERPATH INDIA</h1>
+
+        <p>
+            AI-powered career discovery platform for students across India
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('assessment.start') }}"
+               class="btn btn-primary btn-lg">
+                Start Assessment
+            </a>
+
+            <a href="{{ url_for('career.career_list') }}"
+               class="btn btn-outline-light btn-lg">
+                Explore Careers
+            </a>
+
+        </div>
+
+    </div>
+
+    <div id="click-burst"></div>
+
+</section>
+
+{% endblock %}

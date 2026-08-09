@@ -81,7 +81,9 @@ app.register_blueprint(profile)
 # ==========================
 # Error Pages
 # ==========================
-
+@app.route("/")
+def landing():
+    return render_template("home/hero.html")
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("errors/404.html"), 404

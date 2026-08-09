@@ -1,0 +1,104 @@
+/* Smooth page animation */
+body{
+    animation:pageFade .5s ease;
+}
+
+@keyframes pageFade{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* Existing cards become animated */
+.card{
+    transition:transform .3s ease,
+               box-shadow .3s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(0,0,0,.15);
+}
+
+/* Dashboard stat cards */
+.dashboard-stat{
+    position:relative;
+    overflow:hidden;
+}
+
+.dashboard-stat::before{
+    content:"";
+    position:absolute;
+    top:-40px;
+    right:-40px;
+    width:120px;
+    height:120px;
+    background:rgba(255,255,255,.15);
+    border-radius:50%;
+}
+
+/* Animated buttons */
+.btn{
+    transition:all .25s ease;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+/* Hero glow effect */
+.hero-glow{
+    position:relative;
+}
+
+.hero-glow::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:20px;
+    box-shadow:0 0 40px rgba(37,99,235,.18);
+    opacity:0;
+    transition:opacity .3s ease;
+}
+
+.hero-glow:hover::after{
+    opacity:1;
+}
+
+/* Counter style */
+.counter{
+    font-weight:700;
+    font-size:2rem;
+    color:#2563eb;
+}
+
+/* Floating animation */
+.float{
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+/* Scroll reveal */
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:all .7s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
