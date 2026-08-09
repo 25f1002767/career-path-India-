@@ -1,6 +1,24 @@
 from flask import Blueprint, render_template, request, session
 
 from services.ai.copilot import career_copilot
+from flask import Blueprint, request, jsonify
+from services.chatbot_service import ask_ai
+
+chatbot = Blueprint("chatbot", __name__, url_prefix="/chatbot")
+
+
+@chatbot.route("/ask", methods=["POST"])
+def ask():
+
+    data = request.get_json()
+
+    prompt = data.get("message", "")
+
+    answer = ask_ai(prompt)
+
+    return jsonify({
+        "answer": answer
+    })
 
 chatbot = Blueprint(
     "chatbot",

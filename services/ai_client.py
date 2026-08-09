@@ -3,7 +3,10 @@ from google import genai
 
 client = None
 
-api_key = os.getenv("GEMINI_API_KEY")
+try:
+    api_key = os.getenv("GEMINI_API_KEY")
 
-if api_key:
-    client = genai.Client(api_key=api_key)
+    from services.ai_client import client
+
+except Exception:
+    client = None

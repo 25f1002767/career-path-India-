@@ -24,9 +24,7 @@ print("=" * 60)
 # Gemini Client
 # ==========================================================
 
-client = genai.Client(
-    api_key=API_KEY
-)
+from services.ai_client import client
 
 # ==========================================================
 # System Prompt
