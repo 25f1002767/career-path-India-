@@ -1,0 +1,484 @@
+{% extends "base.html" %}
+
+{% block title %}
+Student Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                Welcome,
+                {{ user.full_name }}
+
+            </h2>
+
+            <p class="text-muted">
+
+                Track your career journey from one dashboard.
+
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('assessment.start') }}"
+            class="btn btn-primary">
+
+            Take Assessment
+
+        </a>
+
+    </div>
+
+
+    <!-- Statistics -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 text-center h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+
+                        Assessments
+
+                    </h6>
+
+                    <h2 class="fw-bold text-primary">
+
+                        {{ assessments|length }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 text-center h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+
+                        Saved Careers
+
+                    </h6>
+
+                    <h2 class="fw-bold text-success">
+
+                        {{ saved|length }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 text-center h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+
+                        Resume Score
+
+                    </h6>
+
+                    <h2 class="fw-bold text-warning">
+
+                        {% if resume %}
+
+                            {{ resume.score }}%
+
+                        {% else %}
+
+                            0%
+
+                        {% endif %}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 text-center h-100">
+
+                <div class="card-body">
+
+                    <h6 class="text-muted">
+
+                        Career Matches
+
+                    </h6>
+
+                    <h2 class="fw-bold text-danger">
+
+                        {{ matches|length }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI Career Matches -->
+
+    <div class="card shadow border-0 mb-5">
+
+        <div class="card-header bg-white">
+
+            <h4 class="mb-0">
+
+                🎯 AI Career Matches
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if matches %}
+
+                {% for match in matches %}
+
+                <div class="mb-4">
+
+                    <div class="d-flex justify-content-between">
+
+                        <strong>
+
+                            {{ match.career.title }}
+
+                        </strong>
+
+                        <strong class="text-success">
+
+                            {{ match.match_percentage }}%
+
+                        </strong>
+
+                    </div>
+
+                    <div class="progress mt-2">
+
+                        <div
+                            class="progress-bar bg-success"
+                            style="width: {{ match.match_percentage }}%">
+
+                        </div>
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        {{ match.recommendation_reason }}
+
+                    </small>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="text-muted">
+
+                    No career recommendations available.
+
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Assessment History -->
+
+    <div class="card shadow border-0 mb-5">
+
+        <div class="card-header bg-white">
+
+            <h4>
+
+                Assessment History
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if history %}
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Category</th>
+
+                        <th>Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in history %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ item.recommended_category }}
+
+                        </td>
+
+                        <td>
+
+                            {{ item.created_at.strftime("%d %b %Y") }}
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <p>
+
+                No assessment history available.
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Saved Careers -->
+
+    <div class="card shadow border-0 mb-5">
+
+        <div class="card-header bg-white">
+
+            <h4>
+
+                Saved Careers
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if saved %}
+
+            <div class="row">
+
+                {% for item in saved %}
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3">
+
+                        <h5>
+
+                            {{ item.career.title }}
+
+                        </h5>
+
+                        <a
+                            href="{{ url_for('career.career_detail', slug=item.career.slug) }}"
+                            class="btn btn-sm btn-primary">
+
+                            View
+
+                        </a>
+
+                        <a
+                            href="{{ url_for('student.remove_saved_career', id=item.id) }}"
+                            class="btn btn-sm btn-danger">
+
+                            Remove
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <p>
+
+                No saved careers yet.
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- Quick Actions -->
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-white">
+
+            <h4>
+
+                Quick Actions
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="d-flex flex-wrap gap-3">
+
+                <a
+                    href="{{ url_for('career.career_list') }}"
+                    class="btn btn-success">
+
+                    Explore Careers
+
+                </a>
+
+                <a
+                    href="{{ url_for('college.college_list') }}"
+                    class="btn btn-warning">
+
+                    Colleges
+
+                </a>
+
+                <a
+                    href="{{ url_for('scholarship.scholarship_list') }}"
+                    class="btn btn-info">
+
+                    Scholarships
+
+                </a>
+
+                <a
+                    href="{{ url_for('internship.internship_list') }}"
+                    class="btn btn-secondary">
+
+                    Internships
+
+                </a>
+
+                <a
+                    href="{{ url_for('exam.exam_list') }}"
+                    class="btn btn-dark">
+
+                    Government Exams
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="card shadow mt-4">
+
+    <div class="card-header">
+
+        <h4>
+
+            ⭐ AI Recommendations
+
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        {% for item in recommendations %}
+
+        <div class="border rounded p-3 mb-3">
+
+            <h5>
+
+                {{ item.title }}
+
+            </h5>
+
+            <span class="badge bg-success">
+
+                {{ item.match }}% Match
+
+            </span>
+
+            <br><br>
+
+            {% for reason in item.reason %}
+
+                <small class="text-muted">
+
+                    ✔ {{ reason }}
+
+                </small><br>
+
+            {% endfor %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

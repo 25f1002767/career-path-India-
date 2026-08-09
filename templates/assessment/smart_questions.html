@@ -1,0 +1,468 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Smart Career Assessment
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+            🧠 AI Smart Career Assessment
+        </h1>
+
+        <p class="text-muted">
+            Answer these questions honestly to get personalized careers,
+            colleges, internships, scholarships, and exam recommendations.
+        </p>
+
+    </div>
+
+    <form method="POST"
+          action="{{ url_for('assessment.submit') }}">
+
+        <!-- 1 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🎓 What are you currently studying?
+            </label>
+
+            <select class="form-select"
+                    name="current_class"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Class 10</option>
+
+                <option>Class 11</option>
+
+                <option>Class 12</option>
+
+                <option>Diploma</option>
+
+                <option>Graduation</option>
+
+                <option>Post Graduation</option>
+
+            </select>
+
+        </div>
+
+        <!-- 2 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                📚 Your stream
+            </label>
+
+            <select class="form-select"
+                    name="stream"
+                    required>
+
+                <option value="">Select</option>
+
+                <option value="PCM">PCM</option>
+
+                <option value="PCB">PCB</option>
+
+                <option value="Commerce">Commerce</option>
+
+                <option value="Arts">Arts</option>
+
+                <option value="Diploma">Diploma</option>
+
+                <option value="Other">Other</option>
+
+            </select>
+
+        </div>
+
+        <!-- 3 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                💼 Preferred career type
+            </label>
+
+            <select class="form-select"
+                    name="preference"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Government</option>
+
+                <option>Private</option>
+
+                <option>Both</option>
+
+                <option>Business / Startup</option>
+
+                <option>Freelancing / Remote Work</option>
+
+            </select>
+
+        </div>
+
+        <!-- 4 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🎯 Which activity do you enjoy most?
+            </label>
+
+            <select class="form-select"
+                    name="activity"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Coding / Building Apps</option>
+
+                <option>Helping Sick People</option>
+
+                <option>Managing Money / Business</option>
+
+                <option>Teaching / Explaining</option>
+
+                <option>Drawing / Designing</option>
+
+                <option>Leading Teams</option>
+
+                <option>Solving Mathematical Problems</option>
+
+                <option>Reading Laws / Social Issues</option>
+
+            </select>
+
+        </div>
+
+        <!-- 5 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                📖 Which subject are you strongest in?
+            </label>
+
+            <select class="form-select"
+                    name="strong_subject"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Mathematics</option>
+
+                <option>Physics</option>
+
+                <option>Chemistry</option>
+
+                <option>Biology</option>
+
+                <option>Accountancy</option>
+
+                <option>Economics</option>
+
+                <option>English</option>
+
+                <option>Social Science</option>
+
+            </select>
+
+        </div>
+
+        <!-- 6 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🧠 What describes you best?
+            </label>
+
+            <select class="form-select"
+                    name="personality"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Analytical Thinker</option>
+
+                <option>Creative Person</option>
+
+                <option>Leader / Organizer</option>
+
+                <option>Helpful / Caring</option>
+
+                <option>Disciplined / Rule Following</option>
+
+                <option>Research Oriented</option>
+
+            </select>
+
+        </div>
+
+        <!-- 7 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🏛 Are you interested in competitive government exams?
+            </label>
+
+            <select class="form-select"
+                    name="government_exam"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Very Interested</option>
+
+                <option>Interested</option>
+
+                <option>Maybe</option>
+
+                <option>Not Interested</option>
+
+            </select>
+
+        </div>
+
+        <!-- 8 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🌐 Preferred work environment
+            </label>
+
+            <select class="form-select"
+                    name="work_environment"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Office / Corporate</option>
+
+                <option>Hospital / Laboratory</option>
+
+                <option>Government Department</option>
+
+                <option>School / College</option>
+
+                <option>Remote / Online</option>
+
+                <option>Field Work / Outdoor</option>
+
+            </select>
+
+        </div>
+
+        <!-- 9 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                💰 Expected salary goal after studies
+            </label>
+
+            <select class="form-select"
+                    name="salary_goal"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>₹20,000 - ₹40,000</option>
+
+                <option>₹40,000 - ₹80,000</option>
+
+                <option>₹80,000 - ₹1,50,000</option>
+
+                <option>₹1,50,000+ per month</option>
+
+                <option>Business Income</option>
+
+            </select>
+
+        </div>
+
+        <!-- 10 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                📍 Preferred study / job location
+            </label>
+
+            <select class="form-select"
+                    name="location_preference"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>My Home State</option>
+
+                <option>Any State in India</option>
+
+                <option>Metro Cities Only</option>
+
+                <option>Abroad / International</option>
+
+            </select>
+
+        </div>
+
+        <!-- 11 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                💻 Do you already know any technical skills?
+            </label>
+
+            <select class="form-select"
+                    name="technical_skill">
+
+                <option>None</option>
+
+                <option>MS Office</option>
+
+                <option>Canva / Design</option>
+
+                <option>Python / Programming</option>
+
+                <option>Web Development</option>
+
+                <option>Video Editing</option>
+
+                <option>Data Analysis</option>
+
+            </select>
+
+        </div>
+
+        <!-- 12 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🎓 Do you need scholarship recommendations?
+            </label>
+
+            <select class="form-select"
+                    name="scholarship_need">
+
+                <option>Yes</option>
+
+                <option>No</option>
+
+            </select>
+
+        </div>
+
+        <!-- 13 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                💼 Internship preference
+            </label>
+
+            <select class="form-select"
+                    name="internship_preference">
+
+                <option>Remote</option>
+
+                <option>Hybrid</option>
+
+                <option>Onsite</option>
+
+                <option>Any</option>
+
+            </select>
+
+        </div>
+
+        <!-- 14 -->
+
+        <div class="mb-4">
+
+            <label class="form-label fw-bold">
+                🚀 Long-term goal
+            </label>
+
+            <select class="form-select"
+                    name="long_term_goal"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Become an Engineer</option>
+
+                <option>Become a Doctor</option>
+
+                <option>Become a Chartered Accountant</option>
+
+                <option>Become an IAS / IPS Officer</option>
+
+                <option>Become a Teacher / Professor</option>
+
+                <option>Become a Lawyer / Judge</option>
+
+                <option>Become a Designer / Creator</option>
+
+                <option>Become a Data Scientist / AI Expert</option>
+
+                <option>Start My Own Business</option>
+
+            </select>
+
+        </div>
+
+        <!-- 15 -->
+
+        <div class="mb-5">
+
+            <label class="form-label fw-bold">
+                ⏰ How much time can you study daily?
+            </label>
+
+            <select class="form-select"
+                    name="study_hours"
+                    required>
+
+                <option value="">Select</option>
+
+                <option>Less than 2 Hours</option>
+
+                <option>2-4 Hours</option>
+
+                <option>4-6 Hours</option>
+
+                <option>6-8 Hours</option>
+
+                <option>More than 8 Hours</option>
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-primary btn-lg w-100">
+
+            🚀 Generate My Complete AI Career Report
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

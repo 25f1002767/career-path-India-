@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}
+Internships
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="mb-4 fw-bold">
+        Internship Portal
+    </h1>
+
+    <form method="GET" class="mb-4">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search Internship..."
+            value="{{ search }}">
+
+    </form>
+
+    <div class="row">
+
+        {% for internship in internships %}
+
+        <div class="col-lg-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold">
+                        {{ internship.title }}
+                    </h4>
+
+                    <p>
+                        <strong>Company:</strong>
+                        {{ internship.company }}
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        {{ internship.location }}
+                    </p>
+
+                    <p>
+                        <strong>Mode:</strong>
+                        {{ internship.mode or "Remote" }}
+                    </p>
+
+                    <p>
+                        <strong>Stipend:</strong>
+                        {{ internship.stipend or "Not Mentioned" }}
+                    </p>
+
+                    <p>
+                        <strong>Duration:</strong>
+                        {{ internship.duration or "2-6 Months" }}
+                    </p>
+
+                    {% if internship.matched_skills %}
+
+                    <p>
+
+                        <strong>Matched Skills:</strong>
+
+                        {{ internship.matched_skills | join(", ") }}
+
+                    </p>
+
+                    {% endif %}
+
+                    <a
+                        href="{{ internship.apply_link }}"
+                        target="_blank"
+                        class="btn btn-success w-100">
+
+                        Apply Now
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="col-12">
+
+            <div class="alert alert-warning">
+
+                No internships available.
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

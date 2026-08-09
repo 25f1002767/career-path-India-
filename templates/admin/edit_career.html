@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Edit Career
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h2>Edit Career</h2>
+
+<form method="POST">
+
+<input
+class="form-control mb-3"
+name="title"
+value="{{ career.title }}">
+
+<input
+class="form-control mb-3"
+name="category"
+value="{{ career.category }}">
+
+<textarea
+class="form-control mb-3"
+name="description">{{ career.description }}</textarea>
+
+<input
+class="form-control mb-3"
+name="average_salary"
+value="{{ career.average_salary }}">
+
+<input
+class="form-control mb-3"
+name="future_scope"
+value="{{ career.future_scope }}">
+
+<input
+class="form-control mb-3"
+name="education_required"
+value="{{ career.education_required }}">
+
+<textarea
+class="form-control mb-3"
+name="skills_required">{{ career.skills_required }}</textarea>
+
+<button class="btn btn-success">
+
+Update Career
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

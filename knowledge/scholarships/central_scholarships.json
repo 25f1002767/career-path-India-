@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Central Sector Scholarship",
+        "state": "All India",
+        "min_percentage": 80,
+        "max_income": 800000,
+        "amount": "₹10,000 - ₹20,000 per year",
+        "level": "Undergraduate",
+        "apply_link": "https://scholarships.gov.in"
+    },
+    {
+        "name": "Post Matric Scholarship",
+        "state": "Madhya Pradesh",
+        "min_percentage": 60,
+        "max_income": 250000,
+        "amount": "₹5,000 - ₹15,000 per year",
+        "level": "Undergraduate",
+        "apply_link": "https://scholarships.gov.in"
+    },
+    {
+        "name": "AICTE Pragati Scholarship",
+        "state": "All India",
+        "min_percentage": 70,
+        "max_income": 800000,
+        "amount": "₹50,000 per year",
+        "level": "Technical",
+        "apply_link": "https://www.aicte-india.org"
+    }
+]

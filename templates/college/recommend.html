@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Recommended Colleges
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="fw-bold mb-4">
+
+        Recommended Colleges for {{ career_title }}
+
+    </h2>
+
+    {% for college in colleges %}
+
+    <div class="card shadow-sm mb-3">
+
+        <div class="card-body">
+
+            <h5>{{ college.name }}</h5>
+
+            <p>
+
+                {{ college.city }}, {{ college.state }}
+
+            </p>
+
+            <a
+
+                href="{{ college.website }}"
+
+                target="_blank"
+
+                class="btn btn-primary btn-sm">
+
+                Visit Website
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        No colleges found for this career.
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

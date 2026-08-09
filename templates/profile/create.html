@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h3 class="mb-0">
+
+                        Complete Your Career Profile
+
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Phone Number
+
+                                </label>
+
+                                <input
+                                type="text"
+                                class="form-control"
+                                name="phone"
+                                required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    State
+
+                                </label>
+
+                                <input
+                                type="text"
+                                class="form-control"
+                                name="state"
+                                required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    District
+
+                                </label>
+
+                                <input
+                                type="text"
+                                class="form-control"
+                                name="district"
+                                required>
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Current Class / Qualification
+
+                                </label>
+
+                                <input
+                                type="text"
+                                class="form-control"
+                                name="current_class"
+                                placeholder="10th / 12th / B.Tech / B.Sc"
+                                required>
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    School / College
+
+                                </label>
+
+                                <input
+                                type="text"
+                                class="form-control"
+                                name="school_college">
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Career Goal
+
+                                </label>
+
+                                <input
+                                type="text"
+                                class="form-control"
+                                name="career_goal"
+                                placeholder="Software Engineer">
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Interests
+
+                                </label>
+
+                                <textarea
+                                class="form-control"
+                                rows="3"
+                                name="interests"
+                                placeholder="Programming, AI, Mathematics"></textarea>
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Strengths
+
+                                </label>
+
+                                <textarea
+                                class="form-control"
+                                rows="3"
+                                name="strengths"
+                                placeholder="Logical Thinking, Communication"></textarea>
+
+                            </div>
+
+                            <div class="col-md-12 mb-3">
+
+                                <label class="form-label">
+
+                                    Weaknesses
+
+                                </label>
+
+                                <textarea
+                                class="form-control"
+                                rows="3"
+                                name="weaknesses"></textarea>
+
+                            </div>
+
+                            <div class="col-md-12 mb-4">
+
+                                <label class="form-label">
+
+                                    Learning Style
+
+                                </label>
+
+                                <select
+                                class="form-select"
+                                name="learning_style">
+
+                                    <option>Visual</option>
+
+                                    <option>Reading/Writing</option>
+
+                                    <option>Practical</option>
+
+                                    <option>Listening</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                        class="btn btn-primary btn-lg w-100">
+
+                            Save Profile
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

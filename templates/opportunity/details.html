@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block title %}
+Opportunity Details
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    {% if item %}
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <span class="badge bg-primary">
+
+                {{ item.type }}
+
+            </span>
+
+            <h2 class="mt-3">
+
+                {{ item.title }}
+
+            </h2>
+
+            <hr>
+
+            <p>
+
+                <strong>Category</strong>
+
+                <br>
+
+                {{ item.category }}
+
+            </p>
+
+            <p>
+
+                <strong>Description</strong>
+
+                <br>
+
+                {{ item.description }}
+
+            </p>
+
+            <p>
+
+                <strong>Education Required</strong>
+
+                <br>
+
+                {{ item.education }}
+
+            </p>
+
+            <p>
+
+                <strong>Salary / Benefit</strong>
+
+                <br>
+
+                {{ item.salary }}
+
+            </p>
+
+            {% if item.future_scope %}
+
+            <p>
+
+                <strong>Future Scope</strong>
+
+                <br>
+
+                {{ item.future_scope }}
+
+            </p>
+
+            {% endif %}
+
+            {% if item.type == "Government Exam" %}
+
+                {% if item.details.official_website %}
+
+                <a
+                href="{{ item.details.official_website }}"
+                target="_blank"
+                class="btn btn-success">
+
+                    Official Website
+
+                </a>
+
+                {% endif %}
+
+            {% endif %}
+
+            {% if item.type == "Scholarship" %}
+
+                {% if item.details.website %}
+
+                <a
+                href="{{ item.details.website }}"
+                target="_blank"
+                class="btn btn-success">
+
+                    Official Website
+
+                </a>
+
+                {% endif %}
+
+            {% endif %}
+
+            {% if item.type == "Internship" %}
+
+                {% if item.details.apply_link %}
+
+                <a
+                href="{{ item.details.apply_link }}"
+                target="_blank"
+                class="btn btn-success">
+
+                    Apply Now
+
+                </a>
+
+                {% endif %}
+
+            {% endif %}
+
+            <a
+            href="{{ url_for('opportunity.home') }}"
+            class="btn btn-secondary">
+
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-danger text-center">
+
+        Opportunity Not Found
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

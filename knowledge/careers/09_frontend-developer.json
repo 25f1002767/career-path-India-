@@ -1,0 +1,190 @@
+{
+    "id": 9,
+    "title": "Frontend Developer",
+    "slug": "frontend-developer",
+    "category": "Technology",
+    "summary": "Frontend Developer is one of the fastest growing technology careers.",
+    "description": "A Frontend Developer designs, develops, and maintains modern software solutions for businesses and users.",
+    "future_scope": "Excellent",
+    "average_salary": {
+        "fresher": "₹4–9 LPA",
+        "experienced": "₹20–50 LPA",
+        "international": "$120,000-$250,000 per year"
+    },
+    "education": {
+        "minimum": "B.Tech/B.E./B.Sc. Computer Science or related field",
+        "preferred": [
+            "B.Tech Computer Science",
+            "B.Tech Artificial Intelligence",
+            "B.Tech Data Science",
+            "M.Tech AI",
+            "MCA"
+        ],
+        "higher_studies": [
+            "M.Tech",
+            "MS",
+            "PhD in Artificial Intelligence"
+        ]
+    },
+    "skills": {
+        "technical": [
+            "Python",
+            "Machine Learning",
+            "Deep Learning",
+            "Statistics",
+            "SQL",
+            "Linear Algebra",
+            "Data Structures",
+            "Algorithms"
+        ],
+        "soft": [
+            "Problem Solving",
+            "Communication",
+            "Critical Thinking",
+            "Teamwork",
+            "Analytical Thinking"
+        ],
+        "tools": [
+            "TensorFlow",
+            "PyTorch",
+            "Scikit-learn",
+            "Pandas",
+            "NumPy",
+            "Git",
+            "Docker",
+            "Jupyter Notebook"
+        ]
+    },
+    "roadmap": [
+        {
+            "step": 1,
+            "title": "Programming Basics",
+            "description": "Learn Python and programming fundamentals."
+        },
+        {
+            "step": 2,
+            "title": "Mathematics",
+            "description": "Study statistics, probability, calculus, and linear algebra."
+        },
+        {
+            "step": 3,
+            "title": "Machine Learning",
+            "description": "Understand supervised and unsupervised learning algorithms."
+        },
+        {
+            "step": 4,
+            "title": "Deep Learning",
+            "description": "Learn neural networks, CNNs, RNNs, and transformers."
+        },
+        {
+            "step": 5,
+            "title": "Projects",
+            "description": "Build real-world AI projects and publish them on GitHub."
+        },
+        {
+            "step": 6,
+            "title": "Internship",
+            "description": "Gain practical experience through internships."
+        },
+        {
+            "step": 7,
+            "title": "Placement",
+            "description": "Apply for AI Engineer roles in companies and research organizations."
+        }
+    ],
+    "projects": [
+        "AI Chatbot",
+        "Face Recognition System",
+        "Resume Analyzer",
+        "Object Detection",
+        "Plant Disease Detection",
+        "Stock Price Prediction",
+        "Recommendation System",
+        "Voice Assistant"
+    ],
+    "certifications": [
+        "Google AI Essentials",
+        "AWS Machine Learning Specialty",
+        "Microsoft Azure AI Engineer Associate",
+        "IBM AI Engineering Professional Certificate",
+        "DeepLearning.AI Machine Learning Specialization"
+    ],
+    "entrance_exams": [
+        "JEE Main",
+        "JEE Advanced",
+        "BITSAT",
+        "VITEEE",
+        "GATE"
+    ],
+    "top_colleges": [
+        "IIT Madras",
+        "IIT Bombay",
+        "IIT Delhi",
+        "IIIT Hyderabad",
+        "BITS Pilani",
+        "NIT Tiruchirappalli"
+    ],
+    "top_companies": [
+        "Google",
+        "Microsoft",
+        "Amazon",
+        "OpenAI",
+        "NVIDIA",
+        "IBM",
+        "Infosys",
+        "TCS",
+        "Accenture",
+        "Oracle"
+    ],
+    "government_opportunities": [
+        "ISRO",
+        "DRDO",
+        "CDAC",
+        "NIC",
+        "MeitY"
+    ],
+    "private_opportunities": [
+        "Google",
+        "Microsoft",
+        "Amazon",
+        "Infosys",
+        "TCS",
+        "Wipro",
+        "Adobe",
+        "Flipkart"
+    ],
+    "career_growth": [
+        "AI Engineer",
+        "Senior AI Engineer",
+        "Lead AI Engineer",
+        "AI Architect",
+        "Head of AI",
+        "Chief AI Officer"
+    ],
+    "related_careers": [
+        "Machine Learning Engineer",
+        "Data Scientist",
+        "Robotics Engineer",
+        "Data Engineer",
+        "Cloud Engineer"
+    ],
+    "resources": {
+        "books": [
+            "Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow",
+            "Deep Learning by Ian Goodfellow",
+            "Python Machine Learning"
+        ],
+        "websites": [
+            "Coursera",
+            "edX",
+            "Kaggle",
+            "Hugging Face"
+        ],
+        "youtube": [
+            "freeCodeCamp",
+            "DeepLearningAI",
+            "Krish Naik",
+            "CampusX"
+        ]
+    }
+}

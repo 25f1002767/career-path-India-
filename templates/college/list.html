@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+
+{% block title %}
+College Explorer
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold display-5">
+            🎓 College Explorer
+        </h1>
+
+        <p class="text-muted fs-5">
+            Discover colleges according to your stream, course type, and state.
+        </p>
+
+    </div>
+
+    <!-- Filter Form -->
+    <form method="GET" class="mb-5">
+
+        <div class="row g-3">
+
+            <!-- Search -->
+            <div class="col-md-4">
+
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control form-control-lg"
+                    placeholder="Search IIT, AIIMS, Delhi University..."
+                    value="{{ request.args.get('search', '') }}">
+
+            </div>
+
+            <!-- Stream -->
+            <div class="col-md-2">
+
+                <select name="stream"
+                        class="form-select form-select-lg single-filter">
+
+                    <option value="">Stream</option>
+
+                    <option value="PCM"
+                        {% if request.args.get('stream') == 'PCM' %}selected{% endif %}>
+                        PCM
+                    </option>
+
+                    <option value="PCB"
+                        {% if request.args.get('stream') == 'PCB' %}selected{% endif %}>
+                        PCB
+                    </option>
+
+                    <option value="Commerce"
+                        {% if request.args.get('stream') == 'Commerce' %}selected{% endif %}>
+                        Commerce
+                    </option>
+
+                    <option value="Arts"
+                        {% if request.args.get('stream') == 'Arts' %}selected{% endif %}>
+                        Arts
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- Course Type -->
+            <div class="col-md-3">
+
+                <select name="course_type"
+                        class="form-select form-select-lg single-filter">
+
+                    <option value="">Course Type</option>
+
+                    <option value="Engineering"
+                        {% if request.args.get('course_type') == 'Engineering' %}selected{% endif %}>
+                        Engineering
+                    </option>
+
+                    <option value="Medical"
+                        {% if request.args.get('course_type') == 'Medical' %}selected{% endif %}>
+                        Medical
+                    </option>
+
+                    <option value="Management"
+                        {% if request.args.get('course_type') == 'Management' %}selected{% endif %}>
+                        Management
+                    </option>
+
+                    <option value="Commerce"
+                        {% if request.args.get('course_type') == 'Commerce' %}selected{% endif %}>
+                        Commerce
+                    </option>
+
+                    <option value="Arts"
+                        {% if request.args.get('course_type') == 'Arts' %}selected{% endif %}>
+                        Arts
+                    </option>
+
+                    <option value="Law"
+                        {% if request.args.get('course_type') == 'Law' %}selected{% endif %}>
+                        Law
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- State -->
+            <div class="col-md-3">
+
+                <select name="state"
+                        class="form-select form-select-lg single-filter">
+
+                    <option value="">State</option>
+
+                    <option value="Delhi"
+                        {% if request.args.get('state') == 'Delhi' %}selected{% endif %}>
+                        Delhi
+                    </option>
+
+                    <option value="Maharashtra"
+                        {% if request.args.get('state') == 'Maharashtra' %}selected{% endif %}>
+                        Maharashtra
+                    </option>
+
+                    <option value="Karnataka"
+                        {% if request.args.get('state') == 'Karnataka' %}selected{% endif %}>
+                        Karnataka
+                    </option>
+
+                    <option value="Tamil Nadu"
+                        {% if request.args.get('state') == 'Tamil Nadu' %}selected{% endif %}>
+                        Tamil Nadu
+                    </option>
+
+                    <option value="Madhya Pradesh"
+                        {% if request.args.get('state') == 'Madhya Pradesh' %}selected{% endif %}>
+                        Madhya Pradesh
+                    </option>
+
+                    <option value="Uttar Pradesh"
+                        {% if request.args.get('state') == 'Uttar Pradesh' %}selected{% endif %}>
+                        Uttar Pradesh
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center mt-4">
+
+            <button class="btn btn-primary btn-lg px-5 me-2">
+
+                🔍 Apply Filter
+
+            </button>
+
+            <a href="{{ url_for('college.college_list') }}"
+               class="btn btn-outline-secondary btn-lg">
+
+                Reset
+
+            </a>
+
+        </div>
+
+    </form>
+
+    <!-- Results Count -->
+    <div class="mb-4">
+
+        <h5 class="fw-bold">
+            Showing {{ colleges|length }} College{{ 's' if colleges|length != 1 else '' }}
+        </h5>
+
+    </div>
+
+    <!-- College Cards -->
+    <div class="row">
+
+        {% if colleges %}
+
+            {% for college in colleges %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body d-flex flex-column">
+
+                        <h4 class="fw-bold text-primary mb-3">
+
+                            {{ college.name }}
+
+                        </h4>
+
+                        <p>
+
+                            📍 <strong>Location:</strong>
+                            {{ college.city }}, {{ college.state }}
+
+                        </p>
+
+                        <p>
+
+                            🎓 <strong>Course:</strong>
+                            {{ college.course }}
+
+                        </p>
+
+                        <p>
+
+                            💰 <strong>Fees:</strong>
+                            {{ college.fees }}
+
+                        </p>
+
+                        <p>
+
+                            🚀 <strong>Placement:</strong>
+                            {{ college.placement }}
+
+                        </p>
+
+                        <p class="text-muted flex-grow-1">
+
+                            {{ college.description }}
+
+                        </p>
+
+                        <div class="mt-auto d-grid gap-2">
+
+                            <a href="{{ url_for('college.college_detail', index=loop.index0) }}"
+                               class="btn btn-outline-primary">
+
+                                View Details
+
+                            </a>
+
+                            <a href="{{ college.official_website }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="btn btn-primary">
+
+                                🌐 Official Website
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+        <div class="col-12">
+
+            <div class="alert alert-warning text-center shadow-sm">
+
+                <h5 class="mb-2">
+                    😕 No colleges found.
+                </h5>
+
+                <p class="mb-0">
+                    Try selecting a different filter.
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<!-- Single Filter Script -->
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filters = document.querySelectorAll(".single-filter");
+
+    function updateFilters() {
+
+        let active = null;
+
+        filters.forEach(f => {
+
+            if (f.value !== "") {
+                active = f;
+            }
+
+        });
+
+        filters.forEach(f => {
+
+            if (active && f !== active) {
+
+                f.disabled = true;
+
+            } else {
+
+                f.disabled = false;
+
+            }
+
+        });
+
+    }
+
+    filters.forEach(f => {
+
+        f.addEventListener("change", updateFilters);
+
+    });
+
+    updateFilters();
+
+});
+
+</script>
+
+{% endblock %}

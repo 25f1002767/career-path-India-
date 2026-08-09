@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resume Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="fw-bold mb-4">
+        AI Resume Skill Analyzer
+    </h1>
+
+    <form method="POST"
+          enctype="multipart/form-data"
+          class="card p-4 shadow-sm mb-4">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Upload Resume (.txt)
+            </label>
+
+            <input type="file"
+                   name="resume"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <button class="btn btn-primary">
+            Analyze Resume
+        </button>
+
+    </form>
+
+    {% if skills %}
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h4>Extracted Skills</h4>
+
+            {% for skill in skills %}
+
+            <span class="badge bg-success me-2 mb-2">
+                {{ skill }}
+            </span>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

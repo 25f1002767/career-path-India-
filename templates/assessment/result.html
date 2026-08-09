@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Career Report
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+            🎯 AI Career Assessment Report
+        </h1>
+
+        <p class="lead">
+            Your strongest career category is
+        </p>
+
+        <span class="badge bg-primary fs-4 px-4 py-3">
+            {{ category }}
+        </span>
+
+    </div>
+
+    <div class="row">
+
+        {% for career in recommendations %}
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h3 class="fw-bold">
+                            {{ career.title }}
+                        </h3>
+
+                        <span class="badge bg-success fs-6">
+                            {{ career.percentage }}%
+                        </span>
+
+                    </div>
+
+                    <hr>
+
+                    <p>{{ career.description }}</p>
+
+                    <p><strong>Required Skills:</strong> {{ career.skills }}</p>
+
+                    <p><strong>Average Salary:</strong> {{ career.salary }}</p>
+
+                    <p><strong>Future Scope:</strong> {{ career.future }}</p>
+
+                    <h5 class="fw-bold">Why this career?</h5>
+
+                    <ul>
+                        {% for reason in career.reasons %}
+                        <li>{{ reason }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <a
+                        href="{{ career.official }}"
+                        target="_blank"
+                        class="btn btn-primary w-100">
+
+                        Official Information
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="text-center mt-5">
+
+        <a
+            href="{{ url_for('assessment.start') }}"
+            class="btn btn-outline-primary btn-lg me-3">
+
+            Take Assessment Again
+
+        </a>
+
+        <button
+            class="btn btn-success btn-lg"
+            onclick="window.print()">
+
+            Download Report
+
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}

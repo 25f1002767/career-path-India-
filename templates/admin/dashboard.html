@@ -1,0 +1,274 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-5">
+
+        <div>
+
+            <h1 class="fw-bold">
+
+                ⚙️ Admin Dashboard
+
+            </h1>
+
+            <p class="text-muted">
+
+                CareerPath India Administration Panel
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card border-0 shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Total Users</h6>
+
+                    <h2 class="text-primary">
+
+                        {{ stats.users }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card border-0 shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Careers</h6>
+
+                    <h2 class="text-success">
+
+                        {{ stats.careers }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card border-0 shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Colleges</h6>
+
+                    <h2 class="text-warning">
+
+                        {{ stats.colleges }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="card border-0 shadow text-center">
+
+                <div class="card-body">
+
+                    <h6>Assessments</h6>
+
+                    <h2 class="text-danger">
+
+                        {{ stats.assessments }}
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="card shadow border-0 mb-5">
+
+        <div class="card-header bg-white">
+
+            <h4>
+
+                Quick Actions
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-3">
+
+                    <a
+                        href="{{ url_for('admin.careers') }}"
+                        class="btn btn-primary w-100">
+
+                        Manage Careers
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a
+                        href="{{ url_for('admin.colleges') }}"
+                        class="btn btn-success w-100">
+
+                        Manage Colleges
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a
+                        href="{{ url_for('admin.roadmaps') }}"
+                        class="btn btn-warning w-100">
+
+                        Manage Roadmaps
+
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <a
+                        href="{{ url_for('main.home') }}"
+                        class="btn btn-dark w-100">
+
+                        Visit Website
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-white">
+
+                    <h5>
+
+                        Recent Users
+
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <ul class="list-group">
+
+                        {% for user in recent_users %}
+
+                        <li class="list-group-item">
+
+                            {{ user.full_name }}
+
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+            <div class="card shadow border-0">
+
+                <div class="card-header bg-white">
+
+                    <h5>
+
+                        Recent Careers
+
+                    </h5>
+
+                </div>
+
+                <div class="card-body">
+
+                    <ul class="list-group">
+
+                        {% for career in recent_careers %}
+
+                        <li class="list-group-item">
+
+                            {{ career.title }}
+
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<a
+href="{{ url_for('report.career_report') }}"
+class="btn btn-success">
+
+Download AI Career Report
+
+</a>
+
+{% endblock %}

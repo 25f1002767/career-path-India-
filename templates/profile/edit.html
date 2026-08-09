@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="card shadow">
+
+<div class="card-header bg-warning">
+
+<h3>
+
+Edit Profile
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<form method="POST">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label>Phone</label>
+
+<input
+class="form-control"
+name="phone"
+value="{{ profile.phone }}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>State</label>
+
+<input
+class="form-control"
+name="state"
+value="{{ profile.state }}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>District</label>
+
+<input
+class="form-control"
+name="district"
+value="{{ profile.district }}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label>Qualification</label>
+
+<input
+class="form-control"
+name="current_class"
+value="{{ profile.current_class }}">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label>School / College</label>
+
+<input
+class="form-control"
+name="school_college"
+value="{{ profile.school_college }}">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label>Career Goal</label>
+
+<input
+class="form-control"
+name="career_goal"
+value="{{ profile.career_goal }}">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label>Interests</label>
+
+<textarea
+class="form-control"
+rows="3"
+name="interests">{{ profile.interests }}</textarea>
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label>Strengths</label>
+
+<textarea
+class="form-control"
+rows="3"
+name="strengths">{{ profile.strengths }}</textarea>
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label>Weaknesses</label>
+
+<textarea
+class="form-control"
+rows="3"
+name="weaknesses">{{ profile.weaknesses }}</textarea>
+
+</div>
+
+<div class="col-md-12 mb-4">
+
+<label>Learning Style</label>
+
+<select
+class="form-select"
+name="learning_style">
+
+<option {% if profile.learning_style=="Visual" %}selected{% endif %}>Visual</option>
+
+<option {% if profile.learning_style=="Reading/Writing" %}selected{% endif %}>Reading/Writing</option>
+
+<option {% if profile.learning_style=="Practical" %}selected{% endif %}>Practical</option>
+
+<option {% if profile.learning_style=="Listening" %}selected{% endif %}>Listening</option>
+
+</select>
+
+</div>
+
+</div>
+
+<button
+class="btn btn-success btn-lg w-100">
+
+Update Profile
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

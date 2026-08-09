@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Career Report
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+            🎯 Your AI Career Report
+        </h1>
+
+        <span class="badge bg-primary fs-4 px-4 py-3">
+            {{ result.recommended_category }}
+        </span>
+
+    </div>
+
+    <h3 class="fw-bold mb-4">
+        🚀 Top Career Matches
+    </h3>
+
+    <div class="row">
+
+        {% for item in top_careers %}
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h5 class="fw-bold">
+                            {{ item.name }}
+                        </h5>
+
+                        <span class="badge bg-success fs-6">
+                            {{ item.percentage }}%
+                        </span>
+
+                    </div>
+
+                    <div class="progress mt-3" style="height: 12px;">
+
+                        <div
+                            class="progress-bar bg-success"
+                            style="width: {{ item.percentage }}%">
+
+                        </div>
+
+                    </div>
+
+                    <div class="mt-3">
+
+                        {% if "Engineer" in item.name %}
+
+                        <a href="https://www.naukri.com"
+                           target="_blank"
+                           class="btn btn-outline-primary btn-sm">
+                            Official Job Source
+                        </a>
+
+                        {% elif "Doctor" in item.name %}
+
+                        <a href="https://www.nmc.org.in"
+                           target="_blank"
+                           class="btn btn-outline-primary btn-sm">
+                            Official Medical Source
+                        </a>
+
+                        {% elif "IAS" in item.name %}
+
+                        <a href="https://upsc.gov.in"
+                           target="_blank"
+                           class="btn btn-outline-primary btn-sm">
+                            UPSC Official
+                        </a>
+
+                        {% elif "Chartered Accountant" in item.name %}
+
+                        <a href="https://www.icai.org"
+                           target="_blank"
+                           class="btn btn-outline-primary btn-sm">
+                            ICAI Official
+                        </a>
+
+                        {% elif "Lawyer" in item.name %}
+
+                        <a href="https://www.barcouncilofindia.org"
+                           target="_blank"
+                           class="btn btn-outline-primary btn-sm">
+                            Bar Council Official
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <div class="card shadow border-0 mt-5">
+
+        <div class="card-header bg-white">
+
+            <h4 class="fw-bold">
+                📌 Your Profile Summary
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <p><strong>Class:</strong> {{ data.current_class }}</p>
+                    <p><strong>Stream:</strong> {{ data.stream }}</p>
+                    <p><strong>Career Preference:</strong> {{ data.preference }}</p>
+                    <p><strong>Interest:</strong> {{ data.activity }}</p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <p><strong>Strong Subject:</strong> {{ data.strong_subject }}</p>
+                    <p><strong>Personality:</strong> {{ data.personality }}</p>
+                    <p><strong>Technical Skill:</strong> {{ data.technical_skill }}</p>
+                    <p><strong>Long-term Goal:</strong> {{ data.long_term_goal }}</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+
+        <a href="{{ url_for('career.career_list') }}"
+           class="btn btn-primary btn-lg me-3">
+
+            🚀 Explore Careers
+
+        </a>
+
+        <a href="{{ url_for('college.college_list') }}"
+           class="btn btn-success btn-lg me-3">
+
+            🎓 Find Colleges
+
+        </a>
+
+        <a href="{{ url_for('exam.exam_list') }}"
+           class="btn btn-warning btn-lg text-dark">
+
+            🏛 Government Exams
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

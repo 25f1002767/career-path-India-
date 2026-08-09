@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Roadmaps{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h2 class="mb-4">
+
+Career Roadmaps
+
+</h2>
+
+<a
+href="{{ url_for('admin.add_roadmap') }}"
+class="btn btn-primary mb-4">
+
+Add Roadmap
+
+</a>
+
+<table class="table table-bordered">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Career ID</th>
+
+<th>Salary</th>
+
+<th>Future Scope</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for roadmap in roadmaps %}
+
+<tr>
+
+<td>{{ roadmap.id }}</td>
+
+<td>{{ roadmap.career_id }}</td>
+
+<td>{{ roadmap.salary }}</td>
+
+<td>{{ roadmap.future_scope }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+{% endblock %}

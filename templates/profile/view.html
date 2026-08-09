@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="row">
+
+<div class="col-lg-4">
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<img
+src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+width="120"
+class="mb-3">
+
+<h3>
+
+Career Profile
+
+</h3>
+
+<div class="progress my-4" style="height:25px;">
+
+<div
+class="progress-bar bg-success"
+role="progressbar"
+style="width: {{ completion }}%;">
+
+{{ completion }}%
+
+</div>
+
+</div>
+
+<a
+href="{{ url_for('profile.edit_profile') }}"
+class="btn btn-primary w-100">
+
+Edit Profile
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-8">
+
+<div class="card shadow">
+
+<div class="card-header">
+
+<h4>
+
+Student Information
+
+</h4>
+
+</div>
+
+<div class="card-body">
+
+<table class="table table-bordered">
+
+<tr>
+
+<th width="35%">
+
+Phone
+
+</th>
+
+<td>
+
+{{ profile.phone }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+State
+
+</th>
+
+<td>
+
+{{ profile.state }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+District
+
+</th>
+
+<td>
+
+{{ profile.district }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Qualification
+
+</th>
+
+<td>
+
+{{ profile.current_class }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+School / College
+
+</th>
+
+<td>
+
+{{ profile.school_college }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Career Goal
+
+</th>
+
+<td>
+
+{{ profile.career_goal }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Interests
+
+</th>
+
+<td>
+
+{{ profile.interests }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Strengths
+
+</th>
+
+<td>
+
+{{ profile.strengths }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Weaknesses
+
+</th>
+
+<td>
+
+{{ profile.weaknesses }}
+
+</td>
+
+</tr>
+
+<tr>
+
+<th>
+
+Learning Style
+
+</th>
+
+<td>
+
+{{ profile.learning_style }}
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

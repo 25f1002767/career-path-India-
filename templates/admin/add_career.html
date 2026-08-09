@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add Career
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="card shadow border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h3 class="mb-0">
+
+                Add New Career
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Career Title</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <input type="text" name="category" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="5" required></textarea>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Average Salary</label>
+                        <input type="text" name="average_salary" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Future Scope</label>
+                        <input type="text" name="future_scope" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Education Required</label>
+                    <input type="text" name="education_required" class="form-control">
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Skills Required</label>
+                    <textarea name="skills_required" class="form-control" rows="4"></textarea>
+                </div>
+
+                <button class="btn btn-success">
+
+                    Save Career
+
+                </button>
+
+                <a href="{{ url_for('admin.careers') }}" class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,505 @@
+[
+  {
+    "name": "UPSC Civil Services Examination",
+    "category": "Civil Services",
+    "eligibility": "Graduation",
+    "age_limit": "21-32 Years",
+    "conducted_by": "UPSC",
+    "official_website": "https://upsc.gov.in",
+    "notification_month": "February",
+    "description": "Recruitment for IAS, IPS, IFS and other central services."
+  },
+  {
+    "name": "SSC Combined Graduate Level",
+    "category": "Central Government",
+    "eligibility": "Graduation",
+    "age_limit": "18-32 Years",
+    "conducted_by": "SSC",
+    "official_website": "https://ssc.gov.in",
+    "notification_month": "June",
+    "description": "Recruitment for Group B and Group C posts in central ministries."
+  },
+  {
+    "name": "IBPS Probationary Officer",
+    "category": "Banking",
+    "eligibility": "Graduation",
+    "age_limit": "20-30 Years",
+    "conducted_by": "IBPS",
+    "official_website": "https://www.ibps.in",
+    "notification_month": "August",
+    "description": "Recruitment for Probationary Officers in public sector banks."
+  },
+  {
+    "name": "SBI Clerk",
+    "category": "Banking",
+    "eligibility": "Graduation",
+    "age_limit": "20-28 Years",
+    "conducted_by": "State Bank of India",
+    "official_website": "https://sbi.co.in/web/careers",
+    "notification_month": "November",
+    "description": "Recruitment for Junior Associate posts in State Bank of India."
+  },
+  {
+    "name": "RBI Grade B Officer",
+    "category": "Banking",
+    "eligibility": "Graduation",
+    "age_limit": "21-30 Years",
+    "conducted_by": "Reserve Bank of India",
+    "official_website": "https://www.rbi.org.in",
+    "notification_month": "April",
+    "description": "Recruitment for officers in Reserve Bank of India."
+  },
+  {
+    "name": "RRB NTPC",
+    "category": "Railway",
+    "eligibility": "12th / Graduation",
+    "age_limit": "18-33 Years",
+    "conducted_by": "Railway Recruitment Boards",
+    "official_website": "https://www.rrbcdg.gov.in",
+    "notification_month": "January",
+    "description": "Recruitment for non-technical popular category posts in Indian Railways."
+  },
+  {
+    "name": "NTA NEET UG",
+    "category": "Medical",
+    "eligibility": "12th PCB",
+    "age_limit": "17+ Years",
+    "conducted_by": "National Testing Agency",
+    "official_website": "https://neet.nta.nic.in",
+    "notification_month": "February",
+    "description": "National eligibility test for MBBS, BDS and other medical courses."
+  },
+  {
+    "name": "NTA JEE Main",
+    "category": "Engineering",
+    "eligibility": "12th PCM",
+    "age_limit": "No Upper Limit",
+    "conducted_by": "National Testing Agency",
+    "official_website": "https://jeemain.nta.nic.in",
+    "notification_month": "November",
+    "description": "National entrance examination for engineering colleges and NITs."
+  },
+  {
+    "name": "JEE Advanced",
+    "category": "Engineering",
+    "eligibility": "Qualified JEE Main",
+    "age_limit": "As per IIT Rules",
+    "conducted_by": "IITs",
+    "official_website": "https://jeeadv.ac.in",
+    "notification_month": "April",
+    "description": "Entrance examination for admission to IITs."
+  },
+  {
+    "name": "UGC NET",
+    "category": "Teaching and Research",
+    "eligibility": "Post Graduation",
+    "age_limit": "No Upper Limit",
+    "conducted_by": "National Testing Agency",
+    "official_website": "https://ugcnet.nta.nic.in",
+    "notification_month": "May",
+    "description": "Eligibility test for Assistant Professor and Junior Research Fellowship."
+  }
+
+,
+{
+  "name": "SSC Stenographer Grade C & D",
+  "category": "Central Government",
+  "eligibility": "12th Pass",
+  "age_limit": "18-30 Years",
+  "conducted_by": "SSC",
+  "official_website": "https://ssc.gov.in",
+  "notification_month": "August",
+  "description": "Recruitment for Stenographer Grade C and Grade D posts in central government departments."
+},
+{
+  "name": "SSC GD Constable",
+  "category": "Police & Paramilitary",
+  "eligibility": "10th Pass",
+  "age_limit": "18-23 Years",
+  "conducted_by": "SSC",
+  "official_website": "https://ssc.gov.in",
+  "notification_month": "October",
+  "description": "Recruitment for Constable posts in BSF, CISF, CRPF, ITBP, SSB and other CAPFs."
+},
+{
+  "name": "CISF Head Constable",
+  "category": "Police & Paramilitary",
+  "eligibility": "12th Pass",
+  "age_limit": "18-25 Years",
+  "conducted_by": "CISF",
+  "official_website": "https://www.cisf.gov.in",
+  "notification_month": "March",
+  "description": "Recruitment for Head Constable posts in Central Industrial Security Force."
+},
+{
+  "name": "CRPF Assistant Sub Inspector",
+  "category": "Police & Paramilitary",
+  "eligibility": "12th Pass",
+  "age_limit": "18-25 Years",
+  "conducted_by": "CRPF",
+  "official_website": "https://www.crpf.gov.in",
+  "notification_month": "April",
+  "description": "Recruitment for Assistant Sub Inspector posts in Central Reserve Police Force."
+},
+{
+  "name": "BSF Recruitment",
+  "category": "Police & Paramilitary",
+  "eligibility": "10th / 12th / Graduation",
+  "age_limit": "18-25 Years",
+  "conducted_by": "Border Security Force",
+  "official_website": "https://rectt.bsf.gov.in",
+  "notification_month": "July",
+  "description": "Recruitment for various technical and non-technical posts in BSF."
+},
+{
+  "name": "Delhi Police Constable",
+  "category": "Police",
+  "eligibility": "12th Pass",
+  "age_limit": "18-25 Years",
+  "conducted_by": "SSC",
+  "official_website": "https://ssc.gov.in",
+  "notification_month": "September",
+  "description": "Recruitment for Constable posts in Delhi Police."
+},
+{
+  "name": "State Bank of India Specialist Officer",
+  "category": "Banking",
+  "eligibility": "Relevant Professional Degree",
+  "age_limit": "21-35 Years",
+  "conducted_by": "State Bank of India",
+  "official_website": "https://sbi.co.in/web/careers",
+  "notification_month": "February",
+  "description": "Recruitment for Specialist Officer posts in SBI."
+},
+{
+  "name": "NABARD Grade A",
+  "category": "Banking & Agriculture",
+  "eligibility": "Graduation",
+  "age_limit": "21-30 Years",
+  "conducted_by": "NABARD",
+  "official_website": "https://www.nabard.org",
+  "notification_month": "July",
+  "description": "Recruitment for Assistant Manager posts in NABARD."
+},
+{
+  "name": "LIC Assistant",
+  "category": "Insurance",
+  "eligibility": "Graduation",
+  "age_limit": "18-30 Years",
+  "conducted_by": "Life Insurance Corporation of India",
+  "official_website": "https://licindia.in",
+  "notification_month": "January",
+  "description": "Recruitment for Assistant posts in LIC."
+},
+{
+  "name": "LIC AAO",
+  "category": "Insurance",
+  "eligibility": "Graduation",
+  "age_limit": "21-30 Years",
+  "conducted_by": "Life Insurance Corporation of India",
+  "official_website": "https://licindia.in",
+  "notification_month": "March",
+  "description": "Recruitment for Assistant Administrative Officer posts in LIC."
+},
+{
+  "name": "Indian Army Agniveer General Duty",
+  "category": "Defence",
+  "eligibility": "10th Pass",
+  "age_limit": "17.5-21 Years",
+  "conducted_by": "Indian Army",
+  "official_website": "https://joinindianarmy.nic.in",
+  "notification_month": "June",
+  "description": "Recruitment of Agniveers for General Duty posts in the Indian Army."
+},
+{
+  "name": "Indian Army Technical Entry Scheme",
+  "category": "Defence",
+  "eligibility": "12th PCM",
+  "age_limit": "16.5-19.5 Years",
+  "conducted_by": "Indian Army",
+  "official_website": "https://joinindianarmy.nic.in",
+  "notification_month": "May",
+  "description": "Direct technical entry for candidates with PCM background into the Indian Army."
+},
+{
+  "name": "Indian Navy SSR",
+  "category": "Defence",
+  "eligibility": "12th PCM",
+  "age_limit": "17.5-21 Years",
+  "conducted_by": "Indian Navy",
+  "official_website": "https://www.joinindiannavy.gov.in",
+  "notification_month": "May",
+  "description": "Recruitment for Senior Secondary Recruit posts in the Indian Navy."
+},
+{
+  "name": "Indian Air Force Group X & Y",
+  "category": "Defence",
+  "eligibility": "12th Pass",
+  "age_limit": "17.5-21 Years",
+  "conducted_by": "Indian Air Force",
+  "official_website": "https://agnipathvayu.cdac.in",
+  "notification_month": "January",
+  "description": "Recruitment for technical and non-technical Air Force posts."
+},
+{
+  "name": "CTET",
+  "category": "Teaching",
+  "eligibility": "D.El.Ed / B.Ed",
+  "age_limit": "No Upper Limit",
+  "conducted_by": "CBSE",
+  "official_website": "https://ctet.nic.in",
+  "notification_month": "July",
+  "description": "Central Teacher Eligibility Test for primary and upper primary teaching."
+},
+{
+  "name": "DSSSB TGT PGT",
+  "category": "Teaching",
+  "eligibility": "Graduation / Post Graduation with B.Ed",
+  "age_limit": "As per DSSSB Rules",
+  "conducted_by": "DSSSB",
+  "official_website": "https://dsssb.delhi.gov.in",
+  "notification_month": "August",
+  "description": "Recruitment for Trained Graduate Teacher and Post Graduate Teacher posts in Delhi government schools."
+},
+{
+  "name": "AIIMS NORCET",
+  "category": "Medical & Nursing",
+  "eligibility": "B.Sc Nursing / GNM",
+  "age_limit": "18-30 Years",
+  "conducted_by": "AIIMS",
+  "official_website": "https://www.aiimsexams.ac.in",
+  "notification_month": "March",
+  "description": "Nursing Officer Recruitment Common Eligibility Test for AIIMS institutions."
+},
+{
+  "name": "AIIMS B.Sc Nursing Entrance",
+  "category": "Medical & Nursing",
+  "eligibility": "12th PCB",
+  "age_limit": "17+ Years",
+  "conducted_by": "AIIMS",
+  "official_website": "https://www.aiimsexams.ac.in",
+  "notification_month": "February",
+  "description": "Entrance examination for admission to AIIMS B.Sc Nursing programs."
+},
+{
+  "name": "ISRO Technician B",
+  "category": "Space & Research",
+  "eligibility": "ITI",
+  "age_limit": "18-35 Years",
+  "conducted_by": "ISRO",
+  "official_website": "https://www.isro.gov.in",
+  "notification_month": "September",
+  "description": "Recruitment for Technician B posts in various ISRO centres."
+},
+{
+  "name": "DRDO Scientist B",
+  "category": "Defence Research",
+  "eligibility": "B.E. / B.Tech / M.Sc",
+  "age_limit": "18-35 Years",
+  "conducted_by": "DRDO",
+  "official_website": "https://www.drdo.gov.in",
+  "notification_month": "August",
+  "description": "Recruitment for Scientist B posts in Defence Research and Development Organisation."
+}
+,
+
+{
+  "name": "NVS TGT Recruitment",
+  "category": "Teaching",
+  "eligibility": "Graduation with B.Ed",
+  "age_limit": "18-35 Years",
+  "conducted_by": "Navodaya Vidyalaya Samiti",
+  "official_website": "https://navodaya.gov.in",
+  "notification_month": "January",
+  "description": "Recruitment for Trained Graduate Teacher posts in Jawahar Navodaya Vidyalayas."
+},
+{
+  "name": "KVS PGT Recruitment",
+  "category": "Teaching",
+  "eligibility": "Post Graduation with B.Ed",
+  "age_limit": "18-40 Years",
+  "conducted_by": "Kendriya Vidyalaya Sangathan",
+  "official_website": "https://kvsangathan.nic.in",
+  "notification_month": "December",
+  "description": "Recruitment for Post Graduate Teacher posts in Kendriya Vidyalayas."
+},
+{
+  "name": "UGC CSIR NET",
+  "category": "Research",
+  "eligibility": "M.Sc / Equivalent Degree",
+  "age_limit": "No Upper Limit",
+  "conducted_by": "National Testing Agency",
+  "official_website": "https://csirnet.nta.ac.in",
+  "notification_month": "April",
+  "description": "Eligibility test for Junior Research Fellowship and Lectureship in science subjects."
+},
+{
+  "name": "Indian Forest Service Examination",
+  "category": "Civil Services",
+  "eligibility": "Graduation in Science / Engineering",
+  "age_limit": "21-32 Years",
+  "conducted_by": "UPSC",
+  "official_website": "https://upsc.gov.in",
+  "notification_month": "February",
+  "description": "Recruitment for Indian Forest Service officers responsible for forest administration and conservation."
+},
+{
+  "name": "EPFO Enforcement Officer",
+  "category": "Central Government",
+  "eligibility": "Graduation",
+  "age_limit": "18-30 Years",
+  "conducted_by": "UPSC",
+  "official_website": "https://upsc.gov.in",
+  "notification_month": "March",
+  "description": "Recruitment for Enforcement Officer and Accounts Officer posts in EPFO."
+},
+{
+  "name": "ESIC Social Security Officer",
+  "category": "Central Government",
+  "eligibility": "Graduation",
+  "age_limit": "21-27 Years",
+  "conducted_by": "Employees State Insurance Corporation",
+  "official_website": "https://www.esic.gov.in",
+  "notification_month": "July",
+  "description": "Recruitment for Social Security Officer posts in ESIC."
+},
+{
+  "name": "FCI Manager Recruitment",
+  "category": "Food Corporation",
+  "eligibility": "Graduation / MBA / Engineering",
+  "age_limit": "18-28 Years",
+  "conducted_by": "Food Corporation of India",
+  "official_website": "https://fci.gov.in",
+  "notification_month": "September",
+  "description": "Recruitment for Manager posts in Food Corporation of India."
+},
+{
+  "name": "Food Safety Officer Recruitment",
+  "category": "Health & Administration",
+  "eligibility": "Degree in Food Technology / Biotechnology / Medicine",
+  "age_limit": "21-35 Years",
+  "conducted_by": "State Public Service Commission",
+  "official_website": "https://fssai.gov.in",
+  "notification_month": "June",
+  "description": "Recruitment for Food Safety Officer posts responsible for food quality regulation."
+},
+{
+  "name": "FSSAI Assistant Recruitment",
+  "category": "Food Safety Administration",
+  "eligibility": "Graduation",
+  "age_limit": "21-30 Years",
+  "conducted_by": "FSSAI",
+  "official_website": "https://fssai.gov.in",
+  "notification_month": "August",
+  "description": "Recruitment for Assistant and administrative posts in FSSAI."
+},
+{
+  "name": "Indian Statistical Service Examination",
+  "category": "Statistics & Economics",
+  "eligibility": "Bachelor's / Master's in Statistics",
+  "age_limit": "21-30 Years",
+  "conducted_by": "UPSC",
+  "official_website": "https://upsc.gov.in",
+  "notification_month": "April",
+  "description": "Recruitment for Indian Statistical Service officers in government departments."
+},
+{
+  "name": "Indian Economic Service Examination",
+  "category": "Economics & Policy",
+  "eligibility": "Post Graduation in Economics",
+  "age_limit": "21-30 Years",
+  "conducted_by": "UPSC",
+  "official_website": "https://upsc.gov.in",
+  "notification_month": "April",
+  "description": "Recruitment for Indian Economic Service officers involved in economic policy and planning."
+},
+{
+  "name": "Intelligence Bureau ACIO",
+  "category": "Intelligence & Security",
+  "eligibility": "Graduation",
+  "age_limit": "18-27 Years",
+  "conducted_by": "Ministry of Home Affairs",
+  "official_website": "https://www.mha.gov.in",
+  "notification_month": "November",
+  "description": "Recruitment for Assistant Central Intelligence Officer posts in Intelligence Bureau."
+},
+{
+  "name": "National Housing Bank Assistant Manager",
+  "category": "Banking & Finance",
+  "eligibility": "Graduation / Post Graduation",
+  "age_limit": "21-30 Years",
+  "conducted_by": "National Housing Bank",
+  "official_website": "https://nhb.org.in",
+  "notification_month": "September",
+  "description": "Recruitment for Assistant Manager posts in National Housing Bank."
+},
+{
+  "name": "SEBI Grade A Officer",
+  "category": "Finance & Regulation",
+  "eligibility": "Graduation / Professional Qualification",
+  "age_limit": "18-30 Years",
+  "conducted_by": "Securities and Exchange Board of India",
+  "official_website": "https://www.sebi.gov.in",
+  "notification_month": "June",
+  "description": "Recruitment for Officer Grade A posts in SEBI."
+},
+{
+  "name": "NIC Scientist B Recruitment",
+  "category": "IT & E-Governance",
+  "eligibility": "B.E. / B.Tech / M.Sc Computer Science",
+  "age_limit": "18-30 Years",
+  "conducted_by": "National Informatics Centre",
+  "official_website": "https://www.nic.in",
+  "notification_month": "March",
+  "description": "Recruitment for Scientist B posts in National Informatics Centre."
+},
+{
+  "name": "ISRO Apprentice Recruitment",
+  "category": "Space & Technology",
+  "eligibility": "Diploma / Engineering / ITI",
+  "age_limit": "18-35 Years",
+  "conducted_by": "Indian Space Research Organisation",
+  "official_website": "https://www.isro.gov.in",
+  "notification_month": "October",
+  "description": "Recruitment for apprentice training in ISRO centres across India."
+},
+{
+  "name": "Indian Army JAG Entry",
+  "category": "Defence & Law",
+  "eligibility": "LLB Degree",
+  "age_limit": "21-27 Years",
+  "conducted_by": "Indian Army",
+  "official_website": "https://joinindianarmy.nic.in",
+  "notification_month": "May",
+  "description": "Judge Advocate General entry for law graduates in the Indian Army."
+},
+{
+  "name": "Indian Navy SSC Officer Entry",
+  "category": "Defence",
+  "eligibility": "Engineering / Graduation",
+  "age_limit": "19-25 Years",
+  "conducted_by": "Indian Navy",
+  "official_website": "https://www.joinindiannavy.gov.in",
+  "notification_month": "August",
+  "description": "Short Service Commission officer entry for various branches of the Indian Navy."
+},
+{
+  "name": "Agniveer Indian Army Clerk",
+  "category": "Defence",
+  "eligibility": "12th Pass",
+  "age_limit": "17.5-21 Years",
+  "conducted_by": "Indian Army",
+  "official_website": "https://joinindianarmy.nic.in",
+  "notification_month": "July",
+  "description": "Recruitment for Agniveer Clerk / Store Keeper Technical posts in the Indian Army."
+},
+{
+  "name": "Madhya Pradesh Police Sub Inspector",
+  "category": "Police",
+  "eligibility": "Graduation",
+  "age_limit": "21-28 Years",
+  "conducted_by": "Madhya Pradesh Professional Examination Board",
+  "official_website": "https://esb.mp.gov.in",
+  "notification_month": "October",
+  "description": "Recruitment for Sub Inspector posts in Madhya Pradesh Police."
+}]

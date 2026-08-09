@@ -1,0 +1,66 @@
+[
+    {
+        "name": "IIT Madras",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "courses": [
+            "AI Engineer",
+            "Software Engineer",
+            "Data Scientist"
+        ],
+        "website": "https://www.iitm.ac.in"
+    },
+    {
+        "name": "IIT Bombay",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "courses": [
+            "Software Engineer",
+            "Cloud Engineer"
+        ],
+        "website": "https://www.iitb.ac.in"
+    },
+    {
+        "name": "IIIT Hyderabad",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "courses": [
+            "AI Engineer",
+            "Machine Learning Engineer"
+        ],
+        "website": "https://www.iiit.ac.in"
+    }
+]
+[
+    {
+        "name": "IIT Madras",
+        "city": "Chennai",
+        "state": "Tamil Nadu",
+        "courses": [
+            "AI Engineer",
+            "Software Engineer",
+            "Data Scientist"
+        ],
+        "website": "https://www.iitm.ac.in"
+    },
+    {
+        "name": "IIT Bombay",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "courses": [
+            "Software Engineer",
+            "Cloud Engineer"
+        ],
+        "website": "https://www.iitb.ac.in"
+    },
+    {
+        "name": "IIIT Hyderabad",
+        "city": "Hyderabad",
+        "state": "Telangana",
+        "courses": [
+            "AI Engineer",
+            "Machine Learning Engineer"
+        ],
+        "website": "https://www.iiit.ac.in"
+    }
+]

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ college.name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h1>
+
+{{ college.name }}
+
+</h1>
+
+<hr>
+
+<p>
+
+<strong>City:</strong>
+
+{{ college.city }}
+
+</p>
+
+<p>
+
+<strong>State:</strong>
+
+{{ college.state }}
+
+</p>
+
+<p>
+
+<strong>Type:</strong>
+
+{{ college.college_type }}
+
+</p>
+
+<p>
+
+<strong>Course:</strong>
+
+{{ college.course }}
+
+</p>
+
+<p>
+
+<strong>Fees:</strong>
+
+{{ college.fees }}
+
+</p>
+
+<p>
+
+<strong>Placement:</strong>
+
+{{ college.placement }}
+
+</p>
+
+<p>
+
+<strong>Highest Package:</strong>
+
+{{ college.highest_package }}
+
+</p>
+
+<p>
+
+<strong>Average Package:</strong>
+
+{{ college.average_package }}
+
+</p>
+
+<p>
+
+{{ college.description }}
+
+</p>
+
+{% if college.website %}
+
+<a
+href="{{ college.website }}"
+target="_blank"
+class="btn btn-success">
+
+Visit Website
+
+</a>
+
+{% endif %}
+
+</div>
+
+{% endblock %}

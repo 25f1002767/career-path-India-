@@ -1,0 +1,618 @@
+@import url("variables.css");
+@import url("navbar.css");
+@import url("hero.css");
+@import url("statistics.css");
+@import url("problem.css");
+@import url("solution.css");
+@import url("footer.css");
+@import url("responsive.css");
+:root{
+
+    --primary-color:#0D6EFD;
+
+    --secondary-color:#198754;
+
+    --dark-color:#212529;
+
+    --light-color:#F8F9FA;
+
+    --white:#FFFFFF;
+
+    --gray:#6C757D;
+
+    --danger:#DC3545;
+
+    --warning:#FFC107;
+
+    --border-radius:12px;
+
+    --transition:0.3s;
+
+}
+body{
+    background:#f8f9fa;
+   font-family: 'Poppins', sans-serif;
+}
+
+.navbar-brand{
+    font-size:1.5rem;
+}
+
+main{
+    min-height:80vh;
+}
+
+h1{
+    color:#0d6efd;
+}
+.footer{
+    background:#0d6efd;
+    color:white;
+}
+
+.footer p{
+    margin-bottom:5px;
+}
+
+.footer h5{
+    font-weight:bold;
+}
+.section-padding{
+
+    padding:80px 0;
+
+}
+
+.rounded-card{
+
+    border-radius:var(--border-radius);
+
+}
+
+.shadow-custom{
+
+    box-shadow:0px 8px 25px rgba(0,0,0,.08);
+
+}
+
+.transition{
+
+    transition:var(--transition);
+
+}
+.hero-section{
+
+    min-height:80vh;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.career-tree-placeholder{
+
+    background:white;
+
+    padding:60px;
+
+    border-radius:20px;
+
+    box-shadow:0px 15px 40px rgba(0,0,0,.08);
+
+    font-size:70px;
+
+}
+/* ================= Statistics Section ================= */
+
+.stats-section{
+
+    padding:80px 0;
+
+    background:white;
+
+}
+
+.stat-card{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:0px 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0px 20px 40px rgba(0,0,0,.15);
+
+}
+
+.stat-icon{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+
+}
+
+.stat-number{
+
+    color:var(--primary-color);
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+.stat-title{
+
+    font-weight:600;
+
+}
+
+.stat-text{
+
+    color:#6c757d;
+
+    margin-top:10px;
+
+}
+/* ================= Problem Section ================= */
+
+.problem-section{
+
+    background:#f8f9fa;
+
+}
+
+.problem-image{
+
+    background:white;
+
+    padding:60px;
+
+    border-radius:20px;
+
+    box-shadow:0px 10px 30px rgba(0,0,0,.08);
+
+    font-size:70px;
+
+}
+
+.problem-list{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.problem-list li{
+
+    background:white;
+
+    margin-bottom:15px;
+
+    padding:15px;
+
+    border-left:5px solid #dc3545;
+
+    border-radius:8px;
+
+    box-shadow:0px 5px 15px rgba(0,0,0,.05);
+
+}
+.card{
+
+transition:.3s;
+
+border:none;
+
+border-radius:15px;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.btn{
+
+border-radius:10px;
+
+}
+
+.form-control,
+
+.form-select{
+
+border-radius:10px;
+
+}
+.career-card{
+
+    transition:0.35s;
+
+    overflow:hidden;
+
+}
+
+.career-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.18);
+
+}
+
+.career-card .btn{
+
+    width:100%;
+
+}
+
+.career-card .badge{
+
+    font-size:.85rem;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+.hero-section{
+
+padding:80px 0;
+
+}
+
+.card{
+
+transition:.35s;
+
+border:none;
+
+border-radius:20px;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 25px 45px rgba(0,0,0,.15);
+
+}
+
+.btn{
+
+border-radius:12px;
+
+padding:12px 24px;
+
+}
+
+.badge{
+
+padding:10px 18px;
+
+font-size:14px;
+
+}
+
+section{
+
+overflow:hidden;
+
+}
+/* ================= Homepage ================= */
+
+.career-card{
+
+    transition:.35s;
+
+    border:none;
+
+    border-radius:18px;
+
+}
+
+.career-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.career-card h1{
+
+    font-size:60px;
+
+}
+
+.career-card .btn{
+
+    width:100%;
+
+}
+
+section{
+
+    padding-top:80px;
+
+    padding-bottom:80px;
+
+}
+/* ================= WHY SECTION ================= */
+
+.bg-primary .card{
+
+    color:#212529;
+
+}
+
+.list-group-item{
+
+    border:none;
+
+    padding:15px 0;
+
+    font-size:16px;
+
+}
+
+.career-card{
+
+    cursor:pointer;
+
+}
+
+.career-card:hover{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+/* ================= Featured Careers ================= */
+
+.career-card{
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+.career-card:hover{
+
+    transform:translateY(-12px);
+
+    box-shadow:0 25px 45px rgba(0,0,0,.15);
+
+}
+
+.career-card h3{
+
+    font-weight:700;
+
+    min-height:70px;
+
+}
+
+.career-card .badge{
+
+    border-radius:20px;
+
+    padding:8px 15px;
+
+}
+
+.career-card .btn{
+
+    width:100%;
+
+    border-radius:10px;
+
+}
+/* Student Journey */
+
+.journey-card{
+
+    transition:.3s;
+
+}
+
+.journey-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card h1{
+
+    font-size:45px;
+
+}
+/* ================= ROADMAP ================= */
+
+.roadmap{
+
+gap:15px;
+
+}
+
+.roadmap-step{
+
+flex:1;
+
+min-width:120px;
+
+}
+
+.circle{
+
+width:70px;
+
+height:70px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:#0d6efd;
+
+color:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.roadmap-line{
+
+height:4px;
+
+flex:1;
+
+background:#0d6efd;
+
+min-width:40px;
+
+}
+/* ================= NAVBAR ================= */
+
+.navbar{
+
+    padding:15px 0;
+
+}
+
+.navbar-brand{
+
+    font-size:1.5rem;
+
+}
+
+.nav-link{
+
+    font-weight:500;
+
+    margin-left:10px;
+
+}
+
+.nav-link:hover{
+
+    color:#ffd54f !important;
+
+}
+
+.navbar .btn{
+
+    border-radius:10px;
+
+    padding:8px 20px;
+
+}
+/* ================= Assessment ================= */
+
+.progress{
+
+border-radius:20px;
+
+}
+
+.progress-bar{
+
+font-weight:600;
+
+font-size:15px;
+
+}
+
+.form-check{
+
+padding:12px;
+
+border-radius:10px;
+
+transition:.3s;
+
+margin-bottom:10px;
+
+}
+
+.form-check:hover{
+
+background:#f5f5f5;
+
+}
+
+.form-check-input{
+
+cursor:pointer;
+
+}
+
+.form-check-label{
+
+cursor:pointer;
+
+font-size:17px;
+
+}
+
+.card{
+
+border-radius:18px;
+
+}
+/* Assessment Result */
+
+.card{
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.badge{
+
+border-radius:30px;
+
+}

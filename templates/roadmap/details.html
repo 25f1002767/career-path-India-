@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+Career Roadmap
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="fw-bold mb-4">
+
+        {{ career.title }} Roadmap
+
+    </h1>
+
+    {% if roadmap %}
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <h4>Overview</h4>
+
+            <p>{{ roadmap.overview }}</p>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow border-0 mb-4">
+
+        <div class="card-body">
+
+            <h4>Roadmap Steps</h4>
+
+            <hr>
+
+            {% for step in roadmap.roadmap_steps.split('\n') %}
+
+            <div class="d-flex justify-content-between align-items-center border rounded p-3 mb-3">
+
+                <div>
+
+                    {{ loop.index }}.
+                    {{ step }}
+
+                </div>
+
+                <a
+                    href="{{ url_for('roadmap.complete_step',
+                    career_id=career.id,
+                    step=step) }}"
+                    class="btn btn-success btn-sm">
+
+                    Mark Complete
+
+                </a>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        Roadmap not available.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

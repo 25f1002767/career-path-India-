@@ -1,0 +1,30 @@
+[
+    {
+        "name": "SSC CGL",
+        "qualification": "Graduation",
+        "field": "Any",
+        "salary": "₹25,000 - ₹1,00,000",
+        "website": "https://ssc.gov.in"
+    },
+    {
+        "name": "Bank PO",
+        "qualification": "Graduation",
+        "field": "Any",
+        "salary": "₹35,000 - ₹60,000",
+        "website": "https://ibps.in"
+    },
+    {
+        "name": "GATE",
+        "qualification": "Engineering",
+        "field": "Technology",
+        "salary": "Higher Studies / PSU Jobs",
+        "website": "https://gate2026.iitm.ac.in"
+    },
+    {
+        "name": "UPSC Civil Services",
+        "qualification": "Graduation",
+        "field": "Any",
+        "salary": "₹56,100+",
+        "website": "https://upsc.gov.in"
+    }
+]

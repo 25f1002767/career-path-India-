@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}
+College Management
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+
+                College Management
+
+            </h2>
+
+            <p class="text-muted">
+
+                Manage all colleges.
+
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('admin.add_college') }}"
+            class="btn btn-primary">
+
+            + Add College
+
+        </a>
+
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle mb-0">
+
+                <thead class="table-light">
+
+                    <tr>
+
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Course</th>
+                        <th>Average Package</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for college in colleges %}
+
+                    <tr>
+
+                        <td>{{ college.name }}</td>
+
+                        <td>{{ college.city }}</td>
+
+                        <td>{{ college.state }}</td>
+
+                        <td>{{ college.course }}</td>
+
+                        <td>{{ college.average_package }}</td>
+
+                        <td>
+
+                            <a
+                                href="{{ url_for('admin.delete_college', id=college.id) }}"
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Delete this college?')">
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

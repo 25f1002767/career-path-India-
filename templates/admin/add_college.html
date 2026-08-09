@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+Add College
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h2 class="mb-4">
+
+Add College
+
+</h2>
+
+<form method="POST">
+
+<input
+name="name"
+class="form-control mb-3"
+placeholder="College Name"
+required>
+
+<input
+name="city"
+class="form-control mb-3"
+placeholder="City">
+
+<input
+name="state"
+class="form-control mb-3"
+placeholder="State">
+
+<input
+name="college_type"
+class="form-control mb-3"
+placeholder="Government / Private">
+
+<input
+name="course"
+class="form-control mb-3"
+placeholder="Course">
+
+<input
+name="fees"
+class="form-control mb-3"
+placeholder="Fees">
+
+<input
+name="placement"
+class="form-control mb-3"
+placeholder="Placement">
+
+<input
+name="highest_package"
+class="form-control mb-3"
+placeholder="Highest Package">
+
+<input
+name="average_package"
+class="form-control mb-3"
+placeholder="Average Package">
+
+<input
+name="website"
+class="form-control mb-3"
+placeholder="Website">
+
+<textarea
+name="description"
+rows="5"
+class="form-control mb-3"
+placeholder="Description"></textarea>
+
+<button
+class="btn btn-success">
+
+Save College
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

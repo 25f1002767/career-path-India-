@@ -1,0 +1,1192 @@
+{% extends "base.html" %}
+
+{% block title %}
+CareerPath India
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="badge bg-primary mb-3">
+
+                    India's AI Career Platform
+
+                </span>
+
+                <h1 class="display-4 fw-bold">
+
+                    Discover the Career
+
+                    You Are Meant For
+
+                </h1>
+
+                <p class="lead mt-4">
+
+                    CareerPath India helps students discover careers,
+
+                    build roadmaps,
+
+                    find scholarships,
+
+                    internships,
+
+                    colleges
+
+                    and prepare for their future.
+
+                </p>
+
+                <div class="mt-4">
+
+                    <a
+                    href="{{ url_for('career.career_list') }}"
+                    class="btn btn-primary btn-lg">
+
+                        Explore Careers
+
+                    </a>
+
+                    <a
+                    href="#features"
+                    class="btn btn-outline-dark btn-lg">
+
+                        Learn More
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 text-center">
+
+                <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700"
+                class="img-fluid rounded shadow">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Statistics -->
+
+<section class="py-5">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<h2 class="text-primary">
+
+1000+
+
+</h2>
+
+<p>
+
+Career Paths
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2 class="text-success">
+
+500+
+
+</h2>
+
+<p>
+
+Scholarships
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2 class="text-warning">
+
+300+
+
+</h2>
+
+<p>
+
+Internships
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2 class="text-danger">
+
+AI
+
+</h2>
+
+<p>
+
+Recommendations
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Features -->
+
+<section
+id="features"
+class="py-5 bg-light">
+
+<div class="container">
+
+<h2 class="text-center fw-bold mb-5">
+
+Everything You Need
+
+</h2>
+
+<div class="row">
+
+<div class="col-lg-4 mb-4">
+
+<div class="card h-100 shadow">
+
+<div class="card-body">
+
+<h3>
+
+🎯
+
+Career Discovery
+
+</h3>
+
+<p>
+
+Find careers based on your interests and goals.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 mb-4">
+
+<div class="card h-100 shadow">
+
+<div class="card-body">
+
+<h3>
+
+🧠
+
+AI Recommendation
+
+</h3>
+
+<p>
+
+Get personalized career suggestions.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 mb-4">
+
+<div class="card h-100 shadow">
+
+<div class="card-body">
+
+<h3>
+
+🛣
+
+Career Roadmap
+
+</h3>
+
+<p>
+
+Know every step required to reach your dream career.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 mb-4">
+
+<div class="card h-100 shadow">
+
+<div class="card-body">
+
+<h3>
+
+🎓
+
+Scholarships
+
+</h3>
+
+<p>
+
+Discover government and private scholarships.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 mb-4">
+
+<div class="card h-100 shadow">
+
+<div class="card-body">
+
+<h3>
+
+💼
+
+Internships
+
+</h3>
+
+<p>
+
+Find internships and gain experience.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 mb-4">
+
+<div class="card h-100 shadow">
+
+<div class="card-body">
+
+<h3>
+
+🏫
+
+College Explorer
+
+</h3>
+
+<p>
+
+Explore top colleges related to every career.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                How CareerPath India Works
+
+            </h2>
+
+            <p class="text-muted">
+
+                Discover your future in just four simple steps.
+
+            </p>
+
+        </div>
+
+        <div class="row text-center">
+
+            <div class="col-lg-3 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body">
+
+                        <h1>1️⃣</h1>
+
+                        <h4>
+
+                            Take Assessment
+
+                        </h4>
+
+                        <p>
+
+                            Answer simple questions about your interests,
+                            personality and skills.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body">
+
+                        <h1>2️⃣</h1>
+
+                        <h4>
+
+                            AI Analysis
+
+                        </h4>
+
+                        <p>
+
+                            Our AI understands your strengths
+                            and interests.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body">
+
+                        <h1>3️⃣</h1>
+
+                        <h4>
+
+                            Get Career Match
+
+                        </h4>
+
+                        <p>
+
+                            Explore careers that match
+                            your profile.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 mb-4">
+
+                <div class="card shadow h-100">
+
+                    <div class="card-body">
+
+                        <h1>4️⃣</h1>
+
+                        <h4>
+
+                            Build Roadmap
+
+                        </h4>
+
+                        <p>
+
+                            Follow a personalized roadmap
+                            to reach your dream career.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= FEATURED CAREERS ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                Featured Careers
+
+            </h2>
+
+            <p class="text-muted">
+
+                Explore some of India's fastest-growing careers.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card career-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <h1>💻</h1>
+
+                        <h4>
+
+                            Software Engineer
+
+                        </h4>
+
+                        <p>
+
+                            ₹8 - ₹20 LPA
+
+                        </p>
+
+                        <a
+                        href="/careers"
+                        class="btn btn-primary">
+
+                            Explore
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card career-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <h1>🤖</h1>
+
+                        <h4>
+
+                            AI Engineer
+
+                        </h4>
+
+                        <p>
+
+                            ₹15 - ₹40 LPA
+
+                        </p>
+
+                        <a
+                        href="/careers"
+                        class="btn btn-primary">
+
+                            Explore
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card career-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <h1>🩺</h1>
+
+                        <h4>
+
+                            Doctor
+
+                        </h4>
+
+                        <p>
+
+                            ₹15 - ₹50 LPA
+
+                        </p>
+
+                        <a
+                        href="/careers"
+                        class="btn btn-primary">
+
+                            Explore
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+
+                <div class="card career-card h-100">
+
+                    <div class="card-body text-center">
+
+                        <h1>🏛️</h1>
+
+                        <h4>
+
+                            IAS Officer
+
+                        </h4>
+
+                        <p>
+
+                            Civil Services
+
+                        </p>
+
+                        <a
+                        href="/careers"
+                        class="btn btn-primary">
+
+                            Explore
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= WHY CAREERPATH INDIA ================= -->
+
+<section class="py-5 bg-primary text-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                Why CareerPath India?
+
+            </h2>
+
+            <p>
+
+                Millions of students choose careers without proper guidance.
+                CareerPath India helps students discover themselves before
+                choosing their career.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-6">
+
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body">
+
+                        <h3 class="text-danger">
+
+                            ❌ Current Situation
+
+                        </h3>
+
+                        <hr>
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                Students follow friends.
+                            </li>
+
+                            <li class="list-group-item">
+                                Career decisions are based on family pressure.
+                            </li>
+
+                            <li class="list-group-item">
+                                Limited awareness of modern careers.
+                            </li>
+
+                            <li class="list-group-item">
+                                Students know only a few traditional jobs.
+                            </li>
+
+                            <li class="list-group-item">
+                                Talent is lost due to lack of guidance.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="card shadow border-0 h-100">
+
+                    <div class="card-body">
+
+                        <h3 class="text-success">
+
+                            ✅ Our Solution
+
+                        </h3>
+
+                        <hr>
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                AI Career Assessment
+                            </li>
+
+                            <li class="list-group-item">
+                                Personalized Career Recommendations
+                            </li>
+
+                            <li class="list-group-item">
+                                Step-by-Step Career Roadmaps
+                            </li>
+
+                            <li class="list-group-item">
+                                Scholarship & Internship Discovery
+                            </li>
+
+                            <li class="list-group-item">
+                                College & Skill Guidance
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= EXPLORE BY CATEGORY ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                Explore By Category
+
+            </h2>
+
+            <p class="text-muted">
+
+                Choose a career domain and start exploring.
+
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>💻</h1>
+
+                    <h5>Technology</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>🏥</h1>
+
+                    <h5>Medical</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>🏛️</h1>
+
+                    <h5>Government</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>💼</h1>
+
+                    <h5>Business</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>🎨</h1>
+
+                    <h5>Creative</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>⚖️</h1>
+
+                    <h5>Law</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>🌾</h1>
+
+                    <h5>Agriculture</h5>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-6">
+
+                <div class="card career-card text-center p-4">
+
+                    <h1>🔬</h1>
+
+                    <h5>Research</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= STUDENT JOURNEY ================= -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                Your Career Journey Starts Here
+
+            </h2>
+
+            <p class="text-muted">
+
+                From confusion to confidence in six simple steps.
+
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4 text-center">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h1>📝</h1>
+
+                        <h6>Assessment</h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4 text-center">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h1>🧠</h1>
+
+                        <h6>AI Analysis</h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4 text-center">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h1>🎯</h1>
+
+                        <h6>Career Match</h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4 text-center">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h1>🛣️</h1>
+
+                        <h6>Roadmap</h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4 text-center">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h1>🎓</h1>
+
+                        <h6>Scholarships</h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-4 col-6 mb-4 text-center">
+
+                <div class="card border-0 shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h1>🚀</h1>
+
+                        <h6>Dream Career</h6>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= CAREER ROADMAP ================= -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+
+                Every Dream Career Starts With One Step
+
+            </h2>
+
+            <p class="text-muted">
+
+                CareerPath India provides a complete roadmap from school to your dream career.
+
+            </p>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-10">
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center text-center roadmap">
+
+                    <div class="roadmap-step">
+                        <div class="circle">10</div>
+                        <h6>Class 10</h6>
+                    </div>
+
+                    <div class="roadmap-line"></div>
+
+                    <div class="roadmap-step">
+                        <div class="circle">12</div>
+                        <h6>Class 12</h6>
+                    </div>
+
+                    <div class="roadmap-line"></div>
+
+                    <div class="roadmap-step">
+                        <div class="circle">🎓</div>
+                        <h6>College</h6>
+                    </div>
+
+                    <div class="roadmap-line"></div>
+
+                    <div class="roadmap-step">
+                        <div class="circle">💻</div>
+                        <h6>Skills</h6>
+                    </div>
+
+                    <div class="roadmap-line"></div>
+
+                    <div class="roadmap-step">
+                        <div class="circle">💼</div>
+                        <h6>Internship</h6>
+                    </div>
+
+                    <div class="roadmap-line"></div>
+
+                    <div class="roadmap-step">
+                        <div class="circle">🏆</div>
+                        <h6>Dream Job</h6>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= TOP COMPANIES ================= -->
+
+<section class="py-5 bg-light">
+
+<div class="container">
+
+<div class="text-center mb-5">
+
+<h2 class="fw-bold">
+
+Top Companies Hiring
+
+</h2>
+
+<p class="text-muted">
+
+Build your skills and get hired by leading companies.
+
+</p>
+
+</div>
+
+<div class="row text-center">
+
+<div class="col-md-2 col-6 mb-4">
+<div class="card p-4 shadow-sm">
+<h5>Google</h5>
+</div>
+</div>
+
+<div class="col-md-2 col-6 mb-4">
+<div class="card p-4 shadow-sm">
+<h5>Microsoft</h5>
+</div>
+</div>
+
+<div class="col-md-2 col-6 mb-4">
+<div class="card p-4 shadow-sm">
+<h5>Amazon</h5>
+</div>
+</div>
+
+<div class="col-md-2 col-6 mb-4">
+<div class="card p-4 shadow-sm">
+<h5>TCS</h5>
+</div>
+</div>
+
+<div class="col-md-2 col-6 mb-4">
+<div class="card p-4 shadow-sm">
+<h5>Infosys</h5>
+</div>
+</div>
+
+<div class="col-md-2 col-6 mb-4">
+<div class="card p-4 shadow-sm">
+<h5>ISRO</h5>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ================= FINAL CTA ================= -->
+
+<section class="py-5 text-center bg-primary text-white">
+
+<div class="container">
+
+<h2 class="display-5 fw-bold">
+
+Ready To Discover Your Future?
+
+</h2>
+
+<p class="lead mt-3">
+
+Join CareerPath India and explore careers based on your interests, skills and dreams.
+
+</p>
+
+<div class="mt-4">
+
+<a href="{{ url_for('career.career_list') }}"
+class="btn btn-warning btn-lg">
+
+Explore Careers
+
+</a>
+
+<a href="{{ url_for('auth.register') }}"
+class="btn btn-light btn-lg ms-3">
+
+Create Free Account
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+{% endblock %}

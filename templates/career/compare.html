@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}
+Career Comparison
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+
+            ⚖️ AI Career Comparison
+
+        </h1>
+
+        <p class="text-muted">
+
+            Compare two careers side by side.
+
+        </p>
+
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                        <th>Feature</th>
+
+                        <th>{{ comparison.career1.title }}</th>
+
+                        <th>{{ comparison.career2.title }}</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <th>Category</th>
+
+                        <td>{{ comparison.career1.category }}</td>
+
+                        <td>{{ comparison.career2.category }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Average Salary</th>
+
+                        <td>{{ comparison.career1.average_salary }}</td>
+
+                        <td>{{ comparison.career2.average_salary }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Future Scope</th>
+
+                        <td>{{ comparison.career1.future_scope }}</td>
+
+                        <td>{{ comparison.career2.future_scope }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Education</th>
+
+                        <td>{{ comparison.career1.education_required }}</td>
+
+                        <td>{{ comparison.career2.education_required }}</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>Required Skills</th>
+
+                        <td>
+
+                            <ul>
+
+                                {% for skill in comparison.skills1 %}
+
+                                <li>{{ skill }}</li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        </td>
+
+                        <td>
+
+                            <ul>
+
+                                {% for skill in comparison.skills2 %}
+
+                                <li>{{ skill }}</li>
+
+                                {% endfor %}
+
+                            </ul>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow border-0 mt-5">
+
+        <div class="card-body">
+
+            <h3>
+
+                🤖 AI Insight
+
+            </h3>
+
+            <hr>
+
+            {% if comparison.salary_equal and comparison.future_equal %}
+
+                <div class="alert alert-info">
+
+                    Both careers offer similar salary potential and future opportunities.
+
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-success">
+
+                    Compare salary, required skills, education, and future scope carefully before making your career decision.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+
+        <a
+            href="{{ url_for('career.compare') }}"
+            class="btn btn-primary">
+
+            Compare More Careers
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

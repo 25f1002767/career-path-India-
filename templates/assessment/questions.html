@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+Career Assessment
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="fw-bold text-center mb-5">
+        🎯 Career Assessment
+    </h1>
+
+    {% if questions %}
+
+    <form method="POST"
+          action="{{ url_for('assessment.submit') }}">
+
+        {% for q in questions %}
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h5 class="fw-bold mb-4">
+
+                    {{ loop.index }}. {{ q.question }}
+
+                </h5>
+
+                <div class="form-check mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="q_{{ q.id }}"
+                        value="Technology"
+                        required>
+
+                    <label class="form-check-label">
+
+                        {{ q.option_a }}
+
+                    </label>
+
+                </div>
+
+                <div class="form-check mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="q_{{ q.id }}"
+                        value="Medical">
+
+                    <label class="form-check-label">
+
+                        {{ q.option_b }}
+
+                    </label>
+
+                </div>
+
+                <div class="form-check mb-3">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="q_{{ q.id }}"
+                        value="Business">
+
+                    <label class="form-check-label">
+
+                        {{ q.option_c }}
+
+                    </label>
+
+                </div>
+
+                <div class="form-check">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="q_{{ q.id }}"
+                        value="Government">
+
+                    <label class="form-check-label">
+
+                        {{ q.option_d }}
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <div class="text-center">
+
+            <button
+                type="submit"
+                class="btn btn-primary btn-lg px-5">
+
+                🚀 Submit Assessment
+
+            </button>
+
+        </div>
+
+    </form>
+
+    {% else %}
+
+    <div class="alert alert-warning text-center">
+
+        No assessment questions available.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

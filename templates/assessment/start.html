@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+Career Assessment
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+
+        <h1 class="fw-bold">
+
+            Career Assessment Test
+
+        </h1>
+
+        <p class="lead text-muted">
+
+            Answer a few questions and discover careers that match your interests.
+
+        </p>
+
+    </div>
+
+    <div class="card shadow-lg border-0">
+
+        <div class="card-body p-5">
+
+            <div class="row text-center">
+
+                <div class="col-md-3">
+
+                    <h2>25</h2>
+
+                    <p>Questions</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h2>10</h2>
+
+                    <p>Minutes</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h2>AI</h2>
+
+                    <p>Analysis</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h2>Top 5</h2>
+
+                    <p>Career Matches</p>
+
+                </div>
+
+            </div>
+
+            <hr class="my-5">
+
+            <div class="text-center">
+
+                <a
+                href="{{ url_for('assessment.questions') }}"
+                class="btn btn-primary btn-lg">
+
+                    Start Assessment
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

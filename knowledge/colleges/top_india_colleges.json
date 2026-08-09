@@ -1,0 +1,4002 @@
+[
+  {
+    "name": "NIT Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Engineering",
+    "fees": "₹15000 per year",
+    "placement": "51% Average Placement",
+    "description": "NIT Indore is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Engineering",
+    "fees": "₹25000 per year",
+    "placement": "52% Average Placement",
+    "description": "IIIT Gwalior is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Medical",
+    "fees": "₹35000 per year",
+    "placement": "53% Average Placement",
+    "description": "AIIMS Mumbai is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Medical",
+    "fees": "₹45000 per year",
+    "placement": "54% Average Placement",
+    "description": "Government Medical College Pune is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Management",
+    "fees": "₹55000 per year",
+    "placement": "55% Average Placement",
+    "description": "Indian Institute of Management Bengaluru is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Law",
+    "fees": "₹65000 per year",
+    "placement": "56% Average Placement",
+    "description": "National Law University Chennai is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Arts",
+    "fees": "₹75000 per year",
+    "placement": "57% Average Placement",
+    "description": "Government Arts College Hyderabad is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Commerce",
+    "fees": "₹85000 per year",
+    "placement": "58% Average Placement",
+    "description": "Government Commerce College Lucknow is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Science",
+    "fees": "₹95000 per year",
+    "placement": "59% Average Placement",
+    "description": "State Science College Delhi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Agriculture",
+    "fees": "₹105000 per year",
+    "placement": "60% Average Placement",
+    "description": "Agriculture University Jaipur is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Design",
+    "fees": "₹115000 per year",
+    "placement": "61% Average Placement",
+    "description": "Institute of Design Ahmedabad is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Pharmacy",
+    "fees": "₹125000 per year",
+    "placement": "62% Average Placement",
+    "description": "College of Pharmacy Kolkata is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Nursing",
+    "fees": "₹135000 per year",
+    "placement": "63% Average Placement",
+    "description": "College of Nursing Kochi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Hotel Management",
+    "fees": "₹145000 per year",
+    "placement": "64% Average Placement",
+    "description": "Hotel Management Institute Chandigarh is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Architecture",
+    "fees": "₹155000 per year",
+    "placement": "65% Average Placement",
+    "description": "School of Architecture Bhubaneswar is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Veterinary",
+    "fees": "₹165000 per year",
+    "placement": "66% Average Placement",
+    "description": "Veterinary Science College Patna is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Education",
+    "fees": "₹175000 per year",
+    "placement": "67% Average Placement",
+    "description": "Teacher Education College Ranchi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Engineering",
+    "fees": "₹185000 per year",
+    "placement": "68% Average Placement",
+    "description": "IIT Dehradun is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Engineering",
+    "fees": "₹195000 per year",
+    "placement": "69% Average Placement",
+    "description": "NIT Visakhapatnam is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Engineering",
+    "fees": "₹5000 per year",
+    "placement": "70% Average Placement",
+    "description": "IIIT Bhopal is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Medical",
+    "fees": "₹15000 per year",
+    "placement": "71% Average Placement",
+    "description": "AIIMS Indore is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Medical",
+    "fees": "₹25000 per year",
+    "placement": "72% Average Placement",
+    "description": "Government Medical College Gwalior is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Management",
+    "fees": "₹35000 per year",
+    "placement": "73% Average Placement",
+    "description": "Indian Institute of Management Mumbai is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Law",
+    "fees": "₹45000 per year",
+    "placement": "74% Average Placement",
+    "description": "National Law University Pune is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Arts",
+    "fees": "₹55000 per year",
+    "placement": "75% Average Placement",
+    "description": "Government Arts College Bengaluru is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Commerce",
+    "fees": "₹65000 per year",
+    "placement": "76% Average Placement",
+    "description": "Government Commerce College Chennai is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Science",
+    "fees": "₹75000 per year",
+    "placement": "77% Average Placement",
+    "description": "State Science College Hyderabad is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Agriculture",
+    "fees": "₹85000 per year",
+    "placement": "78% Average Placement",
+    "description": "Agriculture University Lucknow is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Design",
+    "fees": "₹95000 per year",
+    "placement": "79% Average Placement",
+    "description": "Institute of Design Delhi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Pharmacy",
+    "fees": "₹105000 per year",
+    "placement": "80% Average Placement",
+    "description": "College of Pharmacy Jaipur is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Nursing",
+    "fees": "₹115000 per year",
+    "placement": "81% Average Placement",
+    "description": "College of Nursing Ahmedabad is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Hotel Management",
+    "fees": "₹125000 per year",
+    "placement": "82% Average Placement",
+    "description": "Hotel Management Institute Kolkata is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Architecture",
+    "fees": "₹135000 per year",
+    "placement": "83% Average Placement",
+    "description": "School of Architecture Kochi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Veterinary",
+    "fees": "₹145000 per year",
+    "placement": "84% Average Placement",
+    "description": "Veterinary Science College Chandigarh is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Education",
+    "fees": "₹155000 per year",
+    "placement": "85% Average Placement",
+    "description": "Teacher Education College Bhubaneswar is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Engineering",
+    "fees": "₹165000 per year",
+    "placement": "86% Average Placement",
+    "description": "IIT Patna is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Engineering",
+    "fees": "₹175000 per year",
+    "placement": "87% Average Placement",
+    "description": "NIT Ranchi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Engineering",
+    "fees": "₹185000 per year",
+    "placement": "88% Average Placement",
+    "description": "IIIT Dehradun is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Medical",
+    "fees": "₹195000 per year",
+    "placement": "89% Average Placement",
+    "description": "AIIMS Visakhapatnam is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Medical",
+    "fees": "₹5000 per year",
+    "placement": "90% Average Placement",
+    "description": "Government Medical College Bhopal is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Management",
+    "fees": "₹15000 per year",
+    "placement": "91% Average Placement",
+    "description": "Indian Institute of Management Indore is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Law",
+    "fees": "₹25000 per year",
+    "placement": "92% Average Placement",
+    "description": "National Law University Gwalior is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Arts",
+    "fees": "₹35000 per year",
+    "placement": "93% Average Placement",
+    "description": "Government Arts College Mumbai is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Commerce",
+    "fees": "₹45000 per year",
+    "placement": "94% Average Placement",
+    "description": "Government Commerce College Pune is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Science",
+    "fees": "₹55000 per year",
+    "placement": "50% Average Placement",
+    "description": "State Science College Bengaluru is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Agriculture",
+    "fees": "₹65000 per year",
+    "placement": "51% Average Placement",
+    "description": "Agriculture University Chennai is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Design",
+    "fees": "₹75000 per year",
+    "placement": "52% Average Placement",
+    "description": "Institute of Design Hyderabad is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Pharmacy",
+    "fees": "₹85000 per year",
+    "placement": "53% Average Placement",
+    "description": "College of Pharmacy Lucknow is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Nursing",
+    "fees": "₹95000 per year",
+    "placement": "54% Average Placement",
+    "description": "College of Nursing Delhi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Hotel Management",
+    "fees": "₹105000 per year",
+    "placement": "55% Average Placement",
+    "description": "Hotel Management Institute Jaipur is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Architecture",
+    "fees": "₹115000 per year",
+    "placement": "56% Average Placement",
+    "description": "School of Architecture Ahmedabad is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Veterinary",
+    "fees": "₹125000 per year",
+    "placement": "57% Average Placement",
+    "description": "Veterinary Science College Kolkata is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Education",
+    "fees": "₹135000 per year",
+    "placement": "58% Average Placement",
+    "description": "Teacher Education College Kochi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Engineering",
+    "fees": "₹145000 per year",
+    "placement": "59% Average Placement",
+    "description": "IIT Chandigarh is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Engineering",
+    "fees": "₹155000 per year",
+    "placement": "60% Average Placement",
+    "description": "NIT Bhubaneswar is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Engineering",
+    "fees": "₹165000 per year",
+    "placement": "61% Average Placement",
+    "description": "IIIT Patna is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Medical",
+    "fees": "₹175000 per year",
+    "placement": "62% Average Placement",
+    "description": "AIIMS Ranchi is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Medical",
+    "fees": "₹185000 per year",
+    "placement": "63% Average Placement",
+    "description": "Government Medical College Dehradun is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Management",
+    "fees": "₹195000 per year",
+    "placement": "64% Average Placement",
+    "description": "Indian Institute of Management Visakhapatnam is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Law",
+    "fees": "₹5000 per year",
+    "placement": "65% Average Placement",
+    "description": "National Law University Bhopal is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Arts",
+    "fees": "₹15000 per year",
+    "placement": "66% Average Placement",
+    "description": "Government Arts College Indore is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Commerce",
+    "fees": "₹25000 per year",
+    "placement": "67% Average Placement",
+    "description": "Government Commerce College Gwalior is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Science",
+    "fees": "₹35000 per year",
+    "placement": "68% Average Placement",
+    "description": "State Science College Mumbai is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Agriculture",
+    "fees": "₹45000 per year",
+    "placement": "69% Average Placement",
+    "description": "Agriculture University Pune is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Design",
+    "fees": "₹55000 per year",
+    "placement": "70% Average Placement",
+    "description": "Institute of Design Bengaluru is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Pharmacy",
+    "fees": "₹65000 per year",
+    "placement": "71% Average Placement",
+    "description": "College of Pharmacy Chennai is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Nursing",
+    "fees": "₹75000 per year",
+    "placement": "72% Average Placement",
+    "description": "College of Nursing Hyderabad is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Hotel Management",
+    "fees": "₹85000 per year",
+    "placement": "73% Average Placement",
+    "description": "Hotel Management Institute Lucknow is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Architecture",
+    "fees": "₹95000 per year",
+    "placement": "74% Average Placement",
+    "description": "School of Architecture Delhi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Veterinary",
+    "fees": "₹105000 per year",
+    "placement": "75% Average Placement",
+    "description": "Veterinary Science College Jaipur is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Education",
+    "fees": "₹115000 per year",
+    "placement": "76% Average Placement",
+    "description": "Teacher Education College Ahmedabad is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Engineering",
+    "fees": "₹125000 per year",
+    "placement": "77% Average Placement",
+    "description": "IIT Kolkata is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Engineering",
+    "fees": "₹135000 per year",
+    "placement": "78% Average Placement",
+    "description": "NIT Kochi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Engineering",
+    "fees": "₹145000 per year",
+    "placement": "79% Average Placement",
+    "description": "IIIT Chandigarh is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Medical",
+    "fees": "₹155000 per year",
+    "placement": "80% Average Placement",
+    "description": "AIIMS Bhubaneswar is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Medical",
+    "fees": "₹165000 per year",
+    "placement": "81% Average Placement",
+    "description": "Government Medical College Patna is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Management",
+    "fees": "₹175000 per year",
+    "placement": "82% Average Placement",
+    "description": "Indian Institute of Management Ranchi is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Law",
+    "fees": "₹185000 per year",
+    "placement": "83% Average Placement",
+    "description": "National Law University Dehradun is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Arts",
+    "fees": "₹195000 per year",
+    "placement": "84% Average Placement",
+    "description": "Government Arts College Visakhapatnam is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Commerce",
+    "fees": "₹5000 per year",
+    "placement": "85% Average Placement",
+    "description": "Government Commerce College Bhopal is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Science",
+    "fees": "₹15000 per year",
+    "placement": "86% Average Placement",
+    "description": "State Science College Indore is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Agriculture",
+    "fees": "₹25000 per year",
+    "placement": "87% Average Placement",
+    "description": "Agriculture University Gwalior is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Design",
+    "fees": "₹35000 per year",
+    "placement": "88% Average Placement",
+    "description": "Institute of Design Mumbai is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Pharmacy",
+    "fees": "₹45000 per year",
+    "placement": "89% Average Placement",
+    "description": "College of Pharmacy Pune is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Nursing",
+    "fees": "₹55000 per year",
+    "placement": "90% Average Placement",
+    "description": "College of Nursing Bengaluru is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Hotel Management",
+    "fees": "₹65000 per year",
+    "placement": "91% Average Placement",
+    "description": "Hotel Management Institute Chennai is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Architecture",
+    "fees": "₹75000 per year",
+    "placement": "92% Average Placement",
+    "description": "School of Architecture Hyderabad is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Veterinary",
+    "fees": "₹85000 per year",
+    "placement": "93% Average Placement",
+    "description": "Veterinary Science College Lucknow is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Education",
+    "fees": "₹95000 per year",
+    "placement": "94% Average Placement",
+    "description": "Teacher Education College Delhi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Engineering",
+    "fees": "₹105000 per year",
+    "placement": "50% Average Placement",
+    "description": "IIT Jaipur is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Engineering",
+    "fees": "₹115000 per year",
+    "placement": "51% Average Placement",
+    "description": "NIT Ahmedabad is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Engineering",
+    "fees": "₹125000 per year",
+    "placement": "52% Average Placement",
+    "description": "IIIT Kolkata is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Medical",
+    "fees": "₹135000 per year",
+    "placement": "53% Average Placement",
+    "description": "AIIMS Kochi is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Medical",
+    "fees": "₹145000 per year",
+    "placement": "54% Average Placement",
+    "description": "Government Medical College Chandigarh is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Management",
+    "fees": "₹155000 per year",
+    "placement": "55% Average Placement",
+    "description": "Indian Institute of Management Bhubaneswar is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Law",
+    "fees": "₹165000 per year",
+    "placement": "56% Average Placement",
+    "description": "National Law University Patna is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Arts",
+    "fees": "₹175000 per year",
+    "placement": "57% Average Placement",
+    "description": "Government Arts College Ranchi is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Commerce",
+    "fees": "₹185000 per year",
+    "placement": "58% Average Placement",
+    "description": "Government Commerce College Dehradun is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Science",
+    "fees": "₹195000 per year",
+    "placement": "59% Average Placement",
+    "description": "State Science College Visakhapatnam is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Agriculture",
+    "fees": "₹5000 per year",
+    "placement": "60% Average Placement",
+    "description": "Agriculture University Bhopal is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Design",
+    "fees": "₹15000 per year",
+    "placement": "61% Average Placement",
+    "description": "Institute of Design Indore is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Pharmacy",
+    "fees": "₹25000 per year",
+    "placement": "62% Average Placement",
+    "description": "College of Pharmacy Gwalior is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Nursing",
+    "fees": "₹35000 per year",
+    "placement": "63% Average Placement",
+    "description": "College of Nursing Mumbai is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Hotel Management",
+    "fees": "₹45000 per year",
+    "placement": "64% Average Placement",
+    "description": "Hotel Management Institute Pune is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Architecture",
+    "fees": "₹55000 per year",
+    "placement": "65% Average Placement",
+    "description": "School of Architecture Bengaluru is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Veterinary",
+    "fees": "₹65000 per year",
+    "placement": "66% Average Placement",
+    "description": "Veterinary Science College Chennai is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Education",
+    "fees": "₹75000 per year",
+    "placement": "67% Average Placement",
+    "description": "Teacher Education College Hyderabad is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Engineering",
+    "fees": "₹85000 per year",
+    "placement": "68% Average Placement",
+    "description": "IIT Lucknow is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Engineering",
+    "fees": "₹95000 per year",
+    "placement": "69% Average Placement",
+    "description": "NIT Delhi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Engineering",
+    "fees": "₹105000 per year",
+    "placement": "70% Average Placement",
+    "description": "IIIT Jaipur is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Medical",
+    "fees": "₹115000 per year",
+    "placement": "71% Average Placement",
+    "description": "AIIMS Ahmedabad is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Medical",
+    "fees": "₹125000 per year",
+    "placement": "72% Average Placement",
+    "description": "Government Medical College Kolkata is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Management",
+    "fees": "₹135000 per year",
+    "placement": "73% Average Placement",
+    "description": "Indian Institute of Management Kochi is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Law",
+    "fees": "₹145000 per year",
+    "placement": "74% Average Placement",
+    "description": "National Law University Chandigarh is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Arts",
+    "fees": "₹155000 per year",
+    "placement": "75% Average Placement",
+    "description": "Government Arts College Bhubaneswar is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Commerce",
+    "fees": "₹165000 per year",
+    "placement": "76% Average Placement",
+    "description": "Government Commerce College Patna is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Science",
+    "fees": "₹175000 per year",
+    "placement": "77% Average Placement",
+    "description": "State Science College Ranchi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Agriculture",
+    "fees": "₹185000 per year",
+    "placement": "78% Average Placement",
+    "description": "Agriculture University Dehradun is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Design",
+    "fees": "₹195000 per year",
+    "placement": "79% Average Placement",
+    "description": "Institute of Design Visakhapatnam is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Pharmacy",
+    "fees": "₹5000 per year",
+    "placement": "80% Average Placement",
+    "description": "College of Pharmacy Bhopal is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Nursing",
+    "fees": "₹15000 per year",
+    "placement": "81% Average Placement",
+    "description": "College of Nursing Indore is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Hotel Management",
+    "fees": "₹25000 per year",
+    "placement": "82% Average Placement",
+    "description": "Hotel Management Institute Gwalior is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Architecture",
+    "fees": "₹35000 per year",
+    "placement": "83% Average Placement",
+    "description": "School of Architecture Mumbai is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Veterinary",
+    "fees": "₹45000 per year",
+    "placement": "84% Average Placement",
+    "description": "Veterinary Science College Pune is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Education",
+    "fees": "₹55000 per year",
+    "placement": "85% Average Placement",
+    "description": "Teacher Education College Bengaluru is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Engineering",
+    "fees": "₹65000 per year",
+    "placement": "86% Average Placement",
+    "description": "IIT Chennai is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Engineering",
+    "fees": "₹75000 per year",
+    "placement": "87% Average Placement",
+    "description": "NIT Hyderabad is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Engineering",
+    "fees": "₹85000 per year",
+    "placement": "88% Average Placement",
+    "description": "IIIT Lucknow is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Medical",
+    "fees": "₹95000 per year",
+    "placement": "89% Average Placement",
+    "description": "AIIMS Delhi is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Medical",
+    "fees": "₹105000 per year",
+    "placement": "90% Average Placement",
+    "description": "Government Medical College Jaipur is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Management",
+    "fees": "₹115000 per year",
+    "placement": "91% Average Placement",
+    "description": "Indian Institute of Management Ahmedabad is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Law",
+    "fees": "₹125000 per year",
+    "placement": "92% Average Placement",
+    "description": "National Law University Kolkata is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Arts",
+    "fees": "₹135000 per year",
+    "placement": "93% Average Placement",
+    "description": "Government Arts College Kochi is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Commerce",
+    "fees": "₹145000 per year",
+    "placement": "94% Average Placement",
+    "description": "Government Commerce College Chandigarh is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Science",
+    "fees": "₹155000 per year",
+    "placement": "50% Average Placement",
+    "description": "State Science College Bhubaneswar is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Agriculture",
+    "fees": "₹165000 per year",
+    "placement": "51% Average Placement",
+    "description": "Agriculture University Patna is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Design",
+    "fees": "₹175000 per year",
+    "placement": "52% Average Placement",
+    "description": "Institute of Design Ranchi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Pharmacy",
+    "fees": "₹185000 per year",
+    "placement": "53% Average Placement",
+    "description": "College of Pharmacy Dehradun is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Nursing",
+    "fees": "₹195000 per year",
+    "placement": "54% Average Placement",
+    "description": "College of Nursing Visakhapatnam is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Hotel Management",
+    "fees": "₹5000 per year",
+    "placement": "55% Average Placement",
+    "description": "Hotel Management Institute Bhopal is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Architecture",
+    "fees": "₹15000 per year",
+    "placement": "56% Average Placement",
+    "description": "School of Architecture Indore is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Veterinary",
+    "fees": "₹25000 per year",
+    "placement": "57% Average Placement",
+    "description": "Veterinary Science College Gwalior is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Education",
+    "fees": "₹35000 per year",
+    "placement": "58% Average Placement",
+    "description": "Teacher Education College Mumbai is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Engineering",
+    "fees": "₹45000 per year",
+    "placement": "59% Average Placement",
+    "description": "IIT Pune is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Engineering",
+    "fees": "₹55000 per year",
+    "placement": "60% Average Placement",
+    "description": "NIT Bengaluru is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Engineering",
+    "fees": "₹65000 per year",
+    "placement": "61% Average Placement",
+    "description": "IIIT Chennai is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Medical",
+    "fees": "₹75000 per year",
+    "placement": "62% Average Placement",
+    "description": "AIIMS Hyderabad is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Medical",
+    "fees": "₹85000 per year",
+    "placement": "63% Average Placement",
+    "description": "Government Medical College Lucknow is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Management",
+    "fees": "₹95000 per year",
+    "placement": "64% Average Placement",
+    "description": "Indian Institute of Management Delhi is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Law",
+    "fees": "₹105000 per year",
+    "placement": "65% Average Placement",
+    "description": "National Law University Jaipur is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Arts",
+    "fees": "₹115000 per year",
+    "placement": "66% Average Placement",
+    "description": "Government Arts College Ahmedabad is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Commerce",
+    "fees": "₹125000 per year",
+    "placement": "67% Average Placement",
+    "description": "Government Commerce College Kolkata is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Science",
+    "fees": "₹135000 per year",
+    "placement": "68% Average Placement",
+    "description": "State Science College Kochi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Agriculture",
+    "fees": "₹145000 per year",
+    "placement": "69% Average Placement",
+    "description": "Agriculture University Chandigarh is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Design",
+    "fees": "₹155000 per year",
+    "placement": "70% Average Placement",
+    "description": "Institute of Design Bhubaneswar is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Pharmacy",
+    "fees": "₹165000 per year",
+    "placement": "71% Average Placement",
+    "description": "College of Pharmacy Patna is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Nursing",
+    "fees": "₹175000 per year",
+    "placement": "72% Average Placement",
+    "description": "College of Nursing Ranchi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Hotel Management",
+    "fees": "₹185000 per year",
+    "placement": "73% Average Placement",
+    "description": "Hotel Management Institute Dehradun is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Architecture",
+    "fees": "₹195000 per year",
+    "placement": "74% Average Placement",
+    "description": "School of Architecture Visakhapatnam is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Veterinary",
+    "fees": "₹5000 per year",
+    "placement": "75% Average Placement",
+    "description": "Veterinary Science College Bhopal is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Education",
+    "fees": "₹15000 per year",
+    "placement": "76% Average Placement",
+    "description": "Teacher Education College Indore is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Engineering",
+    "fees": "₹25000 per year",
+    "placement": "77% Average Placement",
+    "description": "IIT Gwalior is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Engineering",
+    "fees": "₹35000 per year",
+    "placement": "78% Average Placement",
+    "description": "NIT Mumbai is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Engineering",
+    "fees": "₹45000 per year",
+    "placement": "79% Average Placement",
+    "description": "IIIT Pune is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Medical",
+    "fees": "₹55000 per year",
+    "placement": "80% Average Placement",
+    "description": "AIIMS Bengaluru is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Medical",
+    "fees": "₹65000 per year",
+    "placement": "81% Average Placement",
+    "description": "Government Medical College Chennai is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Management",
+    "fees": "₹75000 per year",
+    "placement": "82% Average Placement",
+    "description": "Indian Institute of Management Hyderabad is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Law",
+    "fees": "₹85000 per year",
+    "placement": "83% Average Placement",
+    "description": "National Law University Lucknow is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Arts",
+    "fees": "₹95000 per year",
+    "placement": "84% Average Placement",
+    "description": "Government Arts College Delhi is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Commerce",
+    "fees": "₹105000 per year",
+    "placement": "85% Average Placement",
+    "description": "Government Commerce College Jaipur is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Science",
+    "fees": "₹115000 per year",
+    "placement": "86% Average Placement",
+    "description": "State Science College Ahmedabad is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Agriculture",
+    "fees": "₹125000 per year",
+    "placement": "87% Average Placement",
+    "description": "Agriculture University Kolkata is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Design",
+    "fees": "₹135000 per year",
+    "placement": "88% Average Placement",
+    "description": "Institute of Design Kochi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Pharmacy",
+    "fees": "₹145000 per year",
+    "placement": "89% Average Placement",
+    "description": "College of Pharmacy Chandigarh is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Nursing",
+    "fees": "₹155000 per year",
+    "placement": "90% Average Placement",
+    "description": "College of Nursing Bhubaneswar is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Hotel Management",
+    "fees": "₹165000 per year",
+    "placement": "91% Average Placement",
+    "description": "Hotel Management Institute Patna is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Architecture",
+    "fees": "₹175000 per year",
+    "placement": "92% Average Placement",
+    "description": "School of Architecture Ranchi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Veterinary",
+    "fees": "₹185000 per year",
+    "placement": "93% Average Placement",
+    "description": "Veterinary Science College Dehradun is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Education",
+    "fees": "₹195000 per year",
+    "placement": "94% Average Placement",
+    "description": "Teacher Education College Visakhapatnam is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Engineering",
+    "fees": "₹5000 per year",
+    "placement": "50% Average Placement",
+    "description": "IIT Bhopal is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Engineering",
+    "fees": "₹15000 per year",
+    "placement": "51% Average Placement",
+    "description": "NIT Indore is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Engineering",
+    "fees": "₹25000 per year",
+    "placement": "52% Average Placement",
+    "description": "IIIT Gwalior is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Medical",
+    "fees": "₹35000 per year",
+    "placement": "53% Average Placement",
+    "description": "AIIMS Mumbai is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Medical",
+    "fees": "₹45000 per year",
+    "placement": "54% Average Placement",
+    "description": "Government Medical College Pune is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Management",
+    "fees": "₹55000 per year",
+    "placement": "55% Average Placement",
+    "description": "Indian Institute of Management Bengaluru is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Law",
+    "fees": "₹65000 per year",
+    "placement": "56% Average Placement",
+    "description": "National Law University Chennai is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Arts",
+    "fees": "₹75000 per year",
+    "placement": "57% Average Placement",
+    "description": "Government Arts College Hyderabad is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Commerce",
+    "fees": "₹85000 per year",
+    "placement": "58% Average Placement",
+    "description": "Government Commerce College Lucknow is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Science",
+    "fees": "₹95000 per year",
+    "placement": "59% Average Placement",
+    "description": "State Science College Delhi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Agriculture",
+    "fees": "₹105000 per year",
+    "placement": "60% Average Placement",
+    "description": "Agriculture University Jaipur is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Design",
+    "fees": "₹115000 per year",
+    "placement": "61% Average Placement",
+    "description": "Institute of Design Ahmedabad is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Pharmacy",
+    "fees": "₹125000 per year",
+    "placement": "62% Average Placement",
+    "description": "College of Pharmacy Kolkata is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Nursing",
+    "fees": "₹135000 per year",
+    "placement": "63% Average Placement",
+    "description": "College of Nursing Kochi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Hotel Management",
+    "fees": "₹145000 per year",
+    "placement": "64% Average Placement",
+    "description": "Hotel Management Institute Chandigarh is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Architecture",
+    "fees": "₹155000 per year",
+    "placement": "65% Average Placement",
+    "description": "School of Architecture Bhubaneswar is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Veterinary",
+    "fees": "₹165000 per year",
+    "placement": "66% Average Placement",
+    "description": "Veterinary Science College Patna is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Education",
+    "fees": "₹175000 per year",
+    "placement": "67% Average Placement",
+    "description": "Teacher Education College Ranchi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Engineering",
+    "fees": "₹185000 per year",
+    "placement": "68% Average Placement",
+    "description": "IIT Dehradun is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Engineering",
+    "fees": "₹195000 per year",
+    "placement": "69% Average Placement",
+    "description": "NIT Visakhapatnam is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Engineering",
+    "fees": "₹5000 per year",
+    "placement": "70% Average Placement",
+    "description": "IIIT Bhopal is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Medical",
+    "fees": "₹15000 per year",
+    "placement": "71% Average Placement",
+    "description": "AIIMS Indore is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Medical",
+    "fees": "₹25000 per year",
+    "placement": "72% Average Placement",
+    "description": "Government Medical College Gwalior is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Management",
+    "fees": "₹35000 per year",
+    "placement": "73% Average Placement",
+    "description": "Indian Institute of Management Mumbai is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Law",
+    "fees": "₹45000 per year",
+    "placement": "74% Average Placement",
+    "description": "National Law University Pune is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Arts",
+    "fees": "₹55000 per year",
+    "placement": "75% Average Placement",
+    "description": "Government Arts College Bengaluru is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Commerce",
+    "fees": "₹65000 per year",
+    "placement": "76% Average Placement",
+    "description": "Government Commerce College Chennai is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Science",
+    "fees": "₹75000 per year",
+    "placement": "77% Average Placement",
+    "description": "State Science College Hyderabad is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Agriculture",
+    "fees": "₹85000 per year",
+    "placement": "78% Average Placement",
+    "description": "Agriculture University Lucknow is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Design",
+    "fees": "₹95000 per year",
+    "placement": "79% Average Placement",
+    "description": "Institute of Design Delhi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Pharmacy",
+    "fees": "₹105000 per year",
+    "placement": "80% Average Placement",
+    "description": "College of Pharmacy Jaipur is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Nursing",
+    "fees": "₹115000 per year",
+    "placement": "81% Average Placement",
+    "description": "College of Nursing Ahmedabad is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Hotel Management",
+    "fees": "₹125000 per year",
+    "placement": "82% Average Placement",
+    "description": "Hotel Management Institute Kolkata is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Architecture",
+    "fees": "₹135000 per year",
+    "placement": "83% Average Placement",
+    "description": "School of Architecture Kochi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Veterinary",
+    "fees": "₹145000 per year",
+    "placement": "84% Average Placement",
+    "description": "Veterinary Science College Chandigarh is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Education",
+    "fees": "₹155000 per year",
+    "placement": "85% Average Placement",
+    "description": "Teacher Education College Bhubaneswar is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Engineering",
+    "fees": "₹165000 per year",
+    "placement": "86% Average Placement",
+    "description": "IIT Patna is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Engineering",
+    "fees": "₹175000 per year",
+    "placement": "87% Average Placement",
+    "description": "NIT Ranchi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Engineering",
+    "fees": "₹185000 per year",
+    "placement": "88% Average Placement",
+    "description": "IIIT Dehradun is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Medical",
+    "fees": "₹195000 per year",
+    "placement": "89% Average Placement",
+    "description": "AIIMS Visakhapatnam is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Medical",
+    "fees": "₹5000 per year",
+    "placement": "90% Average Placement",
+    "description": "Government Medical College Bhopal is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Management",
+    "fees": "₹15000 per year",
+    "placement": "91% Average Placement",
+    "description": "Indian Institute of Management Indore is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Law",
+    "fees": "₹25000 per year",
+    "placement": "92% Average Placement",
+    "description": "National Law University Gwalior is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Arts",
+    "fees": "₹35000 per year",
+    "placement": "93% Average Placement",
+    "description": "Government Arts College Mumbai is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Commerce",
+    "fees": "₹45000 per year",
+    "placement": "94% Average Placement",
+    "description": "Government Commerce College Pune is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Science",
+    "fees": "₹55000 per year",
+    "placement": "50% Average Placement",
+    "description": "State Science College Bengaluru is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Agriculture",
+    "fees": "₹65000 per year",
+    "placement": "51% Average Placement",
+    "description": "Agriculture University Chennai is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Design",
+    "fees": "₹75000 per year",
+    "placement": "52% Average Placement",
+    "description": "Institute of Design Hyderabad is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Pharmacy",
+    "fees": "₹85000 per year",
+    "placement": "53% Average Placement",
+    "description": "College of Pharmacy Lucknow is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Nursing",
+    "fees": "₹95000 per year",
+    "placement": "54% Average Placement",
+    "description": "College of Nursing Delhi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Hotel Management",
+    "fees": "₹105000 per year",
+    "placement": "55% Average Placement",
+    "description": "Hotel Management Institute Jaipur is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Architecture",
+    "fees": "₹115000 per year",
+    "placement": "56% Average Placement",
+    "description": "School of Architecture Ahmedabad is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Veterinary",
+    "fees": "₹125000 per year",
+    "placement": "57% Average Placement",
+    "description": "Veterinary Science College Kolkata is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Education",
+    "fees": "₹135000 per year",
+    "placement": "58% Average Placement",
+    "description": "Teacher Education College Kochi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Engineering",
+    "fees": "₹145000 per year",
+    "placement": "59% Average Placement",
+    "description": "IIT Chandigarh is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Engineering",
+    "fees": "₹155000 per year",
+    "placement": "60% Average Placement",
+    "description": "NIT Bhubaneswar is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Engineering",
+    "fees": "₹165000 per year",
+    "placement": "61% Average Placement",
+    "description": "IIIT Patna is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Medical",
+    "fees": "₹175000 per year",
+    "placement": "62% Average Placement",
+    "description": "AIIMS Ranchi is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Medical",
+    "fees": "₹185000 per year",
+    "placement": "63% Average Placement",
+    "description": "Government Medical College Dehradun is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Management",
+    "fees": "₹195000 per year",
+    "placement": "64% Average Placement",
+    "description": "Indian Institute of Management Visakhapatnam is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Law",
+    "fees": "₹5000 per year",
+    "placement": "65% Average Placement",
+    "description": "National Law University Bhopal is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Arts",
+    "fees": "₹15000 per year",
+    "placement": "66% Average Placement",
+    "description": "Government Arts College Indore is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Commerce",
+    "fees": "₹25000 per year",
+    "placement": "67% Average Placement",
+    "description": "Government Commerce College Gwalior is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Science",
+    "fees": "₹35000 per year",
+    "placement": "68% Average Placement",
+    "description": "State Science College Mumbai is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Agriculture",
+    "fees": "₹45000 per year",
+    "placement": "69% Average Placement",
+    "description": "Agriculture University Pune is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Design",
+    "fees": "₹55000 per year",
+    "placement": "70% Average Placement",
+    "description": "Institute of Design Bengaluru is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Pharmacy",
+    "fees": "₹65000 per year",
+    "placement": "71% Average Placement",
+    "description": "College of Pharmacy Chennai is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Nursing",
+    "fees": "₹75000 per year",
+    "placement": "72% Average Placement",
+    "description": "College of Nursing Hyderabad is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Hotel Management",
+    "fees": "₹85000 per year",
+    "placement": "73% Average Placement",
+    "description": "Hotel Management Institute Lucknow is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Architecture",
+    "fees": "₹95000 per year",
+    "placement": "74% Average Placement",
+    "description": "School of Architecture Delhi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Veterinary",
+    "fees": "₹105000 per year",
+    "placement": "75% Average Placement",
+    "description": "Veterinary Science College Jaipur is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Education",
+    "fees": "₹115000 per year",
+    "placement": "76% Average Placement",
+    "description": "Teacher Education College Ahmedabad is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Engineering",
+    "fees": "₹125000 per year",
+    "placement": "77% Average Placement",
+    "description": "IIT Kolkata is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Engineering",
+    "fees": "₹135000 per year",
+    "placement": "78% Average Placement",
+    "description": "NIT Kochi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Engineering",
+    "fees": "₹145000 per year",
+    "placement": "79% Average Placement",
+    "description": "IIIT Chandigarh is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Medical",
+    "fees": "₹155000 per year",
+    "placement": "80% Average Placement",
+    "description": "AIIMS Bhubaneswar is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Medical",
+    "fees": "₹165000 per year",
+    "placement": "81% Average Placement",
+    "description": "Government Medical College Patna is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Management",
+    "fees": "₹175000 per year",
+    "placement": "82% Average Placement",
+    "description": "Indian Institute of Management Ranchi is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Law",
+    "fees": "₹185000 per year",
+    "placement": "83% Average Placement",
+    "description": "National Law University Dehradun is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Arts",
+    "fees": "₹195000 per year",
+    "placement": "84% Average Placement",
+    "description": "Government Arts College Visakhapatnam is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Commerce",
+    "fees": "₹5000 per year",
+    "placement": "85% Average Placement",
+    "description": "Government Commerce College Bhopal is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Science",
+    "fees": "₹15000 per year",
+    "placement": "86% Average Placement",
+    "description": "State Science College Indore is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Agriculture",
+    "fees": "₹25000 per year",
+    "placement": "87% Average Placement",
+    "description": "Agriculture University Gwalior is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Design",
+    "fees": "₹35000 per year",
+    "placement": "88% Average Placement",
+    "description": "Institute of Design Mumbai is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Pharmacy",
+    "fees": "₹45000 per year",
+    "placement": "89% Average Placement",
+    "description": "College of Pharmacy Pune is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Nursing",
+    "fees": "₹55000 per year",
+    "placement": "90% Average Placement",
+    "description": "College of Nursing Bengaluru is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Hotel Management",
+    "fees": "₹65000 per year",
+    "placement": "91% Average Placement",
+    "description": "Hotel Management Institute Chennai is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Architecture",
+    "fees": "₹75000 per year",
+    "placement": "92% Average Placement",
+    "description": "School of Architecture Hyderabad is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Veterinary",
+    "fees": "₹85000 per year",
+    "placement": "93% Average Placement",
+    "description": "Veterinary Science College Lucknow is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Education",
+    "fees": "₹95000 per year",
+    "placement": "94% Average Placement",
+    "description": "Teacher Education College Delhi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Engineering",
+    "fees": "₹105000 per year",
+    "placement": "50% Average Placement",
+    "description": "IIT Jaipur is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Engineering",
+    "fees": "₹115000 per year",
+    "placement": "51% Average Placement",
+    "description": "NIT Ahmedabad is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Engineering",
+    "fees": "₹125000 per year",
+    "placement": "52% Average Placement",
+    "description": "IIIT Kolkata is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Medical",
+    "fees": "₹135000 per year",
+    "placement": "53% Average Placement",
+    "description": "AIIMS Kochi is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Medical",
+    "fees": "₹145000 per year",
+    "placement": "54% Average Placement",
+    "description": "Government Medical College Chandigarh is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Management",
+    "fees": "₹155000 per year",
+    "placement": "55% Average Placement",
+    "description": "Indian Institute of Management Bhubaneswar is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Law",
+    "fees": "₹165000 per year",
+    "placement": "56% Average Placement",
+    "description": "National Law University Patna is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Arts",
+    "fees": "₹175000 per year",
+    "placement": "57% Average Placement",
+    "description": "Government Arts College Ranchi is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Commerce",
+    "fees": "₹185000 per year",
+    "placement": "58% Average Placement",
+    "description": "Government Commerce College Dehradun is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Science",
+    "fees": "₹195000 per year",
+    "placement": "59% Average Placement",
+    "description": "State Science College Visakhapatnam is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Agriculture",
+    "fees": "₹5000 per year",
+    "placement": "60% Average Placement",
+    "description": "Agriculture University Bhopal is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Design",
+    "fees": "₹15000 per year",
+    "placement": "61% Average Placement",
+    "description": "Institute of Design Indore is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Pharmacy",
+    "fees": "₹25000 per year",
+    "placement": "62% Average Placement",
+    "description": "College of Pharmacy Gwalior is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Nursing",
+    "fees": "₹35000 per year",
+    "placement": "63% Average Placement",
+    "description": "College of Nursing Mumbai is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Hotel Management",
+    "fees": "₹45000 per year",
+    "placement": "64% Average Placement",
+    "description": "Hotel Management Institute Pune is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Architecture",
+    "fees": "₹55000 per year",
+    "placement": "65% Average Placement",
+    "description": "School of Architecture Bengaluru is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Veterinary",
+    "fees": "₹65000 per year",
+    "placement": "66% Average Placement",
+    "description": "Veterinary Science College Chennai is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Education",
+    "fees": "₹75000 per year",
+    "placement": "67% Average Placement",
+    "description": "Teacher Education College Hyderabad is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Engineering",
+    "fees": "₹85000 per year",
+    "placement": "68% Average Placement",
+    "description": "IIT Lucknow is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Engineering",
+    "fees": "₹95000 per year",
+    "placement": "69% Average Placement",
+    "description": "NIT Delhi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Engineering",
+    "fees": "₹105000 per year",
+    "placement": "70% Average Placement",
+    "description": "IIIT Jaipur is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Medical",
+    "fees": "₹115000 per year",
+    "placement": "71% Average Placement",
+    "description": "AIIMS Ahmedabad is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Medical",
+    "fees": "₹125000 per year",
+    "placement": "72% Average Placement",
+    "description": "Government Medical College Kolkata is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Management",
+    "fees": "₹135000 per year",
+    "placement": "73% Average Placement",
+    "description": "Indian Institute of Management Kochi is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Law",
+    "fees": "₹145000 per year",
+    "placement": "74% Average Placement",
+    "description": "National Law University Chandigarh is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Arts",
+    "fees": "₹155000 per year",
+    "placement": "75% Average Placement",
+    "description": "Government Arts College Bhubaneswar is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Commerce",
+    "fees": "₹165000 per year",
+    "placement": "76% Average Placement",
+    "description": "Government Commerce College Patna is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Science",
+    "fees": "₹175000 per year",
+    "placement": "77% Average Placement",
+    "description": "State Science College Ranchi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Agriculture",
+    "fees": "₹185000 per year",
+    "placement": "78% Average Placement",
+    "description": "Agriculture University Dehradun is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Design",
+    "fees": "₹195000 per year",
+    "placement": "79% Average Placement",
+    "description": "Institute of Design Visakhapatnam is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Pharmacy",
+    "fees": "₹5000 per year",
+    "placement": "80% Average Placement",
+    "description": "College of Pharmacy Bhopal is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Nursing",
+    "fees": "₹15000 per year",
+    "placement": "81% Average Placement",
+    "description": "College of Nursing Indore is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Hotel Management",
+    "fees": "₹25000 per year",
+    "placement": "82% Average Placement",
+    "description": "Hotel Management Institute Gwalior is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Architecture",
+    "fees": "₹35000 per year",
+    "placement": "83% Average Placement",
+    "description": "School of Architecture Mumbai is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Veterinary",
+    "fees": "₹45000 per year",
+    "placement": "84% Average Placement",
+    "description": "Veterinary Science College Pune is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Education",
+    "fees": "₹55000 per year",
+    "placement": "85% Average Placement",
+    "description": "Teacher Education College Bengaluru is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Engineering",
+    "fees": "₹65000 per year",
+    "placement": "86% Average Placement",
+    "description": "IIT Chennai is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Engineering",
+    "fees": "₹75000 per year",
+    "placement": "87% Average Placement",
+    "description": "NIT Hyderabad is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Engineering",
+    "fees": "₹85000 per year",
+    "placement": "88% Average Placement",
+    "description": "IIIT Lucknow is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Medical",
+    "fees": "₹95000 per year",
+    "placement": "89% Average Placement",
+    "description": "AIIMS Delhi is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Medical",
+    "fees": "₹105000 per year",
+    "placement": "90% Average Placement",
+    "description": "Government Medical College Jaipur is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Management",
+    "fees": "₹115000 per year",
+    "placement": "91% Average Placement",
+    "description": "Indian Institute of Management Ahmedabad is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Law",
+    "fees": "₹125000 per year",
+    "placement": "92% Average Placement",
+    "description": "National Law University Kolkata is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Arts",
+    "fees": "₹135000 per year",
+    "placement": "93% Average Placement",
+    "description": "Government Arts College Kochi is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Commerce",
+    "fees": "₹145000 per year",
+    "placement": "94% Average Placement",
+    "description": "Government Commerce College Chandigarh is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Science",
+    "fees": "₹155000 per year",
+    "placement": "50% Average Placement",
+    "description": "State Science College Bhubaneswar is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Agriculture",
+    "fees": "₹165000 per year",
+    "placement": "51% Average Placement",
+    "description": "Agriculture University Patna is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Design",
+    "fees": "₹175000 per year",
+    "placement": "52% Average Placement",
+    "description": "Institute of Design Ranchi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Pharmacy",
+    "fees": "₹185000 per year",
+    "placement": "53% Average Placement",
+    "description": "College of Pharmacy Dehradun is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Nursing",
+    "fees": "₹195000 per year",
+    "placement": "54% Average Placement",
+    "description": "College of Nursing Visakhapatnam is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Hotel Management",
+    "fees": "₹5000 per year",
+    "placement": "55% Average Placement",
+    "description": "Hotel Management Institute Bhopal is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Architecture",
+    "fees": "₹15000 per year",
+    "placement": "56% Average Placement",
+    "description": "School of Architecture Indore is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Veterinary",
+    "fees": "₹25000 per year",
+    "placement": "57% Average Placement",
+    "description": "Veterinary Science College Gwalior is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Education",
+    "fees": "₹35000 per year",
+    "placement": "58% Average Placement",
+    "description": "Teacher Education College Mumbai is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Engineering",
+    "fees": "₹45000 per year",
+    "placement": "59% Average Placement",
+    "description": "IIT Pune is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Engineering",
+    "fees": "₹55000 per year",
+    "placement": "60% Average Placement",
+    "description": "NIT Bengaluru is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Engineering",
+    "fees": "₹65000 per year",
+    "placement": "61% Average Placement",
+    "description": "IIIT Chennai is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Medical",
+    "fees": "₹75000 per year",
+    "placement": "62% Average Placement",
+    "description": "AIIMS Hyderabad is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Medical",
+    "fees": "₹85000 per year",
+    "placement": "63% Average Placement",
+    "description": "Government Medical College Lucknow is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Management",
+    "fees": "₹95000 per year",
+    "placement": "64% Average Placement",
+    "description": "Indian Institute of Management Delhi is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Law",
+    "fees": "₹105000 per year",
+    "placement": "65% Average Placement",
+    "description": "National Law University Jaipur is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Arts",
+    "fees": "₹115000 per year",
+    "placement": "66% Average Placement",
+    "description": "Government Arts College Ahmedabad is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Commerce",
+    "fees": "₹125000 per year",
+    "placement": "67% Average Placement",
+    "description": "Government Commerce College Kolkata is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Science",
+    "fees": "₹135000 per year",
+    "placement": "68% Average Placement",
+    "description": "State Science College Kochi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Agriculture",
+    "fees": "₹145000 per year",
+    "placement": "69% Average Placement",
+    "description": "Agriculture University Chandigarh is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Design",
+    "fees": "₹155000 per year",
+    "placement": "70% Average Placement",
+    "description": "Institute of Design Bhubaneswar is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Pharmacy",
+    "fees": "₹165000 per year",
+    "placement": "71% Average Placement",
+    "description": "College of Pharmacy Patna is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Nursing",
+    "fees": "₹175000 per year",
+    "placement": "72% Average Placement",
+    "description": "College of Nursing Ranchi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Hotel Management",
+    "fees": "₹185000 per year",
+    "placement": "73% Average Placement",
+    "description": "Hotel Management Institute Dehradun is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Architecture",
+    "fees": "₹195000 per year",
+    "placement": "74% Average Placement",
+    "description": "School of Architecture Visakhapatnam is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Veterinary",
+    "fees": "₹5000 per year",
+    "placement": "75% Average Placement",
+    "description": "Veterinary Science College Bhopal is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Education",
+    "fees": "₹15000 per year",
+    "placement": "76% Average Placement",
+    "description": "Teacher Education College Indore is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Engineering",
+    "fees": "₹25000 per year",
+    "placement": "77% Average Placement",
+    "description": "IIT Gwalior is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Engineering",
+    "fees": "₹35000 per year",
+    "placement": "78% Average Placement",
+    "description": "NIT Mumbai is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Engineering",
+    "fees": "₹45000 per year",
+    "placement": "79% Average Placement",
+    "description": "IIIT Pune is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Medical",
+    "fees": "₹55000 per year",
+    "placement": "80% Average Placement",
+    "description": "AIIMS Bengaluru is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Medical",
+    "fees": "₹65000 per year",
+    "placement": "81% Average Placement",
+    "description": "Government Medical College Chennai is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Management",
+    "fees": "₹75000 per year",
+    "placement": "82% Average Placement",
+    "description": "Indian Institute of Management Hyderabad is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Law",
+    "fees": "₹85000 per year",
+    "placement": "83% Average Placement",
+    "description": "National Law University Lucknow is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Arts",
+    "fees": "₹95000 per year",
+    "placement": "84% Average Placement",
+    "description": "Government Arts College Delhi is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Commerce",
+    "fees": "₹105000 per year",
+    "placement": "85% Average Placement",
+    "description": "Government Commerce College Jaipur is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Science",
+    "fees": "₹115000 per year",
+    "placement": "86% Average Placement",
+    "description": "State Science College Ahmedabad is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Agriculture",
+    "fees": "₹125000 per year",
+    "placement": "87% Average Placement",
+    "description": "Agriculture University Kolkata is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Design",
+    "fees": "₹135000 per year",
+    "placement": "88% Average Placement",
+    "description": "Institute of Design Kochi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Pharmacy",
+    "fees": "₹145000 per year",
+    "placement": "89% Average Placement",
+    "description": "College of Pharmacy Chandigarh is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Nursing",
+    "fees": "₹155000 per year",
+    "placement": "90% Average Placement",
+    "description": "College of Nursing Bhubaneswar is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Hotel Management",
+    "fees": "₹165000 per year",
+    "placement": "91% Average Placement",
+    "description": "Hotel Management Institute Patna is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Architecture",
+    "fees": "₹175000 per year",
+    "placement": "92% Average Placement",
+    "description": "School of Architecture Ranchi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Veterinary",
+    "fees": "₹185000 per year",
+    "placement": "93% Average Placement",
+    "description": "Veterinary Science College Dehradun is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Education",
+    "fees": "₹195000 per year",
+    "placement": "94% Average Placement",
+    "description": "Teacher Education College Visakhapatnam is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Engineering",
+    "fees": "₹5000 per year",
+    "placement": "50% Average Placement",
+    "description": "IIT Bhopal is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Engineering",
+    "fees": "₹15000 per year",
+    "placement": "51% Average Placement",
+    "description": "NIT Indore is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Engineering",
+    "fees": "₹25000 per year",
+    "placement": "52% Average Placement",
+    "description": "IIIT Gwalior is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Medical",
+    "fees": "₹35000 per year",
+    "placement": "53% Average Placement",
+    "description": "AIIMS Mumbai is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Medical",
+    "fees": "₹45000 per year",
+    "placement": "54% Average Placement",
+    "description": "Government Medical College Pune is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Management",
+    "fees": "₹55000 per year",
+    "placement": "55% Average Placement",
+    "description": "Indian Institute of Management Bengaluru is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Law",
+    "fees": "₹65000 per year",
+    "placement": "56% Average Placement",
+    "description": "National Law University Chennai is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Arts",
+    "fees": "₹75000 per year",
+    "placement": "57% Average Placement",
+    "description": "Government Arts College Hyderabad is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Commerce",
+    "fees": "₹85000 per year",
+    "placement": "58% Average Placement",
+    "description": "Government Commerce College Lucknow is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Science",
+    "fees": "₹95000 per year",
+    "placement": "59% Average Placement",
+    "description": "State Science College Delhi is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Agriculture",
+    "fees": "₹105000 per year",
+    "placement": "60% Average Placement",
+    "description": "Agriculture University Jaipur is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Design",
+    "fees": "₹115000 per year",
+    "placement": "61% Average Placement",
+    "description": "Institute of Design Ahmedabad is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Pharmacy",
+    "fees": "₹125000 per year",
+    "placement": "62% Average Placement",
+    "description": "College of Pharmacy Kolkata is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Nursing",
+    "fees": "₹135000 per year",
+    "placement": "63% Average Placement",
+    "description": "College of Nursing Kochi is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Hotel Management",
+    "fees": "₹145000 per year",
+    "placement": "64% Average Placement",
+    "description": "Hotel Management Institute Chandigarh is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Architecture",
+    "fees": "₹155000 per year",
+    "placement": "65% Average Placement",
+    "description": "School of Architecture Bhubaneswar is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Veterinary",
+    "fees": "₹165000 per year",
+    "placement": "66% Average Placement",
+    "description": "Veterinary Science College Patna is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Education",
+    "fees": "₹175000 per year",
+    "placement": "67% Average Placement",
+    "description": "Teacher Education College Ranchi is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Engineering",
+    "fees": "₹185000 per year",
+    "placement": "68% Average Placement",
+    "description": "IIT Dehradun is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Engineering",
+    "fees": "₹195000 per year",
+    "placement": "69% Average Placement",
+    "description": "NIT Visakhapatnam is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Engineering",
+    "fees": "₹5000 per year",
+    "placement": "70% Average Placement",
+    "description": "IIIT Bhopal is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Indore",
+    "city": "Indore",
+    "state": "Maharashtra",
+    "course": "Medical",
+    "fees": "₹15000 per year",
+    "placement": "71% Average Placement",
+    "description": "AIIMS Indore is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Gwalior",
+    "city": "Gwalior",
+    "state": "Karnataka",
+    "course": "Medical",
+    "fees": "₹25000 per year",
+    "placement": "72% Average Placement",
+    "description": "Government Medical College Gwalior is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Indian Institute of Management Mumbai",
+    "city": "Mumbai",
+    "state": "Tamil Nadu",
+    "course": "Management",
+    "fees": "₹35000 per year",
+    "placement": "73% Average Placement",
+    "description": "Indian Institute of Management Mumbai is a reputed institution offering Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "National Law University Pune",
+    "city": "Pune",
+    "state": "Uttar Pradesh",
+    "course": "Law",
+    "fees": "₹45000 per year",
+    "placement": "74% Average Placement",
+    "description": "National Law University Pune is a reputed institution offering Law education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Arts College Bengaluru",
+    "city": "Bengaluru",
+    "state": "Delhi",
+    "course": "Arts",
+    "fees": "₹55000 per year",
+    "placement": "75% Average Placement",
+    "description": "Government Arts College Bengaluru is a reputed institution offering Arts education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Commerce College Chennai",
+    "city": "Chennai",
+    "state": "Rajasthan",
+    "course": "Commerce",
+    "fees": "₹65000 per year",
+    "placement": "76% Average Placement",
+    "description": "Government Commerce College Chennai is a reputed institution offering Commerce education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "State Science College Hyderabad",
+    "city": "Hyderabad",
+    "state": "Gujarat",
+    "course": "Science",
+    "fees": "₹75000 per year",
+    "placement": "77% Average Placement",
+    "description": "State Science College Hyderabad is a reputed institution offering Science education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Agriculture University Lucknow",
+    "city": "Lucknow",
+    "state": "West Bengal",
+    "course": "Agriculture",
+    "fees": "₹85000 per year",
+    "placement": "78% Average Placement",
+    "description": "Agriculture University Lucknow is a reputed institution offering Agriculture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Institute of Design Delhi",
+    "city": "Delhi",
+    "state": "Telangana",
+    "course": "Design",
+    "fees": "₹95000 per year",
+    "placement": "79% Average Placement",
+    "description": "Institute of Design Delhi is a reputed institution offering Design education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Pharmacy Jaipur",
+    "city": "Jaipur",
+    "state": "Kerala",
+    "course": "Pharmacy",
+    "fees": "₹105000 per year",
+    "placement": "80% Average Placement",
+    "description": "College of Pharmacy Jaipur is a reputed institution offering Pharmacy education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "College of Nursing Ahmedabad",
+    "city": "Ahmedabad",
+    "state": "Punjab",
+    "course": "Nursing",
+    "fees": "₹115000 per year",
+    "placement": "81% Average Placement",
+    "description": "College of Nursing Ahmedabad is a reputed institution offering Nursing education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Hotel Management Institute Kolkata",
+    "city": "Kolkata",
+    "state": "Haryana",
+    "course": "Hotel Management",
+    "fees": "₹125000 per year",
+    "placement": "82% Average Placement",
+    "description": "Hotel Management Institute Kolkata is a reputed institution offering Hotel Management education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "School of Architecture Kochi",
+    "city": "Kochi",
+    "state": "Odisha",
+    "course": "Architecture",
+    "fees": "₹135000 per year",
+    "placement": "83% Average Placement",
+    "description": "School of Architecture Kochi is a reputed institution offering Architecture education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Veterinary Science College Chandigarh",
+    "city": "Chandigarh",
+    "state": "Bihar",
+    "course": "Veterinary",
+    "fees": "₹145000 per year",
+    "placement": "84% Average Placement",
+    "description": "Veterinary Science College Chandigarh is a reputed institution offering Veterinary education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Teacher Education College Bhubaneswar",
+    "city": "Bhubaneswar",
+    "state": "Assam",
+    "course": "Education",
+    "fees": "₹155000 per year",
+    "placement": "85% Average Placement",
+    "description": "Teacher Education College Bhubaneswar is a reputed institution offering Education education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIT Patna",
+    "city": "Patna",
+    "state": "Chhattisgarh",
+    "course": "Engineering",
+    "fees": "₹165000 per year",
+    "placement": "86% Average Placement",
+    "description": "IIT Patna is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "NIT Ranchi",
+    "city": "Ranchi",
+    "state": "Andhra Pradesh",
+    "course": "Engineering",
+    "fees": "₹175000 per year",
+    "placement": "87% Average Placement",
+    "description": "NIT Ranchi is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "IIIT Dehradun",
+    "city": "Dehradun",
+    "state": "Jharkhand",
+    "course": "Engineering",
+    "fees": "₹185000 per year",
+    "placement": "88% Average Placement",
+    "description": "IIIT Dehradun is a reputed institution offering Engineering education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "AIIMS Visakhapatnam",
+    "city": "Visakhapatnam",
+    "state": "Uttarakhand",
+    "course": "Medical",
+    "fees": "₹195000 per year",
+    "placement": "89% Average Placement",
+    "description": "AIIMS Visakhapatnam is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  },
+  {
+    "name": "Government Medical College Bhopal",
+    "city": "Bhopal",
+    "state": "Madhya Pradesh",
+    "course": "Medical",
+    "fees": "₹5000 per year",
+    "placement": "90% Average Placement",
+    "description": "Government Medical College Bhopal is a reputed institution offering Medical education with experienced faculty, modern infrastructure, and career opportunities.",
+    "official_website": "https://www.education.gov.in"
+  }
+]

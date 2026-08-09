@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Add Roadmap
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h2 class="mb-4">
+
+Add Career Roadmap
+
+</h2>
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Career
+
+</label>
+
+<select
+name="career_id"
+class="form-select">
+
+{% for career in careers %}
+
+<option value="{{ career.id }}">
+
+{{ career.title }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="mb-3">
+
+<label>Overview</label>
+
+<textarea
+name="overview"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Required Skills</label>
+
+<textarea
+name="required_skills"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Best Colleges</label>
+
+<textarea
+name="best_colleges"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Recommended Courses</label>
+
+<textarea
+name="recommended_courses"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Projects</label>
+
+<textarea
+name="projects"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Internships</label>
+
+<textarea
+name="internships"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Salary</label>
+
+<input
+type="text"
+name="salary"
+class="form-control">
+
+</div>
+
+<div class="mb-3">
+
+<label>Future Scope</label>
+
+<textarea
+name="future_scope"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Top Companies</label>
+
+<textarea
+name="top_companies"
+class="form-control"
+rows="3"></textarea>
+
+</div>
+
+<div class="mb-3">
+
+<label>Roadmap Steps</label>
+
+<textarea
+name="roadmap_steps"
+class="form-control"
+rows="5"></textarea>
+
+</div>
+
+<button class="btn btn-success">
+
+Save Roadmap
+
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

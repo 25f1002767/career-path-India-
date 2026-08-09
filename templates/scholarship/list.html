@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}
+Scholarships
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="fw-bold mb-4">
+        🎓 Scholarship Explorer
+    </h1>
+
+    <form method="GET" class="mb-4">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="Search scholarships..."
+            value="{{ search }}">
+
+    </form>
+
+    <div class="row">
+
+        {% for scholarship in scholarships %}
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow h-100 border-0">
+
+                <div class="card-body">
+
+                    <h4 class="fw-bold">
+                        {{ scholarship.title }}
+                    </h4>
+
+                    <p><strong>Provider:</strong> {{ scholarship.provider }}</p>
+
+                    <p><strong>Level:</strong> {{ scholarship.level }}</p>
+
+                    <p><strong>Category:</strong> {{ scholarship.category }}</p>
+
+                    <p><strong>Amount:</strong> {{ scholarship.amount }}</p>
+
+                    <p><strong>Eligibility:</strong> {{ scholarship.eligibility }}</p>
+
+                    <p>{{ scholarship.description }}</p>
+
+                </div>
+
+                <div class="card-footer bg-white border-0">
+
+                    <a
+                        href="{{ scholarship.official_website }}"
+                        target="_blank"
+                        class="btn btn-primary w-100">
+
+                        🔗 Official Website
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="alert alert-warning">
+
+            No scholarships found.
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "name": "Central Sector Scheme of Scholarships for College and University Students",
+    "provider": "Department of Higher Education, Government of India",
+    "level": "Undergraduate / Postgraduate",
+    "category": "Merit-Based",
+    "amount": "₹10,000 per year (UG), ₹20,000 per year (PG)",
+    "eligibility": "Students who passed Class 12 with high marks and are studying in a recognized college or university",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 2,
+    "name": "Post Matric Scholarship for SC Students",
+    "provider": "Ministry of Social Justice and Empowerment",
+    "level": "Class 11 / 12 / Diploma / UG / PG",
+    "category": "SC",
+    "amount": "Tuition fee reimbursement + maintenance allowance",
+    "eligibility": "Scheduled Caste students studying after Class 10 with eligible family income criteria",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 3,
+    "name": "Post Matric Scholarship for OBC Students",
+    "provider": "Ministry of Social Justice and Empowerment",
+    "level": "Class 11 / 12 / UG / PG",
+    "category": "OBC",
+    "amount": "Up to ₹10,000 per year depending on the course",
+    "eligibility": "OBC students pursuing studies after Class 10 with family income within the prescribed limit",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 4,
+    "name": "National Means-cum-Merit Scholarship Scheme (NMMS)",
+    "provider": "Ministry of Education, Government of India",
+    "level": "Secondary School",
+    "category": "Economically Weaker Section",
+    "amount": "₹12,000 per year",
+    "eligibility": "Meritorious students from economically weaker families studying in Class 8 and continuing secondary education",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 5,
+    "name": "AICTE Pragati Scholarship for Girls",
+    "provider": "AICTE",
+    "level": "Diploma / Undergraduate",
+    "category": "Girls",
+    "amount": "₹50,000 per year",
+    "eligibility": "Girl students admitted to AICTE-approved technical diploma or degree courses",
+    "official_website": "https://www.aicte-india.org"
+  },
+  {
+    "id": 6,
+    "name": "AICTE Saksham Scholarship",
+    "provider": "AICTE",
+    "level": "Diploma / Undergraduate",
+    "category": "Persons with Disabilities",
+    "amount": "₹50,000 per year",
+    "eligibility": "Differently-abled students with at least 40% disability studying in AICTE-approved institutions",
+    "official_website": "https://www.aicte-india.org"
+  },
+  {
+    "id": 7,
+    "name": "AICTE Swanath Scholarship Scheme",
+    "provider": "AICTE",
+    "level": "Diploma / Undergraduate",
+    "category": "Orphans / Single Parent / COVID-Affected",
+    "amount": "₹50,000 per year",
+    "eligibility": "Students who are orphans, children of single parents, or affected by COVID-19 and studying in AICTE-approved institutions",
+    "official_website": "https://www.aicte-india.org"
+  },
+  {
+    "id": 8,
+    "name": "INSPIRE Scholarship for Higher Education (SHE)",
+    "provider": "Department of Science and Technology, Government of India",
+    "level": "Undergraduate / Integrated MSc",
+    "category": "Science Merit",
+    "amount": "₹80,000 per year",
+    "eligibility": "Top-performing science students pursuing BSc, BS, or Integrated MSc in basic and natural sciences",
+    "official_website": "https://online-inspire.gov.in"
+  },
+  {
+    "id": 9,
+    "name": "Prime Minister's Scholarship Scheme",
+    "provider": "Ministry of Home Affairs, Government of India",
+    "level": "Professional / Technical Courses",
+    "category": "Children of Ex-Servicemen / CAPF Personnel",
+    "amount": "₹2,500 per month (boys), ₹3,000 per month (girls)",
+    "eligibility": "Dependent wards and widows of ex-servicemen, CAPF, and Assam Rifles personnel pursuing professional or technical education",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 10,
+    "name": "National Overseas Scholarship",
+    "provider": "Department of Social Justice and Empowerment, Government of India",
+    "level": "Postgraduate / PhD",
+    "category": "SC / Denotified Tribes / Landless Agricultural Labourers / Traditional Artisans",
+    "amount": "Covers tuition fees, living expenses, and other approved costs",
+    "eligibility": "Eligible category students pursuing higher studies abroad in approved institutions",
+    "official_website": "https://www.nosmsje.gov.in"
+  },
+  {
+    "id": 11,
+    "name": "Pre-Matric Scholarship for SC Students",
+    "provider": "Ministry of Social Justice and Empowerment",
+    "level": "Class 9-10",
+    "category": "SC",
+    "amount": "Up to ₹3,500 per year",
+    "eligibility": "Scheduled Caste students studying in Class 9 or 10 in a recognized school",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 12,
+    "name": "Pre-Matric Scholarship for OBC Students",
+    "provider": "Ministry of Social Justice and Empowerment",
+    "level": "Class 1-10",
+    "category": "OBC",
+    "amount": "Up to ₹4,000 per year",
+    "eligibility": "OBC students studying in a recognized school with family income within the prescribed limit",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 13,
+    "name": "Pre-Matric Scholarship for Students with Disabilities",
+    "provider": "Department of Empowerment of Persons with Disabilities",
+    "level": "Class 9-10",
+    "category": "Persons with Disabilities",
+    "amount": "₹5,000 per year",
+    "eligibility": "Students with at least 40% disability studying in Class 9 or 10 in a recognized school",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 14,
+    "name": "Post-Matric Scholarship for Students with Disabilities",
+    "provider": "Department of Empowerment of Persons with Disabilities",
+    "level": "Class 11 / 12 / UG / PG",
+    "category": "Persons with Disabilities",
+    "amount": "Up to ₹20,000 per year",
+    "eligibility": "Students with at least 40% disability pursuing studies after Class 10",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 15,
+    "name": "Top Class Education Scheme for SC Students",
+    "provider": "Ministry of Social Justice and Empowerment",
+    "level": "Undergraduate / Professional Courses",
+    "category": "SC",
+    "amount": "Full tuition fee + living allowance up to ₹86,000 per year",
+    "eligibility": "SC students admitted to premier institutions such as IITs, NITs, IIMs, and other approved institutes",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 16,
+    "name": "Top Class Education for Students with Disabilities",
+    "provider": "Department of Empowerment of Persons with Disabilities",
+    "level": "Undergraduate / Postgraduate",
+    "category": "Persons with Disabilities",
+    "amount": "Tuition fee reimbursement + maintenance allowance up to ₹2,00,000",
+    "eligibility": "Students with at least 40% disability studying in recognized higher education institutions",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 17,
+    "name": "National Fellowship for Scheduled Caste Students",
+    "provider": "Ministry of Social Justice and Empowerment",
+    "level": "MPhil / PhD",
+    "category": "SC",
+    "amount": "₹31,000 to ₹35,000 per month + contingency grant",
+    "eligibility": "Scheduled Caste students pursuing full-time MPhil or PhD in recognized universities or institutions",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 18,
+    "name": "National Fellowship for OBC Students",
+    "provider": "Government of India",
+    "level": "MPhil / PhD",
+    "category": "OBC",
+    "amount": "₹31,000 to ₹35,000 per month + contingency grant",
+    "eligibility": "OBC students pursuing research leading to MPhil or PhD in recognized universities",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 19,
+    "name": "Merit-cum-Means Scholarship for Professional and Technical Courses",
+    "provider": "Ministry of Minority Affairs",
+    "level": "Undergraduate / Postgraduate",
+    "category": "Minority",
+    "amount": "Course fee up to ₹20,000 per year + maintenance allowance",
+    "eligibility": "Minority community students pursuing professional or technical courses with at least 50% marks and eligible family income",
+    "official_website": "https://scholarships.gov.in"
+  },
+  {
+    "id": 20,
+    "name": "Begum Hazrat Mahal National Scholarship",
+    "provider": "Ministry of Minority Affairs",
+    "level": "Class 9-12",
+    "category": "Minority Girls",
+    "amount": "₹5,000 per year",
+    "eligibility": "Girl students belonging to notified minority communities studying in Class 9 to 12 in recognized schools",
+    "official_website": "https://scholarships.gov.in"
+  }
+]

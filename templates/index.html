@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+CareerPath India
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5 text-center">
+
+    <h1 class="display-4 fw-bold">
+        🚀 CareerPath India
+    </h1>
+
+    <p class="lead mt-3">
+        AI-powered career guidance for students.
+    </p>
+
+    <div class="mt-4">
+
+        <a href="{{ url_for('career.career_list') }}"
+           class="btn btn-primary btn-lg me-2">
+
+            Explore Careers
+
+        </a>
+
+        <a href="{{ url_for('auth.login') }}"
+           class="btn btn-outline-secondary btn-lg">
+
+            Login
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

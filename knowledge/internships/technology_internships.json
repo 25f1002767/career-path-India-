@@ -1,0 +1,5602 @@
+[
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Hybrid",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Onsite",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Remote",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Hybrid",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Onsite",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Remote",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Hybrid",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Onsite",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Remote",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Hybrid",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Infosys",
+    "location": "Bengaluru",
+    "mode": "Onsite",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.infosys.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "TCS",
+    "location": "Hyderabad",
+    "mode": "Remote",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Wipro",
+    "location": "Pune",
+    "mode": "Hybrid",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.wipro.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "HCLTech",
+    "location": "Mumbai",
+    "mode": "Onsite",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.hcltech.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Accenture",
+    "location": "Chennai",
+    "mode": "Remote",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.accenture.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Capgemini",
+    "location": "Noida",
+    "mode": "Hybrid",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.capgemini.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "IBM India",
+    "location": "Gurugram",
+    "mode": "Onsite",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.ibm.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Deloitte India",
+    "location": "Ahmedabad",
+    "mode": "Remote",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.deloitte.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "KPMG India",
+    "location": "Kolkata",
+    "mode": "Hybrid",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.kpmg.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Tech Mahindra",
+    "location": "Delhi",
+    "mode": "Onsite",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.techmahindra.com/careers"
+  },
+  {
+    "title": "Python Developer Intern",
+    "company": "Cognizant",
+    "location": "Bengaluru",
+    "mode": "Remote",
+    "stipend": "₹12000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Flask",
+      "SQL"
+    ],
+    "apply_link": "https://www.cognizant.com/careers"
+  },
+  {
+    "title": "Web Development Intern",
+    "company": "Amazon",
+    "location": "Hyderabad",
+    "mode": "Hybrid",
+    "stipend": "₹15000/month",
+    "duration": "3 Months",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.amazon.com/careers"
+  },
+  {
+    "title": "Data Science Intern",
+    "company": "Google India",
+    "location": "Pune",
+    "mode": "Onsite",
+    "stipend": "₹18000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Python",
+      "SQL",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.google.com/careers"
+  },
+  {
+    "title": "AI / ML Intern",
+    "company": "Microsoft India",
+    "location": "Mumbai",
+    "mode": "Remote",
+    "stipend": "₹21000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Python",
+      "TensorFlow",
+      "Machine Learning"
+    ],
+    "apply_link": "https://www.microsoft.com/careers"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Flipkart",
+    "location": "Chennai",
+    "mode": "Hybrid",
+    "stipend": "₹24000/month",
+    "duration": "6 Months",
+    "skills": [
+      "React",
+      "JavaScript",
+      "CSS"
+    ],
+    "apply_link": "https://www.flipkart.com/careers"
+  },
+  {
+    "title": "Backend Developer Intern",
+    "company": "Paytm",
+    "location": "Noida",
+    "mode": "Onsite",
+    "stipend": "₹27000/month",
+    "duration": "2 Months",
+    "skills": [
+      "Python",
+      "Django",
+      "REST API"
+    ],
+    "apply_link": "https://www.paytm.com/careers"
+  },
+  {
+    "title": "Cloud Engineering Intern",
+    "company": "Zomato",
+    "location": "Gurugram",
+    "mode": "Remote",
+    "stipend": "₹30000/month",
+    "duration": "3 Months",
+    "skills": [
+      "AWS",
+      "Linux",
+      "Cloud Computing"
+    ],
+    "apply_link": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Cyber Security Intern",
+    "company": "Swiggy",
+    "location": "Ahmedabad",
+    "mode": "Hybrid",
+    "stipend": "₹33000/month",
+    "duration": "4 Months",
+    "skills": [
+      "Networking",
+      "Linux",
+      "Security"
+    ],
+    "apply_link": "https://www.swiggy.com/careers"
+  },
+  {
+    "title": "Full Stack Developer Intern",
+    "company": "Reliance Jio",
+    "location": "Kolkata",
+    "mode": "Onsite",
+    "stipend": "₹36000/month",
+    "duration": "5 Months",
+    "skills": [
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "apply_link": "https://www.reliancejio.com/careers"
+  },
+  {
+    "title": "Business Analyst Intern",
+    "company": "Oracle India",
+    "location": "Delhi",
+    "mode": "Remote",
+    "stipend": "₹39000/month",
+    "duration": "6 Months",
+    "skills": [
+      "Excel",
+      "SQL",
+      "Power BI"
+    ],
+    "apply_link": "https://www.oracle.com/careers"
+  }
+]

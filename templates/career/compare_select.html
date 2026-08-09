@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+Compare Careers
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<h1>
+
+Career Comparison
+
+</h1>
+
+<form>
+
+<div class="row">
+
+<div class="col-md-5">
+
+<select
+name="career1"
+class="form-select">
+
+{% for career in careers %}
+
+<option
+value="{{ career.slug }}">
+
+{{ career.title }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-5">
+
+<select
+name="career2"
+class="form-select">
+
+{% for career in careers %}
+
+<option
+value="{{ career.slug }}">
+
+{{ career.title }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="col-md-2">
+
+<button
+class="btn btn-primary w-100">
+
+Compare
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+{% endblock %}

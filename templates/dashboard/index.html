@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="mb-5">
+
+        <h2 class="fw-bold">
+            👋 Welcome {{ user.username if user.username else user.full_name }}
+        </h2>
+
+        <p class="text-muted">
+            Your personalized AI career dashboard
+        </p>
+
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row g-4 mb-5">
+
+        <!-- Assessment -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="fs-1 mb-3">🎯</div>
+
+                    <h5 class="fw-bold">
+                        {{ assessment.recommended_category if assessment else "Not Yet" }}
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        Recommended Category
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Resume Score -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="fs-1 mb-3">📄</div>
+
+                    <h2 class="fw-bold text-success">
+                        {{ resume.score if resume else 0 }}%
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Resume Score
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Saved Careers -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="fs-1 mb-3">❤️</div>
+
+                    <h2 class="fw-bold text-primary">
+                        {{ saved }}
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Saved Careers
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- AI Mentor -->
+        <div class="col-md-3">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <div class="fs-1 mb-3">🤖</div>
+
+                    <h5 class="fw-bold text-info">
+                        Active
+                    </h5>
+
+                    <p class="text-muted mb-0">
+                        AI Mentor
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendations -->
+    <div class="card shadow border-0 mb-5">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-4">
+                🚀 AI Opportunity Recommendations
+            </h3>
+
+            {% if recommendations %}
+
+            <div class="row">
+
+                {% for item in recommendations %}
+
+                <div class="col-lg-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        <h5 class="fw-bold">
+                            {{ item.title }}
+                        </h5>
+
+                        <p class="text-muted">
+                            {{ item.description }}
+                        </p>
+
+                        {% if item.link %}
+
+                        <a href="{{ item.link }}"
+                           class="btn btn-outline-primary btn-sm"
+                           target="_blank">
+
+                            View Details
+
+                        </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            {% else %}
+
+            <div class="alert alert-info">
+                Complete your profile to get personalized recommendations.
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="row g-4 mb-5">
+
+        <!-- Resume -->
+        <div class="col-md-4">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h4 class="fw-bold mb-3">
+                        📄 Resume
+                    </h4>
+
+                    <p class="text-muted">
+                        Analyze and improve your resume using AI.
+                    </p>
+
+                    <a href="{{ url_for('resume.upload_resume') }}"
+                       class="btn btn-primary">
+
+                        Analyze Resume
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Internships -->
+        <div class="col-md-4">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h4 class="fw-bold mb-3">
+                        💼 Internships
+                    </h4>
+
+                    <p class="text-muted">
+                        Find internships based on your skills and career goals.
+                    </p>
+
+                    <a href="{{ url_for('internship.internship_list') }}"
+                       class="btn btn-success">
+
+                        Find Internships
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Scholarships -->
+        <div class="col-md-4">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body text-center">
+
+                    <h4 class="fw-bold mb-3">
+                        🎓 Scholarships
+                    </h4>
+
+                    <p class="text-muted">
+                        Explore government, AICTE, UGC, NSP, and other Indian scholarships available for students.
+                    </p>
+
+                    <a href="{{ url_for('scholarship.scholarship_list') }}"
+                       class="btn btn-warning text-dark fw-semibold">
+
+                        🎓 View Scholarships
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Today's AI Suggestion -->
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-3">
+                💡 Today's AI Suggestion
+            </h3>
+
+            {% if resume %}
+
+            <p class="mb-0">
+
+                Your latest resume score is
+                <strong>{{ resume.score }}%</strong>.
+
+                Focus on improving the missing skills recommended by the AI analyzer and apply for internships related to
+                <strong>{{ resume.recommended_career }}</strong>.
+
+            </p>
+
+            {% else %}
+
+            <p class="mb-0">
+
+                Complete your assessment and upload your resume to receive personalized career guidance powered by AI.
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

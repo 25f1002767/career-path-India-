@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ career.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h1 class="fw-bold">
+                {{ career.title }}
+            </h1>
+
+            <span class="badge bg-primary mb-3">
+                {{ career.category }}
+            </span>
+
+            <hr>
+
+            <!-- Description -->
+
+            <h4>Description</h4>
+
+            <p>
+                {{ career.description }}
+            </p>
+
+            <!-- Future Scope -->
+
+            <h4>Future Scope</h4>
+
+            <p>
+                {{ career.future_scope }}
+            </p>
+
+            <!-- Salary -->
+
+            <h4>Average Salary</h4>
+
+            <ul>
+
+                <li>
+                    <strong>Fresher:</strong>
+                    {{ career.average_salary.fresher }}
+                </li>
+
+                <li>
+                    <strong>Experienced:</strong>
+                    {{ career.average_salary.experienced }}
+                </li>
+
+                <li>
+                    <strong>International:</strong>
+                    {{ career.average_salary.international }}
+                </li>
+
+            </ul>
+
+            <!-- Education -->
+
+            <h4>Education</h4>
+
+            <p>
+                {{ career.education.minimum }}
+            </p>
+
+            <!-- Skills -->
+
+            <h4>Technical Skills</h4>
+
+            <ul>
+
+                {% for skill in career.skills.technical %}
+
+                <li>{{ skill }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            <!-- Companies -->
+
+            <h4>Top Companies</h4>
+
+            <ul>
+
+                {% for company in career.top_companies %}
+
+                <li>{{ company }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+            <!-- Roadmap -->
+
+            <h4>Roadmap</h4>
+
+            <ol>
+
+                {% for step in career.roadmap %}
+
+                <li class="mb-3">
+
+                    <strong>{{ step.title }}</strong>
+
+                    <br>
+
+                    {{ step.description }}
+
+                </li>
+
+                {% endfor %}
+
+            </ol>
+
+            <!-- Action Buttons -->
+
+            <div class="mt-4 d-flex gap-2 flex-wrap">
+
+                <a
+                    href="{{ url_for('career.career_list') }}"
+                    class="btn btn-secondary">
+
+                    ← Back
+
+                </a>
+
+                <a
+                    href="{{ url_for('college.recommend', career_title=career.title) }}"
+                    class="btn btn-success">
+
+                    🎓 Find Colleges
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<hr>
+
+<h4>🎯 AI Skill Gap Analysis</h4>
+
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <h5>Match Percentage: {{ gap.percentage }}%</h5>
+
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <h6 class="text-success">Matched Skills</h6>
+
+                <ul>
+
+                    {% for skill in gap.matched %}
+
+                    <li>{{ skill }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <h6 class="text-danger">Missing Skills</h6>
+
+                <ul>
+
+                    {% for skill in gap.missing %}
+
+                    <li>{{ skill }}</li>
+
+                    {% endfor %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Career Mentor
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <div class="text-center mb-5">
+
+                <h1 class="fw-bold text-primary">
+
+                    🤖 CareerPath India AI Mentor
+
+                </h1>
+
+                <p class="lead text-muted">
+
+                    Ask anything about careers, colleges, skills, internships,
+                    government exams, salaries, AI, coding, or your future.
+
+                </p>
+
+            </div>
+
+            <div class="card shadow-lg border-0">
+
+                <div class="card-body p-4">
+
+                    <form method="POST">
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+
+                                Ask Your Question
+
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                name="question"
+                                rows="6"
+                                placeholder="Example:
+I am studying in Class 12 PCM.
+I want to become an AI Engineer.
+Please guide me."
+                                required></textarea>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary btn-lg">
+
+                            🚀 Ask AI Mentor
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% if guidance %}
+
+            <div class="card shadow-lg border-0 mt-5">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h4 class="mb-0">
+
+                        🎯 Personalized Career Guidance
+
+                    </h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <pre style="white-space: pre-wrap;
+                                font-family: inherit;
+                                font-size:16px;
+                                line-height:1.7;">{{ guidance }}</pre>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
