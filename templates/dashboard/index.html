@@ -5,165 +5,48 @@ Dashboard
 {% endblock %}
 
 {% block content %}
-<div class="text-center mb-5 reveal">
 
-    <div class="card border-0 shadow-lg p-5 hero-glow">
-
-        <h1 class="display-4 fw-bold text-primary mb-3">
-            🚀 Welcome to CareerPath India
-        </h1>
-
-        <p class="lead text-muted mb-4">
-
-            AI-powered career discovery with careers, colleges,
-            government exams, scholarships, internships, and resume analysis.
-
-        </p>
-
-        <div class="row g-4 justify-content-center">
-
-            <div class="col-md-3">
-
-                <div class="dashboard-stat card border-0 bg-primary text-white p-4">
-
-                    <div class="counter text-white"
-                         data-target="400">0</div>
-
-                    <div>Careers</div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <div class="dashboard-stat card border-0 bg-success text-white p-4">
-
-                    <div class="counter text-white"
-                         data-target="400">0</div>
-
-                    <div>Colleges</div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <div class="dashboard-stat card border-0 bg-warning text-dark p-4">
-
-                    <div class="counter text-dark"
-                         data-target="400">0</div>
-
-                    <div>Government Exams</div>
-
-                </div>
-
-            </div>
-
-            <div class="col-md-3">
-
-                <div class="dashboard-stat card border-0 bg-danger text-white p-4">
-
-                    <div class="counter text-white"
-                         data-target="400">0</div>
-
-                    <div>Scholarships</div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-<section class="hero-section text-center py-5 mb-5"
-         data-aos="fade-up">
-
-    <div class="glass-card p-5">
-
-        <h1 class="display-4 fw-bold mb-3">
-            🚀 Discover Your Future with AI
-        </h1>
-
-        <p class="lead text-light mb-4">
-
-            Explore 400+ Careers, 400+ Colleges, 400+ Government Exams,
-            Scholarships, and Internships powered by intelligent recommendations.
-
-        </p>
-
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-
-            <a href="{{ url_for('assessment.start') }}"
-               class="btn btn-primary btn-lg">
-
-                🎯 Start Assessment
-
-            </a>
-
-            <a href="{{ url_for('career.career_list') }}"
-               class="btn btn-outline-light btn-lg">
-
-                Explore Careers
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
 <div class="container py-5">
 
-    <!-- Header -->
-    <div class="mb-5">
+    <!-- Welcome Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary mb-3">
+            🚀 CareerPath India Dashboard
+        </h1>
 
-        <h2 class="fw-bold">
-            👋 Welcome {{ user.username if user.username else user.full_name }}
-        </h2>
-
-        <p class="text-muted">
-            Your personalized AI career dashboard
+        <p class="lead text-muted">
+            Welcome
+            <strong>{{ user.username if user.username else user.full_name }}</strong>.
+            Your personalized AI-powered career guidance platform.
         </p>
-
     </div>
 
-    <!-- Statistics Cards -->
+
+    <!-- Statistics -->
     <div class="row g-4 mb-5">
 
-        <!-- Assessment -->
+        <!-- Recommended Category -->
         <div class="col-md-3">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
-
+            <div class="card shadow border-0 h-100 text-center">
+                <div class="card-body">
                     <div class="fs-1 mb-3">🎯</div>
 
                     <h5 class="fw-bold">
-                        {{ assessment.recommended_category if assessment else "Not Yet" }}
+                        {{ assessment.recommended_category if assessment else "Start Assessment" }}
                     </h5>
 
                     <p class="text-muted mb-0">
                         Recommended Category
                     </p>
-
                 </div>
-
             </div>
-
         </div>
+
 
         <!-- Resume Score -->
         <div class="col-md-3">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
-
+            <div class="card shadow border-0 h-100 text-center">
+                <div class="card-body">
                     <div class="fs-1 mb-3">📄</div>
 
                     <h2 class="fw-bold text-success">
@@ -173,43 +56,33 @@ Dashboard
                     <p class="text-muted mb-0">
                         Resume Score
                     </p>
-
                 </div>
-
             </div>
-
         </div>
+
 
         <!-- Saved Careers -->
         <div class="col-md-3">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
-
+            <div class="card shadow border-0 h-100 text-center">
+                <div class="card-body">
                     <div class="fs-1 mb-3">❤️</div>
 
-                    <h2 class="fw-bold text-primary">
+                    <h2 class="fw-bold text-danger">
                         {{ saved }}
                     </h2>
 
                     <p class="text-muted mb-0">
                         Saved Careers
                     </p>
-
                 </div>
-
             </div>
-
         </div>
 
-        <!-- AI Mentor -->
+
+        <!-- AI Assistant -->
         <div class="col-md-3">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
-
+            <div class="card shadow border-0 h-100 text-center">
+                <div class="card-body">
                     <div class="fs-1 mb-3">🤖</div>
 
                     <h5 class="fw-bold text-info">
@@ -217,20 +90,101 @@ Dashboard
                     </h5>
 
                     <p class="text-muted mb-0">
-                        AI Mentor
+                        AI Assistant
                     </p>
-
                 </div>
-
             </div>
-
         </div>
 
     </div>
 
+
+    <!-- Quick Access -->
+    <div class="card shadow border-0 mb-5">
+        <div class="card-body">
+
+            <h3 class="fw-bold mb-4">
+                ⚡ Quick Access
+            </h3>
+
+            <div class="row g-4">
+
+                <!-- Colleges -->
+                <div class="col-md-4">
+                    <div class="border rounded p-4 h-100 text-center">
+
+                        <div class="fs-1 mb-3">🎓</div>
+
+                        <h5 class="fw-bold">
+                            Colleges
+                        </h5>
+
+                        <p class="text-muted">
+                            Explore 400+ colleges across India.
+                        </p>
+
+                        <a href="{{ url_for('college.college_list') }}"
+                           class="btn btn-primary">
+                            Explore Colleges
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Internships -->
+                <div class="col-md-4">
+                    <div class="border rounded p-4 h-100 text-center">
+
+                        <div class="fs-1 mb-3">💼</div>
+
+                        <h5 class="fw-bold">
+                            Internships
+                        </h5>
+
+                        <p class="text-muted">
+                            Discover internships that match your profile.
+                        </p>
+
+                        <a href="{{ url_for('internship.internship_list') }}"
+                           class="btn btn-success">
+                            Find Internships
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <!-- Government Exams -->
+                <div class="col-md-4">
+                    <div class="border rounded p-4 h-100 text-center">
+
+                        <div class="fs-1 mb-3">🏛️</div>
+
+                        <h5 class="fw-bold">
+                            Government Exams
+                        </h5>
+
+                        <p class="text-muted">
+                            Explore UPSC, SSC, Banking, Railway, Defence,
+                            and other government opportunities.
+                        </p>
+
+                        <a href="{{ url_for('exam.exam_list') }}"
+                           class="btn btn-warning text-dark fw-semibold">
+                            Explore Exams
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
     <!-- AI Recommendations -->
     <div class="card shadow border-0 mb-5">
-
         <div class="card-body">
 
             <h3 class="fw-bold mb-4">
@@ -239,146 +193,120 @@ Dashboard
 
             {% if recommendations %}
 
-            <div class="row">
+                <div class="row g-4">
 
-                {% for item in recommendations %}
+                    {% for item in recommendations %}
 
-                <div class="col-lg-6 mb-3">
+                        <div class="col-lg-6">
+                            <div class="border rounded p-4 h-100">
 
-                    <div class="border rounded p-3 h-100">
+                                <h5 class="fw-bold mb-2">
+                                    {{ item.title }}
+                                </h5>
 
-                        <h5 class="fw-bold">
-                            {{ item.title }}
-                        </h5>
+                                <p class="text-muted mb-3">
+                                    {{ item.description }}
+                                </p>
 
-                        <p class="text-muted">
-                            {{ item.description }}
-                        </p>
+                                {% if item.link %}
+                                    <a href="{{ item.link }}"
+                                       class="btn btn-outline-primary btn-sm"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        View Details
+                                    </a>
+                                {% endif %}
 
-                        {% if item.link %}
+                            </div>
+                        </div>
 
-                        <a href="{{ item.link }}"
-                           class="btn btn-outline-primary btn-sm"
-                           target="_blank">
-
-                            View Details
-
-                        </a>
-
-                        {% endif %}
-
-                    </div>
+                    {% endfor %}
 
                 </div>
 
-                {% endfor %}
-
-            </div>
-
             {% else %}
 
-            <div class="alert alert-info">
-                Complete your profile to get personalized recommendations.
-            </div>
+                <div class="alert alert-info">
+                    Complete your assessment and profile to receive
+                    personalized AI recommendations.
+                </div>
 
             {% endif %}
 
         </div>
-
     </div>
 
-    <!-- Quick Actions -->
+
+    <!-- Career Progress + AI Skill Focus -->
     <div class="row g-4 mb-5">
 
-        <!-- Resume -->
-        <div class="col-md-4">
-
+        <!-- Career Progress -->
+        <div class="col-md-6">
             <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
+                <div class="card-body">
 
                     <h4 class="fw-bold mb-3">
-                        📄 Resume
+                        📈 Career Progress
                     </h4>
 
-                    <p class="text-muted">
-                        Analyze and improve your resume using AI.
-                    </p>
-
-                    <a href="{{ url_for('resume.upload_resume') }}"
-                       class="btn btn-primary">
-
-                        Analyze Resume
-
-                    </a>
+                    <canvas id="progressChart" height="180"></canvas>
 
                 </div>
-
             </div>
-
         </div>
 
-        <!-- Internships -->
-        <div class="col-md-4">
 
+        <!-- AI Skill Focus -->
+        <div class="col-md-6">
             <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
+                <div class="card-body">
 
                     <h4 class="fw-bold mb-3">
-                        💼 Internships
+                        🧠 AI Skill Focus
                     </h4>
 
-                    <p class="text-muted">
-                        Find internships based on your skills and career goals.
-                    </p>
+                    <ul class="list-group list-group-flush">
 
-                    <a href="{{ url_for('internship.internship_list') }}"
-                       class="btn btn-success">
+                        <li class="list-group-item d-flex justify-content-between">
+                            Communication Skills
+                            <span class="badge bg-primary">
+                                High
+                            </span>
+                        </li>
 
-                        Find Internships
+                        <li class="list-group-item d-flex justify-content-between">
+                            Problem Solving
+                            <span class="badge bg-success">
+                                Medium
+                            </span>
+                        </li>
 
-                    </a>
+                        <li class="list-group-item d-flex justify-content-between">
+                            Technical Skills
+                            <span class="badge bg-warning text-dark">
+                                Improve
+                            </span>
+                        </li>
 
-                </div>
+                        <li class="list-group-item d-flex justify-content-between">
+                            Resume Quality
 
-            </div>
+                            <span class="badge bg-info text-dark">
+                                {{ resume.score if resume else 0 }}%
+                            </span>
+                        </li>
 
-        </div>
-
-        <!-- Scholarships -->
-        <div class="col-md-4">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body text-center">
-
-                    <h4 class="fw-bold mb-3">
-                        🎓 Scholarships
-                    </h4>
-
-                    <p class="text-muted">
-                        Explore government, AICTE, UGC, NSP, and other Indian scholarships available for students.
-                    </p>
-
-                    <a href="{{ url_for('scholarship.scholarship_list') }}"
-                       class="btn btn-warning text-dark fw-semibold">
-
-                        🎓 View Scholarships
-
-                    </a>
+                    </ul>
 
                 </div>
-
             </div>
-
         </div>
 
     </div>
+
 
     <!-- Today's AI Suggestion -->
     <div class="card shadow border-0">
-
         <div class="card-body">
 
             <h3 class="fw-bold mb-3">
@@ -387,30 +315,95 @@ Dashboard
 
             {% if resume %}
 
-            <p class="mb-0">
+                <p class="mb-0">
+                    Your latest resume score is
+                    <strong>{{ resume.score }}%</strong>.
 
-                Your latest resume score is
-                <strong>{{ resume.score }}%</strong>.
-
-                Focus on improving the missing skills recommended by the AI analyzer and apply for internships related to
-                <strong>{{ resume.recommended_career }}</strong>.
-
-            </p>
+                    Focus on improving the missing skills recommended
+                    by the AI analyzer and apply for internships related to
+                    <strong>{{ resume.recommended_career }}</strong>.
+                </p>
 
             {% else %}
 
-            <p class="mb-0">
-
-                Complete your assessment and upload your resume to receive personalized career guidance powered by AI.
-
-            </p>
+                <p class="mb-0">
+                    Start with the
+                    <strong>Smart Career Assessment</strong>
+                    and upload your resume to receive personalized
+                    career guidance powered by AI.
+                </p>
 
             {% endif %}
 
         </div>
-
     </div>
 
 </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const canvas = document.getElementById("progressChart");
+
+    if (!canvas) {
+        return;
+    }
+
+    // Make sure Chart.js is loaded
+    if (typeof Chart === "undefined") {
+        console.error("Chart.js is not loaded.");
+        return;
+    }
+
+    const resumeScore = {{ resume.score if resume else 20 }};
+
+    new Chart(canvas, {
+
+        type: "doughnut",
+
+        data: {
+            labels: [
+                "Assessment",
+                "Resume",
+                "Profile",
+                "Applications"
+            ],
+
+            datasets: [{
+                data: [
+                    75,
+                    resumeScore,
+                    60,
+                    40
+                ],
+
+                backgroundColor: [
+                    "#2563eb",
+                    "#16a34a",
+                    "#f59e0b",
+                    "#dc2626"
+                ]
+            }]
+        },
+
+        options: {
+            responsive: true,
+
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+
+    });
+
+});
+</script>
 
 {% endblock %}

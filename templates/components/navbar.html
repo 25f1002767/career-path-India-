@@ -3,7 +3,7 @@
     <div class="container">
 
         <!-- Logo -->
-        <a class="navbar-brand fw-bold"
+        <a class="navbar-brand fw-bold fs-4"
            href="{{ url_for('main.index') }}">
 
             🎯 CareerPath India
@@ -11,144 +11,141 @@
         </a>
 
         <!-- Mobile Toggle -->
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarMenu"
-            aria-controls="navbarMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
 
             <span class="navbar-toggler-icon"></span>
 
         </button>
 
-        <!-- Navbar -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
+        <!-- Menu -->
+        <div class="collapse navbar-collapse"
+             id="mainNavbar">
 
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                <!-- Home -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('main.index') }}">
-
                         Home
-
                     </a>
                 </li>
 
-                <!-- Careers -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('career.career_list') }}">
-
                         Careers
-
                     </a>
                 </li>
 
-                <!-- Assessment -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('assessment.start') }}">
-
                         Assessment
-
                     </a>
                 </li>
 
-                <!-- Colleges -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('college.college_list') }}">
-
                         Colleges
-
                     </a>
                 </li>
 
-                <!-- Scholarships -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('scholarship.scholarship_list') }}">
-
                         Scholarships
-
                     </a>
                 </li>
 
-                <!-- Internships -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('internship.internship_list') }}">
-
                         Internships
-
                     </a>
                 </li>
 
-                <!-- Government Exams -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('exam.exam_list') }}">
-
                         Government Exams
-
                     </a>
                 </li>
 
-                <!-- Resume Analyzer -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
+                    <a class="nav-link"
                        href="{{ url_for('resume.upload_resume') }}">
-
                         Resume Analyzer
-
                     </a>
                 </li>
 
-                <!-- AI Assistant -->
+                <!-- FIXED HERE -->
                 <li class="nav-item">
-                    <a class="nav-link text-white"
-                       href="https://career-path-india.ai.studio/"
-                       target="_blank">
-
+                    <a class="nav-link"
+                       href="{{ url_for('chatbot.home') }}">
                         🤖 AI Assistant
-
                     </a>
                 </li>
 
-                <!-- Dashboard -->
-                <li class="nav-item">
-                    <a class="nav-link text-white"
-                       href="{{ url_for('dashboard.home') }}">
+                {% if session.get('user_id') %}
 
-                        Dashboard
+                <li class="nav-item dropdown ms-lg-3">
+
+                    <a class="nav-link dropdown-toggle fw-semibold"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
+
+                        👤 Account
 
                     </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+
+                        <li>
+                            <a class="dropdown-item"
+                               href="{{ url_for('dashboard.home') }}">
+                                📊 Dashboard
+                            </a>
+                        </li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <li>
+                            <a class="dropdown-item text-danger"
+                               href="{{ url_for('auth.logout') }}">
+                                🚪 Logout
+                            </a>
+                        </li>
+
+                    </ul>
+
                 </li>
 
-                <!-- Login -->
+                {% else %}
+
                 <li class="nav-item ms-lg-3">
-                    <a class="btn btn-outline-light me-2"
+                    <a class="btn btn-outline-light px-4"
                        href="{{ url_for('auth.login') }}">
-
                         Login
-
                     </a>
                 </li>
 
-                <!-- Register -->
-                <li class="nav-item">
-                    <a class="btn btn-warning text-dark fw-semibold"
+                <li class="nav-item ms-2">
+                    <a class="btn btn-warning fw-semibold px-4"
                        href="{{ url_for('auth.register') }}">
-
                         Register
-
                     </a>
                 </li>
+
+                {% endif %}
 
             </ul>
 

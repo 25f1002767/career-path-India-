@@ -24,83 +24,68 @@ dashboard = Blueprint(
 @dashboard.route("/")
 def home():
 
-    # ----------------------------------
-    # If user is not logged in
-    # Show animated landing page
-    # ----------------------------------
-
+    # ------------------------------
+    # Redirect if not logged in
+    # ------------------------------
     if "user_id" not in session:
 
-        return render_template("home/hero.html")
+        return redirect(url_for("auth.login"))
 
-    # ----------------------------------
+    # ------------------------------
     # Current User
-    # ----------------------------------
-
+    # ------------------------------
     user = User.query.get(session["user_id"])
 
-    # ----------------------------------
+    # ------------------------------
     # Student Profile
-    # ----------------------------------
-
+    # ------------------------------
     profile = get_student_profile(user.id)
 
-    # ----------------------------------
+    # ------------------------------
     # AI Recommendations
-    # ----------------------------------
+    # ------------------------------
+    recommendations = []
 
     if profile:
 
         recommendations = OpportunityHub.get_all(profile)[:10]
 
-    else:
-
-        recommendations = []
-
-    # ----------------------------------
+    # ------------------------------
     # Latest Assessment
-    # ----------------------------------
-
+    # ------------------------------
     assessment = AssessmentResult.query.filter_by(
         user_id=user.id
     ).order_by(
         AssessmentResult.id.desc()
     ).first()
 
-    # ----------------------------------
+    # ------------------------------
     # Latest Resume
-    # ----------------------------------
-
+    # ------------------------------
     resume = Resume.query.filter_by(
         user_id=user.id
     ).order_by(
         Resume.created_at.desc()
     ).first()
 
-    # ----------------------------------
+    # ------------------------------
     # Saved Careers Count
-    # ----------------------------------
-
+    # ------------------------------
     saved = SavedCareer.query.filter_by(
         user_id=user.id
     ).count()
 
-    # ----------------------------------
+    # ------------------------------
     # Render Dashboard
-    # ----------------------------------
-
+    # ------------------------------
     return render_template(
 
         "dashboard/index.html",
 
         user=user,
-
         assessment=assessment,
-
         resume=resume,
-
         saved=saved,
-
         recommendations=recommendations
 
     )
