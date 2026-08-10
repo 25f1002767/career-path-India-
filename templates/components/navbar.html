@@ -1,21 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm career-navbar">
 
-    <div class="container">
+    <div class="container-fluid px-lg-4">
 
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold fs-4"
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold brand-logo"
            href="{{ url_for('main.index') }}">
 
-            🎯 CareerPath India
+            🎓 CareerPath India
 
         </a>
+
 
         <!-- Mobile Toggle -->
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar"
+                data-bs-target="#navbarContent"
+                aria-controls="navbarContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
 
@@ -23,81 +24,146 @@
 
         </button>
 
-        <!-- Menu -->
-        <div class="collapse navbar-collapse"
-             id="mainNavbar">
 
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+
+            <!-- Main Navigation -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+                <!-- Home -->
+                <li class="nav-item">
+
+                    <a class="nav-link nav-white"
+                       href="{{ url_for('main.index') }}">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <!-- Careers -->
+                <li class="nav-item">
+
+                    <a class="nav-link nav-white"
+                       href="{{ url_for('career.career_list') }}">
+
+                        Careers
+
+                    </a>
+
+                </li>
+
+
+                <!-- Colleges -->
+                <li class="nav-item">
+
+                    <a class="nav-link nav-white"
+                       href="{{ url_for('college.college_list') }}">
+
+                        Colleges
+
+                    </a>
+
+                </li>
+
+
+                <!-- Exams -->
+                <li class="nav-item">
+
+                    <a class="nav-link nav-white"
+                       href="{{ url_for('exam.exam_list') }}">
+
+                        Exams
+
+                    </a>
+
+                </li>
+
+
+                <!-- Scholarships -->
+                <li class="nav-item">
+
+                    <a class="nav-link nav-white"
+                       href="{{ url_for('scholarship.scholarship_list') }}">
+
+                        Scholarships
+
+                    </a>
+
+                </li>
+
+
+                <!-- Internships -->
+                <li class="nav-item">
+
+                    <a class="nav-link nav-white"
+                       href="{{ url_for('internship.internship_list') }}">
+
+                        Internships
+
+                    </a>
+
+                </li>
+
+
+                <!-- Assessment -->
+                <li class="nav-item assessment-nav-item">
+
+                    <a class="nav-link assessment-nav-link"
+                       href="{{ url_for('assessment.start') }}">
+
+                        🎯 Career Assessment
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+
+            <!-- Right Side -->
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('main.index') }}">
-                        Home
+
+                <!-- AI Assistant -->
+                <li class="nav-item me-lg-3 mb-2 mb-lg-0">
+
+                    <a class="ai-assistant-btn"
+                       href="https://career-path-india.ai.studio/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       title="Open CareerPath India AI Assistant">
+
+                        <span class="ai-icon">
+                            🤖
+                        </span>
+
+                        <span class="ai-text">
+                            AI Assistant
+                        </span>
+
+                        <span class="ai-arrow">
+                            →
+                        </span>
+
                     </a>
+
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('career.career_list') }}">
-                        Careers
-                    </a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('assessment.start') }}">
-                        Assessment
-                    </a>
-                </li>
+                <!-- Logged In -->
+                {% if session.get("user_id") %}
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('college.college_list') }}">
-                        Colleges
-                    </a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('scholarship.scholarship_list') }}">
-                        Scholarships
-                    </a>
-                </li>
+                <!-- Account -->
+                <li class="nav-item dropdown">
 
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('internship.internship_list') }}">
-                        Internships
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('exam.exam_list') }}">
-                        Government Exams
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('resume.upload_resume') }}">
-                        Resume Analyzer
-                    </a>
-                </li>
-
-                <!-- FIXED HERE -->
-                <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ url_for('chatbot.home') }}">
-                        🤖 AI Assistant
-                    </a>
-                </li>
-
-                {% if session.get('user_id') %}
-
-                <li class="nav-item dropdown ms-lg-3">
-
-                    <a class="nav-link dropdown-toggle fw-semibold"
+                    <a class="nav-link dropdown-toggle nav-white"
                        href="#"
                        role="button"
                        data-bs-toggle="dropdown"
@@ -107,43 +173,99 @@
 
                     </a>
 
-                    <ul class="dropdown-menu dropdown-menu-end">
 
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+
+
+                        <!-- Dashboard -->
                         <li>
+
                             <a class="dropdown-item"
                                href="{{ url_for('dashboard.home') }}">
+
                                 📊 Dashboard
+
                             </a>
+
                         </li>
 
-                        <li><hr class="dropdown-divider"></li>
+
+                        <!-- Assessment -->
+                        <li>
+
+                            <a class="dropdown-item fw-semibold"
+                               href="{{ url_for('assessment.start') }}">
+
+                                🎯 Take Career Assessment
+
+                            </a>
+
+                        </li>
+
+
+                        <!-- Profile -->
+                        <li>
+
+                            <a class="dropdown-item"
+                               href="{{ url_for('profile.view_profile') }}">
+
+                                👤 Profile
+
+                            </a>
+
+                        </li>
+
 
                         <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+
+                        <!-- Logout -->
+                        <li>
+
                             <a class="dropdown-item text-danger"
                                href="{{ url_for('auth.logout') }}">
+
                                 🚪 Logout
+
                             </a>
+
                         </li>
 
                     </ul>
 
                 </li>
 
+
                 {% else %}
 
-                <li class="nav-item ms-lg-3">
-                    <a class="btn btn-outline-light px-4"
+
+                <!-- Login -->
+                <li class="nav-item me-2">
+
+                    <a class="btn login-btn"
                        href="{{ url_for('auth.login') }}">
+
                         Login
+
                     </a>
+
                 </li>
 
-                <li class="nav-item ms-2">
-                    <a class="btn btn-warning fw-semibold px-4"
+
+                <!-- Register -->
+                <li class="nav-item">
+
+                    <a class="btn register-btn"
                        href="{{ url_for('auth.register') }}">
+
                         Register
+
                     </a>
+
                 </li>
+
 
                 {% endif %}
 
@@ -154,3 +276,428 @@
     </div>
 
 </nav>
+
+
+<style>
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.career-navbar {
+
+    background:
+        linear-gradient(
+            90deg,
+            #0866ff,
+            #1769e8,
+            #0866ff
+        ) !important;
+
+    min-height: 72px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.15);
+
+}
+
+
+/* ==========================================
+   BRAND
+========================================== */
+
+.brand-logo {
+
+    color: #ffffff !important;
+
+    font-size: 25px;
+
+    letter-spacing: -0.4px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================
+   NORMAL NAV LINKS
+========================================== */
+
+.nav-white {
+
+    color: #ffffff !important;
+
+    font-weight: 500;
+
+    opacity: 0.92;
+
+    padding-left: 12px !important;
+
+    padding-right: 12px !important;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.nav-white:hover {
+
+    color: #ffffff !important;
+
+    opacity: 1;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* ==========================================
+   ACTIVE / HOVER UNDERLINE
+========================================== */
+
+.nav-item .nav-white::after {
+
+    transition:
+        transform 0.2s ease;
+
+}
+
+
+/* ==========================================
+   ASSESSMENT NAV BUTTON
+========================================== */
+
+.assessment-nav-item {
+
+    margin-left: 5px;
+
+}
+
+
+.assessment-nav-link {
+
+    color: #ffffff !important;
+
+    font-weight: 700;
+
+    background:
+        rgba(255,255,255,0.14);
+
+    border:
+        1px solid rgba(255,255,255,0.35);
+
+    border-radius: 10px;
+
+    padding:
+        8px 13px !important;
+
+    transition:
+        all 0.25s ease;
+
+}
+
+
+.assessment-nav-link:hover {
+
+    background:
+        rgba(255,255,255,0.25);
+
+    color: #ffffff !important;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.15);
+
+}
+
+
+/* ==========================================
+   AI ASSISTANT
+========================================== */
+
+.ai-assistant-btn {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 9px 18px;
+
+    border-radius: 30px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    color: #ffffff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #2563eb,
+            #06b6d4
+        );
+
+    border:
+        2px solid rgba(255,255,255,0.85);
+
+    box-shadow:
+        0 0 8px rgba(99,102,241,0.8),
+        0 0 18px rgba(59,130,246,0.6),
+        0 0 30px rgba(6,182,212,0.4);
+
+    transition:
+        all 0.25s ease;
+
+    animation:
+        aiGlow 2s infinite ease-in-out;
+
+    overflow: hidden;
+
+}
+
+
+.ai-assistant-btn:hover {
+
+    color: #ffffff !important;
+
+    text-decoration: none;
+
+    transform:
+        translateY(-2px)
+        scale(1.04);
+
+    box-shadow:
+        0 0 12px rgba(129,140,248,1),
+        0 0 25px rgba(59,130,246,0.9),
+        0 0 45px rgba(6,182,212,0.7);
+
+}
+
+
+.ai-icon {
+
+    font-size: 20px;
+
+    animation:
+        robotFloat 2s infinite ease-in-out;
+
+}
+
+
+.ai-arrow {
+
+    font-size: 19px;
+
+    transition:
+        transform 0.2s ease;
+
+}
+
+
+.ai-assistant-btn:hover .ai-arrow {
+
+    transform:
+        translateX(5px);
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+.login-btn {
+
+    color: #ffffff !important;
+
+    border:
+        1px solid rgba(255,255,255,0.85);
+
+    border-radius: 9px;
+
+    padding:
+        8px 18px;
+
+    font-weight: 600;
+
+}
+
+
+.login-btn:hover {
+
+    background:
+        rgba(255,255,255,0.15);
+
+    color: #ffffff !important;
+
+}
+
+
+/* ==========================================
+   REGISTER
+========================================== */
+
+.register-btn {
+
+    background: #ffffff;
+
+    color: #0866ff !important;
+
+    border-radius: 9px;
+
+    padding:
+        8px 18px;
+
+    font-weight: 700;
+
+}
+
+
+.register-btn:hover {
+
+    background: #f1f5ff;
+
+    color: #0755d4 !important;
+
+}
+
+
+/* ==========================================
+   DROPDOWN
+========================================== */
+
+.dropdown-menu {
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 8px;
+
+}
+
+
+.dropdown-item {
+
+    border-radius: 8px;
+
+    padding:
+        9px 12px;
+
+}
+
+
+.dropdown-item:hover {
+
+    background:
+        #eef5ff;
+
+}
+
+
+/* ==========================================
+   AI GLOW
+========================================== */
+
+@keyframes aiGlow {
+
+    0% {
+
+        box-shadow:
+            0 0 6px rgba(99,102,241,0.6),
+            0 0 15px rgba(59,130,246,0.4);
+
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 12px rgba(129,140,248,0.95),
+            0 0 28px rgba(59,130,246,0.75),
+            0 0 40px rgba(6,182,212,0.55);
+
+    }
+
+    100% {
+
+        box-shadow:
+            0 0 6px rgba(99,102,241,0.6),
+            0 0 15px rgba(59,130,246,0.4);
+
+    }
+
+}
+
+
+/* ==========================================
+   ROBOT ANIMATION
+========================================== */
+
+@keyframes robotFloat {
+
+    0%, 100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-3px);
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 991px) {
+
+    .assessment-nav-item {
+
+        margin-top: 8px;
+
+    }
+
+    .assessment-nav-link {
+
+        display: inline-block;
+
+    }
+
+    .ai-assistant-btn {
+
+        width: 100%;
+
+        margin-top: 8px;
+
+    }
+
+    .login-btn,
+    .register-btn {
+
+        display: inline-block;
+
+        margin-top: 8px;
+
+    }
+
+}
+
+</style>

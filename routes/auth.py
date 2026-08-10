@@ -63,7 +63,6 @@ def login():
                     "success"
                 )
 
-                # ✅ Correct redirect
                 return redirect(
                     url_for("dashboard.home")
                 )
@@ -133,7 +132,8 @@ def register():
             new_user = User(
                 full_name=full_name,
                 email=email,
-                password_hash=hashed_password
+                password_hash=hashed_password,
+                role="student"
             )
 
             db.session.add(new_user)
@@ -157,3 +157,22 @@ def register():
         print("REGISTER ERROR:", e)
 
         return f"Register Error: {e}", 500
+
+
+# ======================================
+# Logout
+# ======================================
+
+@auth.route("/logout")
+def logout():
+
+    session.clear()
+
+    flash(
+        "You have been logged out successfully.",
+        "info"
+    )
+
+    return redirect(
+        url_for("main.home")
+    )
