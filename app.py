@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from werkzeug.security import generate_password_hash
 
 from config import Config
 from extensions import db
@@ -48,6 +49,7 @@ from routes.profile import profile
 
 app = Flask(__name__)
 
+# Load config
 app.config.from_object(Config)
 
 # ==========================
@@ -55,10 +57,10 @@ app.config.from_object(Config)
 # ==========================
 
 db.init_app(app)
-from werkzeug.security import generate_password_hash
-from models.user import User
 
 with app.app_context():
+
+    # Create tables
     db.create_all()
 
     # Create demo user if not exists
@@ -73,7 +75,6 @@ with app.app_context():
 
         db.session.add(demo)
         db.session.commit()
-
 
 # ==========================
 # Register Blueprints
