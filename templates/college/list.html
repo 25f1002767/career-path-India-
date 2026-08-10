@@ -198,12 +198,14 @@ College Explorer
 
                     <div class="card-body d-flex flex-column">
 
+                        <!-- College Name -->
                         <h4 class="fw-bold text-primary mb-3">
 
                             {{ college.name }}
 
                         </h4>
 
+                        <!-- Location -->
                         <p>
 
                             📍 <strong>Location:</strong>
@@ -211,6 +213,7 @@ College Explorer
 
                         </p>
 
+                        <!-- Course -->
                         <p>
 
                             🎓 <strong>Course:</strong>
@@ -218,6 +221,7 @@ College Explorer
 
                         </p>
 
+                        <!-- Fees -->
                         <p>
 
                             💰 <strong>Fees:</strong>
@@ -225,6 +229,7 @@ College Explorer
 
                         </p>
 
+                        <!-- Placement -->
                         <p>
 
                             🚀 <strong>Placement:</strong>
@@ -232,25 +237,20 @@ College Explorer
 
                         </p>
 
+                        <!-- Description -->
                         <p class="text-muted flex-grow-1">
 
                             {{ college.description }}
 
                         </p>
 
-                        <div class="mt-auto d-grid gap-2">
-
-                            <a href="{{ url_for('college.college_detail', index=loop.index0) }}"
-                               class="btn btn-outline-primary">
-
-                                View Details
-
-                            </a>
+                        <!-- Official Website Button -->
+                        <div class="mt-auto d-grid">
 
                             <a href="{{ college.official_website }}"
                                target="_blank"
                                rel="noopener noreferrer"
-                               class="btn btn-primary">
+                               class="btn btn-primary btn-lg">
 
                                 🌐 Official Website
 

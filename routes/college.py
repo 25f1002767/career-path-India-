@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, abort
+from flask import Blueprint, render_template, request
 from services.knowledge.college_service import college_service
 
 college = Blueprint(
@@ -12,9 +12,8 @@ college = Blueprint(
 def college_list():
 
     search = request.args.get("search", "").strip().lower()
-    qualification = request.args.get("qualification", "").strip().lower()
     stream = request.args.get("stream", "").strip().lower()
-    college_type = request.args.get("college_type", "").strip().lower()
+    course_type = request.args.get("course_type", "").strip().lower()
     state = request.args.get("state", "").strip().lower()
 
     colleges = college_service.get_all()
@@ -45,13 +44,13 @@ def college_list():
 
         ]
 
-    elif college_type:
+    elif course_type:
 
         colleges = [
 
             c for c in colleges
 
-            if college_type in c.get("course", "").lower()
+            if course_type in c.get("course", "").lower()
 
         ]
 
@@ -103,25 +102,7 @@ def college_list():
 
         ]
 
-    elif qualification:
-
-        colleges = colleges   # keep all for now
-
     return render_template(
         "college/list.html",
         colleges=colleges
-    )
-
-
-@college.route("/<int:index>")
-def college_detail(index):
-
-    colleges = college_service.get_all()
-
-    if index < 0 or index >= len(colleges):
-        abort(404)
-
-    return render_template(
-        "college/detail.html",
-        college=colleges[index]
     )
