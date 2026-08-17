@@ -1,0 +1,88 @@
+export const INDIAN_STATES_AND_UTS = [
+  "Pan-India",
+  // 28 States
+  "Andhra Pradesh",
+  "Arunachal Pradesh",
+  "Assam",
+  "Bihar",
+  "Chhattisgarh",
+  "Goa",
+  "Gujarat",
+  "Haryana",
+  "Himachal Pradesh",
+  "Jharkhand",
+  "Karnataka",
+  "Kerala",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Manipur",
+  "Meghalaya",
+  "Mizoram",
+  "Nagaland",
+  "Odisha",
+  "Punjab",
+  "Rajasthan",
+  "Sikkim",
+  "Tamil Nadu",
+  "Telangana",
+  "Tripura",
+  "Uttar Pradesh",
+  "Uttarakhand",
+  "West Bengal",
+  // 8 Union Territories
+  "Andaman and Nicobar Islands",
+  "Chandigarh",
+  "Dadra and Nagar Haveli and Daman and Diu",
+  "Delhi (NCT)",
+  "Jammu and Kashmir",
+  "Ladakh",
+  "Lakshadweep",
+  "Puducherry",
+] as const;
+
+export const EDUCATION_LEVEL_OPTIONS = [
+  { value: "12TH", label: "Class 12th (Higher Secondary)", sub: "Passed or Appearing Senior Secondary" },
+  { value: "DIPLOMA", label: "Polytechnic / Diploma", sub: "3-year Technical or Vocational Diploma" },
+  { value: "GRADUATE", label: "Bachelor's Degree (Graduate)", sub: "B.Tech, B.Sc, B.Com, B.A, BBA, MBBS, LLB, etc." },
+  { value: "POST_GRADUATE", label: "Master's Degree (Post-Graduate)", sub: "M.Tech, M.Sc, M.Com, M.A, MBA, MD, etc." },
+] as const;
+
+export const STREAM_OPTIONS = [
+  { value: "SCIENCE_PCM", label: "Science (PCM - Physics, Chemistry, Math)" },
+  { value: "SCIENCE_PCB", label: "Science (PCB - Physics, Chemistry, Biology)" },
+  { value: "COMMERCE", label: "Commerce & Accountancy" },
+  { value: "ARTS_HUMANITIES", label: "Arts, Humanities & Social Sciences" },
+  { value: "ENGINEERING", label: "Engineering / Technology (B.E. / B.Tech)" },
+  { value: "MEDICAL_HEALTHCARE", label: "Medical / Nursing / Allied Health" },
+  { value: "LAW", label: "Law / Legal Studies (LL.B / B.A. LL.B)" },
+  { value: "MANAGEMENT", label: "Management & Business Studies (BBA / MBA)" },
+  { value: "VOCATIONAL_ANY", label: "Vocational / Any Stream / General" },
+] as const;
+
+export const CAREER_DOMAINS = [
+  "Civil Services & Public Admin",
+  "Defense, Police & Security",
+  "Banking & Financial Services",
+  "Railways & Public Transport",
+  "Public Sector Undertakings (PSUs)",
+  "Software Engineering & IT",
+  "AI, Data Science & Analytics",
+  "Healthcare & Pharmaceuticals",
+  "Design, Product & Creative Arts",
+  "Teaching, Education & Academia",
+  "Aviation & Aerospace R&D",
+  "Law & Judicial Services",
+  "Core Engineering & Construction",
+  "Media, Journalism & PR",
+  "Agri-Tech & Forest Services",
+] as const;
+
+export const SOCIAL_CATEGORIES = [
+  { value: "GENERAL", label: "General / Unreserved (UR)", relaxation: 0 },
+  { value: "OBC", label: "Other Backward Classes (OBC - Non-Creamy Layer)", relaxation: 3 },
+  { value: "SC", label: "Scheduled Castes (SC)", relaxation: 5 },
+  { value: "ST", label: "Scheduled Tribes (ST)", relaxation: 5 },
+  { value: "EWS", label: "Economically Weaker Sections (EWS)", relaxation: 0 },
+  { value: "PWD", label: "Persons with Benchmark Disabilities (PwD)", relaxation: 10 },
+  { value: "EX_SERVICEMEN", label: "Ex-Servicemen (ESM)", relaxation: 3 },
+] as const;
