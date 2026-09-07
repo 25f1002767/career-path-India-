@@ -174,5 +174,5 @@ def logout():
     )
 
     return redirect(
-        url_for("main.home")
+        url_for("main.index")
     )

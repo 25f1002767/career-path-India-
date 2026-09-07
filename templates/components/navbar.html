@@ -28,7 +28,6 @@
         <!-- Navbar Content -->
         <div class="collapse navbar-collapse" id="navbarContent">
 
-
             <!-- Main Navigation -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -85,11 +84,14 @@
                 </li>
 
 
-                <!-- Scholarships -->
+                <!-- Scholarships - Official Government Portal -->
                 <li class="nav-item">
 
                     <a class="nav-link nav-white"
-                       href="{{ url_for('scholarship.scholarship_list') }}">
+                       href="https://scholarships.gov.in/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       title="Open National Scholarship Portal">
 
                         Scholarships
 
@@ -98,11 +100,14 @@
                 </li>
 
 
-                <!-- Internships -->
+                <!-- Internships - Official AICTE Portal -->
                 <li class="nav-item">
 
                     <a class="nav-link nav-white"
-                       href="{{ url_for('internship.internship_list') }}">
+                       href="https://internship.aicte-india.org/corporate_work.php"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       title="Open AICTE National Internship Portal">
 
                         Internships
 
@@ -217,7 +222,9 @@
 
 
                         <li>
+
                             <hr class="dropdown-divider">
+
                         </li>
 
 
@@ -347,7 +354,8 @@
 
     opacity: 1;
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 
 }
 

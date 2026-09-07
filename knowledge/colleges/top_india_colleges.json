@@ -1,5 +1,117 @@
 [
   {
+  "name": "Krantivir Tatya Tope Vishwavidyalaya (KTTV)",
+  "city": "Guna",
+  "state": "Madhya Pradesh",
+  "course": "Arts, Science, Commerce, Management & Computer Applications",
+  "fees": "Varies by course",
+  "placement": "Placement information not officially published",
+  "description": "A state university in Guna, Madhya Pradesh, offering a wide range of undergraduate and postgraduate programs across arts, science, commerce, management and computer applications.",
+  "official_website": "https://kttv.edu.in"
+  },
+  
+  {
+    "name": "Government Post Graduate College",
+    "city": "Guna",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., M.A., M.Sc., M.Com., PGDCA",
+    "fees": "₹2,000 - ₹8,000 per year",
+    "placement": "Average placement package ~₹2.5 - 3.5 LPA; active campus training & placement cell",
+    "description": "The premier lead government institution in Guna district, designated as a PM College of Excellence, affiliated with KTTV offering undergraduate and postgraduate education.",
+    "official_website": "https://mphighereducation.nic.in/guna"
+  },
+  {
+    "name": "Government Kasturba Girls Degree College",
+    "city": "Guna",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., M.A., M.Com.",
+    "fees": "₹1,500 - ₹5,000 per year",
+    "placement": "Placement cell organizes career counseling, competitive exam seminars, and local drives",
+    "description": "A prominent government women's college in Guna dedicated to providing undergraduate and postgraduate degrees for female students in the region.",
+    "official_website": "https://mphighereducation.nic.in/kasturbaguna"
+  },
+  {
+    "name": "Government College, Aron",
+    "city": "Aron (Guna)",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Com., B.Sc., BBA, M.A. (Hindi, Pol. Science), M.Sc. (Chemistry, Mathematics, Physics, Computer Science)",
+    "fees": "₹4,000 - ₹6,000 per year",
+    "placement": "Placement and vocational guidance cell active under state higher education initiatives",
+    "description": "Established in 1988, this public college serves the rural and suburban student population of Aron tehsil in Guna district with multi-faculty degree programs.",
+    "official_website": "https://www.gdcaron.in/"
+  },
+  {
+    "name": "Government Degree College, Raghogarh",
+    "city": "Raghogarh (Guna)",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., M.A., M.Sc.",
+    "fees": "₹2,000 - ₹6,000 per year",
+    "placement": "Local industrial linkage and career support cell",
+    "description": "A recognized government higher education institution situated in Raghogarh, Guna, offering diverse streams in arts, basic sciences, and commerce.",
+    "official_website": "https://mphighereducation.nic.in/raghogarh"
+  },
+  {
+    "name": "Government College, Chachoda-Beenaganj",
+    "city": "Chachoda (Guna)",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., M.A.",
+    "fees": "₹2,000 - ₹5,000 per year",
+    "placement": "Placement support coordinated through district-level career fairs",
+    "description": "A state-run college providing affordable higher education in arts, science, and commerce disciplines to students of southwestern Guna.",
+    "official_website": "https://mphighereducation.nic.in/chachoda"
+  },
+  {
+    "name": "Gandhi Vocational College",
+    "city": "Guna",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., BCA, B.Ed., M.Ed., PGDCA",
+    "fees": "₹15,000 - ₹45,000 per year",
+    "placement": "Placement assistance provided for teacher training, IT, and administrative roles",
+    "description": "A well-established private grant-in-aid/un-aided college in Guna offering vocational, professional, teacher training, and traditional degree courses.",
+    "official_website": "http://gvcguna.org"
+  },
+  {
+    "name": "Government Nehru Degree College",
+    "city": "Ashoknagar",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., LL.B., M.A., M.Sc., M.Com.",
+    "fees": "₹2,500 - ₹7,000 per year",
+    "placement": "Annual campus recruitment and job fair participation across Guna-Ashoknagar zone",
+    "description": "The lead government postgraduate and law degree college in Ashoknagar district, functioning under Krantivir Tatya Tope Vishwavidyalaya.",
+    "official_website": "https://mphighereducation.nic.in/ashoknagar"
+  },
+  {
+    "name": "Government Ganesh Shankar Vidyarthi College",
+    "city": "Mungaoli (Ashoknagar)",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., M.A., M.Com.",
+    "fees": "₹2,000 - ₹5,500 per year",
+    "placement": "Placement guidance and Swami Vivekananda career guidance scheme active",
+    "description": "A key government institution in Mungaoli providing higher education across humanities, commerce, and science streams.",
+    "official_website": "https://mphighereducation.nic.in/mungaoli"
+  },
+  {
+    "name": "Government College, Chanderi",
+    "city": "Chanderi (Ashoknagar)",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com.",
+    "fees": "₹2,000 - ₹5,000 per year",
+    "placement": "State-sponsored vocational training and placement assistance",
+    "description": "A public degree college catering to students in the historic town of Chanderi and surrounding areas, affiliated with KTTV.",
+    "official_website": "https://mphighereducation.nic.in/chanderi"
+  },
+  {
+    "name": "Anant Institute of Professional Studies",
+    "city": "Ashoknagar",
+    "state": "Madhya Pradesh",
+    "course": "B.A., B.Sc., B.Com., BBA, BCA, PGDCA",
+    "fees": "₹12,000 - ₹35,000 per year",
+    "placement": "Campus interviews and local business placement coordination",
+    "description": "A private institute located on Guna Road, Ashoknagar, affiliated with KTTV, providing modern professional and computer application courses.",
+    "official_website": "https://imsaskn.in"
+  },
+
+  {
     "name": "IIT Bombay",
     "city": "Mumbai",
     "state": "Maharashtra",
@@ -999,4 +1111,5 @@
     "description": "A prominent deemed university known for vibrant BBA and liberal arts programs.",
     "official_website": "https://christuniversity.in"
   }
+  
 ]
