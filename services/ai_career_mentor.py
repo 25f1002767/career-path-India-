@@ -15,7 +15,7 @@ load_dotenv(BASE_DIR / ".env")
 API_KEY = os.getenv("GEMINI_API_KEY")
 
 print("=" * 60)
-print("CareerPath India AI")
+print("MPath Career Counselling AI")
 print("Project Root :", BASE_DIR)
 print("API Key Loaded :", "YES" if API_KEY else "NO")
 print("=" * 60)
@@ -31,7 +31,7 @@ from services.ai_client import client
 # ==========================================================
 
 SYSTEM_PROMPT = """
-You are CareerPath India's AI Career Mentor.
+You are MPath Career Counselling's AI Career Mentor.
 
 Your mission is to guide Indian students with practical and personalized career advice.
 

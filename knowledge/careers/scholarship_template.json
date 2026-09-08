@@ -1,0 +1,47 @@
+{
+  "id": 1,
+  "title": "",
+  "slug": "",
+  "category": "",
+  "summary": "",
+  "description": "",
+  "future_scope": "",
+  "average_salary": {
+    "fresher": "",
+    "experienced": "",
+    "international": ""
+  },
+  "education": {
+    "minimum": "",
+    "preferred": [],
+    "higher_studies": []
+  },
+  "skills": {
+    "technical": [],
+    "soft": [],
+    "tools": []
+  },
+  "roadmap": [
+    {
+      "step": 1,
+      "title": "",
+      "description": ""
+    }
+  ],
+  "projects": [],
+  "certifications": [],
+  "entrance_exams": [],
+  "top_colleges": [],
+  "top_companies": [],
+  "government_opportunities": [],
+  "private_opportunities": [],
+  "career_growth": [
+    ""
+  ],
+  "related_careers": [],
+  "resources": {
+    "books": [],
+    "websites": [],
+    "youtube": []
+  }
+}

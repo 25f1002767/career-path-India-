@@ -1,0 +1,586 @@
+{% extends "base.html" %}
+
+{% block title %}
+Student Profile | MPath Career Counselling
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .profile-header {
+        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        color: white;
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 30px rgba(13, 110, 253, 0.18);
+    }
+
+    .profile-avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        font-weight: 700;
+        border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .info-card {
+        border: 0;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        margin-bottom: 25px;
+    }
+
+    .info-card .card-header {
+        background: white;
+        border-bottom: 1px solid #eee;
+        padding: 18px 22px;
+    }
+
+    .info-card .card-body {
+        padding: 25px;
+    }
+
+    .info-item {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 15px;
+        height: 100%;
+    }
+
+    .info-label {
+        font-size: 12px;
+        color: #6c757d;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .info-value {
+        font-weight: 600;
+        color: #212529;
+        word-break: break-word;
+    }
+
+    .status-badge {
+        border-radius: 20px;
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+    .action-btn {
+        border-radius: 10px;
+        font-weight: 600;
+    }
+
+</style>
+
+
+<div class="container py-5">
+
+
+    <!-- ==========================
+         PAGE HEADER
+    =========================== -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+
+        <div>
+
+            <h1 class="fw-bold mb-1">
+                👤 Student Profile
+            </h1>
+
+            <p class="text-muted mb-0">
+                Complete student information
+            </p>
+
+        </div>
+
+        <a
+            href="{{ url_for('admin.students') }}"
+            class="btn btn-dark action-btn">
+
+            ← Back to Students
+
+        </a>
+
+    </div>
+
+
+    <!-- ==========================
+         PROFILE HEADER
+    =========================== -->
+
+    <div class="profile-header">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-8">
+
+                <div class="d-flex align-items-center gap-3">
+
+                    <div class="profile-avatar">
+
+                        {{ student.full_name[:1]|upper }}
+
+                    </div>
+
+                    <div>
+
+                        <h2 class="fw-bold mb-1">
+                            {{ student.full_name }}
+                        </h2>
+
+                        <p class="mb-2 opacity-75">
+                            {{ student.email }}
+                        </p>
+
+
+                        {% if student.is_active %}
+
+                        <span class="badge bg-success status-badge">
+                            ✅ Active Account
+                        </span>
+
+                        {% else %}
+
+                        <span class="badge bg-danger status-badge">
+                            🚫 Inactive Account
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Account Action -->
+
+            <div class="col-md-4 text-md-end mt-4 mt-md-0">
+
+                {% if student.is_active %}
+
+                <a
+                    href="{{ url_for('admin.deactivate_student', id=student.id) }}"
+                    class="btn btn-warning action-btn"
+                    onclick="return confirm('Are you sure you want to deactivate this student account?');">
+
+                    🚫 Deactivate Account
+
+                </a>
+
+                {% else %}
+
+                <a
+                    href="{{ url_for('admin.activate_student', id=student.id) }}"
+                    class="btn btn-success action-btn">
+
+                    ✅ Activate Account
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         ACCOUNT INFORMATION
+    =========================== -->
+
+    <div class="card info-card">
+
+        <div class="card-header">
+
+            <h5 class="fw-bold mb-0">
+                🔐 Account Information
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Student ID
+                        </div>
+
+                        <div class="info-value">
+                            #{{ student.id }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Email
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.email }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Registration Date
+                        </div>
+
+                        <div class="info-value">
+
+                            {% if student.created_at %}
+                                {{ student.created_at.strftime('%d %B %Y, %I:%M %p') }}
+                            {% else %}
+                                Not available
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         PERSONAL INFORMATION
+    =========================== -->
+
+    <div class="card info-card">
+
+        <div class="card-header">
+
+            <h5 class="fw-bold mb-0">
+                👤 Personal Information
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Full Name
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.full_name }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Contact Number
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.contact_number or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         EDUCATION INFORMATION
+    =========================== -->
+
+    <div class="card info-card">
+
+        <div class="card-header">
+
+            <h5 class="fw-bold mb-0">
+                🎓 Education Information
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Class / Grade
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.class_grade or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Stream
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.stream or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Passing Year
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.passing_year or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            College / University
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.college_name or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            Course / Degree
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.course or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         LOCATION
+    =========================== -->
+
+    <div class="card info-card">
+
+        <div class="card-header">
+
+            <h5 class="fw-bold mb-0">
+                📍 Location
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            State
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.state or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+
+                    <div class="info-item">
+
+                        <div class="info-label">
+                            District
+                        </div>
+
+                        <div class="info-value">
+                            {{ student.district or "Not provided" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         CAREER INFORMATION
+    =========================== -->
+
+    <div class="card info-card">
+
+        <div class="card-header">
+
+            <h5 class="fw-bold mb-0">
+                🚀 Career Information
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="info-item">
+
+                <div class="info-label">
+                    Career Interest
+                </div>
+
+                <div class="info-value fs-5">
+
+                    {{ student.career_interest or "Not provided" }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         BOTTOM ACTIONS
+    =========================== -->
+
+    <div class="d-flex justify-content-between flex-wrap gap-2 mb-4">
+
+        <a
+            href="{{ url_for('admin.students') }}"
+            class="btn btn-outline-dark action-btn">
+
+            ← Back to Student List
+
+        </a>
+
+
+        {% if student.is_active %}
+
+        <a
+            href="{{ url_for('admin.deactivate_student', id=student.id) }}"
+            class="btn btn-warning action-btn"
+            onclick="return confirm('Are you sure you want to deactivate this student account?');">
+
+            🚫 Deactivate Student
+
+        </a>
+
+        {% else %}
+
+        <a
+            href="{{ url_for('admin.activate_student', id=student.id) }}"
+            class="btn btn-success action-btn">
+
+            ✅ Activate Student
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+{% endblock %}

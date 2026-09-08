@@ -41,12 +41,14 @@ class LearningProgress(db.Model):
         server_default=db.func.now()
     )
 
+    # Relationship to User
     user = db.relationship(
         "User",
-        backref="learning_progress"
+        back_populates="learning_progress"
     )
 
+    # Relationship to Career
     career = db.relationship(
         "Career",
-        backref="learning_progress"
+        back_populates="learning_progress"
     )

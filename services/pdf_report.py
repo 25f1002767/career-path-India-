@@ -17,7 +17,7 @@ def generate_report(user, assessment, recommendations, filename):
 
     story.append(
         Paragraph(
-            "<b>CareerPath India AI Report</b>",
+            "<b>MPath Career Counselling AI Report</b>",
             styles["Title"]
         )
     )

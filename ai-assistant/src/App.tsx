@@ -484,13 +484,13 @@ export default function App() {
             <div className="w-5 h-5 rounded bg-blue-600 text-white flex items-center justify-center text-[10px]">
               <Compass className="w-3.5 h-3.5" />
             </div>
-            <span>CAREER PATH INDIA</span>
+            <span>MPATH CAREER COUNSELLING</span>
           </div>
           <p className="text-slate-500 max-w-xl mx-auto">
             Grounding AI Career Guidance Platform for 12th & Graduate Aspirants across Union & State Government Recruitment & Private Technology Sectors.
           </p>
           <p className="text-slate-400 text-[10px]">
-            © {new Date().getFullYear()} Career Path India. Grounded in official recruitment portals (UPSC, SSC, RRB, State PSC, NTA, IBPS).
+            © {new Date().getFullYear()} MPath Career Counselling. Grounded in official recruitment portals (UPSC, SSC, RRB, State PSC, NTA, IBPS).
           </p>
         </div>
       </footer>
@@ -498,3 +498,5 @@ export default function App() {
     </div>
   );
 }
+
+

@@ -11,7 +11,7 @@ from seed_data.colleges_seed import seed_colleges
 with app.app_context():
 
     print("=" * 60)
-    print("CareerPath India Database Seeder")
+    print("MPath Career Counselling Database Seeder")
     print("=" * 60)
 
     seed_careers()

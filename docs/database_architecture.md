@@ -1,4 +1,4 @@
-# CareerPath India Database Architecture
+# MPath Career Counselling Database Architecture
 
 ## Core Tables
 

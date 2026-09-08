@@ -5,9 +5,9 @@ class User(db.Model):
 
     __tablename__ = "users"
 
-    # ==========================
-    # Columns
-    # ==========================
+    # =====================================================
+    # BASIC ACCOUNT INFORMATION
+    # =====================================================
 
     id = db.Column(
         db.Integer,
@@ -32,12 +32,14 @@ class User(db.Model):
 
     role = db.Column(
         db.String(20),
-        default="student"
+        default="student",
+        nullable=False
     )
 
     is_active = db.Column(
         db.Boolean,
-        default=True
+        default=True,
+        nullable=False
     )
 
     created_at = db.Column(
@@ -45,9 +47,60 @@ class User(db.Model):
         server_default=db.func.now()
     )
 
-    # ==========================
-    # Relationships
-    # ==========================
+
+    # =====================================================
+    # STUDENT INFORMATION
+    # =====================================================
+
+    contact_number = db.Column(
+        db.String(20),
+        nullable=True
+    )
+
+    class_grade = db.Column(
+        db.String(50),
+        nullable=True
+    )
+
+    stream = db.Column(
+        db.String(50),
+        nullable=True
+    )
+
+    college_name = db.Column(
+        db.String(200),
+        nullable=True
+    )
+
+    course = db.Column(
+        db.String(150),
+        nullable=True
+    )
+
+    passing_year = db.Column(
+        db.String(10),
+        nullable=True
+    )
+
+    state = db.Column(
+        db.String(100),
+        nullable=True
+    )
+
+    district = db.Column(
+        db.String(100),
+        nullable=True
+    )
+
+    career_interest = db.Column(
+        db.String(200),
+        nullable=True
+    )
+
+
+    # =====================================================
+    # RELATIONSHIPS
+    # =====================================================
 
     profile = db.relationship(
         "StudentProfile",
@@ -74,18 +127,18 @@ class User(db.Model):
         lazy=True,
         cascade="all, delete-orphan"
     )
+
     career_matches = db.relationship(
-    "CareerMatch",
-    backref="user",
-    lazy=True,
-    cascade="all, delete-orphan"
-)
-learning_progress = db.relationship(
+        "CareerMatch",
+        backref="user",
+        lazy=True,
+        cascade="all, delete-orphan"
+    )
+
+    learning_progress = db.relationship(
     "LearningProgress",
-    backref="student",
+    back_populates="user",
     lazy=True,
     cascade="all, delete-orphan"
-)
 
-
-
+    )

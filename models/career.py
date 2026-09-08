@@ -119,4 +119,12 @@ class Career(db.Model):
     created_at = db.Column(
         db.DateTime,
         server_default=db.func.now()
+        
+    )
+        # Learning progress relationship
+    learning_progress = db.relationship(
+        "LearningProgress",
+        back_populates="career",
+        lazy=True,
+        cascade="all, delete-orphan"
     )

@@ -2,16 +2,14 @@
 
     <div class="container-fluid px-lg-4">
 
-        <!-- Brand -->
+        <!-- BRAND -->
         <a class="navbar-brand fw-bold brand-logo"
-           href="{{ url_for('main.index') }}">
-
-            🎓 CareerPath India
-
+           href="{{ url_for('landing') }}">
+            🎓 MPath Career Counselling
         </a>
 
 
-        <!-- Mobile Toggle -->
+        <!-- MOBILE TOGGLE -->
         <button class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -25,18 +23,19 @@
         </button>
 
 
-        <!-- Navbar Content -->
-        <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- NAVBAR CONTENT -->
+        <div class="collapse navbar-collapse"
+             id="navbarContent">
 
-            <!-- Main Navigation -->
+
+            <!-- MAIN NAVIGATION -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
-                <!-- Home -->
+                <!-- HOME -->
                 <li class="nav-item">
 
                     <a class="nav-link nav-white"
-                       href="{{ url_for('main.index') }}">
+                       href="{{ url_for('landing') }}">
 
                         Home
 
@@ -45,234 +44,240 @@
                 </li>
 
 
-                <!-- Careers -->
-                <li class="nav-item">
+                {% if session.get("user_id") %}
 
-                    <a class="nav-link nav-white"
-                       href="{{ url_for('career.career_list') }}">
+                    <!-- CAREERS -->
+                    <li class="nav-item">
 
-                        Careers
+                        <a class="nav-link nav-white"
+                           href="{{ url_for('career.career_list') }}">
 
-                    </a>
+                            Careers
 
-                </li>
+                        </a>
 
-
-                <!-- Colleges -->
-                <li class="nav-item">
-
-                    <a class="nav-link nav-white"
-                       href="{{ url_for('college.college_list') }}">
-
-                        Colleges
-
-                    </a>
-
-                </li>
+                    </li>
 
 
-                <!-- Exams -->
-                <li class="nav-item">
+                    <!-- COLLEGES -->
+                    <li class="nav-item">
 
-                    <a class="nav-link nav-white"
-                       href="{{ url_for('exam.exam_list') }}">
+                        <a class="nav-link nav-white"
+                           href="{{ url_for('college.college_list') }}">
 
-                        Exams
+                            Colleges
 
-                    </a>
+                        </a>
 
-                </li>
-
-
-                <!-- Scholarships - Official Government Portal -->
-                <li class="nav-item">
-
-                    <a class="nav-link nav-white"
-                       href="https://scholarships.gov.in/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       title="Open National Scholarship Portal">
-
-                        Scholarships
-
-                    </a>
-
-                </li>
+                    </li>
 
 
-                <!-- Internships - Official AICTE Portal -->
-                <li class="nav-item">
+                    <!-- EXAMS -->
+                    <li class="nav-item">
 
-                    <a class="nav-link nav-white"
-                       href="https://internship.aicte-india.org/corporate_work.php"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       title="Open AICTE National Internship Portal">
+                        <a class="nav-link nav-white"
+                           href="{{ url_for('exam.exam_list') }}">
 
-                        Internships
+                            Exams
 
-                    </a>
+                        </a>
 
-                </li>
+                    </li>
 
 
-                <!-- Assessment -->
-                <li class="nav-item assessment-nav-item">
+                    <!-- SCHOLARSHIPS -->
+                    <li class="nav-item">
 
-                    <a class="nav-link assessment-nav-link"
-                       href="{{ url_for('assessment.start') }}">
+                        <a class="nav-link nav-white"
+                           href="{{ url_for('go_scholarships') }}">
 
-                        🎯 Career Assessment
+                            Scholarships
 
-                    </a>
+                        </a>
 
-                </li>
+                    </li>
+
+
+                    <!-- INTERNSHIPS -->
+                    <li class="nav-item">
+
+                        <a class="nav-link nav-white"
+                           href="{{ url_for('go_internships') }}">
+
+                            Internships
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- =================================================
+                         CAREER ASSESSMENT
+                         KEEP THIS NAME EXACTLY AS IT IS
+                         ================================================= -->
+
+                    <li class="nav-item assessment-nav-item">
+
+                        <a class="nav-link assessment-nav-link"
+                           href="{{ url_for('assessment.start') }}">
+
+                            🎯 Career Assessment
+
+                        </a>
+
+                    </li>
+
+                {% endif %}
 
             </ul>
 
 
-            <!-- Right Side -->
+            <!-- RIGHT SIDE -->
             <ul class="navbar-nav ms-auto align-items-lg-center">
 
 
-                <!-- AI Assistant -->
-                <li class="nav-item me-lg-3 mb-2 mb-lg-0">
-
-                    <a class="ai-assistant-btn"
-                       href="https://career-path-india-3.onrender.com/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       title="Open CareerPath India AI Assistant">
-
-                        <span class="ai-icon">
-                            🤖
-                        </span>
-
-                        <span class="ai-text">
-                            AI Assistant
-                        </span>
-
-                        <span class="ai-arrow">
-                            →
-                        </span>
-
-                    </a>
-
-                </li>
-
-
-                <!-- Logged In -->
                 {% if session.get("user_id") %}
 
+                    <!-- =================================================
+                         AI ASSISTANT
+                         USER-FACING NAME:
+                         EXPLORE ALL POSSIBLE CAREERS
+                         ================================================= -->
 
-                <!-- Account -->
-                <li class="nav-item dropdown">
+                    <li class="nav-item me-lg-3 mb-2 mb-lg-0">
 
-                    <a class="nav-link dropdown-toggle nav-white"
-                       href="#"
-                       role="button"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false">
+                        <a class="ai-assistant-btn"
+                           href="{{ url_for('go_ai_assistant') }}"
+                           title="Explore All Possible Careers">
 
-                        👤 Account
+                            <span class="ai-icon">
+                                🤖
+                            </span>
 
-                    </a>
+                            <span class="ai-text">
+                                Explore All Possible Careers
+                            </span>
 
+                            <span class="ai-arrow">
+                                →
+                            </span>
 
-                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                        </a>
 
-
-                        <!-- Dashboard -->
-                        <li>
-
-                            <a class="dropdown-item"
-                               href="{{ url_for('dashboard.home') }}">
-
-                                📊 Dashboard
-
-                            </a>
-
-                        </li>
+                    </li>
 
 
-                        <!-- Assessment -->
-                        <li>
+                    <!-- ACCOUNT -->
+                    <li class="nav-item dropdown">
 
-                            <a class="dropdown-item fw-semibold"
-                               href="{{ url_for('assessment.start') }}">
+                        <a class="nav-link dropdown-toggle nav-white"
+                           href="#"
+                           role="button"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">
 
-                                🎯 Take Career Assessment
+                            👤 Account
 
-                            </a>
-
-                        </li>
-
-
-                        <!-- Profile -->
-                        <li>
-
-                            <a class="dropdown-item"
-                               href="{{ url_for('profile.view_profile') }}">
-
-                                👤 Profile
-
-                            </a>
-
-                        </li>
+                        </a>
 
 
-                        <li>
+                        <ul class="dropdown-menu dropdown-menu-end shadow">
 
-                            <hr class="dropdown-divider">
+                            <!-- DASHBOARD -->
+                            <li>
 
-                        </li>
+                                <a class="dropdown-item"
+                                   href="{{ url_for('dashboard.home') }}">
+
+                                    📊 Dashboard
+
+                                </a>
+
+                            </li>
 
 
-                        <!-- Logout -->
-                        <li>
+                            <!-- CAREER ASSESSMENT -->
+                            <li>
 
-                            <a class="dropdown-item text-danger"
-                               href="{{ url_for('auth.logout') }}">
+                                <a class="dropdown-item fw-semibold"
+                                   href="{{ url_for('assessment.start') }}">
 
-                                🚪 Logout
+                                    🎯 Career Assessment
 
-                            </a>
+                                </a>
 
-                        </li>
+                            </li>
 
-                    </ul>
 
-                </li>
+                            <!-- PROFILE -->
+                            <li>
+
+                                <a class="dropdown-item"
+                                   href="{{ url_for('profile.view_profile') }}">
+
+                                    👤 Profile
+
+                                </a>
+
+                            </li>
+
+
+                            <li>
+
+                                <hr class="dropdown-divider">
+
+                            </li>
+
+
+                            <!-- LOGOUT -->
+                            <li>
+
+                                <a class="dropdown-item text-danger"
+                                   href="{{ url_for('auth.logout') }}">
+
+                                    🚪 Logout
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </li>
 
 
                 {% else %}
 
 
-                <!-- Login -->
-                <li class="nav-item me-2">
+                    <!-- =================================================
+                         NOT LOGGED IN
+                         ONLY LOGIN + REGISTER
+                         ================================================= -->
 
-                    <a class="btn login-btn"
-                       href="{{ url_for('auth.login') }}">
+                    <!-- LOGIN -->
+                    <li class="nav-item me-2">
 
-                        Login
+                        <a class="btn login-btn"
+                           href="{{ url_for('auth.login') }}">
 
-                    </a>
+                            🔐 Login
 
-                </li>
+                        </a>
+
+                    </li>
 
 
-                <!-- Register -->
-                <li class="nav-item">
+                    <!-- REGISTER -->
+                    <li class="nav-item">
 
-                    <a class="btn register-btn"
-                       href="{{ url_for('auth.register') }}">
+                        <a class="btn register-btn"
+                           href="{{ url_for('auth.register') }}">
 
-                        Register
+                            📝 Register
 
-                    </a>
+                        </a>
 
-                </li>
-
+                    </li>
 
                 {% endif %}
 
@@ -285,11 +290,11 @@
 </nav>
 
 
-<style>
+<!-- =============================================================
+     NAVBAR STYLING
+     ============================================================= -->
 
-/* ==========================================
-   NAVBAR
-========================================== */
+<style>
 
 .career-navbar {
 
@@ -309,26 +314,38 @@
 }
 
 
-/* ==========================================
-   BRAND
-========================================== */
+/* BRAND */
 
 .brand-logo {
 
     color: #ffffff !important;
 
-    font-size: 25px;
+    font-size: 23px;
 
     letter-spacing: -0.4px;
 
     white-space: nowrap;
 
+    transition:
+        transform 0.25s ease,
+        text-shadow 0.25s ease;
+
 }
 
 
-/* ==========================================
-   NORMAL NAV LINKS
-========================================== */
+.brand-logo:hover {
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px);
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,0.45);
+
+}
+
+
+/* NORMAL NAVIGATION */
 
 .nav-white {
 
@@ -342,6 +359,8 @@
 
     padding-right: 12px !important;
 
+    position: relative;
+
     transition:
         all 0.2s ease;
 
@@ -354,27 +373,49 @@
 
     opacity: 1;
 
-    transform:
-        translateY(-1px);
+    transform: translateY(-1px);
 
 }
 
 
-/* ==========================================
-   ACTIVE / HOVER UNDERLINE
-========================================== */
+/* UNDERLINE */
 
-.nav-item .nav-white::after {
+.nav-white::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 12px;
+
+    right: 12px;
+
+    bottom: 3px;
+
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    transform: scaleX(0);
+
+    transform-origin: center;
 
     transition:
-        transform 0.2s ease;
+        transform 0.25s ease;
 
 }
 
 
-/* ==========================================
-   ASSESSMENT NAV BUTTON
-========================================== */
+.nav-white:hover::after {
+
+    transform: scaleX(1);
+
+}
+
+
+/* CAREER ASSESSMENT */
 
 .assessment-nav-item {
 
@@ -406,6 +447,13 @@
 }
 
 
+.assessment-nav-link::after {
+
+    display: none;
+
+}
+
+
 .assessment-nav-link:hover {
 
     background:
@@ -422,9 +470,7 @@
 }
 
 
-/* ==========================================
-   AI ASSISTANT
-========================================== */
+/* EXPLORE ALL POSSIBLE CAREERS */
 
 .ai-assistant-btn {
 
@@ -470,8 +516,6 @@
     animation:
         aiGlow 2s infinite ease-in-out;
 
-    overflow: hidden;
-
 }
 
 
@@ -483,7 +527,7 @@
 
     transform:
         translateY(-2px)
-        scale(1.04);
+        scale(1.03);
 
     box-shadow:
         0 0 12px rgba(129,140,248,1),
@@ -521,9 +565,7 @@
 }
 
 
-/* ==========================================
-   LOGIN
-========================================== */
+/* LOGIN */
 
 .login-btn {
 
@@ -539,6 +581,9 @@
 
     font-weight: 600;
 
+    transition:
+        all 0.2s ease;
+
 }
 
 
@@ -549,12 +594,13 @@
 
     color: #ffffff !important;
 
+    transform:
+        translateY(-1px);
+
 }
 
 
-/* ==========================================
-   REGISTER
-========================================== */
+/* REGISTER */
 
 .register-btn {
 
@@ -569,6 +615,9 @@
 
     font-weight: 700;
 
+    transition:
+        all 0.2s ease;
+
 }
 
 
@@ -578,12 +627,13 @@
 
     color: #0755d4 !important;
 
+    transform:
+        translateY(-1px);
+
 }
 
 
-/* ==========================================
-   DROPDOWN
-========================================== */
+/* DROPDOWN */
 
 .dropdown-menu {
 
@@ -614,9 +664,7 @@
 }
 
 
-/* ==========================================
-   AI GLOW
-========================================== */
+/* AI GLOW */
 
 @keyframes aiGlow {
 
@@ -648,13 +696,12 @@
 }
 
 
-/* ==========================================
-   ROBOT ANIMATION
-========================================== */
+/* ROBOT */
 
 @keyframes robotFloat {
 
-    0%, 100% {
+    0%,
+    100% {
 
         transform:
             translateY(0);
@@ -671,9 +718,7 @@
 }
 
 
-/* ==========================================
-   MOBILE
-========================================== */
+/* MOBILE */
 
 @media (max-width: 991px) {
 
@@ -683,11 +728,13 @@
 
     }
 
+
     .assessment-nav-link {
 
         display: inline-block;
 
     }
+
 
     .ai-assistant-btn {
 
@@ -697,12 +744,26 @@
 
     }
 
+
     .login-btn,
     .register-btn {
 
         display: inline-block;
 
         margin-top: 8px;
+
+    }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media (max-width: 600px) {
+
+    .brand-logo {
+
+        font-size: 18px;
 
     }
 

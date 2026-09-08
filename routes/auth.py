@@ -45,14 +45,52 @@ def login():
                 ""
             )
 
+            # Find user by email
             user = User.query.filter_by(
                 email=email
             ).first()
 
-            if user and check_password_hash(
+            # ----------------------------------
+            # User does not exist
+            # ----------------------------------
+
+            if not user:
+
+                flash(
+                    "Invalid email or password.",
+                    "danger"
+                )
+
+            # ----------------------------------
+            # Wrong password
+            # ----------------------------------
+
+            elif not check_password_hash(
                 user.password_hash,
                 password
             ):
+
+                flash(
+                    "Invalid email or password.",
+                    "danger"
+                )
+
+            # ----------------------------------
+            # Account is inactive
+            # ----------------------------------
+
+            elif not user.is_active:
+
+                flash(
+                    "Your account has been deactivated. Please contact the administrator.",
+                    "warning"
+                )
+
+            # ----------------------------------
+            # Login successful
+            # ----------------------------------
+
+            else:
 
                 session["user_id"] = user.id
                 session["user_name"] = user.full_name
@@ -63,14 +101,17 @@ def login():
                     "success"
                 )
 
+                # Admin → Admin Dashboard
+                if user.role == "admin":
+
+                    return redirect(
+                        url_for("admin.dashboard")
+                    )
+
+                # Student → Student Dashboard
                 return redirect(
                     url_for("dashboard.home")
                 )
-
-            flash(
-                "Invalid email or password.",
-                "danger"
-            )
 
         return render_template(
             "auth/login.html"
@@ -94,6 +135,10 @@ def register():
 
         if request.method == "POST":
 
+            # ----------------------------------
+            # Get form data
+            # ----------------------------------
+
             full_name = request.form.get(
                 "full_name",
                 ""
@@ -104,12 +149,130 @@ def register():
                 ""
             ).strip().lower()
 
+            contact_number = request.form.get(
+                "contact_number",
+                ""
+            ).strip()
+
+            class_grade = request.form.get(
+                "class_grade",
+                ""
+            ).strip()
+
+            stream = request.form.get(
+                "stream",
+                ""
+            ).strip()
+
+            college_name = request.form.get(
+                "college_name",
+                ""
+            ).strip()
+
+            course = request.form.get(
+                "course",
+                ""
+            ).strip()
+
+            passing_year = request.form.get(
+                "passing_year",
+                ""
+            ).strip()
+
+            state = request.form.get(
+                "state",
+                ""
+            ).strip()
+
+            district = request.form.get(
+                "district",
+                ""
+            ).strip()
+
+            career_interest = request.form.get(
+                "career_interest",
+                ""
+            ).strip()
+
             password = request.form.get(
                 "password",
                 ""
             )
 
-            # Check existing user
+            confirm_password = request.form.get(
+                "confirm_password",
+                ""
+            )
+
+
+            # ----------------------------------
+            # Required field validation
+            # ----------------------------------
+
+            if not full_name:
+                flash(
+                    "Please enter your full name.",
+                    "danger"
+                )
+                return redirect(
+                    url_for("auth.register")
+                )
+
+            if not email:
+                flash(
+                    "Please enter your email address.",
+                    "danger"
+                )
+                return redirect(
+                    url_for("auth.register")
+                )
+
+            if not password:
+                flash(
+                    "Please enter a password.",
+                    "danger"
+                )
+                return redirect(
+                    url_for("auth.register")
+                )
+
+
+            # ----------------------------------
+            # Password length
+            # ----------------------------------
+
+            if len(password) < 6:
+
+                flash(
+                    "Password must be at least 6 characters long.",
+                    "danger"
+                )
+
+                return redirect(
+                    url_for("auth.register")
+                )
+
+
+            # ----------------------------------
+            # Confirm password
+            # ----------------------------------
+
+            if password != confirm_password:
+
+                flash(
+                    "Passwords do not match.",
+                    "danger"
+                )
+
+                return redirect(
+                    url_for("auth.register")
+                )
+
+
+            # ----------------------------------
+            # Check existing email
+            # ----------------------------------
+
             existing_user = User.query.filter_by(
                 email=email
             ).first()
@@ -125,19 +288,61 @@ def register():
                     url_for("auth.register")
                 )
 
+
+            # ----------------------------------
+            # Hash password
+            # ----------------------------------
+
             hashed_password = generate_password_hash(
                 password
             )
 
+
+            # ----------------------------------
+            # Create student account
+            # ----------------------------------
+
             new_user = User(
+
                 full_name=full_name,
+
                 email=email,
+
                 password_hash=hashed_password,
-                role="student"
+
+                role="student",
+
+                is_active=True,
+
+                contact_number=contact_number,
+
+                class_grade=class_grade,
+
+                stream=stream,
+
+                college_name=college_name,
+
+                course=course,
+
+                passing_year=passing_year,
+
+                state=state,
+
+                district=district,
+
+                career_interest=career_interest
+
             )
 
+
             db.session.add(new_user)
+
             db.session.commit()
+
+
+            # ----------------------------------
+            # Registration successful
+            # ----------------------------------
 
             flash(
                 "Registration successful! Please login.",
@@ -148,13 +353,21 @@ def register():
                 url_for("auth.login")
             )
 
+
         return render_template(
             "auth/register.html"
         )
 
+
     except Exception as e:
 
-        print("REGISTER ERROR:", e)
+        # Rollback if database operation fails
+        db.session.rollback()
+
+        print(
+            "REGISTER ERROR:",
+            e
+        )
 
         return f"Register Error: {e}", 500
 

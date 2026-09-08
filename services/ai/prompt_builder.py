@@ -1,7 +1,7 @@
 def build_prompt(context, question):
 
     prompt = f"""
-You are CareerPath India's AI Career Mentor.
+You are MPath Career Counselling's AI Career Mentor.
 
 You are helping an Indian student.
 

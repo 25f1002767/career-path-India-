@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}
-CareerPath India | Dashboard
+MPath Career Counselling | Dashboard
 {% endblock %}
 
 {% block content %}
 
 <div class="container-fluid px-lg-5 py-5">
+
 
     <!-- =====================================================
          WELCOME HERO
@@ -19,7 +20,7 @@ CareerPath India | Dashboard
             <div class="col-lg-8">
 
                 <span class="welcome-badge">
-                    🚀 CareerPath India
+                    🚀 MPath Career Counselling
                 </span>
 
                 <h1 class="display-5 fw-bold mt-3 mb-3">
@@ -32,32 +33,23 @@ CareerPath India | Dashboard
                     scholarships, internships and more.
                 </p>
 
-                {% if not assessment %}
+                <!-- AI CAREER EXPLORER -->
 
-                <a href="{{ url_for('assessment.start') }}"
+                <a href="{{ url_for('go_ai_assistant') }}"
                    class="btn assessment-hero-btn">
 
-                    🎯 Take Your Career Assessment
-                    <span class="ms-2">→</span>
+                    🤖 Explore All Possible Careers
+
+                    <span class="ms-2">
+                        →
+                    </span>
 
                 </a>
 
                 <p class="small mt-3 mb-0 hero-note">
-                    Complete the assessment to unlock personalized
-                    career recommendations.
+                    Get AI-powered guidance and discover career
+                    paths based on your interests, education and goals.
                 </p>
-
-                {% else %}
-
-                <a href="{{ url_for('assessment.start') }}"
-                   class="btn assessment-hero-btn">
-
-                    🎯 Update Career Assessment
-                    <span class="ms-2">→</span>
-
-                </a>
-
-                {% endif %}
 
             </div>
 
@@ -69,7 +61,7 @@ CareerPath India | Dashboard
                 </div>
 
                 <div class="hero-ai-text">
-                   Career Navigator
+                    AI Career Navigator
                 </div>
 
             </div>
@@ -79,11 +71,15 @@ CareerPath India | Dashboard
     </div>
 
 
+
     <!-- =====================================================
          PLATFORM STATS
     ====================================================== -->
 
     <div class="row g-4 mb-5">
+
+
+        <!-- CAREERS -->
 
         <div class="col-xl-3 col-md-6">
 
@@ -94,6 +90,7 @@ CareerPath India | Dashboard
                 </div>
 
                 <div>
+
                     <div class="stat-number">
                         400+
                     </div>
@@ -101,12 +98,15 @@ CareerPath India | Dashboard
                     <div class="stat-label">
                         Careers
                     </div>
+
                 </div>
 
             </div>
 
         </div>
 
+
+        <!-- COLLEGES -->
 
         <div class="col-xl-3 col-md-6">
 
@@ -117,6 +117,7 @@ CareerPath India | Dashboard
                 </div>
 
                 <div>
+
                     <div class="stat-number">
                         400+
                     </div>
@@ -124,6 +125,7 @@ CareerPath India | Dashboard
                     <div class="stat-label">
                         Colleges
                     </div>
+
                 </div>
 
             </div>
@@ -131,15 +133,18 @@ CareerPath India | Dashboard
         </div>
 
 
+        <!-- GOVERNMENT EXAMS -->
+
         <div class="col-xl-3 col-md-6">
 
             <div class="stat-card stat-orange">
 
                 <div class="stat-icon">
-                    🏛
+                    🏛️
                 </div>
 
                 <div>
+
                     <div class="stat-number">
                         400+
                     </div>
@@ -147,12 +152,15 @@ CareerPath India | Dashboard
                     <div class="stat-label">
                         Government Exams
                     </div>
+
                 </div>
 
             </div>
 
         </div>
 
+
+        <!-- SCHOLARSHIPS -->
 
         <div class="col-xl-3 col-md-6">
 
@@ -163,6 +171,7 @@ CareerPath India | Dashboard
                 </div>
 
                 <div>
+
                     <div class="stat-number">
                         400+
                     </div>
@@ -170,6 +179,7 @@ CareerPath India | Dashboard
                     <div class="stat-label">
                         Scholarships
                     </div>
+
                 </div>
 
             </div>
@@ -179,128 +189,50 @@ CareerPath India | Dashboard
     </div>
 
 
+
     <!-- =====================================================
-         YOUR PROFILE / PROGRESS
+         QUICK ACCESS
     ====================================================== -->
 
     <div class="row g-4 mb-5">
 
-        <!-- Assessment -->
-        <div class="col-lg-4">
 
-            <div class="dashboard-card h-100">
+        <!-- EXPLORE ALL POSSIBLE CAREERS -->
+
+        <div class="col-lg-6">
+
+            <div class="dashboard-card h-100 ai-explorer-card">
 
                 <div class="card-icon blue-icon">
-                    🎯
+                    🤖
                 </div>
 
                 <h4 class="fw-bold mt-3">
-                    Career Assessment
+                    Explore All Possible Careers
                 </h4>
-
-                {% if assessment %}
-
-                <div class="status-success">
-                    ✓ Assessment Completed
-                </div>
-
-                <p class="text-muted mt-3 mb-3">
-                    Recommended category:
-                </p>
-
-                <h5 class="fw-bold text-primary">
-                    {{ assessment.recommended_category }}
-                </h5>
-
-                <a href="{{ url_for('assessment.start') }}"
-                   class="btn btn-outline-primary mt-3">
-
-                    Update Assessment
-
-                </a>
-
-                {% else %}
-
-                <div class="status-warning">
-                    ⚠ Not Completed
-                </div>
 
                 <p class="text-muted mt-3">
-                    Answer a few questions and discover
-                    career paths that match your interests,
-                    education and goals.
+                    Explore different career possibilities with
+                    AI-powered guidance based on your education,
+                    interests, skills and goals.
                 </p>
 
-                <a href="{{ url_for('assessment.start') }}"
+                <a href="{{ url_for('go_ai_assistant') }}"
                    class="btn btn-primary mt-2">
 
-                    🎯 Start Assessment
+                    🤖 Explore All Possible Careers
 
                 </a>
-
-                {% endif %}
 
             </div>
 
         </div>
 
 
-        <!-- Resume -->
-        <div class="col-lg-4">
 
-            <div class="dashboard-card h-100">
+        <!-- SAVED CAREERS -->
 
-                <div class="card-icon green-icon">
-                    📄
-                </div>
-
-                <h4 class="fw-bold mt-3">
-                    Resume Analysis
-                </h4>
-
-                {% if resume %}
-
-                <div class="resume-score">
-                    {{ resume.score }}%
-                </div>
-
-                <p class="text-muted">
-                    Latest resume score
-                </p>
-
-                <a href="{{ url_for('resume.upload_resume') }}"
-                   class="btn btn-outline-success">
-
-                    Improve Resume
-
-                </a>
-
-                {% else %}
-
-                <div class="resume-score">
-                    0%
-                </div>
-
-                <p class="text-muted">
-                    No resume analyzed yet.
-                </p>
-
-                <a href="{{ url_for('resume.upload_resume') }}"
-                   class="btn btn-success">
-
-                    📄 Analyze Resume
-
-                </a>
-
-                {% endif %}
-
-            </div>
-
-        </div>
-
-
-        <!-- Saved Careers -->
-        <div class="col-lg-4">
+        <div class="col-lg-6">
 
             <div class="dashboard-card h-100">
 
@@ -334,8 +266,9 @@ CareerPath India | Dashboard
     </div>
 
 
+
     <!-- =====================================================
-         EXPLORE CAREER PATHS
+         EXPLORE YOUR OPPORTUNITIES
     ====================================================== -->
 
     <div class="section-heading">
@@ -355,9 +288,12 @@ CareerPath India | Dashboard
     </div>
 
 
+
     <div class="row g-4 mb-5">
 
-        <!-- Careers -->
+
+        <!-- CAREERS -->
+
         <div class="col-xl-4 col-md-6">
 
             <div class="opportunity-card career-card h-100">
@@ -380,6 +316,7 @@ CareerPath India | Dashboard
                    class="btn btn-primary mt-auto">
 
                     Explore Careers →
+
                 </a>
 
             </div>
@@ -387,7 +324,9 @@ CareerPath India | Dashboard
         </div>
 
 
-        <!-- Colleges -->
+
+        <!-- COLLEGES -->
+
         <div class="col-xl-4 col-md-6">
 
             <div class="opportunity-card college-card h-100">
@@ -417,13 +356,15 @@ CareerPath India | Dashboard
         </div>
 
 
-        <!-- Government Exams -->
+
+        <!-- GOVERNMENT EXAMS -->
+
         <div class="col-xl-4 col-md-6">
 
             <div class="opportunity-card exam-card h-100">
 
                 <div class="opportunity-icon">
-                    🏛
+                    🏛️
                 </div>
 
                 <h4>
@@ -448,7 +389,9 @@ CareerPath India | Dashboard
         </div>
 
 
-        <!-- Scholarships -->
+
+        <!-- SCHOLARSHIPS -->
+
         <div class="col-xl-4 col-md-6">
 
             <div class="opportunity-card scholarship-card h-100">
@@ -478,7 +421,9 @@ CareerPath India | Dashboard
         </div>
 
 
-        <!-- Internships -->
+
+        <!-- INTERNSHIPS -->
+
         <div class="col-xl-4 col-md-6">
 
             <div class="opportunity-card internship-card h-100">
@@ -508,29 +453,31 @@ CareerPath India | Dashboard
         </div>
 
 
-        <!-- Career Assessment -->
+
+        <!-- AI CAREER EXPLORER -->
+
         <div class="col-xl-4 col-md-6">
 
-            <div class="opportunity-card assessment-card h-100">
+            <div class="opportunity-card ai-opportunity-card h-100">
 
                 <div class="opportunity-icon">
-                    🎯
+                    🤖
                 </div>
 
                 <h4>
-                    Smart Assessment
+                    Explore All Possible Careers
                 </h4>
 
                 <p>
-                    Answer questions about your education,
-                    interests, goals and preferences to discover
-                    suitable career paths.
+                    Get AI-powered career guidance and discover
+                    career possibilities that match your education,
+                    interests, skills and goals.
                 </p>
 
-                <a href="{{ url_for('assessment.start') }}"
+                <a href="{{ url_for('go_ai_assistant') }}"
                    class="btn btn-primary mt-auto">
 
-                    Take Assessment →
+                    Explore All Possible Careers →
 
                 </a>
 
@@ -540,134 +487,6 @@ CareerPath India | Dashboard
 
     </div>
 
-
-    <!-- =====================================================
-         MORE TOOLS
-    ====================================================== -->
-
-    <div class="section-heading">
-
-        <div>
-
-            <h2 class="fw-bold mb-1">
-                🛠 Career Tools
-            </h2>
-
-            <p class="text-muted">
-                Build, analyze and plan your career.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="row g-4 mb-5">
-
-        <!-- Resume -->
-        <div class="col-lg-4">
-
-            <div class="tool-card">
-
-                <span class="tool-icon">
-                    📄
-                </span>
-
-                <div>
-
-                    <h5 class="fw-bold">
-                        Resume Analyzer
-                    </h5>
-
-                    <p class="text-muted mb-2">
-                        Analyze your resume and identify
-                        areas for improvement.
-                    </p>
-
-                    <a href="{{ url_for('resume.upload_resume') }}"
-                       class="small fw-semibold">
-
-                        Open Resume Analyzer →
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- Roadmap -->
-        <div class="col-lg-4">
-
-            <div class="tool-card">
-
-                <span class="tool-icon">
-                    🗺
-                </span>
-
-                <div>
-
-                    <h5 class="fw-bold">
-                        Career Roadmap
-                    </h5>
-
-                    <p class="text-muted mb-2">
-                        Plan the skills and learning journey
-                        needed for your target career.
-                    </p>
-
-                    <a href="{{ url_for('admin.roadmaps') }}"
-                        class="small fw-semibold">
-
-                               View Roadmap →
-
-                                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- AI Assistant -->
-        <div class="col-lg-4">
-
-            <div class="tool-card ai-tool">
-
-                <span class="tool-icon">
-                    🤖
-                </span>
-
-                <div>
-
-                    <h5 class="fw-bold">
-                        AI Career Assistant
-                    </h5>
-
-                    <p class="text-muted mb-2">
-                        Get AI-powered help while exploring
-                        your career options.
-                    </p>
-
-                    <a href="https://career-path-india-3.onrender.com/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="small fw-bold">
-
-                        Open AI Assistant →
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
 
 
     <!-- =====================================================
@@ -741,7 +560,7 @@ CareerPath India | Dashboard
     <div class="empty-recommendation mb-5">
 
         <div class="fs-1">
-            🎯
+            🤖
         </div>
 
         <h4 class="fw-bold mt-3">
@@ -749,20 +568,21 @@ CareerPath India | Dashboard
         </h4>
 
         <p class="text-muted">
-            Complete your career assessment to help CareerPath India
-            understand your interests, education and goals.
+            Explore different career possibilities and get
+            personalized AI guidance based on your profile.
         </p>
 
-        <a href="{{ url_for('assessment.start') }}"
+        <a href="{{ url_for('go_ai_assistant') }}"
            class="btn btn-primary">
 
-            Start Career Assessment
+            🤖 Explore All Possible Careers
 
         </a>
 
     </div>
 
     {% endif %}
+
 
 
     <!-- =====================================================
@@ -793,9 +613,8 @@ CareerPath India | Dashboard
 
                     Your latest resume score is
                     <strong>{{ resume.score }}%</strong>.
-                    Continue improving the skills identified
-                    by your resume analysis and explore careers
-                    related to your interests.
+                    Continue improving your skills and explore
+                    careers related to your interests.
 
                 </p>
 
@@ -803,10 +622,10 @@ CareerPath India | Dashboard
 
                 <p class="mb-0 text-muted">
 
-                    Your assessment recommends
-                    <strong>{{ assessment.recommended_category }}</strong>.
-                    Explore relevant careers, colleges, exams,
-                    scholarships and internships.
+                    Based on your available profile information,
+                    explore careers, colleges, exams,
+                    scholarships and internships that match
+                    your interests.
 
                 </p>
 
@@ -814,10 +633,10 @@ CareerPath India | Dashboard
 
                 <p class="mb-0 text-muted">
 
-                    Start with the
-                    <strong>Career Assessment</strong>.
-                    It is the best starting point for getting
-                    personalized guidance across CareerPath India.
+                    Start by exploring
+                    <strong>all possible careers</strong>
+                    with AI-powered guidance from
+                    MPath Career Counselling.
 
                 </p>
 
@@ -832,6 +651,7 @@ CareerPath India | Dashboard
 </div>
 
 
+
 <!-- =========================================================
      DASHBOARD STYLES
 ========================================================= -->
@@ -839,16 +659,20 @@ CareerPath India | Dashboard
 <style>
 
 body {
+
     background:
         linear-gradient(
             135deg,
             #f7faff,
             #eef5ff
         );
+
 }
 
 
-/* Hero */
+/* =========================================================
+   HERO
+========================================================= */
 
 .dashboard-hero {
 
@@ -870,12 +694,17 @@ body {
 
 
 .dashboard-hero h1 {
+
     color: white;
+
 }
 
 
 .dashboard-hero p {
-    color: rgba(255,255,255,0.88);
+
+    color:
+        rgba(255,255,255,0.88);
+
 }
 
 
@@ -899,7 +728,10 @@ body {
 
 
 .hero-note {
-    color: rgba(255,255,255,0.75);
+
+    color:
+        rgba(255,255,255,0.75);
+
 }
 
 
@@ -921,12 +753,15 @@ body {
 
     font-weight: 600;
 
-    color: rgba(255,255,255,0.9);
+    color:
+        rgba(255,255,255,0.9);
 
 }
 
 
-/* Assessment CTA */
+/* =========================================================
+   HERO AI BUTTON
+========================================================= */
 
 .assessment-hero-btn {
 
@@ -962,7 +797,9 @@ body {
 }
 
 
-/* Stats */
+/* =========================================================
+   STATS
+========================================================= */
 
 .stat-card {
 
@@ -1022,26 +859,36 @@ body {
 
 
 .stat-blue .stat-icon {
+
     background: #e8f1ff;
+
 }
 
 
 .stat-green .stat-icon {
+
     background: #e7f8ef;
+
 }
 
 
 .stat-orange .stat-icon {
+
     background: #fff4df;
+
 }
 
 
 .stat-purple .stat-icon {
+
     background: #f1eaff;
+
 }
 
 
-/* Dashboard cards */
+/* =========================================================
+   DASHBOARD CARDS
+========================================================= */
 
 .dashboard-card {
 
@@ -1077,71 +924,15 @@ body {
 
 
 .blue-icon {
+
     background: #e8f1ff;
-}
 
-
-.green-icon {
-    background: #e7f8ef;
 }
 
 
 .pink-icon {
+
     background: #ffeaf2;
-}
-
-
-.status-success {
-
-    display: inline-block;
-
-    margin-top: 10px;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    background: #e7f8ef;
-
-    color: #198754;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-}
-
-
-.status-warning {
-
-    display: inline-block;
-
-    margin-top: 10px;
-
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    background: #fff3cd;
-
-    color: #856404;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-}
-
-
-.resume-score {
-
-    font-size: 42px;
-
-    font-weight: 800;
-
-    color: #198754;
-
-    margin-top: 12px;
 
 }
 
@@ -1159,7 +950,36 @@ body {
 }
 
 
-/* Section heading */
+/* =========================================================
+   AI EXPLORER CARD
+========================================================= */
+
+.ai-explorer-card {
+
+    border:
+        1px solid rgba(99,102,241,0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+.ai-explorer-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 12px 30px rgba(30,60,90,0.14);
+
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
 
 .section-heading {
 
@@ -1174,7 +994,9 @@ body {
 }
 
 
-/* Opportunity cards */
+/* =========================================================
+   OPPORTUNITY CARDS
+========================================================= */
 
 .opportunity-card {
 
@@ -1250,52 +1072,9 @@ body {
 }
 
 
-/* Tools */
+/* AI OPPORTUNITY */
 
-.tool-card {
-
-    display: flex;
-
-    gap: 18px;
-
-    align-items: flex-start;
-
-    padding: 25px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 20px rgba(30,60,90,0.08);
-
-}
-
-
-.tool-icon {
-
-    font-size: 35px;
-
-}
-
-
-.tool-card a {
-
-    color: #0d6efd;
-
-    text-decoration: none;
-
-}
-
-
-.tool-card a:hover {
-
-    text-decoration: underline;
-
-}
-
-
-.ai-tool {
+.ai-opportunity-card {
 
     border:
         1px solid rgba(99,102,241,0.2);
@@ -1303,7 +1082,17 @@ body {
 }
 
 
-/* Recommendations */
+.ai-opportunity-card:hover {
+
+    box-shadow:
+        0 12px 35px rgba(99,102,241,0.18);
+
+}
+
+
+/* =========================================================
+   RECOMMENDATIONS
+========================================================= */
 
 .recommendation-card {
 
@@ -1338,7 +1127,9 @@ body {
 }
 
 
-/* Empty recommendations */
+/* =========================================================
+   EMPTY RECOMMENDATIONS
+========================================================= */
 
 .empty-recommendation {
 
@@ -1356,7 +1147,9 @@ body {
 }
 
 
-/* Suggestion */
+/* =========================================================
+   SUGGESTION
+========================================================= */
 
 .suggestion-card {
 
@@ -1395,7 +1188,9 @@ body {
 }
 
 
-/* Mobile */
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -1405,11 +1200,13 @@ body {
 
     }
 
+
     .dashboard-hero h1 {
 
         font-size: 32px;
 
     }
+
 
     .section-heading {
 

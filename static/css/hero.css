@@ -1,106 +1,1034 @@
-.hero{
-    position:relative;
-    height:100vh;
-    overflow:hidden;
-    background:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:white;
-}
+/* =========================================================
+   MPATH CAREER COUNSELLING HOMEPAGE
+   TRICOLOUR THEME
+   ========================================================= */
 
-#particles{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-}
+.cpi-home {
+    position: relative;
+    min-height: calc(100vh - 72px);
+    overflow: hidden;
 
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
     background:
-        radial-gradient(circle at 20% 20%,
-            rgba(255,140,0,.35),
-            transparent 30%),
-        radial-gradient(circle at 80% 30%,
-            rgba(0,255,128,.25),
-            transparent 35%);
-    filter:blur(60px);
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255, 153, 51, 0.28),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(19, 136, 8, 0.24),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255, 255, 255, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #071a12 0%,
+            #10291d 45%,
+            #071812 100%
+        );
+
+    color: white;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-    max-width:900px;
+
+/* =========================================================
+   PARTICLE CANVAS
+   ========================================================= */
+
+#particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
 
-#hero-title{
-    font-size:clamp(3rem,10vw,7rem);
-    font-weight:900;
-    letter-spacing:4px;
-    text-transform:uppercase;
+
+/* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+.ai-glow {
+    position: absolute;
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+
     background:
-        linear-gradient(90deg,
+        radial-gradient(
+            circle,
+            rgba(255, 153, 51, 0.22),
+            rgba(19, 136, 8, 0.14),
+            transparent 70%
+        );
+
+    filter: blur(10px);
+
+    animation:
+        glowMove 8s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+.ai-glow-one {
+    top: -180px;
+    left: -150px;
+}
+
+
+.ai-glow-two {
+    right: -170px;
+    bottom: -180px;
+    animation-delay: -4s;
+}
+
+
+@keyframes glowMove {
+
+    0%, 100% {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(35px,-20px,0)
+            scale(1.08);
+    }
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+
+    min-height: calc(100vh - 72px);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding:
+        80px 20px 120px;
+}
+
+
+/* =========================================================
+   TOP BADGE
+   ========================================================= */
+
+.ai-status {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding:
+        8px 16px;
+
+    margin-bottom: 25px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.20);
+
+    backdrop-filter:
+        blur(12px);
+
+    color:
+        rgba(255,255,255,0.92);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.15);
+
+    animation:
+        fadeDown 0.8s ease forwards;
+}
+
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #ff9933;
+
+    box-shadow:
+        0 0 8px #ff9933;
+
+    animation:
+        statusPulse 1.8s infinite;
+}
+
+
+@keyframes statusPulse {
+
+    0%,100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.35);
+        opacity: 0.65;
+    }
+
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+#hero-title {
+    margin: 0;
+
+    font-size:
+        clamp(48px, 8vw, 100px);
+
+    line-height: 0.95;
+
+    font-weight: 800;
+
+    letter-spacing:
+        -3px;
+
+    background:
+        linear-gradient(
+            90deg,
             #ffffff,
-            #7dd3fc,
-            #86efac,
-            #fde047,
-            #fb923c);
-    background-size:300%;
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    animation:gradientText 8s linear infinite;
-    text-shadow:0 0 40px rgba(255,255,255,.2);
+            #ff9933,
+            #ffffff,
+            #138808,
+            #ffffff,
+            #ff9933,
+            #ffffff
+        );
+
+    background-size:
+        300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        titleReveal 1s ease forwards,
+        titleShine 7s linear infinite;
+
+    text-shadow:
+        0 0 50px rgba(255,153,51,0.15);
 }
 
-@keyframes gradientText{
-    0%{background-position:0%}
-    100%{background-position:300%}
-}
 
-.hero p{
-    margin-top:20px;
-    font-size:1.2rem;
-    color:rgba(255,255,255,.8);
-}
+@keyframes titleReveal {
 
-.hero-buttons{
-    margin-top:35px;
-    display:flex;
-    gap:16px;
-    justify-content:center;
-    flex-wrap:wrap;
-}
+    from {
+        opacity: 0;
 
-/* Click burst effect */
-.burst{
-    position:absolute;
-    width:20px;
-    height:20px;
-    border-radius:50%;
-    pointer-events:none;
-    background:radial-gradient(circle,
-        #fff,
-        #facc15,
-        #22c55e,
-        transparent);
-    transform:translate(-50%,-50%);
-    animation:explode .8s ease-out forwards;
-    z-index:5;
-}
-
-@keyframes explode{
-    0%{
-        opacity:1;
-        transform:translate(-50%,-50%) scale(.2);
-        filter:blur(0);
+        transform:
+            translateY(25px)
+            scale(0.97);
     }
-    100%{
-        opacity:0;
-        transform:translate(-50%,-50%) scale(12);
-        filter:blur(8px);
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
     }
+
+}
+
+
+@keyframes titleShine {
+
+    0% {
+        background-position:
+            0% center;
+    }
+
+    100% {
+        background-position:
+            300% center;
+    }
+
+}
+
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
+
+.hero-subtitle {
+    max-width: 720px;
+
+    margin:
+        25px auto 0;
+
+    color:
+        rgba(255,255,255,0.80);
+
+    font-size:
+        clamp(17px, 2vw, 21px);
+
+    line-height: 1.7;
+
+    animation:
+        fadeUp 1s 0.25s ease both;
+}
+
+
+/* =========================================================
+   AI PROCESSING TEXT
+   ========================================================= */
+
+.ai-thinking {
+    min-height: 25px;
+
+    margin-top: 15px;
+
+    color:
+        #ff9933;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.4px;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.35s ease;
+}
+
+
+.ai-thinking.show {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 35px;
+
+    animation:
+        fadeUp 1s 0.45s ease both;
+}
+
+
+.hero-action {
+    position: relative;
+
+    min-width: 205px;
+
+    padding:
+        13px 24px;
+
+    border-radius:
+        12px;
+
+    font-weight:
+        700;
+
+    text-decoration:
+        none;
+
+    overflow:
+        hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.hero-action:hover {
+    transform:
+        translateY(-4px);
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.hero-primary {
+    color:
+        white !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9933,
+            #e87500
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.25);
+
+    box-shadow:
+        0 10px 30px rgba(255,153,51,0.35);
+}
+
+
+.hero-primary:hover {
+    box-shadow:
+        0 15px 40px rgba(255,153,51,0.50);
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+   ========================================================= */
+
+.hero-secondary {
+    color:
+        white !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(19,136,8,0.75),
+            rgba(10,100,6,0.85)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.30);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.hero-secondary:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(19,136,8,0.90),
+            rgba(10,100,6,0.95)
+        );
+}
+
+
+/* =========================================================
+   BUTTON SHINE
+   ========================================================= */
+
+.hero-action::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.40),
+            transparent
+        );
+
+    transform:
+        skewX(-20deg);
+}
+
+
+.hero-action:hover::before {
+    animation:
+        buttonShine 0.8s ease;
+}
+
+
+@keyframes buttonShine {
+
+    from {
+        left: -120%;
+    }
+
+    to {
+        left: 140%;
+    }
+
+}
+
+
+/* =========================================================
+   AI ORB
+   ========================================================= */
+
+.ai-orb-container {
+    position: relative;
+
+    width: 170px;
+    height: 170px;
+
+    margin-top: 55px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    animation:
+        fadeUp 1s 0.65s ease both;
+}
+
+
+.ai-orb {
+    position: relative;
+
+    width: 88px;
+    height: 88px;
+
+    border-radius: 50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    font-size: 38px;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #ffffff,
+            #ff9933 38%,
+            #138808 72%,
+            #075b05 100%
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,153,51,0.70),
+        0 0 60px rgba(19,136,8,0.45);
+
+    animation:
+        orbFloat 4s ease-in-out infinite;
+
+    z-index: 3;
+}
+
+
+.ai-orb::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 8px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(255,255,255,0.55);
+}
+
+
+/* =========================================================
+   ORBITS
+   ========================================================= */
+
+.orbit {
+    position: absolute;
+
+    border:
+        1px solid rgba(255,153,51,0.38);
+
+    border-radius: 50%;
+}
+
+
+.orbit-one {
+    width: 125px;
+    height: 125px;
+
+    animation:
+        orbitRotate 7s linear infinite;
+}
+
+
+.orbit-two {
+    width: 160px;
+    height: 160px;
+
+    border-color:
+        rgba(19,136,8,0.38);
+
+    animation:
+        orbitRotateReverse 10s linear infinite;
+}
+
+
+.orbit-three {
+    width: 195px;
+    height: 195px;
+
+    border:
+        1px dashed rgba(255,255,255,0.22);
+
+    animation:
+        orbitRotate 14s linear infinite;
+}
+
+
+.orbit::before {
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background:
+        #ff9933;
+
+    box-shadow:
+        0 0 12px #ff9933;
+
+    top: 50%;
+    left: -4px;
+}
+
+
+.orbit-two::before {
+    background:
+        #138808;
+
+    box-shadow:
+        0 0 12px #138808;
+
+    left: auto;
+    right: -4px;
+}
+
+
+@keyframes orbFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-9px);
+    }
+
+}
+
+
+@keyframes orbitRotate {
+
+    from {
+        transform:
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+
+@keyframes orbitRotateReverse {
+
+    from {
+        transform:
+            rotate(360deg);
+    }
+
+    to {
+        transform:
+            rotate(0deg);
+    }
+
+}
+
+
+/* =========================================================
+   FEATURE STRIP
+   ========================================================= */
+
+.feature-strip {
+    position: relative;
+
+    z-index: 5;
+
+    max-width: 1050px;
+
+    width:
+        calc(100% - 40px);
+
+    margin:
+        -75px auto 50px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+
+.feature-item {
+    padding:
+        18px;
+
+    border-radius:
+        15px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.14);
+
+    backdrop-filter:
+        blur(14px);
+
+    text-align:
+        center;
+
+    color:
+        rgba(255,255,255,0.90);
+
+    transition:
+        all 0.25s ease;
+
+    cursor:
+        pointer;
+}
+
+
+.feature-item:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border-color:
+        rgba(255,153,51,0.40);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.18);
+}
+
+
+.feature-icon {
+    display:
+        block;
+
+    font-size:
+        25px;
+
+    margin-bottom:
+        6px;
+}
+
+
+.feature-name {
+    font-size:
+        14px;
+
+    font-weight:
+        600;
+}
+
+
+/* =========================================================
+   CLICK BURST
+   ========================================================= */
+
+#click-burst {
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    z-index:
+        100;
+}
+
+
+.burst-ring {
+    position:
+        absolute;
+
+    width:
+        20px;
+
+    height:
+        20px;
+
+    margin-left:
+        -10px;
+
+    margin-top:
+        -10px;
+
+    border:
+        2px solid #ff9933;
+
+    border-radius:
+        50%;
+
+    animation:
+        burstRing 0.65s ease-out forwards;
+}
+
+
+.burst-particle {
+    position:
+        absolute;
+
+    width:
+        6px;
+
+    height:
+        6px;
+
+    border-radius:
+        50%;
+
+    background:
+        #138808;
+
+    box-shadow:
+        0 0 10px #138808;
+
+    animation:
+        burstParticle 0.7s ease-out forwards;
+}
+
+
+@keyframes burstRing {
+
+    from {
+        transform:
+            scale(0.2);
+
+        opacity:
+            1;
+    }
+
+    to {
+        transform:
+            scale(5);
+
+        opacity:
+            0;
+    }
+
+}
+
+
+@keyframes burstParticle {
+
+    from {
+        transform:
+            translate(0,0)
+            scale(1);
+
+        opacity:
+            1;
+    }
+
+    to {
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(0);
+
+        opacity:
+            0;
+    }
+
+}
+
+
+/* =========================================================
+   GENERAL ANIMATIONS
+   ========================================================= */
+
+@keyframes fadeDown {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .feature-strip {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        margin-top:
+            -45px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .hero-content {
+        padding:
+            65px 18px 100px;
+    }
+
+    #hero-title {
+        letter-spacing:
+            -1.5px;
+    }
+
+    .hero-buttons {
+        width:
+            100%;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+    .hero-action {
+        width:
+            100%;
+    }
+
+    .ai-orb-container {
+        transform:
+            scale(0.8);
+    }
+
+    .feature-strip {
+        width:
+            calc(100% - 25px);
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        scroll-behavior:
+            auto !important;
+    }
+
 }

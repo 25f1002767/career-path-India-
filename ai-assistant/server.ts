@@ -15,7 +15,7 @@ async function startServer() {
 
   // API Route: Health check
   app.get("/api/health", (_req, res) => {
-    res.json({ status: "ok", service: "Career Path India AI Engine" });
+    res.json({ status: "ok", service: "MPath Career Counselling AI Engine" });
   });
 
   // API Route: Recommend Careers (Two-Stage Gemini Grounded Pipeline)
@@ -69,9 +69,10 @@ async function startServer() {
   }
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 Career Path India Server running on http://0.0.0.0:${PORT}`);
+    console.log(`🚀 MPath Career Counselling Server running on http://0.0.0.0:${PORT}`);
   });
 }
 
 startServer();
+
 

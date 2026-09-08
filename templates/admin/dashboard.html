@@ -6,175 +6,489 @@ Admin Dashboard
 
 {% block content %}
 
+<style>
+    .admin-header {
+        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        color: white;
+        border-radius: 20px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(13, 110, 253, 0.20);
+    }
+
+    .admin-header h1 {
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+
+    .admin-header p {
+        margin-bottom: 0;
+        opacity: 0.85;
+    }
+
+    .stat-card {
+        border: 0;
+        border-radius: 18px;
+        transition: all 0.25s ease;
+        overflow: hidden;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        margin: 0 auto 12px;
+    }
+
+    .quick-card {
+        border: 0;
+        border-radius: 18px;
+    }
+
+    .quick-btn {
+        border-radius: 12px;
+        padding: 13px 15px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+    }
+
+    .quick-btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .section-card {
+        border: 0;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .section-card .card-header {
+        border: 0;
+        padding: 18px 22px;
+    }
+
+    .section-card .card-body {
+        padding: 20px;
+    }
+
+    .recent-user {
+        border-radius: 10px !important;
+        margin-bottom: 7px;
+    }
+
+    .status-badge {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 20px;
+    }
+
+    .report-btn {
+        border-radius: 12px;
+        padding: 13px 22px;
+        font-weight: 600;
+    }
+</style>
+
+
 <div class="container py-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-5">
+    <!-- ==========================
+         HEADER
+    =========================== -->
 
-        <div>
+    <div class="admin-header">
 
-            <h1 class="fw-bold">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
 
-                ⚙️ Admin Dashboard
+            <div>
 
-            </h1>
+                <h1>
+                    ⚙️ Admin Dashboard
+                </h1>
 
-            <p class="text-muted">
+                <p>
+                    MPath Career Counselling Administration Panel
+                </p>
 
-                CareerPath India Administration Panel
+            </div>
 
+            <div>
+
+                <span class="badge bg-light text-primary px-3 py-2">
+                    🔐 Administrator
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         MAIN STATISTICS
+    =========================== -->
+
+    <div class="row g-4 mb-5">
+
+        <!-- Total Users -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100 text-center">
+
+                <div class="card-body py-4">
+
+                    <div class="stat-icon bg-primary bg-opacity-10">
+                        👥
+                    </div>
+
+                    <h6 class="text-muted mb-2">
+                        Total Users
+                    </h6>
+
+                    <h2 class="fw-bold text-primary mb-0">
+                        {{ stats.users }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Total Students -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100 text-center">
+
+                <div class="card-body py-4">
+
+                    <div class="stat-icon bg-success bg-opacity-10">
+                        🎓
+                    </div>
+
+                    <h6 class="text-muted mb-2">
+                        Total Students
+                    </h6>
+
+                    <h2 class="fw-bold text-success mb-0">
+                        {{ stats.students }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Active Students -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100 text-center">
+
+                <div class="card-body py-4">
+
+                    <div class="stat-icon bg-info bg-opacity-10">
+                        ✅
+                    </div>
+
+                    <h6 class="text-muted mb-2">
+                        Active Students
+                    </h6>
+
+                    <h2 class="fw-bold text-info mb-0">
+                        {{ stats.active_students }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Inactive Students -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100 text-center">
+
+                <div class="card-body py-4">
+
+                    <div class="stat-icon bg-danger bg-opacity-10">
+                        🚫
+                    </div>
+
+                    <h6 class="text-muted mb-2">
+                        Inactive Students
+                    </h6>
+
+                    <h2 class="fw-bold text-danger mb-0">
+                        {{ stats.inactive_students }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         ADDITIONAL STATISTICS
+    =========================== -->
+
+    <div class="row g-4 mb-5">
+
+        <!-- Careers -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center">
+
+                    <div class="stat-icon bg-success bg-opacity-10 me-3 mb-0">
+                        💼
+                    </div>
+
+                    <div>
+
+                        <h6 class="text-muted mb-1">
+                            Careers
+                        </h6>
+
+                        <h3 class="fw-bold mb-0">
+                            {{ stats.careers }}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Colleges -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center">
+
+                    <div class="stat-icon bg-warning bg-opacity-10 me-3 mb-0">
+                        🏫
+                    </div>
+
+                    <div>
+
+                        <h6 class="text-muted mb-1">
+                            Colleges
+                        </h6>
+
+                        <h3 class="fw-bold mb-0">
+                            {{ stats.colleges }}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Assessments -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center">
+
+                    <div class="stat-icon bg-danger bg-opacity-10 me-3 mb-0">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <h6 class="text-muted mb-1">
+                            Assessments
+                        </h6>
+
+                        <h3 class="fw-bold mb-0">
+                            {{ stats.assessments }}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Website Visits -->
+
+        <div class="col-xl-3 col-md-6">
+
+            <div class="card stat-card shadow-sm h-100">
+
+                <div class="card-body d-flex align-items-center">
+
+                    <div class="stat-icon bg-primary bg-opacity-10 me-3 mb-0">
+                        🌐
+                    </div>
+
+                    <div>
+
+                        <h6 class="text-muted mb-1">
+                            Website Visits
+                        </h6>
+
+                        <h3 class="fw-bold text-primary mb-0">
+                            {{ stats.visits }}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         QUICK ACTIONS
+    =========================== -->
+
+    <div class="card quick-card shadow-sm mb-5">
+
+        <div class="card-header bg-white border-0 p-4">
+
+            <h4 class="fw-bold mb-1">
+                ⚡ Quick Actions
+            </h4>
+
+            <p class="text-muted mb-0">
+                Manage the main parts of MPath Career Counselling
             </p>
 
         </div>
 
-    </div>
-
-    <!-- Statistics -->
-
-    <div class="row g-4 mb-5">
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card border-0 shadow text-center">
-
-                <div class="card-body">
-
-                    <h6>Total Users</h6>
-
-                    <h2 class="text-primary">
-
-                        {{ stats.users }}
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card border-0 shadow text-center">
-
-                <div class="card-body">
-
-                    <h6>Careers</h6>
-
-                    <h2 class="text-success">
-
-                        {{ stats.careers }}
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card border-0 shadow text-center">
-
-                <div class="card-body">
-
-                    <h6>Colleges</h6>
-
-                    <h2 class="text-warning">
-
-                        {{ stats.colleges }}
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-
-            <div class="card border-0 shadow text-center">
-
-                <div class="card-body">
-
-                    <h6>Assessments</h6>
-
-                    <h2 class="text-danger">
-
-                        {{ stats.assessments }}
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Quick Actions -->
-
-    <div class="card shadow border-0 mb-5">
-
-        <div class="card-header bg-white">
-
-            <h4>
-
-                Quick Actions
-
-            </h4>
-
-        </div>
 
         <div class="card-body">
 
             <div class="row g-3">
 
-                <div class="col-md-3">
+                <!-- Manage Students -->
+
+                <div class="col-xl-3 col-md-6">
+
+                    <a
+                        href="{{ url_for('admin.students') }}"
+                        class="btn btn-primary quick-btn w-100">
+
+                        👨‍🎓 Manage Students
+
+                    </a>
+
+                </div>
+
+
+                <!-- Manage Careers -->
+
+                <div class="col-xl-3 col-md-6">
 
                     <a
                         href="{{ url_for('admin.careers') }}"
-                        class="btn btn-primary w-100">
+                        class="btn btn-success quick-btn w-100">
 
-                        Manage Careers
+                        💼 Manage Careers
 
                     </a>
 
                 </div>
 
-                <div class="col-md-3">
+
+                <!-- Manage Colleges -->
+
+                <div class="col-xl-3 col-md-6">
 
                     <a
                         href="{{ url_for('admin.colleges') }}"
-                        class="btn btn-success w-100">
+                        class="btn btn-warning quick-btn w-100">
 
-                        Manage Colleges
+                        🏫 Manage Colleges
 
                     </a>
 
                 </div>
 
-                <div class="col-md-3">
+
+                <!-- Manage Roadmaps -->
+
+                <div class="col-xl-3 col-md-6">
 
                     <a
                         href="{{ url_for('admin.roadmaps') }}"
-                        class="btn btn-warning w-100">
+                        class="btn btn-info quick-btn w-100 text-white">
 
-                        Manage Roadmaps
+                        🗺️ Manage Roadmaps
 
                     </a>
 
                 </div>
 
-                <div class="col-md-3">
+
+                <!-- Visit Website -->
+
+                <div class="col-xl-3 col-md-6">
 
                     <a
                         href="{{ url_for('main.index') }}"
-                        class="btn btn-dark w-100">
+                        class="btn btn-dark quick-btn w-100">
 
-                        Visit Website
+                        🌐 Visit Website
+
+                    </a>
+
+                </div>
+
+
+                <!-- AI Career Report -->
+
+                <div class="col-xl-3 col-md-6">
+
+                    <a
+                        href="{{ url_for('report.career_report') }}"
+                        class="btn btn-success quick-btn w-100">
+
+                        🤖 AI Career Report
 
                     </a>
 
@@ -186,37 +500,101 @@ Admin Dashboard
 
     </div>
 
-    <div class="row">
+
+    <!-- ==========================
+         RECENT INFORMATION
+    =========================== -->
+
+    <div class="row g-4">
+
+
+        <!-- Recent Users -->
 
         <div class="col-lg-6">
 
-            <div class="card shadow border-0">
+            <div class="card section-card shadow-sm h-100">
 
                 <div class="card-header bg-white">
 
-                    <h5>
+                    <div class="d-flex justify-content-between align-items-center">
 
-                        Recent Users
+                        <h5 class="fw-bold mb-0">
+                            👥 Recent Users
+                        </h5>
 
-                    </h5>
+                        <a
+                            href="{{ url_for('admin.students') }}"
+                            class="btn btn-sm btn-outline-primary">
+
+                            View All
+
+                        </a>
+
+                    </div>
 
                 </div>
 
+
                 <div class="card-body">
 
-                    <ul class="list-group">
+                    {% if recent_users %}
 
-                        {% for user in recent_users %}
+                        <div class="list-group">
 
-                        <li class="list-group-item">
+                            {% for user in recent_users %}
 
-                            {{ user.full_name }}
+                            <div class="list-group-item recent-user d-flex justify-content-between align-items-center">
 
-                        </li>
+                                <div>
 
-                        {% endfor %}
+                                    <strong>
+                                        {{ user.full_name }}
+                                    </strong>
 
-                    </ul>
+                                    <br>
+
+                                    <small class="text-muted">
+                                        {{ user.email }}
+                                    </small>
+
+                                </div>
+
+
+                                {% if user.is_active %}
+
+                                    <span class="badge bg-success status-badge">
+                                        Active
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-danger status-badge">
+                                        Inactive
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="text-center text-muted py-4">
+
+                            <div class="fs-1">
+                                👤
+                            </div>
+
+                            <p class="mb-0">
+                                No users registered yet.
+                            </p>
+
+                        </div>
+
+                    {% endif %}
 
                 </div>
 
@@ -224,35 +602,69 @@ Admin Dashboard
 
         </div>
 
+
+        <!-- Recent Careers -->
+
         <div class="col-lg-6">
 
-            <div class="card shadow border-0">
+            <div class="card section-card shadow-sm h-100">
 
                 <div class="card-header bg-white">
 
-                    <h5>
+                    <div class="d-flex justify-content-between align-items-center">
 
-                        Recent Careers
+                        <h5 class="fw-bold mb-0">
+                            💼 Recent Careers
+                        </h5>
 
-                    </h5>
+                        <a
+                            href="{{ url_for('admin.careers') }}"
+                            class="btn btn-sm btn-outline-success">
+
+                            View All
+
+                        </a>
+
+                    </div>
 
                 </div>
 
+
                 <div class="card-body">
 
-                    <ul class="list-group">
+                    {% if recent_careers %}
 
-                        {% for career in recent_careers %}
+                        <div class="list-group">
 
-                        <li class="list-group-item">
+                            {% for career in recent_careers %}
 
-                            {{ career.title }}
+                            <div class="list-group-item recent-user">
 
-                        </li>
+                                <strong>
+                                    {{ career.title }}
+                                </strong>
 
-                        {% endfor %}
+                            </div>
 
-                    </ul>
+                            {% endfor %}
+
+                        </div>
+
+                    {% else %}
+
+                        <div class="text-center text-muted py-4">
+
+                            <div class="fs-1">
+                                💼
+                            </div>
+
+                            <p class="mb-0">
+                                No careers available yet.
+                            </p>
+
+                        </div>
+
+                    {% endif %}
 
                 </div>
 
@@ -263,12 +675,5 @@ Admin Dashboard
     </div>
 
 </div>
-<a
-href="{{ url_for('report.career_report') }}"
-class="btn btn-success">
-
-Download AI Career Report
-
-</a>
 
 {% endblock %}

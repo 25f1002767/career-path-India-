@@ -18,7 +18,7 @@ export function generateCareerRoadmapPDF(career: CareerPath, profile?: UserProfi
   doc.setFont("helvetica", "bold");
   doc.setFontSize(16);
   doc.setTextColor(255, 255, 255);
-  doc.text("CAREER PATH INDIA — Personalized Roadmap", 14, 12);
+  doc.text("MPATH CAREER COUNSELLING — Personalized Roadmap", 14, 12);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(9);
@@ -165,3 +165,4 @@ export function generateCareerRoadmapPDF(career: CareerPath, profile?: UserProfi
 
   doc.save(`${career.id}-career-roadmap.pdf`);
 }
+

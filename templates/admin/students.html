@@ -1,0 +1,524 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Students{% endblock %}
+
+{% block content %}
+
+<style>
+    .students-header {
+        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        color: white;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+    }
+
+    .students-card {
+        border: 0;
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .student-table th {
+        white-space: nowrap;
+        font-size: 14px;
+    }
+
+    .student-table td {
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .student-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e9f2ff;
+        color: #0d6efd;
+        font-weight: 700;
+    }
+
+    .status-badge {
+        border-radius: 20px;
+        padding: 6px 11px;
+        font-size: 12px;
+    }
+
+    .action-btn {
+        border-radius: 9px;
+    }
+
+    .export-btn {
+        border-radius: 10px;
+        font-weight: 600;
+    }
+</style>
+
+
+<div class="container py-5">
+
+    <!-- ==========================
+         HEADER
+    =========================== -->
+
+    <div class="students-header">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+
+            <div>
+
+                <h1 class="fw-bold mb-2">
+                    👨‍🎓 Student Management
+                </h1>
+
+                <p class="mb-0 opacity-75">
+                    View, search and manage all registered MPath Career Counselling students.
+                </p>
+
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap">
+
+                <!-- Excel Export -->
+
+                <a
+                    href="{{ url_for('admin.export_students') }}"
+                    class="btn btn-success export-btn">
+
+                    📊 Download Excel
+
+                </a>
+
+
+                <!-- Dashboard -->
+
+                <a
+                    href="{{ url_for('admin.dashboard') }}"
+                    class="btn btn-light">
+
+                    ← Dashboard
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         SEARCH & FILTERS
+    =========================== -->
+
+    <div class="card students-card shadow-sm mb-4">
+
+        <div class="card-body p-4">
+
+            <form
+                method="GET"
+                action="{{ url_for('admin.students') }}">
+
+                <div class="row g-3">
+
+                    <!-- Search -->
+
+                    <div class="col-lg-5">
+
+                        <label class="form-label fw-semibold">
+                            🔍 Search Student
+                        </label>
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Search by name, email, college, course, state..."
+                            value="{{ search or '' }}">
+
+                    </div>
+
+
+                    <!-- Status -->
+
+                    <div class="col-lg-3">
+
+                        <label class="form-label fw-semibold">
+                            Account Status
+                        </label>
+
+                        <select
+                            name="status"
+                            class="form-select">
+
+                            <option value="">
+                                All Students
+                            </option>
+
+                            <option
+                                value="active"
+                                {% if status == 'active' %}selected{% endif %}>
+
+                                Active
+
+                            </option>
+
+                            <option
+                                value="inactive"
+                                {% if status == 'inactive' %}selected{% endif %}>
+
+                                Inactive
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Stream -->
+
+                    <div class="col-lg-2">
+
+                        <label class="form-label fw-semibold">
+                            Stream
+                        </label>
+
+                        <select
+                            name="stream"
+                            class="form-select">
+
+                            <option value="">
+                                All
+                            </option>
+
+                            <option
+                                value="Science"
+                                {% if stream == 'Science' %}selected{% endif %}>
+
+                                Science
+
+                            </option>
+
+                            <option
+                                value="Commerce"
+                                {% if stream == 'Commerce' %}selected{% endif %}>
+
+                                Commerce
+
+                            </option>
+
+                            <option
+                                value="Arts"
+                                {% if stream == 'Arts' %}selected{% endif %}>
+
+                                Arts
+
+                            </option>
+
+                            <option
+                                value="Other"
+                                {% if stream == 'Other' %}selected{% endif %}>
+
+                                Other
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Search Button -->
+
+                    <div class="col-lg-2 d-flex align-items-end">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary w-100">
+
+                            🔍 Search
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+
+            <!-- Clear Filters -->
+
+            {% if search or status or stream %}
+
+            <div class="mt-3">
+
+                <a
+                    href="{{ url_for('admin.students') }}"
+                    class="btn btn-sm btn-outline-secondary">
+
+                    ✕ Clear Filters
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================
+         STUDENT TABLE
+    =========================== -->
+
+    <div class="card students-card shadow-sm">
+
+        <div class="card-header bg-white p-4">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <div>
+
+                    <h4 class="fw-bold mb-1">
+                        Registered Students
+                    </h4>
+
+                    <p class="text-muted mb-0">
+                        {{ students|length }} student(s) found
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <span class="badge bg-primary px-3 py-2">
+                        👨‍🎓 Students Only
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-body p-0">
+
+            {% if students %}
+
+            <div class="table-responsive">
+
+                <table class="table table-hover student-table mb-0">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th class="px-4">
+                                Student
+                            </th>
+
+                            <th>
+                                Contact
+                            </th>
+
+                            <th>
+                                Class
+                            </th>
+
+                            <th>
+                                Stream
+                            </th>
+
+                            <th>
+                                College
+                            </th>
+
+                            <th>
+                                State
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th class="text-center">
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for student in students %}
+
+                        <tr>
+
+                            <!-- Student -->
+
+                            <td class="px-4">
+
+                                <div class="d-flex align-items-center gap-3">
+
+                                    <div class="student-avatar">
+
+                                        {{ student.full_name[:1]|upper }}
+
+                                    </div>
+
+                                    <div>
+
+                                        <strong>
+                                            {{ student.full_name }}
+                                        </strong>
+
+                                        <br>
+
+                                        <small class="text-muted">
+                                            {{ student.email }}
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <!-- Contact -->
+
+                            <td>
+
+                                {{ student.contact_number or "Not provided" }}
+
+                            </td>
+
+
+                            <!-- Class -->
+
+                            <td>
+
+                                {{ student.class_grade or "Not provided" }}
+
+                            </td>
+
+
+                            <!-- Stream -->
+
+                            <td>
+
+                                {{ student.stream or "Not provided" }}
+
+                            </td>
+
+
+                            <!-- College -->
+
+                            <td>
+
+                                {{ student.college_name or "Not provided" }}
+
+                            </td>
+
+
+                            <!-- State -->
+
+                            <td>
+
+                                {{ student.state or "Not provided" }}
+
+                            </td>
+
+
+                            <!-- Status -->
+
+                            <td>
+
+                                {% if student.is_active %}
+
+                                <span class="badge bg-success status-badge">
+                                    ✅ Active
+                                </span>
+
+                                {% else %}
+
+                                <span class="badge bg-danger status-badge">
+                                    🚫 Inactive
+                                </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- Action -->
+
+                            <td class="text-center">
+
+                                <a
+                                    href="{{ url_for('admin.student_detail', id=student.id) }}"
+                                    class="btn btn-sm btn-outline-primary action-btn">
+
+                                    👁️ View
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <!-- Empty State -->
+
+            <div class="text-center py-5">
+
+                <div style="font-size: 55px;">
+                    👨‍🎓
+                </div>
+
+                <h4 class="fw-bold mt-3">
+                    No students found
+                </h4>
+
+                <p class="text-muted">
+                    Try changing your search or filter.
+                </p>
+
+                <a
+                    href="{{ url_for('admin.students') }}"
+                    class="btn btn-primary">
+
+                    Show All Students
+
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

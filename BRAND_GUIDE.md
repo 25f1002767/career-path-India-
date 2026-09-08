@@ -1,4 +1,4 @@
-# CareerPath India Brand Guide
+# MPath Career Counselling Brand Guide
 
 ## Primary Color
 #0D6EFD

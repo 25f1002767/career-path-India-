@@ -1,8 +1,9 @@
 {
-  "name": "Career Path India",
+  "name": "MPath Career Counselling",
   "description": "An AI-powered career guidance platform providing personalized, tiered roadmaps of government and private career paths for Indian students after 12th grade or graduation, grounded in live web data.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
 }
+

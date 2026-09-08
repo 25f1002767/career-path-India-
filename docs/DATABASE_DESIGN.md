@@ -1,4 +1,4 @@
-# CareerPath India Database Design
+# MPath Career Counselling Database Design
 
 ## Table 1 : Users
 

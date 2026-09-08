@@ -1,12 +1,21 @@
-from flask import Flask, render_template
+from flask import (
+    Flask,
+    render_template,
+    request,
+    session,
+    redirect,
+    url_for,
+    flash
+)
 from werkzeug.security import generate_password_hash
 
 from config import Config
 from extensions import db
 
-# ==========================
-# Import Models
-# ==========================
+
+# ============================================================
+# IMPORT MODELS
+# ============================================================
 
 from models.user import User
 from models.career import Career
@@ -20,10 +29,12 @@ from models.exam import GovernmentExam
 from models.saved_career import SavedCareer
 from models.resume import Resume
 from models.career_skill import CareerSkill
+from models.website_visit import WebsiteVisit
 
-# ==========================
-# Import Routes
-# ==========================
+
+# ============================================================
+# IMPORT ROUTES
+# ============================================================
 
 from routes.main import main
 from routes.auth import auth
@@ -43,42 +54,200 @@ from routes.report import report
 from routes.opportunity import opportunity
 from routes.profile import profile
 
-# ==========================
-# Create Flask App
-# ==========================
+
+# ============================================================
+# CREATE FLASK APP
+# ============================================================
 
 app = Flask(__name__)
 
-# Load config
+# Load configuration
 app.config.from_object(Config)
 
-# ==========================
-# Initialize Database
-# ==========================
+
+# ============================================================
+# INITIALIZE DATABASE
+# ============================================================
 
 db.init_app(app)
 
-with app.app_context():
 
-    # Create tables
-    db.create_all()
+# ============================================================
+# GLOBAL LOGIN PROTECTION
+# ============================================================
 
-    # Create demo user if not exists
-    if not User.query.filter_by(email="admin@example.com").first():
+@app.before_request
+def require_login():
 
-        demo = User(
-            full_name="Admin User",
-            email="admin@example.com",
-            password_hash=generate_password_hash("admin123"),
-            role="student"
-        )
+    """
+    Protect the entire website.
 
-        db.session.add(demo)
+    Public:
+        - Home
+        - Login
+        - Register
+        - Logout
+        - Static files
+
+    Everything else requires login.
+    """
+
+    # Endpoints that are allowed without login
+    public_endpoints = {
+        "landing",
+        "main.index",
+        "auth.login",
+        "auth.register",
+        "auth.logout",
+        "static"
+    }
+
+    # Allow public endpoints
+    if request.endpoint in public_endpoints:
+        return
+
+    # If user is logged in, allow access
+    if session.get("user_id"):
+        return
+
+    # User is not logged in
+    flash(
+        "Please login first to access this section.",
+        "warning"
+    )
+
+    return redirect(url_for("auth.login"))
+
+
+# ============================================================
+# WEBSITE VISIT TRACKER
+# ============================================================
+
+@app.before_request
+def track_website_visit():
+
+    """
+    Count website visits.
+
+    Static files and admin pages are excluded.
+    """
+
+    # Ignore static files
+    if request.path.startswith("/static/"):
+        return
+
+    # Ignore admin pages
+    if request.path.startswith("/admin"):
+        return
+
+    try:
+
+        visit = WebsiteVisit()
+
+        db.session.add(visit)
         db.session.commit()
 
-# ==========================
-# Register Blueprints
-# ==========================
+    except Exception as e:
+
+        db.session.rollback()
+
+        print(
+            "VISIT TRACKING ERROR:",
+            e
+        )
+
+
+# ============================================================
+# PROTECTED EXTERNAL LINKS
+# ============================================================
+
+@app.route("/go/scholarships")
+def go_scholarships():
+
+    """
+    Open the National Scholarship Portal.
+
+    Login is automatically checked by
+    the global require_login() function.
+    """
+
+    return redirect(
+        "https://scholarships.gov.in/"
+    )
+
+
+@app.route("/go/internships")
+def go_internships():
+
+    """
+    Open the AICTE Internship Portal.
+
+    Login is automatically checked by
+    the global require_login() function.
+    """
+
+    return redirect(
+        "https://internship.aicte-india.org/"
+    )
+
+
+@app.route("/go/ai-assistant")
+def go_ai_assistant():
+
+    """
+    Open the MPath Career Counselling AI Assistant.
+
+    Login is automatically checked by
+    the global require_login() function.
+    """
+
+    return redirect(
+        "https://career-path-india-3.onrender.com/"
+    )
+
+
+# ============================================================
+# CREATE DATABASE TABLES
+# ============================================================
+
+with app.app_context():
+
+    db.create_all()
+
+    # ========================================================
+    # CREATE / UPDATE ADMIN
+    # ========================================================
+
+    admin_user = User.query.filter_by(
+        email="admin@example.com"
+    ).first()
+
+    if not admin_user:
+
+        admin_user = User(
+            full_name="Admin User",
+            email="admin@example.com",
+            password_hash=generate_password_hash(
+                "admin123"
+            ),
+            role="admin",
+            is_active=True
+        )
+
+        db.session.add(admin_user)
+
+    else:
+
+        # Make sure existing admin remains administrator
+        admin_user.role = "admin"
+        admin_user.is_active = True
+
+    db.session.commit()
+
+
+# ============================================================
+# REGISTER BLUEPRINTS
+# ============================================================
 
 app.register_blueprint(main)
 app.register_blueprint(auth)
@@ -98,29 +267,51 @@ app.register_blueprint(report)
 app.register_blueprint(opportunity)
 app.register_blueprint(profile)
 
-# ==========================
-# Landing Page
-# ==========================
+
+# ============================================================
+# LANDING / HOME PAGE
+# ============================================================
 
 @app.route("/")
 def landing():
-    return render_template("home/hero.html")
 
-# ==========================
-# Error Pages
-# ==========================
+    """
+    Home page is PUBLIC.
+
+    Visitors can explore the homepage without login.
+    """
+
+    return render_template(
+        "home/hero.html"
+    )
+
+
+# ============================================================
+# ERROR PAGES
+# ============================================================
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("errors/404.html"), 404
+
+    return render_template(
+        "errors/404.html"
+    ), 404
+
 
 @app.errorhandler(500)
 def server_error(error):
-    return render_template("errors/500.html"), 500
 
-# ==========================
-# Run App
-# ==========================
+    return render_template(
+        "errors/500.html"
+    ), 500
+
+
+# ============================================================
+# RUN APP
+# ============================================================
 
 if __name__ == "__main__":
-    app.run(debug=True)
+
+    app.run(
+        debug=True
+    )
