@@ -202,7 +202,7 @@ def go_ai_assistant():
     """
 
     return redirect(
-        "https://career-path-india-3.onrender.com/"
+        "https://ai.mpathcareercounselling.in/"
     )
 
 
