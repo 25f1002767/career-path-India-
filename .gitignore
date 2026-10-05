@@ -21,11 +21,12 @@ node_modules/
 dist/
 **/dist/
 
-# Local databases & runtimes (database can be seeded via python seed.py)
-*.db
+# Local databases & runtimes (ignore temporary backups, keep master production database)
 *.sqlite3
+*_backup*.db
 instance/
 scratch/
+!careerpathindia.db
 
 # Logs
 *.log
