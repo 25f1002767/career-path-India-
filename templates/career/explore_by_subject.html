@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Explore Careers by Subject | MPath National Career Discovery{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('career.career_list') }}" class="text-decoration-none">Careers</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Explore by Subject</li>
+        </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 mb-4 bg-white">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-warning bg-opacity-10 text-dark small fw-semibold mb-2">
+            <i data-lucide="book-open" class="icon-xs"></i>
+            <span>Subject-to-Career Discovery</span>
+        </div>
+        <h1 class="display-6 fw-bold mb-2 text-dark">Love a School or College Subject?</h1>
+        <p class="lead text-muted fs-6 mb-0">
+            Select a subject you enjoy studying to see which authentic careers rely directly on its knowledge base.
+        </p>
+    </div>
+
+    <!-- Subjects Cards Grid -->
+    <div class="row g-3 mb-5">
+        {% for s in subjects %}
+        <div class="col-md-3 col-sm-6">
+            <a href="{{ url_for('career.explore_by_subject', subject=s.name) }}" class="card p-3 border shadow-sm text-decoration-none h-100 rounded-3 transition-hover {% if selected_subject == s.name %}bg-primary text-white border-primary{% else %}bg-white text-dark{% endif %}">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="fs-4">
+                        {% if s.icon == 'calculator' %}
+                        {% elif s.icon == 'lightning-charge' %}<i data-lucide="zap" class="icon-xs"></i>
+                        {% elif s.icon == 'droplet-half' %}<i data-lucide="flask-conical" class="icon-xs"></i>
+                        {% elif s.icon == 'heart-pulse' %}
+                        {% elif s.icon == 'code-slash' %}<i data-lucide="laptop" class="icon-xs"></i>
+                        {% elif s.icon == 'graph-up' %}<i data-lucide="trending-up" class="icon-xs"></i>
+                        {% elif s.icon == 'journal-bookmark' %}
+                        {% elif s.icon == 'bank' %}<i data-lucide="landmark" class="icon-xs"></i>
+                        {% elif s.icon == 'hourglass-split' %}
+                        {% elif s.icon == 'person-heart' %}
+                        {% elif s.icon == 'palette' %}
+                        {% else %}{% endif %}
+                    </span>
+                    <h6 class="fw-bold mb-0 {% if selected_subject == s.name %}text-white{% else %}text-dark{% endif %}">{{ s.name }}</h6>
+                </div>
+                <div class="small {% if selected_subject == s.name %}text-white-50{% else %}text-muted{% endif %}">
+                    {{ s.desc }}
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Results for Selected Subject -->
+    {% if selected_subject %}
+    <div class="mb-4">
+        <h4 class="fw-bold text-dark mb-1">
+            Careers Relying on <span class="text-primary">{{ selected_subject }}</span>
+            <span class="badge bg-secondary ms-1">{{ matching_careers|length }}</span>
+        </h4>
+        <p class="text-muted small">
+            Careers where {{ selected_subject }} forms part of the core curriculum, qualifying subjects, or day-to-day work tasks.
+        </p>
+    </div>
+
+    {% if matching_careers %}
+    <div class="row g-4">
+        {% for c in matching_careers %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 border shadow-sm rounded-4 d-flex flex-column bg-white">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary small">{{ c.category }}</span>
+                    <span class="badge bg-success bg-opacity-10 text-success small"><i data-lucide="shield-check" class="icon-xs"></i> VERIFIED</span>
+                </div>
+
+                <h4 class="fw-bold mb-1">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="text-decoration-none text-dark">
+                        {{ c.title }}
+                    </a>
+                </h4>
+                <div class="small text-muted mb-2">{{ c.sub_category }}</div>
+
+                <p class="small text-muted flex-grow-1 mb-3">
+                    {{ c.short_description or c.description[:120] }}...
+                </p>
+
+                <div class="bg-light p-2 rounded-3 small mb-3 border">
+                    <div class="mb-1 text-truncate"><strong>Salary:</strong> {{ c.average_salary }}</div>
+                    <div class="text-truncate"><strong><i data-lucide="graduation-cap" class="icon-xs"></i> Entry Stream:</strong> {{ c.preferred_streams or 'Open to All' }}</div>
+                </div>
+
+                <div class="mt-auto pt-2 border-top">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-primary btn-sm w-100 fw-semibold">
+                        View Detailed Career Dossier →
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card p-5 text-center border shadow-sm rounded-4 bg-white">
+        <p class="text-muted mb-0">No careers explicitly matched "{{ selected_subject }}". Try selecting another subject.</p>
+    </div>
+    {% endif %}
+    {% endif %}
+
+</div>
+{% endblock %}

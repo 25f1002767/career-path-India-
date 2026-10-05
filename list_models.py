@@ -26,9 +26,9 @@ for model in models_to_test:
             contents="Reply with only OK."
         )
 
-        print("✅ SUCCESS")
+        print("[SUCCESS]")
         print(response.text)
 
     except Exception as e:
-        print("❌ FAILED")
+        print("[FAILED]")
         print(e)

@@ -1,0 +1,299 @@
+{% extends "base.html" %}
+
+{% block title %}{{ exam.exam_name }} | Exam Explorer | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none text-muted">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('exam.exam_list') }}" class="text-decoration-none text-muted">Examinations</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('exam.exam_list', category=exam.category) }}" class="text-decoration-none text-muted">{{ exam.category or 'General' }}</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">{{ exam.short_name or exam.exam_name }}</li>
+        </ol>
+    </nav>
+
+    <!-- EXAM HEADER CARD -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1">
+                        {{ exam.category or 'Competitive Examination' }}
+                    </span>
+                    {% if exam.short_name %}
+                    <span class="badge bg-light text-dark border px-2 py-1 fw-bold">
+                        {{ exam.short_name }}
+                    </span>
+                    {% endif %}
+                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">
+                        <i data-lucide="check" class="icon-xs text-success"></i> {{ exam.verification_status or 'VERIFIED' }}
+                    </span>
+                    {% set display_status = exam.display_status %}
+                    <span class="badge bg-{{ display_status[1] }} px-2 py-1">
+                        {{ display_status[2] }} {{ display_status[0] }}
+                    </span>
+                </div>
+
+                <h1 class="fw-bold text-dark mb-2 display-6">{{ exam.exam_name }}</h1>
+                <div class="d-flex flex-wrap align-items-center gap-3 text-muted small">
+                    <div><i data-lucide="building" class="icon-xs"></i> <strong>Conducting Body:</strong> {{ exam.conducted_by or 'Statutory Authority' }}</div>
+                    <div><i data-lucide="map-pin" class="icon-xs"></i> <strong>Scope:</strong> {{ exam.state or 'National / All India' }}</div>
+                    <div><i data-lucide="rotate-cw" class="icon-xs"></i> <strong>Frequency:</strong> {{ exam.frequency or 'Annual' }}</div>
+                </div>
+            </div>
+
+            <!-- Header Action Buttons -->
+            <div class="col-lg-4 text-lg-end d-flex flex-wrap gap-2 justify-content-lg-end">
+                {% if exam.official_url or exam.official_website %}
+                <a href="{{ exam.official_url or exam.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 shadow-sm">
+                    <span><i data-lucide="globe" class="icon-xs"></i> Official Portal</span>
+                    <span class="small ms-1"></span>
+                </a>
+                {% endif %}
+
+                {% if exam.application_url %}
+                <a href="{{ exam.application_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-success px-3">
+                    <span> Apply Now </span>
+                </a>
+                {% endif %}
+
+                <a href="{{ url_for('exam.toggle_save', exam_id=exam.id) }}" class="btn {% if is_saved %}btn-warning{% else %}btn-outline-secondary{% endif %} px-3">
+                    {% if is_saved %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save Exam{% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="row g-4">
+        
+        <!-- LEFT COLUMN: DETAILED SPECIFICATIONS -->
+        <div class="col-lg-8">
+
+            <!-- 1. OVERVIEW -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                    <span> Overview & Description</span>
+                </h5>
+                <p class="lead fs-6 text-dark" style="line-height: 1.75;">
+                    {{ exam.description or 'A statutory competitive examination conducted to select candidates based on merit, aptitude, and academic capability.' }}
+                </p>
+                <div class="row g-3 mt-2">
+                    <div class="col-sm-6">
+                        <div class="p-3 bg-light rounded-3">
+                            <span class="text-muted small d-block">Exam Type</span>
+                            <strong class="text-dark">{{ exam.exam_type or 'Recruitment' }}</strong>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 bg-light rounded-3">
+                            <span class="text-muted small d-block">Examination Mode</span>
+                            <strong class="text-dark">{{ exam.exam_mode or 'Computer Based Test (CBT)' }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. ELIGIBILITY & ACADEMIC REQUIREMENTS -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                    <span><i data-lucide="graduation-cap" class="icon-xs"></i> Educational & Age Eligibility</span>
+                </h5>
+                
+                <div class="table-responsive mb-3">
+                    <table class="table table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <th class="bg-light" style="width: 30%;">Minimum Qualification</th>
+                                <td><strong class="text-primary">{{ exam.qualification or 'Refer official notice' }}</strong></td>
+                            </tr>
+                            <tr>
+                                <th class="bg-light">Eligible Streams</th>
+                                <td>{{ exam.streams or 'Any Stream / Subject Specialization' }}</td>
+                            </tr>
+                            <tr>
+                                <th class="bg-light">Age Criteria</th>
+                                <td>{{ exam.age_limit or 'Refer conducting authority notification' }}</td>
+                            </tr>
+                            {% if exam.eligibility %}
+                            <tr>
+                                <th class="bg-light">Specific Criteria</th>
+                                <td>{{ exam.eligibility }}</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 3. SELECTION PROCESS & PATTERN -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                    <span><i data-lucide="settings" class="icon-xs"></i> Selection Process & Examination Pattern</span>
+                </h5>
+                
+                {% if exam.selection_process %}
+                <div class="mb-4">
+                    <h6 class="fw-bold text-muted small mb-2">STAGES OF SELECTION:</h6>
+                    <div class="p-3 bg-light rounded-3 text-dark small" style="line-height: 1.7;">
+                        {{ exam.selection_process }}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if exam.exam_pattern %}
+                <div class="mb-4">
+                    <h6 class="fw-bold text-muted small mb-2">EXAM PATTERN:</h6>
+                    <div class="p-3 bg-light rounded-3 text-dark small" style="line-height: 1.7;">
+                        {{ exam.exam_pattern }}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if exam.subjects or exam.syllabus %}
+                <div>
+                    <h6 class="fw-bold text-muted small mb-2">CORE SUBJECTS & CURRICULUM:</h6>
+                    <p class="text-muted small mb-0">
+                        {{ exam.subjects or exam.syllabus or 'General Awareness, Reasoning, Quantitative Skills, Domain Subject Knowledge.' }}
+                    </p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- 4. CAREER OPPORTUNITIES & OUTCOMES -->
+            {% if exam.career_opportunities or related_careers %}
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">
+                    <span><i data-lucide="briefcase" class="icon-xs"></i> Career Opportunities & Associated Posts</span>
+                </h5>
+                {% if exam.career_opportunities %}
+                <p class="text-dark small mb-3">
+                    <strong>Designated Appointments:</strong> {{ exam.career_opportunities }}
+                </p>
+                {% endif %}
+
+                {% if related_careers %}
+                <h6 class="fw-bold text-muted small mb-2">EXPLORE RELATED CAREER TRACKS ON MPATH:</h6>
+                <div class="row g-2">
+                    {% for c in related_careers %}
+                    <div class="col-sm-6">
+                        <div class="card p-2 border bg-light h-100">
+                            <h6 class="fw-bold mb-1 small">{{ c.title }}</h6>
+                            <span class="text-muted small text-truncate">{{ c.category }}</span>
+                            <a href="{{ url_for('career.career_detail', slug=c.slug or c.id) }}" class="text-primary fw-semibold small mt-1 text-decoration-none">
+                                Inspect Career Path →
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <!-- 5. VERIFIED DATA INTEGRITY NOTICE -->
+            <div class="alert alert-info border-0 rounded-4 p-3 small d-flex gap-2">
+                <span class="fs-5"><i data-lucide="info" class="icon-xs text-info"></i></span>
+                <div>
+                    <strong>Data Integrity Principle:</strong> MPath maintains strict separation between permanent examination regulations (syllabus, eligibility, selection methodology) and changing cycle notices (deadlines, fee revisions, vacancies). Always cross-reference final dates with the gazette notification published on the official authority portal.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR -->
+        <div class="col-lg-4">
+            
+            <!-- Quick Facts Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">Snapshot Facts</h6>
+                
+                <ul class="list-unstyled small mb-0">
+                    <li class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted">Short Name:</span>
+                        <strong class="text-dark">{{ exam.short_name or '—' }}</strong>
+                    </li>
+                    <li class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted">Conducting Body:</span>
+                        <span class="text-dark text-end fw-semibold" style="max-width: 170px;">{{ exam.conducted_by or 'Statutory Board' }}</span>
+                    </li>
+                    <li class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted">Category:</span>
+                        <span class="text-dark">{{ exam.category or 'General' }}</span>
+                    </li>
+                    <li class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted">Application Mode:</span>
+                        <span class="text-dark">{{ exam.application_mode or 'Online' }}</span>
+                    </li>
+                    {% if exam.fee %}
+                    <li class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted">Application Fee:</span>
+                        <span class="text-dark">{{ exam.fee }}</span>
+                    </li>
+                    {% endif %}
+                    {% if exam.salary %}
+                    <li class="d-flex justify-content-between py-2 border-bottom">
+                        <span class="text-muted">Pay / Emoluments:</span>
+                        <span class="text-success fw-semibold">{{ exam.salary }}</span>
+                    </li>
+                    {% endif %}
+                    <li class="d-flex justify-content-between py-2">
+                        <span class="text-muted">Verification Status:</span>
+                        <span class="badge bg-success bg-opacity-10 text-success">{{ exam.verification_status or 'VERIFIED' }}</span>
+                    </li>
+                </ul>
+
+                <div class="mt-4 d-grid gap-2">
+                    {% if exam.official_url or exam.official_website %}
+                    <a href="{{ exam.official_url or exam.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                        Visit Official Authority Portal 
+                    </a>
+                    {% endif %}
+                    <a href="{{ url_for('exam.who_can_apply', qualification=exam.qualification) }}" class="btn btn-outline-secondary btn-sm">
+                        Find Similar Eligibility Exams
+                    </a>
+                </div>
+            </div>
+
+            <!-- Similar Examinations -->
+            {% if similar_exams %}
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">Other {{ exam.category }} Exams</h6>
+                <div class="d-flex flex-column gap-3">
+                    {% for sim in similar_exams %}
+                    <div class="border-bottom pb-2">
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <h6 class="fw-semibold mb-0 small">
+                                <a href="{{ url_for('exam.exam_detail', exam_id=sim.id) }}" class="text-dark text-decoration-none">
+                                    {{ sim.exam_name }}
+                                </a>
+                            </h6>
+                        </div>
+                        <div class="small text-muted mb-1">{{ sim.qualification or 'Graduate' }} • {{ sim.conducted_by or 'Board' }}</div>
+                        <a href="{{ url_for('exam.exam_detail', exam_id=sim.id) }}" class="text-primary small fw-semibold text-decoration-none">
+                            Inspect Details →
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Explore All Exams CTA -->
+            <div class="card border-0 bg-primary bg-opacity-10 rounded-4 p-4 text-center">
+                <h6 class="fw-bold text-primary mb-1">Browse Complete Directory</h6>
+                <p class="small text-muted mb-3">Discover hundreds of examinations spanning all sectors and states.</p>
+                <a href="{{ url_for('exam.exam_list') }}" class="btn btn-primary btn-sm">
+                    Back to All Examinations
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Examination Calendar & Deadlines | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-info bg-opacity-10 text-info fw-semibold small">
+            <i data-lucide="calendar" class="icon-xs"></i>
+            <span>Verified Schedules & Cycles</span>
+        </div>
+        <h1 class="fw-bold text-dark display-6 mb-2">Examination Calendar & Deadlines</h1>
+        <p class="text-muted lead fs-6 mb-4 max-w-800">
+            Track verified application windows, registration deadlines, and examination dates for national and state-level competitive and entrance examinations.
+        </p>
+
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <a href="{{ url_for('exam.exam_list') }}" class="btn btn-outline-secondary px-3">
+                ← Back to Exam Explorer
+            </a>
+            <a href="{{ url_for('exam.who_can_apply') }}" class="btn btn-outline-primary px-3">
+                <i data-lucide="target" class="icon-xs"></i> Who Can Apply?
+            </a>
+        </div>
+    </div>
+
+    <!-- CALENDAR FILTERS -->
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('exam.exam_calendar') }}" class="row g-2 align-items-center">
+            <div class="col-md-5">
+                <select name="category" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>
+                        {{ cat }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-5">
+                <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <option value="">All Statuses</option>
+                    <option value="APPLICATION_OPEN" {% if selected_status == 'APPLICATION_OPEN' %}selected{% endif %}> Applications Open</option>
+                    <option value="UPCOMING" {% if selected_status == 'UPCOMING' %}selected{% endif %}> Upcoming</option>
+                    <option value="NOTIFICATION_EXPECTED" {% if selected_status == 'NOTIFICATION_EXPECTED' %}selected{% endif %}> Notification Expected</option>
+                </select>
+            </div>
+
+            <div class="col-md-2 d-grid">
+                <a href="{{ url_for('exam.exam_calendar') }}" class="btn btn-outline-secondary btn-sm">
+                    Reset
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- CALENDAR LISTINGS -->
+    {% if exams %}
+    <div class="row g-3 mb-4">
+        {% for ex in exams %}
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 bg-white card-interactive d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary small">
+                        {{ ex.category or 'General' }}
+                    </span>
+                    {% set display_status = ex.display_status %}
+                    <span class="badge bg-{{ display_status[1] }} small">
+                        {{ display_status[2] }} {{ display_status[0] }}
+                    </span>
+                </div>
+
+                <h5 class="fw-bold mb-1">
+                    <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="text-dark text-decoration-none">
+                        {{ ex.exam_name }}
+                    </a>
+                </h5>
+                <div class="small text-muted mb-3">Conducting Authority: <strong class="text-secondary">{{ ex.conducted_by or 'Statutory Board' }}</strong></div>
+
+                <!-- Schedule Box -->
+                <div class="p-3 bg-light rounded-3 small mb-3">
+                    <div class="row g-2">
+                        <div class="col-sm-6">
+                            <span class="text-muted d-block">Application Cycle:</span>
+                            <strong class="text-dark">
+                                {% if ex.application_end_date %}
+                                Closes: {{ ex.application_end_date }}
+                                {% else %}
+                                {{ ex.frequency or 'Refer Notification' }}
+                                {% endif %}
+                            </strong>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="text-muted d-block">Exam Date / Window:</span>
+                            <strong class="text-dark">{{ ex.exam_date or ex.frequency or 'Annual Cycle' }}</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Links -->
+                <div class="d-flex gap-2 mt-auto pt-2 border-top align-items-center">
+                    <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="btn btn-sm btn-primary flex-grow-1">
+                        Inspect Exam Details →
+                    </a>
+                    {% if ex.official_url or ex.official_website %}
+                    <a href="{{ ex.official_url or ex.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">
+                        Portal 
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center my-4 bg-white">
+        <div class="fs-1 mb-3"><i data-lucide="calendar" class="icon-xs"></i></div>
+        <h4 class="fw-bold mb-2">No Scheduled Exams Match Selected Filter</h4>
+        <p class="text-muted mb-3">Try choosing another category or view all examinations in the directory.</p>
+        <a href="{{ url_for('exam.exam_calendar') }}" class="btn btn-primary px-4 align-self-center">
+            View All Schedules
+        </a>
+    </div>
+    {% endif %}
+
+    <!-- IMPORTANT DATA DISCIPLINE NOTICE -->
+    <div class="alert alert-light border rounded-4 p-3 small text-muted mt-4">
+        <strong><i data-lucide="alert-triangle" class="icon-xs text-warning"></i> Verification Notice:</strong> MPath strictly avoids fabricating application closing dates or examination timings. Only official dates released by statutory authorities (UPSC, NTA, SSC, IBPS, State PSCs) are displayed.
+    </div>
+
+</div>
+{% endblock %}

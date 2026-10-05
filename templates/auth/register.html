@@ -19,7 +19,7 @@ Register | MPath Career Counselling
     }
 
     .register-header {
-        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        background: linear-gradient(135deg, #00338D, #00225E);
         color: white;
         padding: 35px;
         text-align: center;
@@ -38,42 +38,45 @@ Register | MPath Career Counselling
     .form-section-title {
         font-size: 17px;
         font-weight: 700;
-        color: #0d6efd;
+        color: #00338D;
         margin-top: 10px;
         margin-bottom: 20px;
         padding-bottom: 8px;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid #e2e8f0;
     }
 
     .form-label {
         font-weight: 600;
-        color: #374151;
+        color: #172033;
     }
 
     .form-control,
     .form-select {
         min-height: 48px;
-        border-radius: 10px;
-        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
     }
 
     .form-control:focus,
     .form-select:focus {
-        border-color: #0d6efd;
-        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.12);
+        border-color: #00338D;
+        box-shadow: 0 0 0 0.2rem rgba(0, 51, 141, 0.18);
     }
 
     .register-btn {
-        min-height: 52px;
-        border-radius: 12px;
+        min-height: 50px;
+        border-radius: 8px;
         font-weight: 600;
         font-size: 16px;
-        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        background: #00338D;
+        color: #ffffff;
         border: none;
+        transition: background-color 0.2s ease;
     }
 
     .register-btn:hover {
-        opacity: 0.92;
+        background: #00225E;
+        color: #ffffff;
     }
 
     .login-link {
@@ -102,7 +105,7 @@ Register | MPath Career Counselling
                     <div class="register-header">
 
                         <h2>
-                            🎓 Create Your MPath Career Counselling Account
+                            <i data-lucide="graduation-cap" class="icon-xs"></i> Create Your MPath Career Counselling Account
                         </h2>
 
                         <p>
@@ -123,7 +126,7 @@ Register | MPath Career Counselling
                             <!-- ========================= -->
 
                             <div class="form-section-title">
-                                👤 Personal Information
+                                <i data-lucide="user" class="icon-xs"></i> Personal Information
                             </div>
 
                             <div class="row">
@@ -224,7 +227,7 @@ Register | MPath Career Counselling
                             <!-- ========================= -->
 
                             <div class="form-section-title mt-4">
-                                🎓 Education Information
+                                <i data-lucide="graduation-cap" class="icon-xs"></i> Education Information
                             </div>
 
                             <div class="row">
@@ -387,7 +390,7 @@ Register | MPath Career Counselling
                             <!-- ========================= -->
 
                             <div class="form-section-title mt-4">
-                                🚀 Career Information
+                                <i data-lucide="arrow-right" class="icon-xs"></i> Career Information
                             </div>
 
                             <div class="row">
@@ -418,7 +421,7 @@ Register | MPath Career Counselling
                             <!-- ========================= -->
 
                             <div class="form-section-title mt-4">
-                                🔐 Account Security
+                                 Account Security
                             </div>
 
                             <div class="row">
@@ -475,7 +478,7 @@ Register | MPath Career Counselling
                                     type="submit"
                                     class="btn btn-primary register-btn w-100">
 
-                                    Create My Account 🚀
+                                    Create My Account <i data-lucide="arrow-right" class="icon-xs"></i>
 
                                 </button>
 

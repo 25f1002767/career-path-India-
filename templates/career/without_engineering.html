@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Careers Without Engineering | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('career.career_list') }}" class="text-decoration-none">Careers</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Careers Without Engineering</li>
+        </ol>
+    </nav>
+
+    <!-- Hero Card -->
+    <div class="card bg-primary text-white border-0 shadow-lg rounded-4 p-4 p-md-5 mb-4 position-relative overflow-hidden" style="background-color: #00338D !important; background: linear-gradient(135deg, #00338D 0%, #00225E 100%) !important;">
+        <div class="position-relative z-1">
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-25 text-white small fw-semibold mb-3">
+                <span><i data-lucide="graduation-cap" class="icon-xs"></i><i data-lucide="scale" class="icon-xs"></i></span>
+                <span>Alternative Excellence Pathways</span>
+            </div>
+            <h1 class="display-6 fw-bold mb-2">Excellence Without Engineering (B.Tech)</h1>
+            <p class="lead fs-6 mb-3 text-white-50" style="max-width: 820px;">
+                B.Tech is not the only path to a high-impact future. Explore thriving, high-growth professional fields across Medicine, Law, Civil Services, Actuarial Sciences, Management Consulting, Media, Pure Sciences, and Agriculture.
+            </p>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-white text-dark px-3 py-2 rounded-pill fw-semibold">{{ total_count }} Non-Engineering Pathways Available</span>
+                <a href="{{ url_for('career.careers_without_coding') }}" class="btn btn-outline-light btn-sm rounded-pill">Explore Careers Without Coding →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Filter Pills -->
+    <div class="mb-4">
+        <span class="small text-uppercase fw-bold text-muted d-block mb-2">Filter Non-Engineering Careers by Domain:</span>
+        <div class="d-flex gap-2 overflow-auto pb-2" style="scrollbar-width: thin;">
+            <a href="{{ url_for('career.careers_without_engineering') }}" class="btn btn-sm text-nowrap rounded-pill {% if not selected_category %}btn-dark{% else %}btn-outline-secondary bg-white text-dark{% endif %}">
+                All Domains ({{ total_count }})
+            </a>
+            {% for cat_name, cnt in categories %}
+            <a href="{{ url_for('career.careers_without_engineering', category=cat_name, stream=selected_stream) }}" class="btn btn-sm text-nowrap rounded-pill {% if selected_category == cat_name %}btn-primary text-white{% else %}btn-outline-secondary bg-white text-dark{% endif %}">
+                {{ cat_name }} <span class="badge bg-light text-dark ms-1">{{ cnt }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Careers Grid -->
+    <div class="row g-4">
+        {% for c in careers %}
+        <div class="col-lg-4 col-md-6">
+            <div class="card h-100 border-0 shadow-sm rounded-4 hover-lift p-4 bg-white d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-1 small fw-semibold">
+                            {{ c.category }}
+                        </span>
+                        {% if c.is_lesser_known %}
+                        <span class="badge bg-info bg-opacity-10 text-info rounded-pill px-2 py-1 small">
+                            <i data-lucide="sparkles" class="icon-xs"></i> Lesser Known
+                        </span>
+                        {% endif %}
+                    </div>
+                    <h5 class="fw-bold mb-2">
+                        <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="text-decoration-none text-dark hover-primary">
+                            {{ c.title }}
+                        </a>
+                    </h5>
+                    <p class="small text-muted mb-3 line-clamp-3">
+                        {{ c.short_description or c.description }}
+                    </p>
+                </div>
+                <div class="border-top pt-3 mt-2">
+                    <div class="d-flex justify-content-between align-items-center small mb-2">
+                        <span class="text-muted">Education:</span>
+                        <span class="fw-semibold text-dark text-truncate" style="max-width: 180px;">{{ c.minimum_qualification or 'Bachelor’s Degree' }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center small mb-3">
+                        <span class="text-muted">Indicative Scale:</span>
+                        <span class="fw-bold text-success">{{ c.average_salary or 'As per industry' }}</span>
+                    </div>
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-outline-primary w-100 rounded-3 btn-sm fw-semibold">
+                        View Detailed Dossier →
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if pagination and pagination.pages > 1 %}
+    <div class="d-flex justify-content-center mt-5">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if pagination.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('career.careers_without_engineering', page=pagination.prev_num, category=selected_category, stream=selected_stream) }}">Previous</a>
+                </li>
+                {% endif %}
+                {% for p in pagination.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=2) %}
+                    {% if p %}
+                        <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                            <a class="page-link" href="{{ url_for('career.careers_without_engineering', page=p, category=selected_category, stream=selected_stream) }}">{{ p }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">…</span></li>
+                    {% endif %}
+                {% endfor %}
+                {% if pagination.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('career.careers_without_engineering', page=pagination.next_num, category=selected_category, stream=selected_stream) }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

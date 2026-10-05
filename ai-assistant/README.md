@@ -4,7 +4,7 @@ A comprehensive full-stack career guidance and exam navigation platform tailored
 
 ---
 
-## 🚀 Running Locally on Localhost
+##  Running Locally on Localhost
 
 All 1,600+ curated career paths, domain datasets, pay scales, syllabus trackers, eligibility engines, and offline fallbacks are bundled directly in the codebase. You can run this completely on your local machine.
 
@@ -51,7 +51,7 @@ All 1,600+ curated career paths, domain datasets, pay scales, syllabus trackers,
 
 ---
 
-## 📦 What is Included in the Folder
+##  What is Included in the Folder
 
 - **`src/data/domainCareerGenerator.ts`**: Master database of 110+ career blueprints per domain across all 15 Indian domains (50 Elite, 50 Stable, 10 Hidden Gems).
 - **`src/data/careers.ts`**: Flagship government & private sector career profiles with complete eligibility criteria, step-by-step milestones, notifications, and pay matrix.

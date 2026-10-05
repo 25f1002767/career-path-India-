@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}National Scholarship Coverage & Portal Statistics | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-success bg-opacity-10 text-success fw-semibold small">
+            <i data-lucide="map" class="icon-xs"></i>
+            <span>Real-time Verified Schemes Index</span>
+        </div>
+        <h1 class="fw-bold text-dark display-6 mb-1">National Scholarship Coverage Matrix</h1>
+        <p class="text-muted lead fs-6 mb-4 max-w-800">
+            Transparent breakdown of authentic scholarship programs indexed across Central Ministries, Statutory Bodies, State Governments, and Premier Foundations.
+        </p>
+    </div>
+
+    <!-- HIGH-LEVEL METRICS CARDS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-4 text-center bg-white">
+                <div class="display-6 fw-bold text-primary mb-1">{{ total_count }}</div>
+                <div class="text-muted fw-semibold small">Total Traceable Schemes</div>
+                <div class="small text-muted mt-1">Authentic sources only</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-4 text-center bg-white">
+                <div class="display-6 fw-bold text-success mb-1">{{ verified_count }}</div>
+                <div class="text-muted fw-semibold small">Officially Verified</div>
+                <div class="small text-success mt-1"> Active portals linked</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-4 text-center bg-white">
+                <div class="display-6 fw-bold text-warning mb-1">{{ needs_review_count }}</div>
+                <div class="text-muted fw-semibold small">Needs Review</div>
+                <div class="small text-muted mt-1">Pending cycle notification</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-4 text-center bg-white">
+                <div class="display-6 fw-bold text-info mb-1">{{ state_breakdown|length }}</div>
+                <div class="text-muted fw-semibold small">States & UTs Covered</div>
+                <div class="small text-muted mt-1">Plus Pan-India Central schemes</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTOR & PROVIDER BREAKDOWN -->
+    <div class="row g-4 mb-4">
+        <!-- PROVIDER TYPES -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                <h5 class="fw-bold text-dark mb-3"><i data-lucide="landmark" class="icon-xs"></i> Schemes by Governing Authority</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-secondary small fw-bold">Provider Classification</th>
+                                <th class="text-secondary small fw-bold text-end">Schemes Count</th>
+                                <th class="text-secondary small fw-bold text-end">Share</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for ptype, count in provider_breakdown %}
+                            <tr>
+                                <td class="fw-semibold text-dark">
+                                    {% if ptype == 'Central Government' %}<i data-lucide="landmark" class="icon-xs"></i>
+                                    {% elif ptype == 'State Government' %}<i data-lucide="map-pin" class="icon-xs"></i>
+                                    {% elif ptype == 'Corporate / CSR' %}<i data-lucide="building" class="icon-xs"></i>
+                                    {% elif ptype == 'UGC' or ptype == 'AICTE' or ptype == 'DST' or ptype == 'ICAR' %}<i data-lucide="graduation-cap" class="icon-xs"></i>
+                                    {% elif ptype == 'International' %}
+                                    {% else %}{% endif %}
+                                    {{ ptype or 'Government' }}
+                                </td>
+                                <td class="text-end fw-bold text-primary">{{ count }}</td>
+                                <td class="text-end text-muted small">
+                                    {{ "%.1f"|format((count / total_count * 100) if total_count else 0) }}%
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY DISTRIBUTION -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                <h5 class="fw-bold text-dark mb-3"><i data-lucide="target" class="icon-xs"></i> Distribution by Beneficiary Target</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-secondary small fw-bold">Scheme Category</th>
+                                <th class="text-secondary small fw-bold text-end">Count</th>
+                                <th class="text-secondary small fw-bold text-end">Share</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cat, count in category_breakdown %}
+                            <tr>
+                                <td class="fw-semibold text-dark">{{ cat or 'General' }}</td>
+                                <td class="text-end fw-bold text-primary">{{ count }}</td>
+                                <td class="text-end text-muted small">
+                                    {{ "%.1f"|format((count / total_count * 100) if total_count else 0) }}%
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATE-WISE COVERAGE TABLE -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h5 class="fw-bold text-dark mb-1"><i data-lucide="map-pin" class="icon-xs"></i> State-Wise Scholarship Representation</h5>
+                <p class="text-muted small mb-0">State-exclusive schemes plus {{ total_count }} national schemes open across India.</p>
+            </div>
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-primary btn-sm">
+                Explore in Directory
+            </a>
+        </div>
+
+        <div class="row g-3">
+            {% for st, count in state_breakdown %}
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="p-3 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="fw-semibold text-dark">{{ st }}</div>
+                        <small class="text-muted">Dedicated Schemes</small>
+                    </div>
+                    <span class="badge bg-primary rounded-pill px-2.5 py-1">{{ count }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- ZERO-FABRICATION INTEGRITY NOTICE -->
+    <div class="alert alert-info border-0 rounded-4 p-4">
+        <h6 class="fw-bold text-dark mb-1"> MPath Data Integrity Commitment</h6>
+        <p class="small text-muted mb-0">
+            MPath strictly prohibits synthetic or unverified scholarship listings. Every scheme listed above is directly sourced from gazetted ministries (e.g. Ministry of Education, Social Justice, Tribal Affairs), statutory bodies (UGC, AICTE, DST), state scholarship portals (e.g., MP MPTAAS, UP Scholarship Portal, MahaDBT), or certified CSR boards.
+        </p>
+    </div>
+
+</div>
+{% endblock %}

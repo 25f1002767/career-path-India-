@@ -24,9 +24,10 @@ def generate_report(user, assessment, recommendations, filename):
 
     story.append(Spacer(1,20))
 
+    student_name = getattr(user, "full_name", None) or getattr(user, "name", None) or user.email
     story.append(
         Paragraph(
-            f"Student : {user.username}",
+            f"Student : {student_name}",
             styles["Normal"]
         )
     )

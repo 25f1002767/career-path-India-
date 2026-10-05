@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Student Document Vault | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-info bg-opacity-10 text-dark fw-semibold small">
+                <i data-lucide="folder" class="icon-xs"></i>
+                <span>Encrypted & Private Certificate Storage</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">Student Document Vault</h1>
+            <p class="text-muted lead fs-6 mb-0">Store your academic marksheets and statutory certificates securely once to reuse across scholarship applications.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-primary px-3 fw-semibold" data-bs-toggle="modal" data-bs-target="#uploadDocModal">
+                + Upload New Certificate
+            </button>
+            <a href="{{ url_for('scholarship.my_applications') }}" class="btn btn-outline-secondary px-3">
+                <i data-lucide="clipboard-list" class="icon-xs"></i> My Applications
+            </a>
+        </div>
+    </div>
+
+    <!-- PRIVACY & SECURITY ALERT (Section 39) -->
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-light border">
+        <div class="d-flex align-items-center gap-3">
+            <span class="fs-4"></span>
+            <div class="small text-muted">
+                <strong>Strict Privacy & Ownership Guarantee:</strong> Your uploaded documents are stored in private isolated storage and are strictly accessible only by your authenticated MPath account. They are never indexed publicly or shared without your explicit consent.
+            </div>
+        </div>
+    </div>
+
+    <!-- DOCUMENT VAULT GRID -->
+    {% if documents %}
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-5">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light small text-uppercase">
+                    <tr>
+                        <th>Document Type</th>
+                        <th>File Name</th>
+                        <th>Uploaded On</th>
+                        <th>File Size</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in documents %}
+                    <tr>
+                        <td>
+                            <div class="fw-bold text-dark">
+                                {% if 'income' in doc.document_type|lower %}<i data-lucide="award" class="icon-xs"></i>
+                                {% elif 'caste' in doc.document_type|lower %}<i data-lucide="landmark" class="icon-xs"></i>
+                                {% elif 'marksheet' in doc.document_type|lower %}<i data-lucide="graduation-cap" class="icon-xs"></i>
+                                {% elif 'photo' in doc.document_type|lower %}<i data-lucide="user" class="icon-xs"></i>
+                                {% elif 'domicile' in doc.document_type|lower %}<i data-lucide="map-pin" class="icon-xs"></i>
+                                {% else %}<i data-lucide="file-text" class="icon-xs"></i>{% endif %}
+                                {{ doc.document_type|replace('_', ' ')|title }}
+                            </div>
+                            {% if doc.notes %}
+                            <div class="text-muted small">{{ doc.notes }}</div>
+                            {% endif %}
+                        </td>
+                        <td class="small text-dark fw-semibold">
+                            {{ doc.document_name }}
+                        </td>
+                        <td class="small text-muted">
+                            {{ doc.uploaded_at.strftime('%d-%b-%Y') if doc.uploaded_at else 'Recent' }}
+                        </td>
+                        <td class="small text-muted">
+                            {{ (doc.file_size / 1024)|int }} KB
+                        </td>
+                        <td>
+                            <span class="badge bg-success bg-opacity-10 text-success small">
+                                 Available in Vault
+                            </span>
+                        </td>
+                        <td class="text-end">
+                            <div class="d-inline-flex gap-2">
+                                <a href="{{ url_for('scholarship.download_document', doc_id=doc.id) }}" 
+                                   class="btn btn-outline-primary btn-sm" title="Download">
+                                    <i data-lucide="download" class="icon-xs"></i> Download
+                                </a>
+                                <form method="POST" action="{{ url_for('scholarship.delete_document', doc_id=doc.id) }}" 
+                                      onsubmit="return confirm('Are you sure you want to remove this document from your vault?');" style="display:inline;">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete">
+                                        <i data-lucide="trash-2" class="icon-xs"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <!-- EMPTY VAULT -->
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white my-4">
+        <div class="fs-1 mb-3"><i data-lucide="folder" class="icon-xs"></i></div>
+        <h4 class="fw-bold text-dark mb-2">Your Document Vault is Empty</h4>
+        <p class="text-muted max-w-600 mx-auto mb-4">
+            Upload your income certificate, domicile, marksheets, and college bonafide once. They will automatically be attached to your scholarship preparation checklists!
+        </p>
+        <div>
+            <button type="button" class="btn btn-primary px-4 fw-semibold" data-bs-toggle="modal" data-bs-target="#uploadDocModal">
+                + Upload Your First Document
+            </button>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- STANDARD DOCUMENT GUIDE SECTION -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+        <h5 class="fw-bold text-dark mb-3">Checklist of Commonly Required Scholarship Documents in India</h5>
+        <div class="row g-3 small">
+            {% for code, name in standard_doc_types %}
+            <div class="col-md-6 col-lg-4">
+                <div class="p-2 border rounded-3 bg-light d-flex align-items-center justify-content-between">
+                    <span>{{ name }}</span>
+                    <span class="badge bg-secondary small">{{ code }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal fade" id="uploadDocModal" tabindex="-1" aria-labelledby="uploadDocModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <form method="POST" action="{{ url_for('scholarship.upload_document') }}" enctype="multipart/form-data">
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold text-dark" id="uploadDocModalLabel">Upload Document to Vault</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted mb-1">Document Category</label>
+                        <select name="document_type" class="form-select" required>
+                            {% for code, name in standard_doc_types %}
+                            <option value="{{ code }}">{{ name }}</option>
+                            {% endfor %}
+                            <option value="OTHER">Other Scholarship Document</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted mb-1">Select File (PDF, JPG, PNG - Max 5MB)</label>
+                        <input type="file" name="file" class="form-control" accept=".pdf,.jpg,.jpeg,.png" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted mb-1">Optional Note / Issuing Authority</label>
+                        <input type="text" name="notes" class="form-control" placeholder="e.g. Issued by Tehsildar Office on 15-Jan-2026">
+                    </div>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Upload & Save to Vault</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

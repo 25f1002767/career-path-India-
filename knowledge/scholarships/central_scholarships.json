@@ -1,29 +1,41 @@
 [
-    {
-        "name": "Central Sector Scholarship",
-        "state": "All India",
-        "min_percentage": 80,
-        "max_income": 800000,
-        "amount": "₹10,000 - ₹20,000 per year",
-        "level": "Undergraduate",
-        "apply_link": "https://scholarships.gov.in"
-    },
-    {
-        "name": "Post Matric Scholarship",
-        "state": "Madhya Pradesh",
-        "min_percentage": 60,
-        "max_income": 250000,
-        "amount": "₹5,000 - ₹15,000 per year",
-        "level": "Undergraduate",
-        "apply_link": "https://scholarships.gov.in"
-    },
-    {
-        "name": "AICTE Pragati Scholarship",
-        "state": "All India",
-        "min_percentage": 70,
-        "max_income": 800000,
-        "amount": "₹50,000 per year",
-        "level": "Technical",
-        "apply_link": "https://www.aicte-india.org"
-    }
+  {
+    "name": "Central Sector Scholarship",
+    "state": "All India",
+    "min_percentage": 80,
+    "max_income": 800000,
+    "amount": "₹10,000 - ₹20,000 per year",
+    "level": "Undergraduate",
+    "official_website": "https://www.education.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_Guidelines.pdf",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
+  },
+  {
+    "name": "Post Matric Scholarship",
+    "state": "Madhya Pradesh",
+    "min_percentage": 60,
+    "max_income": 250000,
+    "amount": "₹5,000 - ₹15,000 per year",
+    "level": "Undergraduate",
+    "official_website": "https://www.tribal.mp.gov.in",
+    "official_application_url": "https://www.mptechedu.org/scholarship",
+    "notification_url": "https://www.tribal.mp.gov.in/mptaas",
+    "guidelines_url": "https://www.tribal.mp.gov.in/mptaas/guidelines",
+    "faq_url": "https://www.tribal.mp.gov.in/mptaas/faq"
+  },
+  {
+    "name": "AICTE Pragati Scholarship",
+    "state": "All India",
+    "min_percentage": 70,
+    "max_income": 800000,
+    "amount": "₹50,000 per year",
+    "level": "Technical",
+    "official_website": "https://www.aicte-india.org",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://www.aicte-india.org/schemes/students-development-schemes/Pragati",
+    "guidelines_url": "https://www.aicte-india.org/sites/default/files/pragati-guidelines.pdf",
+    "faq_url": "https://www.aicte-india.org/schemes/students-development-schemes/faq"
+  }
 ]

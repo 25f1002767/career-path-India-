@@ -1,82 +1,74 @@
 {% extends "base.html" %}
 
-{% block title %}
-Login | MPath Career Counselling
-{% endblock %}
+{% block title %}Sign In | MPath Career Counselling{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
-
     <div class="row justify-content-center">
-
-        <div class="col-lg-6">
-
-            <div class="card shadow-lg border-0 rounded-4">
-
-                <div class="card-body p-5">
-
-                    <h2 class="text-center mb-4">
-                        Welcome Back
-                    </h2>
-
-                    <form method="POST">
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                Email
-                            </label>
-
-                            <input
-                                type="email"
-                                name="email"
-                                class="form-control"
-                                required>
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                Password
-                            </label>
-
-                            <input
-                                type="password"
-                                name="password"
-                                class="form-control"
-                                required>
-
-                        </div>
-
-                        <button
-                            class="btn btn-primary w-100">
-
-                            Login
-
-                        </button>
-
-                    </form>
-
-                    <div class="text-center mt-4">
-
-                        Don't have an account?
-
-                        <a href="{{ url_for('auth.register') }}">
-                            Register
-                        </a>
-
+        <div class="col-lg-5 col-md-8">
+            <div class="card border rounded-4 shadow-sm overflow-hidden bg-white">
+                <div class="card-header bg-navy text-white text-center py-4 border-0" style="background-color: var(--color-navy);">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 text-white small fw-semibold mb-2">
+                        <i data-lucide="shield-check" class="icon-xs text-gold"></i>
+                        <span>National Student Portal</span>
                     </div>
-
+                    <h2 class="h4 fw-bold mb-1 text-white">Sign In to MPath</h2>
+                    <p class="small text-white-50 mb-0">Access your saved pathways, assessments, and AI mentor</p>
                 </div>
 
+                <div class="card-body p-4 p-md-5">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold text-dark">Email Address</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i data-lucide="mail" class="icon-xs"></i>
+                                </span>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control border-start-0"
+                                    placeholder="name@example.com"
+                                    autocomplete="email"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label small fw-semibold text-dark">Password</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light text-muted border-end-0">
+                                    <i data-lucide="lock" class="icon-xs"></i>
+                                </span>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    class="form-control border-start-0"
+                                    placeholder="Enter your password"
+                                    autocomplete="current-password"
+                                    required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                            Sign In
+                        </button>
+                    </form>
+
+                    <div class="text-center mt-4 pt-3 border-top small text-muted">
+                        Don't have an account?
+                        <a href="{{ url_for('auth.register') }}" class="fw-semibold text-primary text-decoration-none ms-1">
+                            Create Account
+                        </a>
+                    </div>
+                </div>
             </div>
 
+            <div class="text-center mt-4 small text-muted d-flex align-items-center justify-content-center gap-2">
+                <i data-lucide="shield" class="icon-xs"></i>
+                <span>Protected under national student data privacy standards</span>
+            </div>
         </div>
-
     </div>
-
 </div>
-
 {% endblock %}

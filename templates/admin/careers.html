@@ -1,141 +1,202 @@
 {% extends "base.html" %}
 
-{% block title %}
-Career Management
-{% endblock %}
+{% block title %}National Career Management | Admin{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-
-            <h2 class="fw-bold">
-
-                Career Management
-
-            </h2>
-
-            <p class="text-muted">
-
-                Manage all career records.
-
-            </p>
-
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-semibold mb-2">
+                <i data-lucide="shield-check" class="icon-xs"></i>
+                <span>National Career Service & Taxonomy Admin</span>
+            </div>
+            <h2 class="fw-bold mb-1 text-dark">National Career Directory Management</h2>
+            <p class="text-muted mb-0">Manage 200+ authentic occupational pathways, verify sources, and inspect course-exam graphs.</p>
         </div>
-
-        <a
-            href="{{ url_for('admin.add_career') }}"
-            class="btn btn-success">
-
-            + Add Career
-
-        </a>
-
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#bulkImportModal">
+                <i data-lucide="folder" class="icon-xs"></i> Bulk Import JSON
+            </button>
+            <a href="{{ url_for('admin.add_career') }}" class="btn btn-primary fw-semibold">
+                + Add New Career
+            </a>
+            <a href="{{ url_for('career.career_list') }}" target="_blank" class="btn btn-light border">
+                Public Explorer 
+            </a>
+        </div>
     </div>
 
-    <form class="row mb-4">
-
-        <div class="col-md-10">
-
-            <input
-                type="text"
-                class="form-control"
-                name="search"
-                value="{{ search }}"
-                placeholder="Search Career">
-
+    <!-- Stats Bar -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4 col-6">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-primary fs-3 fw-bold">{{ total_careers }}</div>
+                <div class="small text-muted fw-semibold">Total Careers in Directory</div>
+            </div>
         </div>
-
-        <div class="col-md-2">
-
-            <button class="btn btn-primary w-100">
-
-                Search
-
-            </button>
-
+        <div class="col-md-4 col-6">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-success fs-3 fw-bold">{{ verified_careers }}</div>
+                <div class="small text-muted fw-semibold">Verified by NCS / Sector Councils</div>
+            </div>
         </div>
+        <div class="col-md-4 col-12">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-info fs-3 fw-bold">{{ categories|length }}</div>
+                <div class="small text-muted fw-semibold">National Sectors</div>
+            </div>
+        </div>
+    </div>
 
-    </form>
-
-    <div class="card shadow border-0">
-
-        <div class="table-responsive">
-
-            <table class="table table-hover align-middle mb-0">
-
-                <thead class="table-light">
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Salary</th>
-                        <th class="text-center">Actions</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {% for career in careers %}
-
-                    <tr>
-
-                        <td>{{ career.id }}</td>
-
-                        <td>{{ career.title }}</td>
-
-                        <td>
-
-                            <span class="badge bg-primary">
-
-                                {{ career.category }}
-
-                            </span>
-
-                        </td>
-
-                        <td>{{ career.average_salary }}</td>
-
-                        <td class="text-center">
-
-                            <a
-                                href="{{ url_for('admin.edit_career', id=career.id) }}"
-                                class="btn btn-warning btn-sm">
-
-                                Edit
-
-                            </a>
-
-                            <a
-                                href="{{ url_for('admin.delete_career', id=career.id) }}"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('Delete this career?')">
-
-                                Delete
-
-                            </a>
-
-                        </td>
-
-                    </tr>
-
+    <!-- Filters Bar -->
+    <div class="card p-3 border shadow-sm rounded-3 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('admin.careers') }}" class="row g-2 align-items-center">
+            <div class="col-md-5">
+                <input type="text" class="form-control" name="search" value="{{ search or '' }}" placeholder="Search title, industry, description...">
+            </div>
+            <div class="col-md-3">
+                <select name="category" class="form-select">
+                    <option value="">All Sectors</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>{{ cat }}</option>
                     {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select name="status" class="form-select">
+                    <option value="">All Statuses</option>
+                    <option value="VERIFIED" {% if selected_status == 'VERIFIED' %}selected{% endif %}>VERIFIED</option>
+                    <option value="PENDING_REVIEW" {% if selected_status == 'PENDING_REVIEW' %}selected{% endif %}>PENDING_REVIEW</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">Filter</button>
+                <a href="{{ url_for('admin.careers') }}" class="btn btn-outline-secondary">Reset</a>
+            </div>
+        </form>
+    </div>
 
+    <!-- Careers Table -->
+    <div class="card shadow-sm border-0 rounded-4 overflow-hidden bg-white mb-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light small text-uppercase">
+                    <tr>
+                        <th style="width: 60px;">ID</th>
+                        <th>Career Title & Sub-Sector</th>
+                        <th>Sector</th>
+                        <th>Min Qualification</th>
+                        <th>Salary Scale</th>
+                        <th>Verification Status</th>
+                        <th>Source</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in careers %}
+                    <tr>
+                        <td class="text-muted small">#{{ c.id }}</td>
+                        <td>
+                            <div class="fw-bold text-dark">
+                                <a href="{{ url_for('career.career_detail', slug=c.slug) }}" target="_blank" class="text-decoration-none text-dark">
+                                    {{ c.title }}
+                                </a>
+                            </div>
+                            <div class="small text-muted">{{ c.sub_category or c.industry or 'General' }}</div>
+                        </td>
+                        <td>
+                            <span class="badge bg-primary bg-opacity-10 text-primary small">{{ c.category }}</span>
+                        </td>
+                        <td class="small text-muted">{{ c.minimum_qualification or c.education_required or 'Graduate' }}</td>
+                        <td class="small fw-semibold text-success">{{ c.average_salary or 'Industry scale' }}</td>
+                        <td>
+                            <a href="{{ url_for('admin.toggle_verification', entity='career', id=c.id) }}" class="badge text-decoration-none {% if c.verification_status == 'VERIFIED' %}bg-success{% else %}bg-warning text-dark{% endif %}" title="Click to toggle verification status">
+                                {% if c.verification_status == 'VERIFIED' %}<i data-lucide="shield-check" class="icon-xs"></i> VERIFIED{% else %}<i data-lucide="clock" class="icon-xs"></i> REVIEW{% endif %}
+                            </a>
+                        </td>
+                        <td class="small">
+                            {% if c.official_url %}
+                            <a href="{{ c.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info py-0 px-2" style="font-size: 0.75rem;">
+                                Official 
+                            </a>
+                            {% else %}
+                            <span class="text-muted">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ url_for('admin.edit_career', id=c.id) }}" class="btn btn-outline-secondary">
+                                    Edit
+                                </a>
+                                <a href="{{ url_for('admin.delete_career', id=c.id) }}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete {{ c.title }}?')">
+                                    Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center py-5 text-muted">
+                            No careers found matching your criteria.
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
-
             </table>
-
         </div>
 
+        <!-- Pagination -->
+        {% if pagination.pages > 1 %}
+        <div class="card-footer bg-white py-3 border-top">
+            <ul class="pagination pagination-sm justify-content-center mb-0">
+                <li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+                    <a class="page-link" href="{{ url_for('admin.careers', page=pagination.prev_num, search=search, category=selected_category, status=selected_status) }}">Previous</a>
+                </li>
+                {% for p in pagination.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=2) %}
+                    {% if p %}
+                        <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                            <a class="page-link" href="{{ url_for('admin.careers', page=p, search=search, category=selected_category, status=selected_status) }}">{{ p }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">…</span></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+                    <a class="page-link" href="{{ url_for('admin.careers', page=pagination.next_num, search=search, category=selected_category, status=selected_status) }}">Next</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </div>
 
 </div>
 
+<!-- Bulk Import Modal -->
+<div class="modal fade" id="bulkImportModal" tabindex="-1" aria-labelledby="bulkImportModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <form method="POST" action="{{ url_for('admin.career_bulk_import') }}" enctype="multipart/form-data">
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold" id="bulkImportModalLabel">Bulk Import Careers (JSON)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="small text-muted mb-3">
+                        Upload a valid JSON array of career objects containing title, category, minimum qualification, skills, salary, and official source URLs.
+                    </p>
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold">Select JSON File</label>
+                        <input type="file" name="file" class="form-control" accept=".json" required>
+                    </div>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary fw-semibold">Upload & Import</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -7,7 +7,11 @@
     "category": "Merit-Based",
     "amount": "₹10,000 per year (UG), ₹20,000 per year (PG)",
     "eligibility": "Students who passed Class 12 with high marks and are studying in a recognized college or university",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://www.education.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_Guidelines.pdf",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 2,
@@ -17,7 +21,11 @@
     "category": "SC",
     "amount": "Tuition fee reimbursement + maintenance allowance",
     "eligibility": "Scheduled Caste students studying after Class 10 with eligible family income criteria",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/post-matric-sc",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 3,
@@ -27,7 +35,11 @@
     "category": "OBC",
     "amount": "Up to ₹10,000 per year depending on the course",
     "eligibility": "OBC students pursuing studies after Class 10 with family income within the prescribed limit",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/post-matric-obc",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 4,
@@ -37,7 +49,11 @@
     "category": "Economically Weaker Section",
     "amount": "₹12,000 per year",
     "eligibility": "Meritorious students from economically weaker families studying in Class 8 and continuing secondary education",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://dsel.education.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://dsel.education.gov.in/scheme/nmms",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 5,
@@ -47,7 +63,11 @@
     "category": "Girls",
     "amount": "₹50,000 per year",
     "eligibility": "Girl students admitted to AICTE-approved technical diploma or degree courses",
-    "official_website": "https://www.aicte-india.org"
+    "official_website": "https://www.aicte-india.org",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://www.aicte-india.org/schemes/students-development-schemes/Pragati",
+    "guidelines_url": "https://www.aicte-india.org/sites/default/files/pragati-guidelines.pdf",
+    "faq_url": "https://www.aicte-india.org/schemes/students-development-schemes/faq"
   },
   {
     "id": 6,
@@ -57,7 +77,11 @@
     "category": "Persons with Disabilities",
     "amount": "₹50,000 per year",
     "eligibility": "Differently-abled students with at least 40% disability studying in AICTE-approved institutions",
-    "official_website": "https://www.aicte-india.org"
+    "official_website": "https://www.aicte-india.org",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://www.aicte-india.org/schemes/students-development-schemes/Saksham",
+    "guidelines_url": "https://www.aicte-india.org/sites/default/files/saksham-guidelines.pdf",
+    "faq_url": "https://www.aicte-india.org/schemes/students-development-schemes/faq"
   },
   {
     "id": 7,
@@ -67,7 +91,11 @@
     "category": "Orphans / Single Parent / COVID-Affected",
     "amount": "₹50,000 per year",
     "eligibility": "Students who are orphans, children of single parents, or affected by COVID-19 and studying in AICTE-approved institutions",
-    "official_website": "https://www.aicte-india.org"
+    "official_website": "https://www.aicte-india.org",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://www.aicte-india.org/schemes/students-development-schemes/Swanath",
+    "guidelines_url": "https://www.aicte-india.org/sites/default/files/swanath-guidelines.pdf",
+    "faq_url": "https://www.aicte-india.org/schemes/students-development-schemes/faq"
   },
   {
     "id": 8,
@@ -77,7 +105,11 @@
     "category": "Science Merit",
     "amount": "₹80,000 per year",
     "eligibility": "Top-performing science students pursuing BSc, BS, or Integrated MSc in basic and natural sciences",
-    "official_website": "https://online-inspire.gov.in"
+    "official_website": "https://dst.gov.in",
+    "official_application_url": "https://online-inspire.gov.in/Account/Register",
+    "notification_url": "https://online-inspire.gov.in/Announcement",
+    "guidelines_url": "https://online-inspire.gov.in/Content/Guideline_SHE.pdf",
+    "faq_url": "https://online-inspire.gov.in/Content/FAQ_SHE.pdf"
   },
   {
     "id": 9,
@@ -87,7 +119,11 @@
     "category": "Children of Ex-Servicemen / CAPF Personnel",
     "amount": "₹2,500 per month (boys), ₹3,000 per month (girls)",
     "eligibility": "Dependent wards and widows of ex-servicemen, CAPF, and Assam Rifles personnel pursuing professional or technical education",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://www.warb-mha.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://www.warb-mha.gov.in/pmss.html",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 10,
@@ -97,7 +133,11 @@
     "category": "SC / Denotified Tribes / Landless Agricultural Labourers / Traditional Artisans",
     "amount": "Covers tuition fees, living expenses, and other approved costs",
     "eligibility": "Eligible category students pursuing higher studies abroad in approved institutions",
-    "official_website": "https://www.nosmsje.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://www.nosmsje.gov.in/",
+    "notification_url": "https://www.nosmsje.gov.in/announcements",
+    "guidelines_url": "https://www.nosmsje.gov.in/guidelines",
+    "faq_url": "https://www.nosmsje.gov.in/faq"
   },
   {
     "id": 11,
@@ -107,7 +147,11 @@
     "category": "SC",
     "amount": "Up to ₹3,500 per year",
     "eligibility": "Scheduled Caste students studying in Class 9 or 10 in a recognized school",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/pre-matric-sc",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 12,
@@ -117,7 +161,11 @@
     "category": "OBC",
     "amount": "Up to ₹4,000 per year",
     "eligibility": "OBC students studying in a recognized school with family income within the prescribed limit",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/pre-matric-obc",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 13,
@@ -127,7 +175,11 @@
     "category": "Persons with Disabilities",
     "amount": "₹5,000 per year",
     "eligibility": "Students with at least 40% disability studying in Class 9 or 10 in a recognized school",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://disabilityaffairs.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://disabilityaffairs.gov.in/schemes",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 14,
@@ -137,7 +189,11 @@
     "category": "Persons with Disabilities",
     "amount": "Up to ₹20,000 per year",
     "eligibility": "Students with at least 40% disability pursuing studies after Class 10",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://disabilityaffairs.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://disabilityaffairs.gov.in/schemes/post-matric",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 15,
@@ -147,7 +203,11 @@
     "category": "SC",
     "amount": "Full tuition fee + living allowance up to ₹86,000 per year",
     "eligibility": "SC students admitted to premier institutions such as IITs, NITs, IIMs, and other approved institutes",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/top-class-sc",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 16,
@@ -157,7 +217,11 @@
     "category": "Persons with Disabilities",
     "amount": "Tuition fee reimbursement + maintenance allowance up to ₹2,00,000",
     "eligibility": "Students with at least 40% disability studying in recognized higher education institutions",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://disabilityaffairs.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://disabilityaffairs.gov.in/schemes/top-class",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 17,
@@ -167,17 +231,25 @@
     "category": "SC",
     "amount": "₹31,000 to ₹35,000 per month + contingency grant",
     "eligibility": "Scheduled Caste students pursuing full-time MPhil or PhD in recognized universities or institutions",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://fellowship.ugc.ac.in/",
+    "notification_url": "https://www.ugc.gov.in/fellowships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/nfsc",
+    "faq_url": "https://fellowship.ugc.ac.in/faq"
   },
   {
     "id": 18,
     "name": "National Fellowship for OBC Students",
-    "provider": "Government of India",
+    "provider": "Ministry of Social Justice and Empowerment",
     "level": "MPhil / PhD",
     "category": "OBC",
     "amount": "₹31,000 to ₹35,000 per month + contingency grant",
     "eligibility": "OBC students pursuing research leading to MPhil or PhD in recognized universities",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://socialjustice.gov.in",
+    "official_application_url": "https://fellowship.ugc.ac.in/",
+    "notification_url": "https://www.ugc.gov.in/fellowships",
+    "guidelines_url": "https://socialjustice.gov.in/schemes/nfobc",
+    "faq_url": "https://fellowship.ugc.ac.in/faq"
   },
   {
     "id": 19,
@@ -187,7 +259,11 @@
     "category": "Minority",
     "amount": "Course fee up to ₹20,000 per year + maintenance allowance",
     "eligibility": "Minority community students pursuing professional or technical courses with at least 50% marks and eligible family income",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://www.minorityaffairs.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://www.minorityaffairs.gov.in/schemes/mcm",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   },
   {
     "id": 20,
@@ -197,6 +273,10 @@
     "category": "Minority Girls",
     "amount": "₹5,000 per year",
     "eligibility": "Girl students belonging to notified minority communities studying in Class 9 to 12 in recognized schools",
-    "official_website": "https://scholarships.gov.in"
+    "official_website": "https://www.minorityaffairs.gov.in",
+    "official_application_url": "https://scholarships.gov.in/ApplicationForm/",
+    "notification_url": "https://scholarships.gov.in/All-Scholarships",
+    "guidelines_url": "https://www.minorityaffairs.gov.in/schemes/bhmns",
+    "faq_url": "https://scholarships.gov.in/frequently-asked-questions"
   }
 ]

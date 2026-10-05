@@ -1,29 +1,9 @@
-from app import app
-from extensions import db
+from scripts.populate_database import populate_all
 
-from seed_data.careers_seed import seed_careers
-from seed_data.exams_seed import seed_exams
-from seed_data.scholarships_seed import seed_scholarships
-from seed_data.internships_seed import seed_internships
-from seed_data.colleges_seed import seed_colleges
-
-
-with app.app_context():
-
+if __name__ == "__main__":
     print("=" * 60)
     print("MPath Career Counselling Database Seeder")
     print("=" * 60)
+    populate_all()
+    print("\nDatabase Successfully Synchronized!")
 
-    seed_careers()
-
-    seed_exams()
-
-    seed_scholarships()
-
-    seed_internships()
-
-    seed_colleges()
-
-    db.session.commit()
-
-    print("\nDatabase Successfully Seeded!")

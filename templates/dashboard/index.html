@@ -1,1221 +1,308 @@
 {% extends "base.html" %}
 
-{% block title %}
-MPath Career Counselling | Dashboard
-{% endblock %}
+{% block title %}Student Dashboard | MPath Career Counselling{% endblock %}
 
 {% block content %}
+<div class="container py-5">
 
-<div class="container-fluid px-lg-5 py-5">
-
-
-    <!-- =====================================================
-         WELCOME HERO
-    ====================================================== -->
-
-    <div class="dashboard-hero shadow-lg mb-5">
-
-        <div class="row align-items-center">
-
+    <!-- Welcome Hero -->
+    <div class="card p-4 p-md-5 border-0 shadow-sm mb-4 bg-white rounded-4">
+        <div class="row align-items-center g-4">
             <div class="col-lg-8">
-
-                <span class="welcome-badge">
-                    🚀 MPath Career Counselling
+                <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 mb-2 fw-semibold">
+                    <i data-lucide="graduation-cap" class="icon-xs"></i> Student Discovery Center
                 </span>
 
-                <h1 class="display-5 fw-bold mt-3 mb-3">
-                    Welcome, {{ user.full_name or user.username }}! 👋
+                <h1 class="display-6 fw-bold mb-2">
+                    Welcome, {{ user.full_name or "Student" }}! 
                 </h1>
 
-                <p class="lead mb-4">
-                    Your personalized career discovery center.
-                    Explore careers, colleges, government exams,
-                    scholarships, internships and more.
+                <p class="text-muted lead fs-6 mb-4">
+                    Your personalized career and opportunities hub. Track your assessment results, discover matched careers, inspect roadmaps, and review saved opportunities.
                 </p>
 
-                <!-- AI CAREER EXPLORER -->
-
-                <a href="{{ url_for('go_ai_assistant') }}"
-                   class="btn assessment-hero-btn">
-
-                    🤖 Explore All Possible Careers
-
-                    <span class="ms-2">
-                        →
-                    </span>
-
-                </a>
-
-                <p class="small mt-3 mb-0 hero-note">
-                    Get AI-powered guidance and discover career
-                    paths based on your interests, education and goals.
-                </p>
-
+                <!-- Profile Completion Bar -->
+                <div class="p-3 bg-light rounded-3 border max-w-600">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="small fw-semibold text-dark">Profile Completion</span>
+                        <span class="small fw-bold text-primary">{{ profile_completion }}%</span>
+                    </div>
+                    <div class="progress mb-2" style="height: 8px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ profile_completion }}%;" aria-valuenow="{{ profile_completion }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="text-muted" style="font-size: 0.8rem;">Complete profile to refine AI matching</span>
+                        <a href="{{ url_for('profile.view_profile') }}" class="small text-primary fw-semibold text-decoration-none">
+                            Edit Profile →
+                        </a>
+                    </div>
+                </div>
             </div>
 
-
-            <div class="col-lg-4 text-center d-none d-lg-block">
-
-                <div class="hero-robot">
-                    🤖
+            <!-- Assessment Quick Action -->
+            <div class="col-lg-4">
+                <div class="p-4 rounded-4 bg-primary text-white text-center">
+                    <div class="fs-1 mb-2"><i data-lucide="target" class="icon-xs"></i></div>
+                    <h5 class="fw-bold text-white mb-2">
+                        {% if assessment %}Assessment Completed{% else %}Take Career Assessment{% endif %}
+                    </h5>
+                    {% if assessment %}
+                    <p class="small text-white-50 mb-3">
+                        Top recommended avenue: <strong>{{ assessment.recommended_category }}</strong>
+                    </p>
+                    <a href="{{ url_for('assessment.start') }}" class="btn btn-light text-primary btn-sm fw-bold w-100 mb-2">
+                        Retake Assessment
+                    </a>
+                    <a href="{{ url_for('assessment.result', result_id=assessment.id) }}" class="btn btn-outline-light btn-sm w-100">
+                        View Full Assessment Report
+                    </a>
+                    {% else %}
+                    <p class="small text-white-50 mb-3">
+                        Answer 10 short questions to discover career avenues matching your strengths.
+                    </p>
+                    <a href="{{ url_for('assessment.start') }}" class="btn btn-light text-primary fw-bold w-100">
+                        Start Assessment Now (5 Mins) →
+                    </a>
+                    {% endif %}
                 </div>
-
-                <div class="hero-ai-text">
-                    AI Career Navigator
-                </div>
-
             </div>
-
         </div>
-
     </div>
 
+    <!-- Career Matches Section -->
+    <div class="mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h3 class="fw-bold mb-0"><i data-lucide="target" class="icon-xs"></i> Your Top Career Matches</h3>
+                <p class="text-muted small mb-0">Algorithmic matches evaluated against your stream, interests, and assessments.</p>
+            </div>
+            <a href="{{ url_for('career.career_list') }}" class="btn btn-outline-primary btn-sm">
+                Explore All Careers →
+            </a>
+        </div>
 
-
-    <!-- =====================================================
-         PLATFORM STATS
-    ====================================================== -->
-
-    <div class="row g-4 mb-5">
-
-
-        <!-- CAREERS -->
-
-        <div class="col-xl-3 col-md-6">
-
-            <div class="stat-card stat-blue">
-
-                <div class="stat-icon">
-                    💼
-                </div>
-
-                <div>
-
-                    <div class="stat-number">
-                        400+
+        <div class="row g-4">
+            {% for item in top_career_matches %}
+            {% set c = item.career %}
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-3 border shadow-sm card-interactive d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge badge-category">{{ c.category }}</span>
+                        <span class="badge bg-success bg-opacity-10 text-success fw-bold">{{ item.score }}% Match</span>
                     </div>
 
-                    <div class="stat-label">
-                        Careers
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- COLLEGES -->
-
-        <div class="col-xl-3 col-md-6">
-
-            <div class="stat-card stat-green">
-
-                <div class="stat-icon">
-                    🎓
-                </div>
-
-                <div>
-
-                    <div class="stat-number">
-                        400+
-                    </div>
-
-                    <div class="stat-label">
-                        Colleges
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- GOVERNMENT EXAMS -->
-
-        <div class="col-xl-3 col-md-6">
-
-            <div class="stat-card stat-orange">
-
-                <div class="stat-icon">
-                    🏛️
-                </div>
-
-                <div>
-
-                    <div class="stat-number">
-                        400+
-                    </div>
-
-                    <div class="stat-label">
-                        Government Exams
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- SCHOLARSHIPS -->
-
-        <div class="col-xl-3 col-md-6">
-
-            <div class="stat-card stat-purple">
-
-                <div class="stat-icon">
-                    🎁
-                </div>
-
-                <div>
-
-                    <div class="stat-number">
-                        400+
-                    </div>
-
-                    <div class="stat-label">
-                        Scholarships
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         QUICK ACCESS
-    ====================================================== -->
-
-    <div class="row g-4 mb-5">
-
-
-        <!-- EXPLORE ALL POSSIBLE CAREERS -->
-
-        <div class="col-lg-6">
-
-            <div class="dashboard-card h-100 ai-explorer-card">
-
-                <div class="card-icon blue-icon">
-                    🤖
-                </div>
-
-                <h4 class="fw-bold mt-3">
-                    Explore All Possible Careers
-                </h4>
-
-                <p class="text-muted mt-3">
-                    Explore different career possibilities with
-                    AI-powered guidance based on your education,
-                    interests, skills and goals.
-                </p>
-
-                <a href="{{ url_for('go_ai_assistant') }}"
-                   class="btn btn-primary mt-2">
-
-                    🤖 Explore All Possible Careers
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SAVED CAREERS -->
-
-        <div class="col-lg-6">
-
-            <div class="dashboard-card h-100">
-
-                <div class="card-icon pink-icon">
-                    ❤️
-                </div>
-
-                <h4 class="fw-bold mt-3">
-                    Saved Careers
-                </h4>
-
-                <div class="saved-number">
-                    {{ saved }}
-                </div>
-
-                <p class="text-muted">
-                    Careers saved by you
-                </p>
-
-                <a href="{{ url_for('career.career_list') }}"
-                   class="btn btn-outline-danger">
-
-                    Explore Careers
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         EXPLORE YOUR OPPORTUNITIES
-    ====================================================== -->
-
-    <div class="section-heading">
-
-        <div>
-
-            <h2 class="fw-bold mb-1">
-                🧭 Explore Your Opportunities
-            </h2>
-
-            <p class="text-muted">
-                Everything you need to plan your career in one place.
-            </p>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="row g-4 mb-5">
-
-
-        <!-- CAREERS -->
-
-        <div class="col-xl-4 col-md-6">
-
-            <div class="opportunity-card career-card h-100">
-
-                <div class="opportunity-icon">
-                    💼
-                </div>
-
-                <h4>
-                    Explore Careers
-                </h4>
-
-                <p>
-                    Discover career options across technology,
-                    medicine, business, government, arts,
-                    law, science and many other fields.
-                </p>
-
-                <a href="{{ url_for('career.career_list') }}"
-                   class="btn btn-primary mt-auto">
-
-                    Explore Careers →
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- COLLEGES -->
-
-        <div class="col-xl-4 col-md-6">
-
-            <div class="opportunity-card college-card h-100">
-
-                <div class="opportunity-icon">
-                    🎓
-                </div>
-
-                <h4>
-                    Find Colleges
-                </h4>
-
-                <p>
-                    Explore colleges across India according to
-                    stream, course type and state.
-                </p>
-
-                <a href="{{ url_for('college.college_list') }}"
-                   class="btn btn-success mt-auto">
-
-                    Explore Colleges →
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- GOVERNMENT EXAMS -->
-
-        <div class="col-xl-4 col-md-6">
-
-            <div class="opportunity-card exam-card h-100">
-
-                <div class="opportunity-icon">
-                    🏛️
-                </div>
-
-                <h4>
-                    Government Exams
-                </h4>
-
-                <p>
-                    Discover government examinations for
-                    different qualifications, streams and
-                    career interests.
-                </p>
-
-                <a href="{{ url_for('exam.exam_list') }}"
-                   class="btn btn-warning mt-auto">
-
-                    Explore Exams →
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SCHOLARSHIPS -->
-
-        <div class="col-xl-4 col-md-6">
-
-            <div class="opportunity-card scholarship-card h-100">
-
-                <div class="opportunity-icon">
-                    🎁
-                </div>
-
-                <h4>
-                    Scholarships
-                </h4>
-
-                <p>
-                    Find scholarship opportunities that can
-                    help reduce the financial burden of education.
-                </p>
-
-                <a href="{{ url_for('scholarship.scholarship_list') }}"
-                   class="btn btn-warning mt-auto">
-
-                    Find Scholarships →
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- INTERNSHIPS -->
-
-        <div class="col-xl-4 col-md-6">
-
-            <div class="opportunity-card internship-card h-100">
-
-                <div class="opportunity-icon">
-                    🚀
-                </div>
-
-                <h4>
-                    Internships
-                </h4>
-
-                <p>
-                    Explore internships and gain practical
-                    experience while building your career.
-                </p>
-
-                <a href="{{ url_for('internship.internship_list') }}"
-                   class="btn btn-info text-white mt-auto">
-
-                    Find Internships →
-
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- AI CAREER EXPLORER -->
-
-        <div class="col-xl-4 col-md-6">
-
-            <div class="opportunity-card ai-opportunity-card h-100">
-
-                <div class="opportunity-icon">
-                    🤖
-                </div>
-
-                <h4>
-                    Explore All Possible Careers
-                </h4>
-
-                <p>
-                    Get AI-powered career guidance and discover
-                    career possibilities that match your education,
-                    interests, skills and goals.
-                </p>
-
-                <a href="{{ url_for('go_ai_assistant') }}"
-                   class="btn btn-primary mt-auto">
-
-                    Explore All Possible Careers →
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         AI RECOMMENDATIONS
-    ====================================================== -->
-
-    <div class="section-heading">
-
-        <div>
-
-            <h2 class="fw-bold mb-1">
-                ✨ Your AI Recommendations
-            </h2>
-
-            <p class="text-muted">
-                Opportunities selected using your available profile data.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    {% if recommendations %}
-
-    <div class="row g-4 mb-5">
-
-        {% for item in recommendations %}
-
-        <div class="col-lg-6">
-
-            <div class="recommendation-card h-100">
-
-                <div class="d-flex justify-content-between">
-
-                    <h5 class="fw-bold">
-                        {{ item.title }}
+                    <h5 class="fw-bold mb-2">
+                        <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="text-decoration-none text-dark">
+                            {{ c.title }}
+                        </a>
                     </h5>
 
-                    <span class="recommendation-badge">
-                        AI
-                    </span>
+                    <!-- Match Reasons -->
+                    <div class="p-2 bg-light rounded-3 small mb-3 flex-grow-1" style="font-size: 0.8rem;">
+                        <div class="fw-semibold text-muted mb-1">Why this matched:</div>
+                        {% for r in item.reasons[:2] %}
+                        <div class="text-truncate text-secondary">{{ r }}</div>
+                        {% endfor %}
+                    </div>
 
+                    <div class="d-flex gap-2 mt-auto pt-2 border-top">
+                        <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-primary btn-sm flex-grow-1">
+                            Explore Path →
+                        </a>
+                        <a href="{{ url_for('career.toggle_save', career_id=c.id) }}" class="btn btn-sm btn-outline-secondary" title="Save Career">
+                            <i data-lucide="bookmark" class="icon-xs"></i>
+                        </a>
+                    </div>
                 </div>
-
-                <p class="text-muted mt-2">
-                    {{ item.description }}
-                </p>
-
-                {% if item.link %}
-
-                <a href="{{ item.link }}"
-                   class="btn btn-outline-primary btn-sm">
-
-                    View Opportunity →
-
-                </a>
-
-                {% endif %}
-
             </div>
-
+            {% endfor %}
         </div>
-
-        {% endfor %}
-
     </div>
 
-    {% else %}
-
-    <div class="empty-recommendation mb-5">
-
-        <div class="fs-1">
-            🤖
+    <!-- Target Career Roadmap Preview -->
+    {% if target_career and target_roadmap %}
+    <div class="card p-4 border shadow-sm mb-5 bg-white">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 border-bottom pb-3 mb-4">
+            <div>
+                <span class="badge bg-success bg-opacity-10 text-success px-3 py-1 mb-1 fw-semibold">12-Month Structured Plan</span>
+                <h4 class="fw-bold mb-0">Roadmap: {{ target_career.title }}</h4>
+            </div>
+            <a href="{{ url_for('career.career_detail', slug=target_career.slug) }}" class="btn btn-outline-primary btn-sm">
+                View Full Detailed Roadmap →
+            </a>
         </div>
 
-        <h4 class="fw-bold mt-3">
-            Your personalized recommendations are waiting.
-        </h4>
-
-        <p class="text-muted">
-            Explore different career possibilities and get
-            personalized AI guidance based on your profile.
-        </p>
-
-        <a href="{{ url_for('go_ai_assistant') }}"
-           class="btn btn-primary">
-
-            🤖 Explore All Possible Careers
-
-        </a>
-
+        <div class="row g-3 text-center">
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                    <span class="badge bg-primary mb-2">Stage 1</span>
+                    <div class="fw-bold small mb-1">Academics</div>
+                    <div class="text-muted" style="font-size: 0.75rem;">Core schooling and stream focus</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                    <span class="badge bg-primary mb-2">Stage 2</span>
+                    <div class="fw-bold small mb-1">Entrances</div>
+                    <div class="text-muted" style="font-size: 0.75rem;">Entrance & qualifying exams</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                    <span class="badge bg-primary mb-2">Stage 3</span>
+                    <div class="fw-bold small mb-1">Core Skills</div>
+                    <div class="text-muted" style="font-size: 0.75rem;">Hands-on tools & frameworks</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                    <span class="badge bg-primary mb-2">Stage 4</span>
+                    <div class="fw-bold small mb-1">Projects</div>
+                    <div class="text-muted" style="font-size: 0.75rem;">Capstone portfolio projects</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 border h-100">
+                    <span class="badge bg-primary mb-2">Stage 5</span>
+                    <div class="fw-bold small mb-1">Internships</div>
+                    <div class="text-muted" style="font-size: 0.75rem;">AICTE / practical training</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-success text-white rounded-3 h-100">
+                    <span class="badge bg-white text-success mb-2">Stage 6</span>
+                    <div class="fw-bold small mb-1">Placement</div>
+                    <div class="text-white-50" style="font-size: 0.75rem;">Job roles & careers</div>
+                </div>
+            </div>
+        </div>
     </div>
-
     {% endif %}
 
+    <!-- Saved Items & Upcoming Opportunities -->
+    <div class="row g-4 mb-5">
 
-
-    <!-- =====================================================
-         TODAY'S SUGGESTION
-    ====================================================== -->
-
-    <div class="suggestion-card shadow-sm mb-4">
-
-        <div class="row align-items-center">
-
-            <div class="col-auto">
-
-                <div class="suggestion-icon">
-                    💡
-                </div>
-
-            </div>
-
-            <div class="col">
-
-                <h4 class="fw-bold mb-2">
-                    Today's Career Suggestion
+        <!-- Saved Careers & Colleges -->
+        <div class="col-lg-6">
+            <div class="card p-4 border shadow-sm h-100">
+                <h4 class="fw-bold mb-3 d-flex align-items-center justify-content-between">
+                    <span> Saved Items</span>
+                    <span class="badge bg-light text-dark border">{{ saved_careers|length + saved_colleges|length }} Saved</span>
                 </h4>
 
-                {% if resume %}
+                <ul class="nav nav-pills mb-3" id="savedTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active btn-sm" id="saved-careers-tab" data-bs-toggle="pill" data-bs-target="#saved-careers" type="button" role="tab">
+                            Careers ({{ saved_careers|length }})
+                        </button>
+                    </li>
+                    <li class="nav-item ms-2" role="presentation">
+                        <button class="nav-link btn-sm" id="saved-colleges-tab" data-bs-toggle="pill" data-bs-target="#saved-colleges" type="button" role="tab">
+                            Colleges ({{ saved_colleges|length }})
+                        </button>
+                    </li>
+                </ul>
 
-                <p class="mb-0 text-muted">
+                <div class="tab-content" id="savedTabContent">
+                    <div class="tab-pane fade show active" id="saved-careers" role="tabpanel">
+                        {% if saved_careers %}
+                        <div class="d-flex flex-column gap-2">
+                            {% for sc in saved_careers %}
+                            <div class="p-2 rounded border bg-light d-flex justify-content-between align-items-center">
+                                <div>
+                                    <a href="{{ url_for('career.career_detail', slug=sc.career.slug) }}" class="fw-bold text-dark text-decoration-none small">
+                                        {{ sc.career.title }}
+                                    </a>
+                                    <div class="text-muted" style="font-size: 0.75rem;">{{ sc.career.category }}</div>
+                                </div>
+                                <a href="{{ url_for('career.toggle_save', career_id=sc.career_id) }}" class="btn btn-sm btn-outline-danger" title="Remove">
+                                    ×
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="text-center py-4 text-muted small">
+                            You haven't saved any careers yet. Click the <i data-lucide="bookmark" class="icon-xs"></i> button on any career card to save it here!
+                        </div>
+                        {% endif %}
+                    </div>
 
-                    Your latest resume score is
-                    <strong>{{ resume.score }}%</strong>.
-                    Continue improving your skills and explore
-                    careers related to your interests.
-
-                </p>
-
-                {% elif assessment %}
-
-                <p class="mb-0 text-muted">
-
-                    Based on your available profile information,
-                    explore careers, colleges, exams,
-                    scholarships and internships that match
-                    your interests.
-
-                </p>
-
-                {% else %}
-
-                <p class="mb-0 text-muted">
-
-                    Start by exploring
-                    <strong>all possible careers</strong>
-                    with AI-powered guidance from
-                    MPath Career Counselling.
-
-                </p>
-
-                {% endif %}
-
+                    <div class="tab-pane fade" id="saved-colleges" role="tabpanel">
+                        {% if saved_colleges %}
+                        <div class="d-flex flex-column gap-2">
+                            {% for scol in saved_colleges %}
+                            <div class="p-2 rounded border bg-light d-flex justify-content-between align-items-center">
+                                <div>
+                                    <a href="{{ url_for('college.college_detail', college_id=scol.college.id) }}" class="fw-bold text-dark text-decoration-none small">
+                                        {{ scol.college.name }}
+                                    </a>
+                                    <div class="text-muted" style="font-size: 0.75rem;">{{ scol.college.city }}, {{ scol.college.state }}</div>
+                                </div>
+                                <a href="{{ url_for('college.toggle_save', college_id=scol.college_id) }}" class="btn btn-sm btn-outline-danger" title="Remove">
+                                    ×
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class="text-center py-4 text-muted small">
+                            No colleges saved yet. Browse the College Explorer to bookmark target universities!
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-
         </div>
 
+        <!-- Upcoming Opportunities -->
+        <div class="col-lg-6">
+            <div class="card p-4 border shadow-sm h-100">
+                <h4 class="fw-bold mb-3 d-flex align-items-center justify-content-between">
+                    <span> Featured Opportunities</span>
+                    <a href="{{ url_for('exam.exam_list') }}" class="small text-primary text-decoration-none fw-semibold">
+                        View All →
+                    </a>
+                </h4>
+
+                <div class="d-flex flex-column gap-3">
+                    {% for ex in upcoming_exams %}
+                    <div class="p-3 rounded border bg-light">
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <span class="badge bg-primary bg-opacity-10 text-primary">{{ ex.category }}</span>
+                            <span class="small text-muted">{{ ex.qualification }}</span>
+                        </div>
+                        <h6 class="fw-bold mb-1">{{ ex.exam_name }}</h6>
+                        <div class="small text-muted mb-2">{{ ex.conducted_by or 'Central/State Board' }}</div>
+                        {% if ex.official_url %}
+                        <a href="{{ ex.official_url }}" target="_blank" rel="noopener noreferrer" class="small text-primary fw-semibold text-decoration-none">
+                            Official Portal 
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AI Career Mentor Quick Bar -->
+    <div class="card p-4 border-0 shadow-sm text-white rounded-4" style="background-color: #00338D !important; background: linear-gradient(135deg, #00338D 0%, #00225E 100%) !important;">
+        <div class="row align-items-center g-3">
+            <div class="col-md-8">
+                <h4 class="fw-bold mb-1 text-white">Need Personalized Career Advice?</h4>
+                <p class="text-white-50 small mb-0">
+                    Ask the MPath AI Career Mentor questions about your stream, college courses, skill roadmaps, and career comparisons.
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="{{ url_for('chatbot.home') }}" class="btn btn-light text-primary fw-bold px-4">
+                    <i data-lucide="bot" class="icon-xs"></i> Open AI Career Mentor →
+                </a>
+            </div>
+        </div>
     </div>
 
 </div>
-
-
-
-<!-- =========================================================
-     DASHBOARD STYLES
-========================================================= -->
-
-<style>
-
-body {
-
-    background:
-        linear-gradient(
-            135deg,
-            #f7faff,
-            #eef5ff
-        );
-
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.dashboard-hero {
-
-    padding: 50px;
-
-    border-radius: 24px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d6efd,
-            #174ea6,
-            #512da8
-        );
-
-}
-
-
-.dashboard-hero h1 {
-
-    color: white;
-
-}
-
-
-.dashboard-hero p {
-
-    color:
-        rgba(255,255,255,0.88);
-
-}
-
-
-.welcome-badge {
-
-    display: inline-block;
-
-    padding: 7px 15px;
-
-    border-radius: 30px;
-
-    background:
-        rgba(255,255,255,0.15);
-
-    border:
-        1px solid rgba(255,255,255,0.25);
-
-    font-weight: 600;
-
-}
-
-
-.hero-note {
-
-    color:
-        rgba(255,255,255,0.75);
-
-}
-
-
-.hero-robot {
-
-    font-size: 130px;
-
-    filter:
-        drop-shadow(
-            0 15px 20px rgba(0,0,0,0.2)
-        );
-
-}
-
-
-.hero-ai-text {
-
-    font-size: 18px;
-
-    font-weight: 600;
-
-    color:
-        rgba(255,255,255,0.9);
-
-}
-
-
-/* =========================================================
-   HERO AI BUTTON
-========================================================= */
-
-.assessment-hero-btn {
-
-    background: white;
-
-    color: #0d6efd !important;
-
-    border: none;
-
-    padding: 13px 24px;
-
-    border-radius: 12px;
-
-    font-weight: 700;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.2);
-
-    transition:
-        0.25s ease;
-
-}
-
-
-.assessment-hero-btn:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 13px 30px rgba(0,0,0,0.25);
-
-}
-
-
-/* =========================================================
-   STATS
-========================================================= */
-
-.stat-card {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 18px;
-
-    padding: 25px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 20px rgba(30,60,90,0.08);
-
-}
-
-
-.stat-icon {
-
-    width: 58px;
-
-    height: 58px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 15px;
-
-    font-size: 28px;
-
-}
-
-
-.stat-number {
-
-    font-size: 27px;
-
-    font-weight: 800;
-
-}
-
-
-.stat-label {
-
-    color: #6b7280;
-
-    font-weight: 500;
-
-}
-
-
-.stat-blue .stat-icon {
-
-    background: #e8f1ff;
-
-}
-
-
-.stat-green .stat-icon {
-
-    background: #e7f8ef;
-
-}
-
-
-.stat-orange .stat-icon {
-
-    background: #fff4df;
-
-}
-
-
-.stat-purple .stat-icon {
-
-    background: #f1eaff;
-
-}
-
-
-/* =========================================================
-   DASHBOARD CARDS
-========================================================= */
-
-.dashboard-card {
-
-    padding: 28px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 20px rgba(30,60,90,0.08);
-
-}
-
-
-.card-icon {
-
-    width: 55px;
-
-    height: 55px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 14px;
-
-    font-size: 27px;
-
-}
-
-
-.blue-icon {
-
-    background: #e8f1ff;
-
-}
-
-
-.pink-icon {
-
-    background: #ffeaf2;
-
-}
-
-
-.saved-number {
-
-    font-size: 42px;
-
-    font-weight: 800;
-
-    color: #dc3545;
-
-    margin-top: 12px;
-
-}
-
-
-/* =========================================================
-   AI EXPLORER CARD
-========================================================= */
-
-.ai-explorer-card {
-
-    border:
-        1px solid rgba(99,102,241,0.18);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-
-}
-
-
-.ai-explorer-card:hover {
-
-    transform:
-        translateY(-5px);
-
-    box-shadow:
-        0 12px 30px rgba(30,60,90,0.14);
-
-}
-
-
-/* =========================================================
-   SECTION HEADING
-========================================================= */
-
-.section-heading {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin-bottom: 25px;
-
-}
-
-
-/* =========================================================
-   OPPORTUNITY CARDS
-========================================================= */
-
-.opportunity-card {
-
-    display: flex;
-
-    flex-direction: column;
-
-    padding: 30px;
-
-    background: white;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 5px 20px rgba(30,60,90,0.08);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-
-}
-
-
-.opportunity-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    box-shadow:
-        0 12px 30px rgba(30,60,90,0.14);
-
-}
-
-
-.opportunity-icon {
-
-    width: 60px;
-
-    height: 60px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 16px;
-
-    background: #eef4ff;
-
-    font-size: 30px;
-
-    margin-bottom: 20px;
-
-}
-
-
-.opportunity-card h4 {
-
-    font-weight: 700;
-
-}
-
-
-.opportunity-card p {
-
-    color: #6b7280;
-
-    line-height: 1.7;
-
-    flex-grow: 1;
-
-}
-
-
-/* AI OPPORTUNITY */
-
-.ai-opportunity-card {
-
-    border:
-        1px solid rgba(99,102,241,0.2);
-
-}
-
-
-.ai-opportunity-card:hover {
-
-    box-shadow:
-        0 12px 35px rgba(99,102,241,0.18);
-
-}
-
-
-/* =========================================================
-   RECOMMENDATIONS
-========================================================= */
-
-.recommendation-card {
-
-    padding: 25px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 5px 20px rgba(30,60,90,0.08);
-
-}
-
-
-.recommendation-badge {
-
-    height: fit-content;
-
-    padding: 4px 10px;
-
-    border-radius: 20px;
-
-    background: #e8f1ff;
-
-    color: #0d6efd;
-
-    font-size: 12px;
-
-    font-weight: 700;
-
-}
-
-
-/* =========================================================
-   EMPTY RECOMMENDATIONS
-========================================================= */
-
-.empty-recommendation {
-
-    padding: 45px;
-
-    text-align: center;
-
-    background: white;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 5px 20px rgba(30,60,90,0.08);
-
-}
-
-
-/* =========================================================
-   SUGGESTION
-========================================================= */
-
-.suggestion-card {
-
-    padding: 30px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #eef5ff
-        );
-
-}
-
-
-.suggestion-icon {
-
-    width: 60px;
-
-    height: 60px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 16px;
-
-    background: #fff3cd;
-
-    font-size: 30px;
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 768px) {
-
-    .dashboard-hero {
-
-        padding: 30px 22px;
-
-    }
-
-
-    .dashboard-hero h1 {
-
-        font-size: 32px;
-
-    }
-
-
-    .section-heading {
-
-        display: block;
-
-    }
-
-}
-
-</style>
-
 {% endblock %}

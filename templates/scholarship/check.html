@@ -74,13 +74,20 @@ Scholarship Eligibility
 
                 <p><strong>Level:</strong> {{ s.level }}</p>
 
-                <a href="{{ s.apply_link }}"
+                {% set app_url = s.official_application_url or s.apply_link %}
+                {% if app_url %}
+                <a href="{{ app_url }}"
                    target="_blank"
+                   rel="noopener noreferrer"
                    class="btn btn-success btn-sm">
-
-                    Apply Now
-
+                    <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now 
                 </a>
+                {% else %}
+                <a href="{{ url_for('scholarship.scholarship_list') }}"
+                   class="btn btn-outline-primary btn-sm">
+                    Check Scheme Details
+                </a>
+                {% endif %}
 
             </div>
 

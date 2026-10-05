@@ -1,60 +1,153 @@
 {% extends "base.html" %}
 
-{% block title %}
-
-Edit Career
-
-{% endblock %}
+{% block title %}Edit Career: {{ career.title }} | Admin{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="fw-bold mb-1 text-dark">Edit Career: {{ career.title }}</h2>
+                    <p class="text-muted mb-0">Update career specifications, qualifications, skills, and provenance.</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('career.career_detail', slug=career.slug) }}" target="_blank" class="btn btn-outline-info">
+                        View Public Dossier 
+                    </a>
+                    <a href="{{ url_for('admin.careers') }}" class="btn btn-outline-secondary">
+                        ← Back to Directory
+                    </a>
+                </div>
+            </div>
 
-<h2>Edit Career</h2>
+            <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 bg-white">
+                <form method="POST">
+                    
+                    <!-- Section 1: Identification -->
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">1. Identification & Classification</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Career Title *</label>
+                            <input type="text" name="title" class="form-control" required value="{{ career.title }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">URL Slug</label>
+                            <input type="text" name="slug" class="form-control" value="{{ career.slug }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">National Sector *</label>
+                            <select name="category" class="form-select" required>
+                                {% for cat in categories %}
+                                <option value="{{ cat }}" {% if career.category == cat %}selected{% endif %}>{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Sub-Category</label>
+                            <input type="text" name="sub_category" class="form-control" value="{{ career.sub_category or '' }}">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label small fw-semibold text-dark">Industry Domain</label>
+                            <input type="text" name="industry" class="form-control" value="{{ career.industry or '' }}">
+                        </div>
+                    </div>
 
-<form method="POST">
+                    <!-- Section 2: Role Details -->
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">2. Role Description & Responsibilities</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Short Summary Description</label>
+                            <input type="text" name="short_description" class="form-control" value="{{ career.short_description or '' }}">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Full Comprehensive Description</label>
+                            <textarea name="description" class="form-control" rows="3">{{ career.description or '' }}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">What They Do (Core Purpose)</label>
+                            <textarea name="what_they_do" class="form-control" rows="2">{{ career.what_they_do or '' }}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Typical Day-to-Day Tasks</label>
+                            <textarea name="day_to_day_work" class="form-control" rows="4">{{ career.day_to_day_work or '' }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Work Modes</label>
+                            <input type="text" name="work_modes" class="form-control" value="{{ career.work_modes or 'Hybrid / Office' }}">
+                        </div>
+                    </div>
 
-<input
-class="form-control mb-3"
-name="title"
-value="{{ career.title }}">
+                    <!-- Section 3: Eligibility & Streams -->
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">3. Eligibility & Academic Pathways</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Minimum Qualification</label>
+                            <input type="text" name="minimum_qualification" class="form-control" value="{{ career.minimum_qualification or career.education_required or '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Preferred Academic Stream(s)</label>
+                            <input type="text" name="preferred_streams" class="form-control" value="{{ career.preferred_streams or '' }}">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Required / Recommended School Subjects</label>
+                            <input type="text" name="required_subjects" class="form-control" value="{{ career.required_subjects or '' }}">
+                        </div>
+                    </div>
 
-<input
-class="form-control mb-3"
-name="category"
-value="{{ career.category }}">
+                    <!-- Section 4: Skills & Tools -->
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">4. Skills, Competencies & Tools</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Technical Skills (Comma separated)</label>
+                            <input type="text" name="technical_skills" class="form-control" value="{{ career.technical_skills or '' }}">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Essential Soft Skills (Comma separated)</label>
+                            <input type="text" name="soft_skills" class="form-control" value="{{ career.soft_skills or '' }}">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Industry Tools & Software (Comma separated)</label>
+                            <input type="text" name="tools" class="form-control" value="{{ career.tools or '' }}">
+                        </div>
+                    </div>
 
-<textarea
-class="form-control mb-3"
-name="description">{{ career.description }}</textarea>
+                    <!-- Section 5: Salary & Official Provenance -->
+                    <h5 class="fw-bold text-primary border-bottom pb-2 mb-3">5. Salary Scale & Verification Provenance</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Average Salary Display</label>
+                            <input type="text" name="average_salary" class="form-control" value="{{ career.average_salary or '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Verification Status</label>
+                            <select name="verification_status" class="form-select">
+                                <option value="VERIFIED" {% if career.verification_status == 'VERIFIED' %}selected{% endif %}>VERIFIED</option>
+                                <option value="PENDING_REVIEW" {% if career.verification_status == 'PENDING_REVIEW' %}selected{% endif %}>PENDING_REVIEW</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small fw-semibold text-dark">Detailed Indicative Salary Breakdown</label>
+                            <input type="text" name="salary_indicative" class="form-control" value="{{ career.salary_indicative or '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Official Source Body</label>
+                            <input type="text" name="source" class="form-control" value="{{ career.source or '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-dark">Official Reference Portal URL</label>
+                            <input type="url" name="official_url" class="form-control" value="{{ career.official_url or '' }}">
+                        </div>
+                    </div>
 
-<input
-class="form-control mb-3"
-name="average_salary"
-value="{{ career.average_salary }}">
+                    <div class="d-flex justify-content-end gap-2 pt-3 border-top">
+                        <a href="{{ url_for('admin.careers') }}" class="btn btn-outline-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-success fw-semibold px-4">Save Changes</button>
+                    </div>
 
-<input
-class="form-control mb-3"
-name="future_scope"
-value="{{ career.future_scope }}">
-
-<input
-class="form-control mb-3"
-name="education_required"
-value="{{ career.education_required }}">
-
-<textarea
-class="form-control mb-3"
-name="skills_required">{{ career.skills_required }}</textarea>
-
-<button class="btn btn-success">
-
-Update Career
-
-</button>
-
-</form>
-
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock %}

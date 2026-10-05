@@ -6,7 +6,7 @@
 
 <style>
     .students-header {
-        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        background: linear-gradient(135deg, #00338D, #00225E);
         color: white;
         border-radius: 20px;
         padding: 30px;
@@ -37,7 +37,7 @@
         align-items: center;
         justify-content: center;
         background: #e9f2ff;
-        color: #0d6efd;
+        color: #00338D;
         font-weight: 700;
     }
 
@@ -71,7 +71,7 @@
             <div>
 
                 <h1 class="fw-bold mb-2">
-                    👨‍🎓 Student Management
+                    <i data-lucide="graduation-cap" class="icon-xs"></i> Student Management
                 </h1>
 
                 <p class="mb-0 opacity-75">
@@ -88,7 +88,7 @@
                     href="{{ url_for('admin.export_students') }}"
                     class="btn btn-success export-btn">
 
-                    📊 Download Excel
+                    <i data-lucide="bar-chart-2" class="icon-xs"></i> Download Excel
 
                 </a>
 
@@ -129,7 +129,7 @@
                     <div class="col-lg-5">
 
                         <label class="form-label fw-semibold">
-                            🔍 Search Student
+                            <i data-lucide="search" class="icon-xs"></i> Search Student
                         </label>
 
                         <input
@@ -240,7 +240,7 @@
                             type="submit"
                             class="btn btn-primary w-100">
 
-                            🔍 Search
+                            <i data-lucide="search" class="icon-xs"></i> Search
 
                         </button>
 
@@ -261,7 +261,7 @@
                     href="{{ url_for('admin.students') }}"
                     class="btn btn-sm btn-outline-secondary">
 
-                    ✕ Clear Filters
+                    &times; Clear Filters
 
                 </a>
 
@@ -299,7 +299,7 @@
                 <div>
 
                     <span class="badge bg-primary px-3 py-2">
-                        👨‍🎓 Students Only
+                        <i data-lucide="graduation-cap" class="icon-xs"></i> Students Only
                     </span>
 
                 </div>
@@ -447,13 +447,13 @@
                                 {% if student.is_active %}
 
                                 <span class="badge bg-success status-badge">
-                                    ✅ Active
+                                    <i data-lucide="check" class="icon-xs text-success"></i> Active
                                 </span>
 
                                 {% else %}
 
                                 <span class="badge bg-danger status-badge">
-                                    🚫 Inactive
+                                     Inactive
                                 </span>
 
                                 {% endif %}
@@ -469,7 +469,7 @@
                                     href="{{ url_for('admin.student_detail', id=student.id) }}"
                                     class="btn btn-sm btn-outline-primary action-btn">
 
-                                    👁️ View
+                                     View
 
                                 </a>
 
@@ -492,7 +492,7 @@
             <div class="text-center py-5">
 
                 <div style="font-size: 55px;">
-                    👨‍🎓
+                    <i data-lucide="graduation-cap" class="icon-xs"></i>
                 </div>
 
                 <h4 class="fw-bold mt-3">

@@ -1,103 +1,125 @@
 {% extends "base.html" %}
 
-{% block title %}
-College Management
-{% endblock %}
+{% block title %}College Management | Admin{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
-
     <div class="d-flex justify-content-between align-items-center mb-4">
-
         <div>
-
-            <h2 class="fw-bold">
-
-                College Management
-
-            </h2>
-
-            <p class="text-muted">
-
-                Manage all colleges.
-
-            </p>
-
+            <h2 class="fw-bold mb-1">College Management</h2>
+            <p class="text-muted mb-0">Manage accredited universities, central institutes, and colleges across India.</p>
         </div>
-
-        <a
-            href="{{ url_for('admin.add_college') }}"
-            class="btn btn-primary">
-
-            + Add College
-
-        </a>
-
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.aishe_importer_dashboard') }}" class="btn btn-success">
+                <i data-lucide="landmark" class="icon-xs"></i> AISHE Importer
+            </a>
+            <a href="{{ url_for('admin.data_import') }}" class="btn btn-outline-primary">
+                Bulk Import
+            </a>
+            <a href="{{ url_for('admin.add_college') }}" class="btn btn-primary">
+                + Add College
+            </a>
+        </div>
     </div>
 
-    <div class="card shadow border-0">
+    <!-- DATA HEALTH SUMMARY CARDS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Total Institutions</div>
+                <h4 class="fw-bold mb-0 text-primary">{{ colleges|length }}</h4>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Verified Authorities</div>
+                <h4 class="fw-bold mb-0 text-success">{{ colleges|selectattr('verification_status', 'equalto', 'VERIFIED')|list|length }}</h4>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Official Web Portals</div>
+                <h4 class="fw-bold mb-0 text-info">{{ colleges|selectattr('official_website')|list|length }}</h4>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">NIRF Ranked</div>
+                <h4 class="fw-bold mb-0 text-warning">{{ colleges|selectattr('nirf_rank')|list|length }}</h4>
+            </div>
+        </div>
+    </div>
 
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+            <span class="fw-semibold text-dark">All Institutions ({{ colleges|length }})</span>
+            <a href="{{ url_for('college.college_list') }}" target="_blank" class="btn btn-sm btn-light border">
+                View Public Directory 
+            </a>
+        </div>
         <div class="table-responsive">
-
             <table class="table table-hover align-middle mb-0">
-
                 <thead class="table-light">
-
                     <tr>
-
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Course</th>
-                        <th>Average Package</th>
-                        <th>Actions</th>
-
+                        <th style="width: 60px;">ID</th>
+                        <th>Institution Name</th>
+                        <th>Location</th>
+                        <th>Type / Stream</th>
+                        <th>Verification</th>
+                        <th class="text-center">Official Portal</th>
+                        <th class="text-center">Actions</th>
                     </tr>
-
                 </thead>
-
                 <tbody>
-
                     {% for college in colleges %}
-
                     <tr>
-
-                        <td>{{ college.name }}</td>
-
-                        <td>{{ college.city }}</td>
-
-                        <td>{{ college.state }}</td>
-
-                        <td>{{ college.course }}</td>
-
-                        <td>{{ college.average_package }}</td>
-
+                        <td class="text-muted small">#{{ college.id }}</td>
                         <td>
-
-                            <a
-                                href="{{ url_for('admin.delete_college', id=college.id) }}"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('Delete this college?')">
-
-                                Delete
-
-                            </a>
-
+                            <div class="fw-semibold text-dark">{{ college.name }}</div>
+                            <div class="small text-muted text-truncate" style="max-width: 280px;">{{ college.course or 'Degree programs' }}</div>
                         </td>
-
+                        <td class="small">
+                            <div>{{ college.city or '—' }}</div>
+                            <div class="text-muted">{{ college.state or 'India' }}</div>
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark border">{{ college.college_type or 'Institution' }}</span>
+                        </td>
+                        <td>
+                            {% set status = college.verification_status or 'VERIFIED' %}
+                            <a href="{{ url_for('admin.toggle_verification', entity='college', id=college.id) }}"
+                               class="badge text-decoration-none {% if status == 'VERIFIED' %}bg-success{% elif status == 'NEEDS_REVIEW' %}bg-warning text-dark{% else %}bg-secondary{% endif %}"
+                               title="Click to cycle verification status">
+                               {{ status }}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            {% if college.official_url or college.website %}
+                            <a href="{{ college.official_url or college.website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info">
+                                Portal 
+                            </a>
+                            {% else %}
+                            <span class="text-muted small">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a href="{{ url_for('admin.delete_college', id=college.id) }}"
+                               class="btn btn-outline-danger btn-sm"
+                               onclick="return confirm('Delete this college?')">
+                                Delete
+                            </a>
+                        </td>
                     </tr>
-
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">
+                            No colleges found.
+                        </td>
+                    </tr>
                     {% endfor %}
-
                 </tbody>
-
             </table>
-
         </div>
-
     </div>
-
 </div>
-
 {% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Explore Careers by Degree | MPath National Career Discovery{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('career.career_list') }}" class="text-decoration-none">Careers</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Explore by Degree</li>
+        </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 mb-4 bg-white">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-semibold mb-2">
+            <i data-lucide="graduation-cap" class="icon-xs"></i>
+            <span>Reverse Degree Discovery</span>
+        </div>
+        <h1 class="display-6 fw-bold mb-2 text-dark">Where Can Your Degree Take You?</h1>
+        <p class="lead text-muted fs-6 mb-0">
+            Select a qualifying degree to uncover all authentic direct and alternative career destinations linked to it.
+        </p>
+    </div>
+
+    <!-- Course Selector Form -->
+    <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('career.explore_by_course') }}">
+            <div class="row g-3 align-items-end">
+                <div class="col-lg-9 col-md-8">
+                    <label class="form-label fw-bold text-dark mb-1">Select Degree Program</label>
+                    <select name="course_id" class="form-select form-select-lg">
+                        <option value="">-- Choose a Degree (e.g. B.Tech Computer Science, MBBS, B.Com, LLB) --</option>
+                        {% for crs in courses %}
+                        <option value="{{ crs.id }}" {% if selected_course and selected_course.id == crs.id %}selected{% endif %}>
+                            {{ crs.name }} ({{ crs.level }} • {{ crs.discipline }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-4 d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg fw-semibold">
+                        Discover Career Paths →
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results -->
+    {% if selected_course %}
+    <div class="mb-4">
+        <h4 class="fw-bold text-dark mb-1">
+            Career Destinations for <span class="text-primary">{{ selected_course.name }}</span>
+        </h4>
+        <p class="text-muted small">
+            Found {{ careers_linked|length }} authentic career pathways stemming from this degree.
+        </p>
+    </div>
+
+    {% if careers_linked %}
+    <div class="row g-4">
+        {% for item in careers_linked %}
+        {% set c = item.career %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 border shadow-sm rounded-4 d-flex flex-column bg-white">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary small">{{ c.category }}</span>
+                    <span class="badge bg-secondary bg-opacity-10 text-dark small">{{ item.relationship_type }} Pathway</span>
+                </div>
+
+                <h4 class="fw-bold mb-1">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="text-decoration-none text-dark">
+                        {{ c.title }}
+                    </a>
+                </h4>
+                <div class="small text-muted mb-2">{{ c.sub_category }}</div>
+
+                <p class="small text-muted flex-grow-1 mb-3">
+                    {{ c.short_description or c.description[:120] }}...
+                </p>
+
+                <div class="bg-light p-2 rounded-3 small mb-3 border">
+                    <div class="mb-1 text-truncate"><strong>Salary:</strong> {{ c.average_salary }}</div>
+                    <div class="text-truncate"><strong><i data-lucide="building" class="icon-xs"></i> Industry:</strong> {{ c.industry or 'Corporate / Public' }}</div>
+                </div>
+
+                <div class="mt-auto pt-2 border-top">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-primary btn-sm w-100 fw-semibold">
+                        View Detailed Roadmap →
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card p-5 text-center border shadow-sm rounded-4 bg-white">
+        <p class="text-muted mb-0">No direct career records linked to this degree yet. Try choosing another degree.</p>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <!-- Popular Degree Shortcuts -->
+    <div class="mb-4">
+        <h5 class="fw-bold text-dark mb-3">Or Jump Directly into Common Degree Pathways:</h5>
+        <div class="row g-3">
+            {% for crs in courses[:12] %}
+            <div class="col-md-4 col-sm-6">
+                <a href="{{ url_for('career.explore_by_course', course_id=crs.id) }}" class="card p-3 border shadow-sm text-decoration-none text-dark h-100 bg-white">
+                    <h6 class="fw-bold mb-1 text-primary">{{ crs.name }}</h6>
+                    <div class="small text-muted">{{ crs.level }} • {{ crs.discipline }}</div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

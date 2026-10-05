@@ -6,6 +6,12 @@ class AIMatchingEngine:
     @staticmethod
     def calculate(profile, opportunity):
 
+        if not profile:
+            return {
+                "score": 50,
+                "reasons": ["Explore opportunity to expand career awareness."]
+            }
+
         score = 0
         reasons = []
 
@@ -100,7 +106,7 @@ class AIMatchingEngine:
         # State Bonus (10)
         # -----------------------------
 
-        if hasattr(opportunity, "location"):
+        if hasattr(opportunity, "location") and getattr(profile, "state", None):
 
             if opportunity.location:
 

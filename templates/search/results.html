@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results for "{{ query }}" | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Search Header -->
+    <div class="mb-4">
+        <h1 class="fw-bold mb-2">Search Results</h1>
+        <p class="text-muted">
+            Found <strong>{{ total_results }}</strong> result{{ 's' if total_results != 1 else '' }} matching <span class="text-primary fw-semibold">"{{ query }}"</span> across Careers, Colleges, Exams, Scholarships, and Internships.
+        </p>
+
+        <!-- Search Refinement Bar -->
+        <form action="{{ url_for('main.search') }}" method="GET" class="search-container mt-3">
+            <span class="search-icon"><i data-lucide="search" class="icon-xs"></i></span>
+            <input type="text" name="q" value="{{ query }}" class="form-control search-input" placeholder="Search careers, colleges, exams, scholarships, or skills...">
+        </form>
+    </div>
+
+    {% if total_results == 0 %}
+    <div class="empty-state py-5 my-4">
+        <div class="empty-state-icon"></div>
+        <h4 class="fw-bold">No results found</h4>
+        <p class="text-muted max-w-500 mx-auto">
+            We couldn't find exact matches for "{{ query }}". Try searching for general domains like "Data", "Medical", "UPSC", "Engineering", or "Design".
+        </p>
+        <a href="{{ url_for('career.career_list') }}" class="btn btn-primary mt-2">
+            Browse All Careers
+        </a>
+    </div>
+    {% else %}
+
+        <!-- CAREERS SECTION -->
+        {% if careers %}
+        <div class="mb-5">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h4 class="fw-bold mb-0"><i data-lucide="briefcase" class="icon-xs"></i> Careers ({{ careers|length }})</h4>
+                <a href="{{ url_for('career.career_list', search=query) }}" class="small text-primary fw-semibold text-decoration-none">
+                    View in Career Explorer →
+                </a>
+            </div>
+
+            <div class="row g-3">
+                {% for c in careers %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 p-3 card-interactive">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge badge-category">{{ c.category }}</span>
+                            <span class="badge badge-verified">Verified</span>
+                        </div>
+                        <h5 class="fw-bold mb-1">{{ c.title }}</h5>
+                        <p class="small text-muted mb-3 flex-grow-1">
+                            {{ c.description[:110] }}{% if c.description|length > 110 %}...{% endif %}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <span class="small text-muted">{{ c.average_salary.split('|')[0] if c.average_salary else 'Industry Scale' }}</span>
+                            <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-sm btn-outline-primary">
+                                View Career →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- COLLEGES SECTION -->
+        {% if colleges %}
+        <div class="mb-5">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h4 class="fw-bold mb-0"><i data-lucide="graduation-cap" class="icon-xs"></i> Colleges & Universities ({{ colleges|length }})</h4>
+                <a href="{{ url_for('college.college_list', search=query) }}" class="small text-primary fw-semibold text-decoration-none">
+                    View in College Explorer →
+                </a>
+            </div>
+
+            <div class="row g-3">
+                {% for col in colleges %}
+                <div class="col-md-6">
+                    <div class="card h-100 p-3 card-interactive">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-light text-dark border">{{ col.city }}, {{ col.state }}</span>
+                            <span class="badge badge-verified">Accredited</span>
+                        </div>
+                        <h6 class="fw-bold mb-1">{{ col.name }}</h6>
+                        <p class="small text-muted mb-2">
+                            <strong>Courses:</strong> {{ col.course }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <span class="small text-muted">{{ col.college_type or 'Recognized Institution' }}</span>
+                            {% if col.official_url %}
+                            <a href="{{ col.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success">
+                                Official Website 
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- GOVERNMENT EXAMS SECTION -->
+        {% if exams %}
+        <div class="mb-5">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h4 class="fw-bold mb-0"><i data-lucide="clipboard-list" class="icon-xs"></i> Government Examinations ({{ exams|length }})</h4>
+                <a href="{{ url_for('exam.exam_list', search=query) }}" class="small text-primary fw-semibold text-decoration-none">
+                    View in Exam Explorer →
+                </a>
+            </div>
+
+            <div class="row g-3">
+                {% for ex in exams %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 p-3 card-interactive">
+                        <span class="badge bg-primary bg-opacity-10 text-primary w-auto align-self-start mb-2">{{ ex.category }}</span>
+                        <h6 class="fw-bold mb-1">{{ ex.exam_name }}</h6>
+                        <p class="small text-muted mb-2">
+                            <strong>Eligibility:</strong> {{ ex.qualification }} | {{ ex.age_limit }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <span class="small text-muted">{{ ex.conducted_by or 'Central/State Body' }}</span>
+                            {% if ex.official_url %}
+                            <a href="{{ ex.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
+                                Official Portal 
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- SCHOLARSHIPS SECTION -->
+        {% if scholarships %}
+        <div class="mb-5">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h4 class="fw-bold mb-0"><i data-lucide="award" class="icon-xs"></i> Scholarships ({{ scholarships|length }})</h4>
+                <a href="{{ url_for('scholarship.scholarship_list', search=query) }}" class="small text-primary fw-semibold text-decoration-none">
+                    View in Scholarships Directory →
+                </a>
+            </div>
+
+            <div class="row g-3">
+                {% for s in scholarships %}
+                <div class="col-md-6">
+                    <div class="card h-100 p-3 card-interactive">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-warning bg-opacity-10 text-dark">{{ s.category }}</span>
+                            <span class="badge badge-verified">Official Scheme</span>
+                        </div>
+                        <h6 class="fw-bold mb-1">{{ s.title }}</h6>
+                        <p class="small text-muted mb-2">
+                            <strong>Provider:</strong> {{ s.provider }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <span class="small text-muted">{{ s.amount or 'Financial Grant' }}</span>
+                            <div class="d-flex gap-2">
+                                <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-sm btn-outline-secondary">
+                                    Details
+                                </a>
+                                {% set meta = s.apply_button_meta %}
+                                {% if meta.is_enabled %}
+                                <a href="{{ url_for('scholarship.apply_redirect', identifier=s.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                                    <i data-lucide="graduation-cap" class="icon-xs"></i> Apply 
+                                </a>
+                                {% else %}
+                                <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-sm btn-{{ meta.badge_class }}" title="{{ meta.reason }}">
+                                    {{ meta.icon }} {{ meta.label }}
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- INTERNSHIPS SECTION -->
+        {% if internships %}
+        <div class="mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <h4 class="fw-bold mb-0"><i data-lucide="building" class="icon-xs"></i> Internships ({{ internships|length }})</h4>
+                <a href="{{ url_for('internship.internship_list', search=query) }}" class="small text-primary fw-semibold text-decoration-none">
+                    View in Internship Explorer →
+                </a>
+            </div>
+
+            <div class="row g-3">
+                {% for it in internships %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 p-3 card-interactive">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge bg-info bg-opacity-10 text-dark">{{ it.mode }}</span>
+                            <span class="badge badge-verified">AICTE Verified</span>
+                        </div>
+                        <h6 class="fw-bold mb-1">{{ it.title }}</h6>
+                        <div class="small text-muted mb-2"><strong>Organization:</strong> {{ it.company }}</div>
+                        <div class="small text-muted mb-3"><strong>Skills:</strong> {{ it.skills }}</div>
+                        <div class="d-flex justify-content-between align-items-center pt-2 border-top mt-auto">
+                            <span class="small text-muted">{{ it.stipend or 'Stipend Available' }}</span>
+                            {% if it.official_url %}
+                            <a href="{{ it.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
+                                Portal Link 
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    {% endif %}
+
+</div>
+{% endblock %}

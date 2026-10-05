@@ -1,1392 +1,730 @@
 {% extends "base.html" %}
 
-{% block title %}MPath Career Counselling{% endblock %}
+{% block title %}MPath Career Counselling | National Career & Education Guidance{% endblock %}
 
 {% block content %}
 
-<style>
-
-/* =========================================================
-   MPath CAREER COUNSELLING
-   FUTURISTIC DARK WELCOME HOMEPAGE
-   ========================================================= */
-
-.cpi-home {
-    position: relative;
-    min-height: calc(100vh - 72px);
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 12% 25%,
-            rgba(192, 38, 211, 0.20),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 88% 20%,
-            rgba(124, 58, 237, 0.18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 55% 100%,
-            rgba(34, 211, 238, 0.10),
-            transparent 32%
-        ),
-        linear-gradient(
-            135deg,
-            #050509 0%,
-            #0B0B14 48%,
-            #12091A 100%
-        );
-
-    color: #F8FAFC;
-}
-
-
-/* =========================================================
-   PARTICLES
-   ========================================================= */
-
-#particles {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   BACKGROUND GLOW
-   ========================================================= */
-
-.ai-glow {
-    position: absolute;
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(192, 38, 211, 0.20),
-            rgba(124, 58, 237, 0.12),
-            transparent 70%
-        );
-
-    filter: blur(10px);
-
-    animation: glowMove 8s ease-in-out infinite;
-
-    pointer-events: none;
-    z-index: 2;
-}
-
-.ai-glow-one {
-    top: -180px;
-    left: -150px;
-}
-
-.ai-glow-two {
-    right: -170px;
-    bottom: -180px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(34, 211, 238, 0.14),
-            rgba(124, 58, 237, 0.12),
-            transparent 70%
-        );
-
-    animation-delay: -4s;
-}
-
-@keyframes glowMove {
-
-    0%, 100% {
-        transform:
-            translate3d(0, 0, 0)
-            scale(1);
-    }
-
-    50% {
-        transform:
-            translate3d(35px, -20px, 0)
-            scale(1.08);
-    }
-}
-
-
-/* =========================================================
-   HERO CONTENT
-   ========================================================= */
-
-.hero-content {
-    position: relative;
-    z-index: 5;
-
-    min-height: calc(100vh - 72px);
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 70px 20px 90px;
-}
-
-
-/* =========================================================
-   STATUS
-   ========================================================= */
-
-.ai-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-
-    padding: 8px 16px;
-    margin-bottom: 25px;
-
-    border-radius: 999px;
-
-    background:
-        rgba(255, 255, 255, 0.045);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.12);
-
-    backdrop-filter: blur(14px);
-
-    color:
-        rgba(255, 255, 255, 0.88);
-
-    font-size: 14px;
-    font-weight: 600;
-
-    box-shadow:
-        0 8px 30px rgba(0, 0, 0, 0.25),
-        0 0 30px rgba(192, 38, 211, 0.06);
-
-    animation:
-        fadeDown 0.8s ease forwards;
-}
-
-
-.status-dot {
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #22D3EE;
-
-    box-shadow:
-        0 0 8px #22D3EE,
-        0 0 18px rgba(34, 211, 238, 0.55);
-
-    animation:
-        statusPulse 1.8s infinite;
-}
-
-
-@keyframes statusPulse {
-
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.35);
-        opacity: 0.65;
-    }
-}
-
-
-/* =========================================================
-   HERO TITLE
-   ========================================================= */
-
-#hero-title {
-    margin: 0;
-
-    font-size:
-        clamp(45px, 7vw, 90px);
-
-    line-height: 1;
-
-    font-weight: 800;
-
-    letter-spacing: -3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #FFFFFF,
-            #E9D5FF,
-            #C084FC,
-            #F0ABFC,
-            #67E8F9,
-            #FFFFFF
-        );
-
-    background-size: 300% auto;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    animation:
-        titleReveal 1s ease forwards,
-        titleShine 7s linear infinite;
-
-    text-shadow:
-        0 0 50px
-        rgba(192, 38, 211, 0.14);
-}
-
-
-@keyframes titleReveal {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(25px)
-            scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-
-@keyframes titleShine {
-
-    0% {
-        background-position: 0% center;
-    }
-
-    100% {
-        background-position: 300% center;
-    }
-}
-
-
-/* =========================================================
-   SUBTITLE
-   ========================================================= */
-
-.hero-subtitle {
-    max-width: 720px;
-
-    margin:
-        25px auto 0;
-
-    color:
-        rgba(255, 255, 255, 0.70);
-
-    font-size:
-        clamp(17px, 2vw, 21px);
-
-    line-height: 1.7;
-
-    animation:
-        fadeUp 1s 0.25s ease both;
-}
-
-
-/* =========================================================
-   WELCOME MESSAGE
-   ========================================================= */
-
-.welcome-message {
-    margin-top: 18px;
-
-    color: #67E8F9;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    letter-spacing: 0.4px;
-
-    animation:
-        fadeUp 1s 0.35s ease both;
-
-    text-shadow:
-        0 0 12px
-        rgba(34, 211, 238, 0.35);
-}
-
-
-/* =========================================================
-   HERO BUTTONS
-   ========================================================= */
-
-.hero-buttons {
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 14px;
-
-    margin-top: 35px;
-
-    animation:
-        fadeUp 1s 0.45s ease both;
-}
-
-
-.hero-action {
-    position: relative;
-
-    min-width: 205px;
-
-    padding: 13px 24px;
-
-    border-radius: 12px;
-
-    font-weight: 700;
-
-    text-decoration: none;
-
-    overflow: hidden;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease;
-}
-
-
-.hero-action:hover {
-    transform:
-        translateY(-4px);
-}
-
-
-/* =========================================================
-   REGISTER BUTTON
-   ========================================================= */
-
-.hero-primary {
-    color: white !important;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7C3AED,
-            #C026D3,
-            #EC4899
-        );
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.18);
-
-    box-shadow:
-        0 10px 30px
-        rgba(192, 38, 211, 0.28),
-
-        0 0 25px
-        rgba(124, 58, 237, 0.15);
-}
-
-
-.hero-primary:hover {
-
-    box-shadow:
-        0 15px 40px
-        rgba(192, 38, 211, 0.45),
-
-        0 0 35px
-        rgba(236, 72, 153, 0.18);
-}
-
-
-/* =========================================================
-   LOGIN BUTTON
-   ========================================================= */
-
-.hero-secondary {
-
-    color: white !important;
-
-    background:
-        rgba(255, 255, 255, 0.045);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.20);
-
-    backdrop-filter:
-        blur(12px);
-
-    box-shadow:
-        0 8px 25px
-        rgba(0, 0, 0, 0.15);
-}
-
-
-.hero-secondary:hover {
-
-    background:
-        rgba(192, 38, 211, 0.10);
-
-    border-color:
-        rgba(192, 38, 211, 0.45);
-
-    box-shadow:
-        0 10px 30px
-        rgba(192, 38, 211, 0.16);
-}
-
-
-/* =========================================================
-   BUTTON SHINE
-   ========================================================= */
-
-.hero-action::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 70%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.30),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-}
-
-
-.hero-action:hover::before {
-
-    animation:
-        buttonShine 0.8s ease;
-}
-
-
-@keyframes buttonShine {
-
-    from {
-        left: -120%;
-    }
-
-    to {
-        left: 140%;
-    }
-}
-
-
-/* =========================================================
-   AI ORB
-   ========================================================= */
-
-.ai-orb-container {
-
-    position: relative;
-
-    width: 170px;
-    height: 170px;
-
-    margin-top: 45px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    animation:
-        fadeUp 1s 0.65s ease both;
-}
-
-
-.ai-orb {
-
-    position: relative;
-
-    width: 88px;
-    height: 88px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 38px;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #67E8F9,
-            #7C3AED 45%,
-            #C026D3 75%,
-            #EC4899 100%
-        );
-
-    box-shadow:
-        0 0 25px
-        rgba(34, 211, 238, 0.55),
-
-        0 0 60px
-        rgba(192, 38, 211, 0.45),
-
-        0 0 100px
-        rgba(124, 58, 237, 0.18);
-
-    animation:
-        orbFloat 4s ease-in-out infinite;
-
-    z-index: 3;
-}
-
-
-.ai-orb::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 8px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.45);
-
-    box-shadow:
-        inset 0 0 20px
-        rgba(255, 255, 255, 0.08);
-}
-
-
-@keyframes orbFloat {
-
-    0%, 100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-9px);
-    }
-}
-
-
-/* =========================================================
-   ORBITS
-   ========================================================= */
-
-.orbit {
-
-    position: absolute;
-
-    border:
-        1px solid
-        rgba(192, 38, 211, 0.32);
-
-    border-radius: 50%;
-}
-
-
-.orbit-one {
-
-    width: 125px;
-    height: 125px;
-
-    border-color:
-        rgba(34, 211, 238, 0.32);
-
-    animation:
-        orbitRotate 7s linear infinite;
-}
-
-
-.orbit-two {
-
-    width: 160px;
-    height: 160px;
-
-    border-color:
-        rgba(192, 38, 211, 0.30);
-
-    animation:
-        orbitRotateReverse 10s linear infinite;
-}
-
-
-.orbit-three {
-
-    width: 195px;
-    height: 195px;
-
-    border:
-        1px dashed
-        rgba(236, 72, 153, 0.18);
-
-    animation:
-        orbitRotate 14s linear infinite;
-}
-
-
-.orbit::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background:
-        #22D3EE;
-
-    box-shadow:
-        0 0 12px #22D3EE,
-        0 0 22px rgba(34, 211, 238, 0.55);
-
-    top: 50%;
-    left: -4px;
-}
-
-
-.orbit-two::before {
-
-    background:
-        #EC4899;
-
-    box-shadow:
-        0 0 12px #EC4899,
-        0 0 22px rgba(236, 72, 153, 0.55);
-
-    left: auto;
-    right: -4px;
-}
-
-
-.orbit-three::before {
-
-    background:
-        #A78BFA;
-
-    box-shadow:
-        0 0 12px #A78BFA;
-}
-
-
-@keyframes orbitRotate {
-
-    from {
-        transform:
-            rotate(0deg);
-    }
-
-    to {
-        transform:
-            rotate(360deg);
-    }
-}
-
-
-@keyframes orbitRotateReverse {
-
-    from {
-        transform:
-            rotate(360deg);
-    }
-
-    to {
-        transform:
-            rotate(0deg);
-    }
-}
-
-
-/* =========================================================
-   TRUST MESSAGE
-   ========================================================= */
-
-.trust-message {
-
-    position: relative;
-
-    z-index: 5;
-
-    text-align: center;
-
-    margin-top: -35px;
-
-    padding-bottom: 35px;
-
-    color:
-        rgba(255, 255, 255, 0.50);
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   FADE ANIMATIONS
-   ========================================================= */
-
-@keyframes fadeDown {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(-15px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-}
-
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
-    }
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 600px) {
-
-    .hero-content {
-
-        padding:
-            60px
-            18px
-            80px;
-    }
-
-
-    #hero-title {
-
-        font-size:
-            clamp(40px, 12vw, 65px);
-
-        letter-spacing:
-            -1.5px;
-    }
-
-
-    .hero-buttons {
-
-        width: 100%;
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-    }
-
-
-    .hero-action {
-
-        width: 100%;
-    }
-
-
-    .ai-orb-container {
-
-        transform:
-            scale(0.8);
-    }
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        scroll-behavior:
-            auto !important;
-    }
-}
-
-</style>
-
-
-<!-- =======================================================
-     MPath CAREER COUNSELLING HOMEPAGE
-     ======================================================= -->
-
-<div class="cpi-home">
-
-    <!-- Background glows -->
-
-    <div class="ai-glow ai-glow-one"></div>
-
-    <div class="ai-glow ai-glow-two"></div>
-
-
-    <!-- Particle background -->
-
-    <canvas id="particles"></canvas>
-
-
-    <!-- ===================================================
-         HERO CONTENT
-         =================================================== -->
-
-    <section class="hero-content">
-
-
-        <!-- STATUS -->
-
-        <div class="ai-status">
-
-            <span class="status-dot"></span>
-
-            <span>
-                AI-Powered Career Counselling
-            </span>
-
-        </div>
-
-
-        <!-- MAIN TITLE -->
-
-        <h1 id="hero-title">
-            MPath Career Counselling
-        </h1>
-
-
-        <!-- SUBTITLE -->
-
-        <p class="hero-subtitle">
-
-            Find the right direction for your future.
-            Get guidance, explore career possibilities,
-            and make confident decisions about your career.
-
-        </p>
-
-
-        <!-- WELCOME -->
-
-        <div class="welcome-message">
-
-            ✨ Your career journey starts here.
-
-        </div>
-
-
-        <!-- =================================================
-             LOGIN / REGISTER
-             ================================================= -->
-
-        <div class="hero-buttons">
-
-
-            <a
-                href="{{ url_for('auth.register') }}"
-                class="hero-action hero-primary"
-            >
-
-                📝 Create Account
-
-            </a>
-
-
-            <a
-                href="{{ url_for('auth.login') }}"
-                class="hero-action hero-secondary"
-            >
-
-                🔐 Login
-
-            </a>
-
-
-        </div>
-
-
-        <!-- =================================================
-             AI ORB
-             ================================================= -->
-
-        <div class="ai-orb-container">
-
-            <div class="orbit orbit-three"></div>
-
-            <div class="orbit orbit-two"></div>
-
-            <div class="orbit orbit-one"></div>
-
-
-            <div
-                class="ai-orb"
-                id="ai-orb"
-            >
-
-                ✦
-
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<!-- ============================================================
+     HERO SECTION (MATCHING DESIGN REFERENCE)
+     ============================================================ -->
+<section class="hero-ref-wrapper">
+    <div class="container">
+        <div class="row align-items-center g-4 g-lg-5">
+
+            <!-- LEFT COLUMN: HEADLINE, DESCRIPTION & ACTIONS -->
+            <div class="col-lg-6">
+                <!-- Main Heading -->
+                <h1 class="hero-ref-title">
+                    Explore your possibilities.<br>
+                    <span class="hero-ref-title-blue">Build your path.</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="hero-ref-subtitle">
+                    Discover careers, colleges, scholarships, internships and examinations based on your education, interests and skills. Unbiased, structured, and tailored for Indian students.
+                </p>
+
+                <!-- Quick Path Navigator Search Box -->
+                <div class="hero-search-card mb-4">
+                    <div class="hero-search-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <i data-lucide="compass" class="icon-sm text-primary"></i>
+                            <span class="fw-bold text-navy" style="font-size: 0.95rem;">Quick Path Navigator</span>
+                        </div>
+                        <span class="quick-navigator-badge">Instant Discovery</span>
+                    </div>
+
+                    <form action="{{ url_for('main.search') }}" method="GET" class="hero-search-form">
+                        <div class="hero-search-bar">
+                            <i data-lucide="search" class="hero-search-icon"></i>
+                            <input type="text" name="q" class="hero-search-field" placeholder="Search careers, exams, colleges (e.g. Data Scientist, UPSC, NEET)..." required>
+                            <button type="submit" class="hero-search-submit">
+                                <span>Search</span>
+                                <i data-lucide="arrow-right" class="icon-xs"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="popular-search-wrapper mt-2 pt-1">
+                        <span class="popular-search-label">Popular:</span>
+                        <div class="popular-search-pills">
+                            <a href="{{ url_for('main.search') }}?q=Software+Engineer" class="popular-pill">Software Engineer</a>
+                            <a href="{{ url_for('main.search') }}?q=Doctor" class="popular-pill">Doctor</a>
+                            <a href="{{ url_for('main.search') }}?q=IAS+Officer" class="popular-pill">IAS Officer</a>
+                            <a href="{{ url_for('main.search') }}?q=Chartered+Accountant" class="popular-pill">Chartered Accountant</a>
+                            <a href="{{ url_for('main.search') }}?q=Data+Scientist" class="popular-pill">Data Scientist</a>
+                            <a href="{{ url_for('college.college_list') }}?search=B.Tech" class="popular-pill">B.Tech Colleges</a>
+                            <a href="{{ url_for('scholarship.scholarship_list') }}" class="popular-pill">Scholarships</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primary Action Buttons -->
+                <div class="d-flex flex-wrap gap-3 mb-3">
+                    <a href="{{ url_for('career.career_list') }}" class="btn-hero-primary">
+                        <i data-lucide="compass" class="icon-sm"></i>
+                        <span>Explore Careers</span>
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                    </a>
+                    <a href="{{ url_for('assessment.start') }}" class="btn-hero-secondary">
+                        <i data-lucide="bar-chart-2" class="icon-sm"></i>
+                        <span>Take Career Assessment</span>
+                    </a>
+                    <a href="{{ url_for('college.college_list') }}" class="btn-hero-tertiary">
+                        <i data-lucide="graduation-cap" class="icon-sm"></i>
+                        <span>Find Colleges</span>
+                    </a>
+                </div>
+
+                <!-- Trust Checklist -->
+                <div class="hero-trust-checks">
+                    <div class="hero-trust-item">
+                        <i data-lucide="check" class="icon-xs text-primary"></i>
+                        <span>Structured career roadmaps</span>
+                    </div>
+                    <div class="hero-trust-item">
+                        <i data-lucide="check" class="icon-xs text-primary"></i>
+                        <span>Verified information</span>
+                    </div>
+                    <div class="hero-trust-item">
+                        <i data-lucide="check" class="icon-xs text-primary"></i>
+                        <span>Made for Indian students</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: EXPANDED & BEAUTIFULLY FITTED STUDENT SHOWCASE -->
+            <div class="col-lg-6">
+                <div class="hero-student-wrapper">
+                    <!-- Ambient Decorative Glow -->
+                    <div class="hero-student-glow"></div>
+
+                    <!-- Student Photo Card -->
+                    <div class="hero-student-container">
+                        <img src="{{ url_for('static', filename='images/hero_student.jpg') }}" alt="Indian Student using MPath" class="hero-student-img">
+
+                        <!-- Floating Badge: Bottom Left (Better Opportunities) -->
+                        <div class="hero-floating-badge hero-badge-bottom">
+                            <div class="icon-badge icon-badge-gold" style="width: 36px; height: 36px;">
+                                <i data-lucide="trending-up" class="icon-xs"></i>
+                            </div>
+                            <div class="d-flex flex-column leading-none">
+                                <span class="fw-bold text-navy lh-1" style="font-size: 0.95rem;">Better Opportunities</span>
+                                <span class="text-muted lh-1 mt-1" style="font-size: 0.775rem;">Brighter Future</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Pill: Bottom Right -->
+                        <div class="hero-floating-pill">
+                            <i data-lucide="award" class="icon-xs text-success"></i>
+                            <span>100% Free &amp; Verified</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
 
-    </section>
-
-
-    <!-- TRUST MESSAGE -->
-
-    <div class="trust-message">
-
-        Register or login to access the complete MPath Career Counselling platform.
+        <!-- FLOATING STATISTICS STRIP -->
+        <div class="hero-floating-stats mt-lg-5 mt-4">
+            <div class="row g-4 align-items-center text-start">
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item-block">
+                        <div class="stat-icon-wrapper">
+                            <i data-lucide="compass" class="icon-md"></i>
+                        </div>
+                        <div>
+                            <div class="stat-value">{% if counts is defined and counts %}{{ counts.careers or 214 }}{% else %}214{% endif %}+</div>
+                            <div class="stat-label">Authentic Careers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item-block">
+                        <div class="stat-icon-wrapper" style="background-color: #FEF7E8; color: var(--color-gold-dark);">
+                            <i data-lucide="landmark" class="icon-md"></i>
+                        </div>
+                        <div>
+                            <div class="stat-value">{% if counts is defined and counts %}{{ counts.colleges or 1946 }}{% else %}1,946{% endif %}+</div>
+                            <div class="stat-label">Colleges Registry</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item-block">
+                        <div class="stat-icon-wrapper" style="background-color: #E0F2FE; color: #0284C7;">
+                            <i data-lucide="file-text" class="icon-md"></i>
+                        </div>
+                        <div>
+                            <div class="stat-value">{% if counts is defined and counts %}{{ counts.exams or 95 }}{% else %}95{% endif %}+</div>
+                            <div class="stat-label">National Examinations</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="stat-item-block">
+                        <div class="stat-icon-wrapper" style="background-color: #EBF8F0; color: #1E7E44;">
+                            <i data-lucide="award" class="icon-md"></i>
+                        </div>
+                        <div>
+                            <div class="stat-value">{% if counts is defined and counts %}{{ counts.opportunities or 190 }}{% else %}190{% endif %}+</div>
+                            <div class="stat-label">Scholarships & Internships</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-
-
-    <!-- Click effect container -->
-
-    <div id="click-burst"></div>
-
-</div>
-
-
-<script>
-
-/* =========================================================
-   MPath CAREER COUNSELLING HOMEPAGE
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-
-        /* =================================================
-           AI ORB
-           ================================================= */
-
-        const orb =
-            document.getElementById(
-                "ai-orb"
-            );
-
-
-        if (orb) {
-
-            orb.addEventListener(
-                "mouseenter",
-                function () {
-
-                    orb.style.transform =
-                        "scale(1.08)";
-
-                }
-            );
-
-
-            orb.addEventListener(
-                "mouseleave",
-                function () {
-
-                    orb.style.transform =
-                        "";
-
-                }
-            );
-
-        }
-
-
-        /* =================================================
-           CLICK BURST
-           ================================================= */
-
-        const burstContainer =
-            document.getElementById(
-                "click-burst"
-            );
-
-
-        document.addEventListener(
-            "click",
-            function (event) {
-
-
-                /*
-                 * Don't create the effect when
-                 * clicking navigation or links.
-                 */
-
-                if (
-                    event.target.closest("nav") ||
-                    event.target.closest("a")
-                ) {
-
-                    return;
-
-                }
-
-
-                if (!burstContainer) {
-
-                    return;
-
-                }
-
-
-                const ring =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                ring.className =
-                    "burst-ring";
-
-
-                ring.style.left =
-                    event.clientX + "px";
-
-
-                ring.style.top =
-                    event.clientY + "px";
-
-
-                burstContainer.appendChild(
-                    ring
-                );
-
-
-                setTimeout(
-                    function () {
-
-                        ring.remove();
-
-                    },
-                    700
-                );
-
-            }
-        );
-
-
-        /* =================================================
-           PARTICLE SYSTEM
-           ================================================= */
-
-        const canvas =
-            document.getElementById(
-                "particles"
-            );
-
-
-        if (!canvas) {
-
-            return;
-
-        }
-
-
-        const ctx =
-            canvas.getContext("2d");
-
-
-        let particles = [];
-
-
-        /* -----------------------------------------
-           RESIZE CANVAS
-           ----------------------------------------- */
-
-        function resizeCanvas() {
-
-            const ratio =
-                window.devicePixelRatio ||
-                1;
-
-
-            canvas.width =
-                canvas.offsetWidth *
-                ratio;
-
-
-            canvas.height =
-                canvas.offsetHeight *
-                ratio;
-
-
-            ctx.setTransform(
-                ratio,
-                0,
-                0,
-                ratio,
-                0,
-                0
-            );
-
-        }
-
-
-        /* -----------------------------------------
-           CREATE PARTICLES
-           ----------------------------------------- */
-
-        function createParticles() {
-
-            particles = [];
-
-
-            const amount =
-                Math.min(
-                    80,
-                    Math.floor(
-                        window.innerWidth / 18
-                    )
-                );
-
-
-            for (
-                let i = 0;
-                i < amount;
-                i++
-            ) {
-
-                particles.push({
-
-                    x:
-                        Math.random() *
-                        canvas.offsetWidth,
-
-                    y:
-                        Math.random() *
-                        canvas.offsetHeight,
-
-                    size:
-                        Math.random() *
-                        1.8 + 0.5,
-
-                    speedX:
-                        (
-                            Math.random() - 0.5
-                        ) * 0.25,
-
-                    speedY:
-                        (
-                            Math.random() - 0.5
-                        ) * 0.25,
-
-                    opacity:
-                        Math.random() *
-                        0.5 + 0.15
-
-                });
-
-            }
-
-        }
-
-
-        /* -----------------------------------------
-           ANIMATE PARTICLES
-           ----------------------------------------- */
-
-        function animateParticles() {
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.offsetWidth,
-                canvas.offsetHeight
-            );
-
-
-            particles.forEach(
-                function (particle) {
-
-                    particle.x +=
-                        particle.speedX;
-
-                    particle.y +=
-                        particle.speedY;
-
-
-                    if (
-                        particle.x < 0
-                    ) {
-
-                        particle.x =
-                            canvas.offsetWidth;
-
-                    }
-
-
-                    if (
-                        particle.x >
-                        canvas.offsetWidth
-                    ) {
-
-                        particle.x = 0;
-
-                    }
-
-
-                    if (
-                        particle.y < 0
-                    ) {
-
-                        particle.y =
-                            canvas.offsetHeight;
-
-                    }
-
-
-                    if (
-                        particle.y >
-                        canvas.offsetHeight
-                    ) {
-
-                        particle.y = 0;
-
-                    }
-
-
-                    ctx.beginPath();
-
-
-                    ctx.arc(
-                        particle.x,
-                        particle.y,
-                        particle.size,
-                        0,
-                        Math.PI * 2
-                    );
-
-
-                    ctx.fillStyle =
-                        `rgba(
-                            180,
-                            150,
-                            255,
-                            ${particle.opacity}
-                        )`;
-
-
-                    ctx.fill();
-
-                }
-            );
-
-
-            requestAnimationFrame(
-                animateParticles
-            );
-
-        }
-
-
-        /* =================================================
-           INITIALIZE
-           ================================================= */
-
-        resizeCanvas();
-
-        createParticles();
-
-        animateParticles();
-
-
-        /* =================================================
-           WINDOW RESIZE
-           ================================================= */
-
-        let resizeTimeout;
-
-
-        window.addEventListener(
-            "resize",
-            function () {
-
-                clearTimeout(
-                    resizeTimeout
-                );
-
-
-                resizeTimeout =
-                    setTimeout(
-                        function () {
-
-                            resizeCanvas();
-
-                            createParticles();
-
-                        },
-                        200
-                    );
-
-            }
-        );
-
-    }
-);
-
-</script>
+</section>
+
+<!-- ============================================================
+     1. HOW MPATH WORKS
+     ============================================================ -->
+<section class="py-5 bg-light">
+    <div class="container py-lg-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge badge-navy px-3 py-1 mb-2">Our Process</span>
+            <h2 class="fw-bold">How MPath Works</h2>
+            <p class="text-muted">A clear, 5-stage discovery framework designed to take you from uncertainty to structured action.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md">
+                <div class="card h-100 p-3 text-center border shadow-sm">
+                    <div class="icon-badge mx-auto mb-2">
+                        <i data-lucide="compass" class="icon-md"></i>
+                    </div>
+                    <div class="badge badge-navy mb-2 mx-auto">1. DISCOVER</div>
+                    <h6 class="fw-bold">Explore Careers</h6>
+                    <p class="small text-muted mb-0">Learn about authentic career tracks spanning Technology, Healthcare, Civil Services, and Business.</p>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card h-100 p-3 text-center border shadow-sm">
+                    <div class="icon-badge icon-badge-blue mx-auto mb-2">
+                        <i data-lucide="book-open" class="icon-md"></i>
+                    </div>
+                    <div class="badge badge-blue mb-2 mx-auto">2. UNDERSTAND</div>
+                    <h6 class="fw-bold">Inspect Skills</h6>
+                    <p class="small text-muted mb-0">Identify minimum qualifications, core technical capabilities, and required entrance exams.</p>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card h-100 p-3 text-center border shadow-sm">
+                    <div class="icon-badge icon-badge-gold mx-auto mb-2">
+                        <i data-lucide="scale" class="icon-md"></i>
+                    </div>
+                    <div class="badge badge-gold mb-2 mx-auto">3. COMPARE</div>
+                    <h6 class="fw-bold">Weigh Options</h6>
+                    <p class="small text-muted mb-0">Compare careers side-by-side to understand work modes, learning curves, and compensation.</p>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card h-100 p-3 text-center border shadow-sm">
+                    <div class="icon-badge icon-badge-success mx-auto mb-2">
+                        <i data-lucide="map" class="icon-md"></i>
+                    </div>
+                    <div class="badge badge-verified mb-2 mx-auto">4. PLAN</div>
+                    <h6 class="fw-bold">Build Roadmap</h6>
+                    <p class="small text-muted mb-0">Follow structured milestone stages from schooling to certifications, portfolio, and placements.</p>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="card h-100 p-3 text-center border shadow-sm">
+                    <div class="icon-badge mx-auto mb-2">
+                        <i data-lucide="award" class="icon-md"></i>
+                    </div>
+                    <div class="badge badge-navy mb-2 mx-auto">5. ACT</div>
+                    <h6 class="fw-bold">Seize Opportunities</h6>
+                    <p class="small text-muted mb-0">Apply for verified AICTE internships, government examinations, and national scholarships.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     2. CAREER DISCOVERY
+     ============================================================ -->
+<section class="py-5 bg-white border-bottom">
+    <div class="container py-lg-4">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <span class="badge badge-navy px-3 py-1 mb-2">Knowledge Base</span>
+                <h2 class="fw-bold mb-1">Career Discovery</h2>
+                <p class="text-muted mb-0">Explore detailed profiles with verified education, skills, and salaries.</p>
+            </div>
+            <a href="{{ url_for('career.career_list') }}" class="btn btn-outline-primary d-none d-md-inline-flex">
+                <span>View All Careers</span>
+                <i data-lucide="arrow-right" class="icon-xs"></i>
+            </a>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 border shadow-sm card-interactive">
+                    <div class="icon-badge icon-badge-blue mb-3">
+                        <i data-lucide="cpu" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Technology</h5>
+                    <p class="small text-muted">Software, AI/ML, Cloud, Data Science, and Cybersecurity engineering tracks.</p>
+                    <a href="{{ url_for('career.career_list', category='Technology') }}" class="fw-semibold text-blue text-decoration-none mt-auto small d-flex align-items-center gap-1">
+                        <span>Explore Tech Paths</span>
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 border shadow-sm card-interactive">
+                    <div class="icon-badge icon-badge-success mb-3">
+                        <i data-lucide="heart-pulse" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Medical & Healthcare</h5>
+                    <p class="small text-muted">Doctors (MBBS), Pharmacy, Nursing, Clinical Research, and allied sciences.</p>
+                    <a href="{{ url_for('career.career_list', category='Medical & Healthcare') }}" class="fw-semibold text-blue text-decoration-none mt-auto small d-flex align-items-center gap-1">
+                        <span>Explore Healthcare</span>
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 border shadow-sm card-interactive">
+                    <div class="icon-badge mb-3">
+                        <i data-lucide="landmark" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Government & Civil</h5>
+                    <p class="small text-muted">UPSC (IAS/IPS), SSC, Railways, State PSCs, Defence and public administration.</p>
+                    <a href="{{ url_for('career.career_list', category='Government & Civil Services') }}" class="fw-semibold text-blue text-decoration-none mt-auto small d-flex align-items-center gap-1">
+                        <span>Explore Civil Services</span>
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card h-100 p-4 border shadow-sm card-interactive">
+                    <div class="icon-badge icon-badge-gold mb-3">
+                        <i data-lucide="trending-up" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Commerce & Finance</h5>
+                    <p class="small text-muted">Chartered Accountancy (CA), Investment Banking, Corporate Law, and Business Analytics.</p>
+                    <a href="{{ url_for('career.career_list', category='Finance & Commerce') }}" class="fw-semibold text-blue text-decoration-none mt-auto small d-flex align-items-center gap-1">
+                        <span>Explore Finance</span>
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4 d-md-none">
+            <a href="{{ url_for('career.career_list') }}" class="btn btn-outline-primary">
+                <span>View All Careers</span>
+                <i data-lucide="arrow-right" class="icon-xs"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     3. COLLEGE DISCOVERY
+     ============================================================ -->
+<section class="py-5 bg-light border-bottom">
+    <div class="container py-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="badge badge-verified px-3 py-1 mb-2">Verified Institutions</span>
+                <h2 class="fw-bold mb-3">Explore Colleges & Universities Across India</h2>
+                <p class="text-muted lead fs-6 mb-4">
+                    Access our curated database of premier government, central, state, and autonomous institutions. Inspect actual courses, recognized programs, and official websites.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <span class="badge bg-white text-navy border p-2">Central Universities</span>
+                    <span class="badge bg-white text-navy border p-2">IITs, NITs & IIITs</span>
+                    <span class="badge bg-white text-navy border p-2">AIIMS & Medical Colleges</span>
+                    <span class="badge bg-white text-navy border p-2">National Law Universities</span>
+                </div>
+                <a href="{{ url_for('college.college_list') }}" class="btn btn-primary px-4">
+                    <i data-lucide="building-2" class="icon-sm"></i>
+                    <span>Browse College Directory</span>
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="card p-3 border shadow-sm h-100">
+                            <span class="badge badge-navy w-auto align-self-start mb-2">Engineering</span>
+                            <h6 class="fw-bold">Indian Institute of Technology (IITs)</h6>
+                            <p class="small text-muted mb-1">Top-tier technical institutions with admission via JEE Advanced.</p>
+                            <span class="small text-blue fw-semibold mt-auto">Verified Portal</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card p-3 border shadow-sm h-100">
+                            <span class="badge badge-danger-subtle w-auto align-self-start mb-2">Medical</span>
+                            <h6 class="fw-bold">AIIMS New Delhi</h6>
+                            <p class="small text-muted mb-1">India's apex medical institute for undergraduate medicine and research.</p>
+                            <span class="small text-blue fw-semibold mt-auto">Verified Portal</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card p-3 border shadow-sm h-100">
+                            <span class="badge badge-gold w-auto align-self-start mb-2">Commerce</span>
+                            <h6 class="fw-bold">Shri Ram College of Commerce (SRCC)</h6>
+                            <p class="small text-muted mb-1">Premier institution for Commerce and Economics in Delhi University.</p>
+                            <span class="small text-blue fw-semibold mt-auto">Verified Portal</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card p-3 border shadow-sm h-100">
+                            <span class="badge badge-blue w-auto align-self-start mb-2">Law</span>
+                            <h6 class="fw-bold">NLSIU Bengaluru</h6>
+                            <p class="small text-muted mb-1">Pioneer National Law University in India admitted through CLAT.</p>
+                            <span class="small text-blue fw-semibold mt-auto">Verified Portal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     4. SCHOLARSHIPS & 5. INTERNSHIPS
+     ============================================================ -->
+<section class="py-5 bg-white border-bottom">
+    <div class="container py-lg-4">
+        <div class="row g-5">
+            <!-- Scholarships -->
+            <div class="col-lg-6">
+                <div class="p-4 p-md-5 rounded bg-light h-100 border">
+                    <span class="badge badge-gold px-3 py-1 mb-2">Financial Support</span>
+                    <h3 class="fw-bold mb-3">Scholarships Directory</h3>
+                    <p class="text-muted mb-4">
+                        Discover central, state, and merit-based financial aid. Inspect verified eligibility criteria without speculative deadlines or amounts.
+                    </p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="check" class="icon-xs text-success"></i>
+                            <span>Direct links to National Scholarship Portal (scholarships.gov.in)</span>
+                        </li>
+                        <li class="mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="check" class="icon-xs text-success"></i>
+                            <span>Post-Matric, Pre-Matric, and Higher Education schemes</span>
+                        </li>
+                        <li class="mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="check" class="icon-xs text-success"></i>
+                            <span>Structured eligibility guidelines by qualification and category</span>
+                        </li>
+                    </ul>
+                    <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-primary">
+                        <i data-lucide="award" class="icon-sm"></i>
+                        <span>Find Scholarships</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Internships -->
+            <div class="col-lg-6">
+                <div class="p-4 p-md-5 rounded bg-light h-100 border">
+                    <span class="badge badge-blue px-3 py-1 mb-2">Practical Experience</span>
+                    <h3 class="fw-bold mb-3">Verified Internships</h3>
+                    <p class="text-muted mb-4">
+                        Practical exposure opportunities verified through official portals such as the AICTE Internship Portal. Real skills, real organizations.
+                    </p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="check" class="icon-xs text-success"></i>
+                            <span>Domain-specific tracks: Python, Data, Web, and Core Engineering</span>
+                        </li>
+                        <li class="mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="check" class="icon-xs text-success"></i>
+                            <span>Remote, Hybrid, and On-site opportunities</span>
+                        </li>
+                        <li class="mb-2 d-flex align-items-center gap-2">
+                            <i data-lucide="check" class="icon-xs text-success"></i>
+                            <span>Transparent source attribution protecting students from unverified listings</span>
+                        </li>
+                    </ul>
+                    <a href="{{ url_for('internship.internship_list') }}" class="btn btn-blue">
+                        <i data-lucide="briefcase" class="icon-sm"></i>
+                        <span>Explore Internships</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     6. GOVERNMENT EXAMS & 7. CAREER ROADMAPS
+     ============================================================ -->
+<section class="py-5 bg-light border-bottom">
+    <div class="container py-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <span class="badge badge-navy px-3 py-1 mb-2">Structured Preparation</span>
+                <h2 class="fw-bold mb-3">50+ Government Examinations & Visual Roadmaps</h2>
+                <p class="text-muted mb-4">
+                    Whether your goal is UPSC Civil Services, SSC CGL, Banking, Indian Railways, or Defence &mdash; understand the stages, age criteria, and official conducting bodies in one place.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-4">
+                    <a href="{{ url_for('exam.exam_list', category='Civil Services') }}" class="badge bg-white text-navy text-decoration-none border p-2">Civil Services (UPSC)</a>
+                    <a href="{{ url_for('exam.exam_list', category='Staff Selection Commission') }}" class="badge bg-white text-navy text-decoration-none border p-2">SSC CGL / CHSL</a>
+                    <a href="{{ url_for('exam.exam_list', category='Banking') }}" class="badge bg-white text-navy text-decoration-none border p-2">Banking (IBPS / SBI)</a>
+                    <a href="{{ url_for('exam.exam_list', category='Defence') }}" class="badge bg-white text-navy text-decoration-none border p-2">Defence (NDA / CDS)</a>
+                    <a href="{{ url_for('exam.exam_list', category='Railways') }}" class="badge bg-white text-navy text-decoration-none border p-2">Railway Recruitment</a>
+                </div>
+                <a href="{{ url_for('exam.exam_list') }}" class="btn btn-primary px-4">
+                    <i data-lucide="file-text" class="icon-sm"></i>
+                    <span>Browse All Government Exams</span>
+                </a>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card p-4 border shadow-sm bg-white">
+                    <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+                        <span class="fw-bold text-navy">Sample Career Roadmap: Data Scientist</span>
+                        <span class="badge badge-verified">12-Month Framework</span>
+                    </div>
+
+                    <div class="d-flex flex-column gap-3">
+                        <div class="d-flex gap-3">
+                            <div class="badge badge-navy rounded d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">1</div>
+                            <div>
+                                <div class="fw-bold small">Months 1-2: Mathematics & Python Foundations</div>
+                                <div class="small text-muted">Linear algebra, calculus, Python fundamentals, and version control.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <div class="badge badge-navy rounded d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">2</div>
+                            <div>
+                                <div class="fw-bold small">Months 3-4: Data Analysis & SQL</div>
+                                <div class="small text-muted">Data wrangling with Pandas, relational querying, and dashboard design.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <div class="badge badge-navy rounded d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">3</div>
+                            <div>
+                                <div class="fw-bold small">Months 5-6: Machine Learning Foundations</div>
+                                <div class="small text-muted">Supervised and unsupervised models with evaluation frameworks.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3">
+                            <div class="badge badge-navy rounded d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;">4</div>
+                            <div>
+                                <div class="fw-bold small">Months 7-12: Applied Projects & Placements</div>
+                                <div class="small text-muted">Capstone deployment, AICTE-verified internships, and career interviews.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     8. AI CAREER MENTOR (COUNSELLING TOOL)
+     ============================================================ -->
+<section class="py-5 bg-white border-bottom">
+    <div class="container py-lg-4">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5">
+                <div class="card p-4 border text-white" style="background-color: var(--color-navy);">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="icon-badge bg-white bg-opacity-10 text-white">
+                            <i data-lucide="bot" class="icon-md"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-0 text-white">MPath Career Mentor</h5>
+                            <span class="badge badge-verified small">Guidance Assistant</span>
+                        </div>
+                    </div>
+                    <div class="p-3 rounded bg-white bg-opacity-10 small mb-3">
+                        "What career tracks combine mathematics with computer applications in India?"
+                    </div>
+                    <div class="p-3 rounded bg-white text-navy small">
+                        <strong>Mentor:</strong> Suitable avenues include <strong>Data Scientist</strong>, <strong>Actuarial Analyst</strong>, and <strong>Software Engineering</strong>. Review the course eligibility criteria and admission tests below.
+                    </div>
+                    <a href="{{ url_for('chatbot.home') }}" class="btn btn-gold mt-4 fw-bold">
+                        <span>Consult Career Mentor</span>
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <span class="badge badge-blue px-3 py-1 mb-2">Guidance Technology</span>
+                <h2 class="fw-bold mb-3">AI Career Mentor: Guided Exploration</h2>
+                <p class="text-muted lead fs-6 mb-3">
+                    Have specific questions about streams, colleges, or skill roadmaps? The MPath Career Mentor analyzes your academic background and interests to present realistic options.
+                </p>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded bg-light border">
+                            <div class="fw-bold small mb-1 d-flex align-items-center gap-2">
+                                <i data-lucide="user-check" class="icon-xs text-blue"></i>
+                                <span>Context-Aware Guidance</span>
+                            </div>
+                            <div class="small text-muted">Aligns recommendations with your academic stream, preferences, and goals.</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="p-3 rounded bg-light border">
+                            <div class="fw-bold small mb-1 d-flex align-items-center gap-2">
+                                <i data-lucide="shield-check" class="icon-xs text-navy"></i>
+                                <span>Grounded in Authentic Data</span>
+                            </div>
+                            <div class="small text-muted">Never fabricates certainty; presents verified paths with realistic requirements.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     9. WHY MPATH
+     ============================================================ -->
+<section class="py-5 bg-light border-bottom">
+    <div class="container py-lg-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge badge-navy px-3 py-1 mb-2">Core Principles</span>
+            <h2 class="fw-bold">Designed to Solve the Real Career Dilemma</h2>
+            <p class="text-muted">Most students choose careers under social pressure or incomplete information. MPath changes that.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border shadow-sm">
+                    <div class="icon-badge mb-3">
+                        <i data-lucide="shield" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Unbiased Information</h5>
+                    <p class="small text-muted mb-0">We do not accept commercial placement promotions. Our listings connect directly to authentic government registries and accredited universities.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border shadow-sm">
+                    <div class="icon-badge icon-badge-blue mb-3">
+                        <i data-lucide="layers" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Unified Discovery</h5>
+                    <p class="small text-muted mb-0">No need to browse dozens of disconnected portals. Careers, colleges, exams, scholarships, and internships are organized under a single structured platform.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border shadow-sm">
+                    <div class="icon-badge icon-badge-gold mb-3">
+                        <i data-lucide="check-square" class="icon-md"></i>
+                    </div>
+                    <h5 class="fw-bold">Transparent Matching</h5>
+                    <p class="small text-muted mb-0">Every recommendation clarifies why it matched: specific subject combinations, stream prerequisites, and personal interests you indicated.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     10. FREQUENTLY ASKED QUESTIONS
+     ============================================================ -->
+<section class="py-5 bg-white border-bottom">
+    <div class="container py-lg-4">
+        <div class="text-center max-w-700 mx-auto mb-5">
+            <span class="badge badge-navy px-3 py-1 mb-2">Questions & Answers</span>
+            <h2 class="fw-bold">Frequently Asked Questions</h2>
+            <p class="text-muted">Clear answers for students, parents, and educators.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="mpathFaqAccordion">
+                    <div class="accordion-item border shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                Does MPath decide my career for me?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#mpathFaqAccordion">
+                            <div class="accordion-body text-muted small">
+                                No. Technology should empower students, not decide their lives. MPath presents verified opportunities, shows required skills, and organizes structured roadmaps. The final decision always belongs to the student and their family.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Is MPath accessible for all Indian students?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#mpathFaqAccordion">
+                            <div class="accordion-body text-muted small">
+                                Yes. The career explorer, college database, government exam listings, scholarships directory, and assessment are available to assist students across India in exploring their potential.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Where does the information come from?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#mpathFaqAccordion">
+                            <div class="accordion-body text-muted small">
+                                Data is compiled from verified public educational bodies including the Ministry of Education, UGC, AICTE, UPSC, SSC, and the National Scholarship Portal. We never fabricate rankings, fees, or opportunities.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border shadow-sm mb-3 rounded overflow-hidden">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                I just completed Class 10 or 12. Where should I start?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#mpathFaqAccordion">
+                            <div class="accordion-body text-muted small">
+                                Begin with the <strong>Career Assessment</strong> section. It evaluates your academic stream, preferred subjects, and problem-solving styles to present relevant career pathways to research.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     11. CALL TO ACTION (KPMG Solid Corporate Blue Style)
+     ============================================================ -->
+<section class="py-5 text-white text-center bg-solid-blue">
+    <div class="container py-lg-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-20 text-white small fw-semibold mb-3 border border-white border-opacity-25">
+            <i data-lucide="compass" class="icon-xs"></i>
+            <span>Take Action on Your Future</span>
+        </div>
+        <h2 class="fw-bold mb-3 text-white">Ready to Plan Your Educational Pathway?</h2>
+        <p class="lead mb-4 text-white-50 max-w-700 mx-auto fs-6">
+            Take the career assessment or search our verified databases to build a roadmap suited to your unique strengths.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{{ url_for('assessment.start') }}" class="btn-solid-white-pill">
+                <i data-lucide="target" class="icon-sm"></i>
+                <span>Start Career Assessment</span>
+            </a>
+            <a href="{{ url_for('career.career_list') }}" class="btn-solid-white-pill-outline">
+                <i data-lucide="briefcase" class="icon-sm"></i>
+                <span>Browse Careers</span>
+            </a>
+        </div>
+    </div>
+</section>
 
 {% endblock %}

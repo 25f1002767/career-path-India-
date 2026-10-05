@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+
+{% block title %}My Scholarship Applications | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-semibold small">
+                <i data-lucide="clipboard-list" class="icon-xs"></i>
+                <span>Application Management & Lifecycle Tracking</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">My Scholarship Applications</h1>
+            <p class="text-muted lead fs-6 mb-0">Track your application readiness, portal submission milestones, and verification progress.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('scholarship.find_scholarships_for_me') }}" class="btn btn-primary px-3 fw-semibold">
+                <i data-lucide="target" class="icon-xs"></i> Discover More Scholarships
+            </a>
+            <a href="{{ url_for('scholarship.document_vault') }}" class="btn btn-outline-secondary px-3">
+                <i data-lucide="folder" class="icon-xs"></i> Document Vault
+            </a>
+        </div>
+    </div>
+
+    <!-- METRICS CARDS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border-0 shadow-sm rounded-4 bg-white">
+                <span class="text-muted small">Total Applications:</span>
+                <strong class="text-dark fs-4">{{ metrics.total }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border-0 shadow-sm rounded-4 bg-white">
+                <span class="text-muted small">In Progress / Drafts:</span>
+                <strong class="text-warning fs-4">{{ metrics.in_progress }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border-0 shadow-sm rounded-4 bg-white">
+                <span class="text-muted small">Portal Initiated / Submitted:</span>
+                <strong class="text-primary fs-4">{{ metrics.submitted }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border-0 shadow-sm rounded-4 bg-white">
+                <span class="text-muted small">Approved / Disbursed:</span>
+                <strong class="text-success fs-4">{{ metrics.approved }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- APPLICATIONS LIST -->
+    {% if applications %}
+    <div class="d-flex flex-column gap-4 mb-5">
+        {% for app in applications %}
+        {% set sch = app.scholarship %}
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            
+            <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                <div>
+                    <div class="d-flex align-items-center gap-2 mb-1">
+                        <span class="badge bg-light text-muted border">Ref: {{ app.application_number }}</span>
+                        {% if app.external_reference_number %}
+                        <span class="badge bg-primary bg-opacity-10 text-primary">Portal ID: {{ app.external_reference_number }}</span>
+                        {% endif %}
+                    </div>
+                    <h4 class="fw-bold text-dark mb-1">
+                        <a href="{{ url_for('scholarship.scholarship_detail', identifier=sch.slug or sch.id) }}" class="text-dark text-decoration-none">
+                            {{ sch.title }}
+                        </a>
+                    </h4>
+                    <div class="small text-muted">
+                        Provider: <strong>{{ sch.provider_name or sch.provider }}</strong> • Academic Cycle: {{ app.cycle.academic_year if app.cycle else '2026-27' }}
+                    </div>
+                </div>
+
+                {% set b = app.display_status_badge %}
+                <span class="badge bg-{{ b[1] }} fs-6 px-3 py-2">
+                    {{ b[2] }} {{ b[0] }}
+                </span>
+            </div>
+
+            <!-- APPLICATION PROGRESS TIMELINE (Section 23) -->
+            <div class="p-3 bg-light rounded-3 mb-3">
+                <div class="small fw-semibold text-muted text-uppercase mb-2">Application Journey Timeline:</div>
+                <div class="row g-2 text-center small">
+                    <div class="col">
+                        <div class="p-2 rounded {% if app.status != 'PROFILE_INCOMPLETE' %}bg-success text-white fw-bold{% else %}bg-white border text-dark{% endif %}">
+                            1. Prepared
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="p-2 rounded {% if app.status in ['SUBMITTED', 'INSTITUTE_VERIFICATION', 'DEPARTMENT_VERIFICATION', 'APPROVED', 'PAYMENT_RECEIVED'] %}bg-success text-white fw-bold{% elif app.status == 'READY_TO_SUBMIT' %}bg-primary text-white fw-bold{% else %}bg-white border text-muted{% endif %}">
+                            2. Submitted
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="p-2 rounded {% if app.status in ['INSTITUTE_VERIFICATION', 'DEPARTMENT_VERIFICATION', 'APPROVED', 'PAYMENT_RECEIVED'] %}bg-success text-white fw-bold{% else %}bg-white border text-muted{% endif %}">
+                            3. Institute Verification
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="p-2 rounded {% if app.status in ['DEPARTMENT_VERIFICATION', 'APPROVED', 'PAYMENT_RECEIVED'] %}bg-success text-white fw-bold{% else %}bg-white border text-muted{% endif %}">
+                            4. Dept Review
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="p-2 rounded {% if app.status in ['APPROVED', 'PAYMENT_RECEIVED'] %}bg-success text-white fw-bold{% elif app.status == 'REJECTED' %}bg-danger text-white fw-bold{% else %}bg-white border text-muted{% endif %}">
+                            5. Final Award
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOTES / DETAILS -->
+            {% if app.student_notes %}
+            <div class="small text-muted p-2 bg-light rounded-2 mb-3">
+                <strong>Your Notes:</strong> {{ app.student_notes }}
+            </div>
+            {% endif %}
+
+            <!-- ACTIONS ROW -->
+            <div class="d-flex flex-wrap gap-2 align-items-center pt-2 border-top">
+                <a href="{{ url_for('scholarship.apply_scholarship', scholarship_id=sch.id) }}" class="btn btn-outline-primary btn-sm px-3">
+                    Edit / Review Dossier
+                </a>
+
+                {% if sch.official_application_url or sch.official_url %}
+                <a href="{{ sch.official_application_url or sch.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm px-3">
+                    Open Official Portal 
+                </a>
+                {% endif %}
+
+                <button type="button" class="btn btn-light border btn-sm px-3 ms-auto" 
+                        data-bs-toggle="modal" data-bs-target="#updateStatusModal{{ app.id }}">
+                    <i data-lucide="edit-2" class="icon-xs"></i> Update Tracking Status
+                </button>
+            </div>
+
+            <!-- UPDATE STATUS MODAL (Section 53) -->
+            <div class="modal fade" id="updateStatusModal{{ app.id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content rounded-4 border-0 shadow">
+                        <form method="POST" action="{{ url_for('scholarship.update_application_status', app_id=app.id) }}">
+                            <div class="modal-header border-bottom">
+                                <h5 class="modal-title fw-bold text-dark">Update Application Status</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-4">
+                                <p class="small text-muted mb-3">
+                                    Record updates received from the official portal or your college nodal officer to keep your MPath tracking dashboard synchronized.
+                                </p>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold text-muted mb-1">Current Milestone Status</label>
+                                    <select name="status" class="form-select">
+                                        <option value="DRAFT" {% if app.status == 'DRAFT' %}selected{% endif %}>Draft (In Progress)</option>
+                                        <option value="READY_TO_SUBMIT" {% if app.status == 'READY_TO_SUBMIT' %}selected{% endif %}>Ready to Submit</option>
+                                        <option value="SUBMITTED" {% if app.status == 'SUBMITTED' %}selected{% endif %}>Portal Submission Initiated</option>
+                                        <option value="INSTITUTE_VERIFICATION" {% if app.status == 'INSTITUTE_VERIFICATION' %}selected{% endif %}>Institute Nodal Verification Pending</option>
+                                        <option value="DEPARTMENT_VERIFICATION" {% if app.status == 'DEPARTMENT_VERIFICATION' %}selected{% endif %}>Department / State Review</option>
+                                        <option value="CORRECTION_REQUIRED" {% if app.status == 'CORRECTION_REQUIRED' %}selected{% endif %}>Defective / Correction Required</option>
+                                        <option value="APPROVED" {% if app.status == 'APPROVED' %}selected{% endif %}>Scholarship Approved</option>
+                                        <option value="PAYMENT_RECEIVED" {% if app.status == 'PAYMENT_RECEIVED' %}selected{% endif %}>DBT Payment Received in Bank</option>
+                                        <option value="REJECTED" {% if app.status == 'REJECTED' %}selected{% endif %}>Rejected</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold text-muted mb-1">Official Portal Application ID / OTR Number</label>
+                                    <input type="text" name="external_reference_number" class="form-control" 
+                                           placeholder="e.g. NSP20261234567" value="{{ app.external_reference_number or '' }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label small fw-semibold text-muted mb-1">Private Tracking Notes</label>
+                                    <textarea name="notes" class="form-control" rows="2" 
+                                              placeholder="e.g. Physical documents verified by College Clerk on Oct 10">{{ app.student_notes or '' }}</textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-top">
+                                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Save Milestone</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <!-- EMPTY STATE -->
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white my-4">
+        <div class="fs-1 mb-3"></div>
+        <h4 class="fw-bold text-dark mb-2">No Active Scholarship Applications Yet</h4>
+        <p class="text-muted max-w-600 mx-auto mb-4">
+            You haven't initiated any scholarship applications. Use our personalized matcher to discover schemes you qualify for and prepare your application with zero hassle.
+        </p>
+        <div class="d-flex justify-content-center gap-2">
+            <a href="{{ url_for('scholarship.find_scholarships_for_me') }}" class="btn btn-primary px-4">
+                <i data-lucide="target" class="icon-xs"></i> Find Scholarships For Me
+            </a>
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-secondary px-4">
+                Explore All Scholarships
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

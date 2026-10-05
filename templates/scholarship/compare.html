@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block title %}Compare Scholarships Side-by-Side | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 py-md-5 px-md-5">
+
+    <!-- HEADER -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-info bg-opacity-10 text-dark fw-semibold small">
+                <i data-lucide="scale" class="icon-xs"></i>
+                <span>Comparative Decision Matrix</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">Side-by-Side Scholarship Comparison</h1>
+            <p class="text-muted mb-0">Evaluate eligibility rules, financial allowances, and requirements across up to 3 schemes.</p>
+        </div>
+        <div>
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-secondary">
+                ← Back to Explorer
+            </a>
+        </div>
+    </div>
+
+    <!-- SCHOLARSHIP SELECTOR FORM -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <h6 class="fw-bold text-dark mb-3">Select Schemes to Compare:</h6>
+        <form method="GET" action="{{ url_for('scholarship.compare_scholarships') }}" id="compareForm" class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold text-muted">Scholarship 1</label>
+                <select name="s1" class="form-select" id="selectS1">
+                    <option value="">-- Choose Scheme 1 --</option>
+                    {% for s in all_scholarships %}
+                    <option value="{{ s.id }}" {% if scholarships|length > 0 and scholarships[0].id == s.id %}selected{% endif %}>
+                        {{ s.title }} ({{ s.provider_type }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold text-muted">Scholarship 2</label>
+                <select name="s2" class="form-select" id="selectS2">
+                    <option value="">-- Choose Scheme 2 --</option>
+                    {% for s in all_scholarships %}
+                    <option value="{{ s.id }}" {% if scholarships|length > 1 and scholarships[1].id == s.id %}selected{% endif %}>
+                        {{ s.title }} ({{ s.provider_type }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold text-muted">Scholarship 3 (Optional)</label>
+                <select name="s3" class="form-select" id="selectS3">
+                    <option value="">-- Choose Scheme 3 --</option>
+                    {% for s in all_scholarships %}
+                    <option value="{{ s.id }}" {% if scholarships|length > 2 and scholarships[2].id == s.id %}selected{% endif %}>
+                        {{ s.title }} ({{ s.provider_type }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3 d-flex gap-2">
+                <button type="button" class="btn btn-primary w-100 fw-semibold" onclick="submitComparison()">
+                    Compare Now
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    {% if scholarships %}
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th style="width: 20%;" class="p-3 text-secondary text-uppercase small fw-bold">Criterion</th>
+                        {% for s in scholarships %}
+                        <th style="width: {{ (80 / scholarships|length)|int }}%;" class="p-3">
+                            <span class="badge bg-primary bg-opacity-10 text-primary mb-1">{{ s.provider_type }}</span>
+                            <h6 class="fw-bold text-dark mb-1">{{ s.title }}</h6>
+                            <div class="text-muted small"><i data-lucide="landmark" class="icon-xs"></i> {{ s.provider_name or s.provider }}</div>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Benefit Amount</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            <span class="fs-5 fw-bold text-success">{{ s.amount or 'As per norms' }}</span>
+                            {% if s.amount_description %}
+                            <div class="small text-muted mt-1">{{ s.amount_description }}</div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Jurisdiction & State</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            <span class="badge bg-light text-dark border">{{ s.national_or_state or 'National' }}</span>
+                            <div class="fw-semibold text-dark mt-1">{{ s.state or 'All India' }}</div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Education Level</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            <span class="fw-semibold">{{ s.education_level or 'UG / PG / School' }}</span>
+                            {% if s.courses %}
+                            <div class="small text-muted mt-1">Courses: {{ s.courses }}</div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Income Limit</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            {% if s.family_income_limit %}
+                            <span class="badge bg-warning bg-opacity-10 text-dark fw-bold">
+                                ₹{{ "{:,.0f}".format(s.family_income_limit) }}/year
+                            </span>
+                            {% else %}
+                            <span class="text-muted">No family income restriction</span>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Academic Requirement</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            {% if s.percentage_requirement %}
+                            <div class="fw-bold text-dark">Min {{ s.percentage_requirement }}% marks</div>
+                            {% endif %}
+                            <div class="small text-muted">{{ s.academic_requirement or 'Merit in qualifying examination' }}</div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Eligible Categories</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            <span class="badge bg-light text-dark border">{{ s.category or 'All / Open' }}</span>
+                            {% if s.gender_eligibility and s.gender_eligibility != 'All' %}
+                            <span class="badge bg-info bg-opacity-10 text-dark ms-1">{{ s.gender_eligibility }} Only</span>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Selection Process</td>
+                        {% for s in scholarships %}
+                        <td class="p-3 small">
+                            {{ s.selection_process or 'Merit list based on qualifying marks and quota' }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Documents Required</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            <ul class="list-unstyled small mb-0">
+                                {% for doc in s.documents_list %}
+                                <li class="text-muted mb-1"> {{ doc }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Official Portal</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            <a href="{{ s.resolved_official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">
+                                <i data-lucide="globe" class="icon-xs"></i> Official Website
+                            </a>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td class="fw-semibold bg-light p-3 text-muted">Actions</td>
+                        {% for s in scholarships %}
+                        <td class="p-3">
+                            {% set meta = s.apply_button_meta %}
+                            <div class="d-flex flex-column gap-2">
+                                {% if meta.is_enabled %}
+                                <a href="{{ url_for('scholarship.apply_redirect', identifier=s.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary fw-semibold">
+                                    <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now 
+                                </a>
+                                {% else %}
+                                <button class="btn btn-sm btn-{{ meta.badge_class }} fw-semibold" disabled title="{{ meta.reason }}">
+                                    {{ meta.icon }} {{ meta.label }}
+                                </button>
+                                {% endif %}
+                                <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-sm btn-outline-primary">
+                                    Full Dossier
+                                </a>
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+        <div class="display-5 text-muted mb-3"><i data-lucide="scale" class="icon-xs"></i></div>
+        <h4 class="fw-bold text-dark">Select Scholarships to Compare</h4>
+        <p class="text-muted mb-4 max-w-500 mx-auto">
+            Choose 2 or 3 scholarships from the dropdowns above to compare their benefits, eligibility criteria, and required documents.
+        </p>
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+function submitComparison() {
+    const s1 = document.getElementById('selectS1').value;
+    const s2 = document.getElementById('selectS2').value;
+    const s3 = document.getElementById('selectS3').value;
+    
+    const ids = [s1, s2, s3].filter(id => id && id.trim() !== '');
+    if (ids.length < 2) {
+        alert('Please select at least 2 scholarships to compare.');
+        return;
+    }
+    window.location.href = "{{ url_for('scholarship.compare_scholarships') }}?ids=" + ids.join(',');
+}
+</script>
+{% endblock %}

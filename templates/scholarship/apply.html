@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+
+{% block title %}Application Preparation - {{ scholarship.title }} | MPath{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- BREADCRUMB & HEADER -->
+    <div class="mb-4">
+        <a href="{{ url_for('scholarship.scholarship_detail', identifier=scholarship.slug or scholarship.id) }}" class="btn btn-outline-secondary btn-sm px-3 mb-2">
+            ← Back to {{ scholarship.short_title or 'Scholarship Dossier' }}
+        </a>
+        <h1 class="fw-bold text-dark display-6 mb-1">Scholarship Application Assistant</h1>
+        <p class="text-muted lead fs-6 mb-0">
+            Scheme: <strong class="text-primary">{{ scholarship.title }}</strong> • Application Ref: <span class="badge bg-light text-dark border">{{ application.application_number }}</span>
+        </p>
+    </div>
+
+    <!-- APPLICATION PROGRESS BAR (Section 47) -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="small fw-semibold text-muted text-uppercase">Application Readiness</span>
+            <span class="badge bg-primary fs-6">{{ completion_rate }}% Prepared</span>
+        </div>
+        <div class="progress" style="height: 10px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" 
+                 style="width: {{ completion_rate }}%;" aria-valuenow="{{ completion_rate }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="row g-2 mt-3 pt-3 border-top text-center small text-muted">
+            <div class="col-md-2 col-4">
+                <span class="text-success fw-bold"> 1. Eligibility</span>
+            </div>
+            <div class="col-md-2 col-4">
+                <span class="text-success fw-bold"> 2. Profile</span>
+            </div>
+            <div class="col-md-2 col-4">
+                <span class="text-primary fw-bold">3. Additional Info</span>
+            </div>
+            <div class="col-md-2 col-4">
+                <span class="text-muted">4. Documents</span>
+            </div>
+            <div class="col-md-2 col-4">
+                <span class="text-muted">5. Review</span>
+            </div>
+            <div class="col-md-2 col-4">
+                <span class="text-muted">6. Submission</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ELIGIBILITY CONFIRMATION NOTICE -->
+    {% if eval_result %}
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-success bg-opacity-10 border border-success">
+        <div class="d-flex align-items-center gap-3">
+            <span class="fs-4"><i data-lucide="target" class="icon-xs"></i></span>
+            <div>
+                <strong class="text-success">Pre-Flight Eligibility Verified ({{ eval_result.fit_score }}% Match)</strong>
+                <div class="small text-muted">{{ eval_result.action_step }}</div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- APPLICATION FORM -->
+    <form method="POST" action="{{ url_for('scholarship.apply_scholarship', scholarship_id=scholarship.id) }}">
+
+        <!-- SECTION 1: PERSONAL INFORMATION (Autofilled from Profile) -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+                    <i data-lucide="user" class="icon-xs"></i>
+                    <span>1. Personal & Contact Information</span>
+                </h5>
+                <span class="badge bg-light text-muted border small">Autofilled from MPath Profile</span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted mb-1">Full Legal Name (As on Matriculation & Aadhaar)</label>
+                    <input type="text" name="full_name" class="form-control" 
+                           value="{{ saved_answers.get('full_name') or student_data.full_name }}" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted mb-1">Date of Birth</label>
+                    <input type="date" name="dob" class="form-control" 
+                           value="{{ saved_answers.get('dob') or '' }}">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label small fw-semibold text-muted mb-1">Gender</label>
+                    <select name="gender" class="form-select">
+                        <option value="Male" {% if saved_answers.get('gender') == 'Male' or student_data.gender == 'Male' %}selected{% endif %}>Male</option>
+                        <option value="Female" {% if saved_answers.get('gender') == 'Female' or student_data.gender == 'Female' %}selected{% endif %}>Female</option>
+                        <option value="Transgender" {% if saved_answers.get('gender') == 'Transgender' %}selected{% endif %}>Transgender</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Permanent State Domicile</label>
+                    <input type="text" name="state" class="form-control" 
+                           value="{{ saved_answers.get('state') or student_data.state }}" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">District</label>
+                    <input type="text" name="district" class="form-control" 
+                           value="{{ saved_answers.get('district') or student_data.district }}" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Social Reservation Category</label>
+                    <select name="social_category" class="form-select">
+                        <option value="General" {% if saved_answers.get('social_category') == 'General' or student_data.category == 'General' %}selected{% endif %}>General</option>
+                        <option value="OBC" {% if saved_answers.get('social_category') == 'OBC' or student_data.category == 'OBC' %}selected{% endif %}>OBC (Other Backward Class)</option>
+                        <option value="SC" {% if saved_answers.get('social_category') == 'SC' or student_data.category == 'SC' %}selected{% endif %}>SC (Scheduled Caste)</option>
+                        <option value="ST" {% if saved_answers.get('social_category') == 'ST' or student_data.category == 'ST' %}selected{% endif %}>ST (Scheduled Tribe)</option>
+                        <option value="EWS" {% if saved_answers.get('social_category') == 'EWS' or student_data.category == 'EWS' %}selected{% endif %}>EWS (Economically Weaker Section)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: ACADEMIC & INSTITUTION INFORMATION -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+            <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                <i data-lucide="graduation-cap" class="icon-xs"></i>
+                <span>2. Academic & Enrolled Institution Details</span>
+            </h5>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted mb-1">Current Enrolled College / University</label>
+                    <input type="text" name="institution_name" class="form-control" 
+                           value="{{ saved_answers.get('institution_name') or student_data.college_name }}" required>
+                    <div class="form-text small">Must be AISHE / UGC / AICTE recognized institution.</div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted mb-1">Course / Degree Program</label>
+                    <input type="text" name="current_course" class="form-control" 
+                           value="{{ saved_answers.get('current_course') or student_data.course }}" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Current Year / Semester</label>
+                    <select name="current_year" class="form-select">
+                        <option value="1st Year" {% if saved_answers.get('current_year') == '1st Year' %}selected{% endif %}>1st Year (Fresh Application)</option>
+                        <option value="2nd Year" {% if saved_answers.get('current_year') == '2nd Year' %}selected{% endif %}>2nd Year</option>
+                        <option value="3rd Year" {% if saved_answers.get('current_year') == '3rd Year' %}selected{% endif %}>3rd Year</option>
+                        <option value="4th Year" {% if saved_answers.get('current_year') == '4th Year' %}selected{% endif %}>4th Year</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Previous Qualifying Examination Score (%)</label>
+                    <input type="number" step="0.01" name="previous_percentage" class="form-control" 
+                           value="{{ saved_answers.get('previous_percentage') or student_data.percentage }}" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Family Annual Income (₹)</label>
+                    <input type="number" name="family_annual_income" class="form-control" 
+                           value="{{ saved_answers.get('family_annual_income') or student_data.family_income }}" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: SCHOLARSHIP SPECIFIC & DBT BANK DETAILS -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+            <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                <i data-lucide="landmark" class="icon-xs"></i>
+                <span>3. DBT Bank Account & Reference Information</span>
+            </h5>
+
+            <div class="alert alert-light border small text-muted mb-3">
+                <strong>Important DBT Guideline:</strong> Scholarship funds are disbursed through Aadhaar-based Direct Benefit Transfer (DBT). Please confirm your bank account is seeded with Aadhaar at your bank branch.
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted mb-1">Aadhaar-Seeded Bank Account Holder Name</label>
+                    <input type="text" name="bank_account_holder" class="form-control" 
+                           placeholder="Must be in student's own name"
+                           value="{{ saved_answers.get('bank_account_holder') or student_data.full_name }}" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted mb-1">One-Time Registration (OTR) / State Portal ID (Optional)</label>
+                    <input type="text" name="external_reference_number" class="form-control" 
+                           placeholder="e.g. NSP OTR Number or State Scholarship ID"
+                           value="{{ application.external_reference_number or '' }}">
+                    <div class="form-text small">Enter your reference ID if you already registered on the official portal.</div>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label small fw-semibold text-muted mb-1">Personal Application Notes (Private to you)</label>
+                    <textarea name="student_notes" class="form-control" rows="2" 
+                              placeholder="Record any personal reminders, officer appointment dates, or reference notes...">{{ application.student_notes or '' }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: DOCUMENT PREPARATION CHECKLIST -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+                    <i data-lucide="folder" class="icon-xs"></i>
+                    <span>4. Mandatory Document Preparation Checklist</span>
+                </h5>
+                <a href="{{ url_for('scholarship.document_vault') }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                    Manage Document Vault 
+                </a>
+            </div>
+
+            <p class="small text-muted mb-3">
+                Verify you have the required documents ready before proceeding to submission:
+            </p>
+
+            <div class="d-flex flex-column gap-2 mb-3">
+                {% for doc_name in scholarship.parsed_documents %}
+                <div class="p-3 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <i data-lucide="file-text" class="icon-xs"></i>
+                        <strong class="text-dark small">{{ doc_name }}</strong>
+                    </div>
+                    {% set has_doc = false %}
+                    {% for ud in user_documents %}
+                        {% if doc_name|lower in ud.document_name|lower or doc_name|lower in ud.document_type|lower %}
+                            {% set has_doc = true %}
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if has_doc %}
+                    <span class="badge bg-success small"> Ready in Vault</span>
+                    {% else %}
+                    <span class="badge bg-warning text-dark small"><i data-lucide="alert-triangle" class="icon-xs text-warning"></i> Ensure Assembled</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- SECTION 5: TRUTH CONFIRMATION & SAFE SUBMISSION -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-light border">
+            <h5 class="fw-bold text-dark mb-2">5. Verification Confirmation & Submission Action</h5>
+            
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" id="truthDeclaration" required>
+                <label class="form-check-label small text-dark" for="truthDeclaration">
+                    I confirm that the information provided above is accurate, complete, and verifiable against my original statutory certificates.
+                </label>
+            </div>
+
+            <div class="p-3 bg-white border rounded-3 small text-muted mb-4">
+                <strong> MPath Safe Application Launch Guarantee:</strong><br>
+                This scholarship is officially administered through <strong>{{ scholarship.application_mode }}</strong>.<br>
+                When you click <em>Continue to Official Portal</em>, MPath will securely record your application dossier in your <strong>My Applications</strong> dashboard and transfer you to the verified official portal. MPath never captures your portal credentials or OTPs.
+            </div>
+
+            <div class="d-flex flex-wrap gap-3 align-items-center">
+                <button type="submit" name="action" value="save_draft" class="btn btn-outline-secondary px-4">
+                     Save Draft & Continue Later
+                </button>
+
+                {% if scholarship.application_method == 'MPATH_NATIVE' %}
+                <button type="submit" name="action" value="mpath_submit" class="btn btn-success px-4 fw-semibold">
+                    Submit Application via MPath
+                </button>
+                {% else %}
+                <button type="submit" name="action" value="continue_to_portal" class="btn btn-primary px-4 fw-semibold">
+                    <i data-lucide="arrow-right" class="icon-xs"></i> Continue to Official Application Portal 
+                </button>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

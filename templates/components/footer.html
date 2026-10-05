@@ -1,35 +1,97 @@
-<footer class="footer mt-5 py-5 bg-dark text-white">
-
+<!-- ============================================================
+     INSTITUTIONAL FOOTER (KPMG STRUCTURAL INSPIRATION)
+     Solid Authoritative Deep Blue, Clean Multi-Column Grid
+     ============================================================ -->
+<footer class="footer-institutional mt-5">
     <div class="container">
+        <div class="row g-4 g-lg-5">
 
-        <div class="row">
+            <!-- COLUMN 1: BRAND IDENTITY & MISSION -->
+            <div class="col-lg-4 col-md-12">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="rounded-2 d-flex align-items-center justify-content-center bg-white text-primary" style="width: 34px; height: 34px; color: var(--color-deep-blue) !important;">
+                        <i data-lucide="graduation-cap" class="icon-sm"></i>
+                    </div>
+                    <div>
+                        <div class="fw-bold text-white fs-6 lh-1" style="letter-spacing: -0.01em;">MPath</div>
+                        <div class="text-white-50" style="font-size: 0.725rem; letter-spacing: 0.04em; text-transform: uppercase;">Career Counselling</div>
+                    </div>
+                </div>
 
-            <div class="col-lg-6">
-
-                <h4 class="fw-bold">
-                    MPath Career Counselling
-                </h4>
-
-                <p class="mt-3">
-                    India's AI-powered Career Discovery Platform helping students discover careers based on their interests, skills, and goals.
+                <p class="text-white-50 small mb-3" style="max-width: 320px; line-height: 1.6;">
+                    National career discovery, college registry, and educational opportunity platform tailored for Indian students, parents, and educators.
                 </p>
 
+                <div class="d-inline-flex align-items-center gap-2 px-2 py-1 rounded bg-white bg-opacity-10 text-white small" style="font-size: 0.75rem;">
+                    <i data-lucide="shield-check" class="icon-xs text-white-50"></i>
+                    <span>Aligned with MoE, AISHE & NCS Standards</span>
+                </div>
             </div>
 
-            <div class="col-lg-6 text-lg-end">
+            <!-- COLUMN 2: EXPLORE -->
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="footer-heading">Explore</div>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('career.career_list') }}">All Careers</a></li>
+                    <li><a href="{{ url_for('course.course_list') }}">Degree Courses</a></li>
+                    <li><a href="{{ url_for('college.college_list') }}">Colleges Registry</a></li>
+                    <li><a href="{{ url_for('exam.exam_list') }}">National Exams</a></li>
+                    <li><a href="{{ url_for('scholarship.scholarship_list') }}">Scholarships</a></li>
+                    <li><a href="{{ url_for('internship.internship_list') }}">Internships</a></li>
+                </ul>
+            </div>
 
-                <p class="mb-1">
-                    © 2026 MPath Career Counselling
-                </p>
+            <!-- COLUMN 3: FOR STUDENTS -->
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="footer-heading">For Students</div>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('assessment.start') }}">Career Assessment</a></li>
+                    <li><a href="{{ url_for('chatbot.home') }}">AI Career Mentor</a></li>
+                    <li><a href="{{ url_for('career.discover_careers') }}">Guided Discovery</a></li>
+                    <li><a href="{{ url_for('career.no_idea') }}">Help Me Decide</a></li>
+                    <li><a href="{{ url_for('scholarship.find_scholarships_for_me') }}">Scholarship Match</a></li>
+                    <li><a href="{{ url_for('college.college_finder') }}">College Matcher</a></li>
+                </ul>
+            </div>
 
-                <p>
-                    Made with ❤️ for India's Youth
-                </p>
+            <!-- COLUMN 4: TOOLS & RESOURCES -->
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="footer-heading">Resources</div>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('career.compare') }}">Career Matrix</a></li>
+                    <li><a href="{{ url_for('college.compare_colleges') }}">College Compare</a></li>
+                    <li><a href="{{ url_for('opportunity.home') }}">Opportunity Hub</a></li>
+                    <li><a href="{{ url_for('scholarship.scholarship_calendar') }}">Dates & Calendar</a></li>
+                    <li><a href="{{ url_for('scholarship.document_vault') }}">Document Vault</a></li>
+                    <li><a href="{{ url_for('resume.upload_resume') }}">Resume Review</a></li>
+                </ul>
+            </div>
 
+            <!-- COLUMN 5: INSTITUTIONAL -->
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="footer-heading">Institutional</div>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('landing') }}">Platform Overview</a></li>
+                    <li><a href="{{ url_for('main.search') }}">Global Search</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">Student Sign In</a></li>
+                    <li><a href="{{ url_for('auth.register') }}">New Registration</a></li>
+                    <li><a href="{{ url_for('scholarship.national_coverage') }}">National Coverage</a></li>
+                </ul>
             </div>
 
         </div>
 
-    </div>
+        <!-- FOOTER SUBBAR: COPYRIGHT & ACCREDITATION -->
+        <div class="footer-subbar d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <div>
+                &copy; 2026 MPath Career Counselling. All rights reserved. Built for Indian higher education discovery.
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-white-50">Public Information Service</span>
+                <span class="text-white-50">&bull;</span>
+                <span class="text-white-50">Unbiased Guidance</span>
+            </div>
+        </div>
 
+    </div>
 </footer>

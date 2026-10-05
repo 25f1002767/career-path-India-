@@ -1,7 +1,7 @@
 # MPath Career Counselling Brand Guide
 
 ## Primary Color
-#0D6EFD
+#00338D
 
 ## Secondary Color
 #198754

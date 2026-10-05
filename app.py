@@ -30,6 +30,7 @@ from models.saved_career import SavedCareer
 from models.resume import Resume
 from models.career_skill import CareerSkill
 from models.website_visit import WebsiteVisit
+from models.chat import ChatConversation, ChatMessage, StudentMemory
 
 
 # ============================================================
@@ -53,6 +54,7 @@ from routes.dashboard import dashboard
 from routes.report import report
 from routes.opportunity import opportunity
 from routes.profile import profile
+from routes.course import course
 
 
 # ============================================================
@@ -95,16 +97,56 @@ def require_login():
     # Endpoints that are allowed without login
     public_endpoints = {
         "landing",
+        "health",
         "main.index",
+        "main.search",
         "auth.login",
         "auth.register",
         "auth.logout",
+        "career.career_list",
+        "career.career_detail",
+        "career.compare",
+        "college.college_list",
+        "college.college_detail",
+        "course.course_list",
+        "course.course_detail",
+        "course.api_course_search",
+        "exam.exam_list",
+        "exam.exam_detail",
+        "scholarship.scholarship_list",
+        "scholarship.scholarship_detail",
+        "internship.internship_list",
+        "assessment.start",
+        "assessment.submit",
+        "assessment.result",
+        "assessment.submit_feedback",
         "static"
     }
 
+    public_path_prefixes = (
+        "/careers",
+        "/colleges",
+        "/college",
+        "/courses",
+        "/exams",
+        "/scholarships",
+        "/scholarship",
+        "/internships",
+        "/search",
+        "/auth",
+        "/static",
+        "/assessment",
+        "/health"
+    )
+
     # Allow public endpoints
-    if request.endpoint in public_endpoints:
+    if request.endpoint in public_endpoints or (request.endpoint and request.endpoint.startswith("static")):
         return
+
+    # Allow public URL prefixes when browsing without login (excluding authenticated actions like save)
+    if any(request.path == prefix or request.path.startswith(prefix + "/") for prefix in public_path_prefixes):
+        if not (request.path.endswith("/save") or "/save/" in request.path or "/compare_save" in request.path):
+            return
 
     # If user is logged in, allow access
     if session.get("user_id"):
@@ -113,10 +155,11 @@ def require_login():
     # User is not logged in
     flash(
         "Please login first to access this section.",
-        "warning"
+        "info"
     )
 
     return redirect(url_for("auth.login"))
+
 
 
 # ============================================================
@@ -207,6 +250,29 @@ def go_ai_assistant():
 
 
 # ============================================================
+# SCHOLARSHIP COMPATIBILITY FORWARDING (SECTION 26)
+# ============================================================
+
+@app.route("/scholarship/<identifier>")
+@app.route("/scholarship/<identifier>/details")
+def singular_scholarship_detail(identifier):
+    return redirect(url_for("scholarship.scholarship_detail", identifier=identifier))
+
+
+@app.route("/scholarship/<identifier>/apply")
+def singular_scholarship_apply(identifier):
+    return redirect(url_for("scholarship.apply_redirect", identifier=identifier))
+
+
+@app.route("/college/<int:college_id>")
+@app.route("/college/<int:college_id>/details")
+@app.route("/college/<int:college_id>/courses")
+@app.route("/college/<int:college_id>/university")
+def singular_college_redirect(college_id):
+    return redirect(url_for("college.college_detail", college_id=college_id))
+
+
+# ============================================================
 # CREATE DATABASE TABLES
 # ============================================================
 
@@ -244,6 +310,15 @@ with app.app_context():
 
     db.session.commit()
 
+    # Auto-seed essential records on fresh deployment if empty
+    try:
+        if Career.query.count() == 0:
+            print("Fresh database detected. Initializing MPath dataset...")
+            from scripts.populate_database import populate_all
+            populate_all()
+    except Exception as e:
+        print("Database initialization note:", e)
+
 
 # ============================================================
 # REGISTER BLUEPRINTS
@@ -256,6 +331,7 @@ app.register_blueprint(career)
 app.register_blueprint(assessment)
 app.register_blueprint(admin)
 app.register_blueprint(college)
+app.register_blueprint(course)
 app.register_blueprint(scholarship)
 app.register_blueprint(internship)
 app.register_blueprint(exam)
@@ -266,6 +342,19 @@ app.register_blueprint(dashboard)
 app.register_blueprint(report)
 app.register_blueprint(opportunity)
 app.register_blueprint(profile)
+
+
+# ============================================================
+# HEALTH CHECK (FOR RENDER / DEPLOYMENT MONITORING)
+# ============================================================
+
+@app.route("/health")
+def health():
+    return {
+        "status": "healthy",
+        "service": "MPath Career Counselling",
+        "version": "1.0.0"
+    }, 200
 
 
 # ============================================================
@@ -281,14 +370,30 @@ def landing():
     Visitors can explore the homepage without login.
     """
 
+    counts = {
+        "careers": Career.query.count(),
+        "colleges": College.query.count(),
+        "exams": GovernmentExam.query.count(),
+        "opportunities": Scholarship.query.count() + Internship.query.count()
+    }
+
     return render_template(
-        "home/hero.html"
+        "home/hero.html",
+        counts=counts
     )
 
 
 # ============================================================
 # ERROR PAGES
 # ============================================================
+
+@app.errorhandler(403)
+def forbidden(error):
+
+    return render_template(
+        "errors/403.html"
+    ), 403
+
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -307,11 +412,29 @@ def server_error(error):
 
 
 # ============================================================
-# RUN APP
+# RUN APP (LOCAL DEVELOPMENT)
 # ============================================================
 
 if __name__ == "__main__":
+    import os
 
-    app.run(
-        debug=True
-    )
+    host = os.environ.get("HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", 5000))
+    debug = os.environ.get("FLASK_DEBUG", "False").lower() in ("true", "1")
+
+    try:
+        app.run(
+            host=host,
+            port=port,
+            debug=debug,
+            use_reloader=debug
+        )
+    except OSError:
+        fallback_port = 5001
+        print(f"Port {port} is busy. Falling back to port {fallback_port}...")
+        app.run(
+            host=host,
+            port=fallback_port,
+            debug=debug,
+            use_reloader=debug
+        )

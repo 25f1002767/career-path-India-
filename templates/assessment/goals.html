@@ -9,12 +9,12 @@ Student Profile | MPath Career Counselling
 <style>
 
     .profile-header {
-        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        background: linear-gradient(135deg, #00338D, #00225E);
         color: white;
         border-radius: 20px;
         padding: 32px;
         margin-bottom: 25px;
-        box-shadow: 0 10px 30px rgba(13, 110, 253, 0.18);
+        box-shadow: 0 10px 30px rgba(0, 51, 141, 0.22);
     }
 
     .profile-avatar {
@@ -95,7 +95,7 @@ Student Profile | MPath Career Counselling
         <div>
 
             <h1 class="fw-bold mb-1">
-                👤 Student Profile
+                <i data-lucide="user" class="icon-xs"></i> Student Profile
             </h1>
 
             <p class="text-muted mb-0">
@@ -147,13 +147,13 @@ Student Profile | MPath Career Counselling
                         {% if student.is_active %}
 
                         <span class="badge bg-success status-badge">
-                            ✅ Active Account
+                            <i data-lucide="check" class="icon-xs text-success"></i> Active Account
                         </span>
 
                         {% else %}
 
                         <span class="badge bg-danger status-badge">
-                            🚫 Inactive Account
+                             Inactive Account
                         </span>
 
                         {% endif %}
@@ -176,7 +176,7 @@ Student Profile | MPath Career Counselling
                     class="btn btn-warning action-btn"
                     onclick="return confirm('Are you sure you want to deactivate this student account?');">
 
-                    🚫 Deactivate Account
+                     Deactivate Account
 
                 </a>
 
@@ -186,7 +186,7 @@ Student Profile | MPath Career Counselling
                     href="{{ url_for('admin.activate_student', id=student.id) }}"
                     class="btn btn-success action-btn">
 
-                    ✅ Activate Account
+                    <i data-lucide="check" class="icon-xs text-success"></i> Activate Account
 
                 </a>
 
@@ -208,7 +208,7 @@ Student Profile | MPath Career Counselling
         <div class="card-header">
 
             <h5 class="fw-bold mb-0">
-                🔐 Account Information
+                 Account Information
             </h5>
 
         </div>
@@ -289,7 +289,7 @@ Student Profile | MPath Career Counselling
         <div class="card-header">
 
             <h5 class="fw-bold mb-0">
-                👤 Personal Information
+                <i data-lucide="user" class="icon-xs"></i> Personal Information
             </h5>
 
         </div>
@@ -347,7 +347,7 @@ Student Profile | MPath Career Counselling
         <div class="card-header">
 
             <h5 class="fw-bold mb-0">
-                🎓 Education Information
+                <i data-lucide="graduation-cap" class="icon-xs"></i> Education Information
             </h5>
 
         </div>
@@ -456,7 +456,7 @@ Student Profile | MPath Career Counselling
         <div class="card-header">
 
             <h5 class="fw-bold mb-0">
-                📍 Location
+                <i data-lucide="map-pin" class="icon-xs"></i> Location
             </h5>
 
         </div>
@@ -514,7 +514,7 @@ Student Profile | MPath Career Counselling
         <div class="card-header">
 
             <h5 class="fw-bold mb-0">
-                🚀 Career Information
+                <i data-lucide="arrow-right" class="icon-xs"></i> Career Information
             </h5>
 
         </div>
@@ -562,7 +562,7 @@ Student Profile | MPath Career Counselling
             class="btn btn-warning action-btn"
             onclick="return confirm('Are you sure you want to deactivate this student account?');">
 
-            🚫 Deactivate Student
+             Deactivate Student
 
         </a>
 
@@ -572,7 +572,7 @@ Student Profile | MPath Career Counselling
             href="{{ url_for('admin.activate_student', id=student.id) }}"
             class="btn btn-success action-btn">
 
-            ✅ Activate Student
+            <i data-lucide="check" class="icon-xs text-success"></i> Activate Student
 
         </a>
 

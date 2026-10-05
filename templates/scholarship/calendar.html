@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}National Scholarship Calendar & Deadlines | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-semibold small">
+                <i data-lucide="calendar" class="icon-xs"></i>
+                <span>Deadlines & Cycles</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">Scholarship Application Calendar</h1>
+            <p class="text-muted mb-0">Track application start dates, closing deadlines, and verification windows across national schemes.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-secondary">
+                ← Back to Explorer
+            </a>
+            <a href="{{ url_for('scholarship.my_applications') }}" class="btn btn-primary">
+                My Applications
+            </a>
+        </div>
+    </div>
+
+    <!-- CALENDAR FILTERS -->
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('scholarship.scholarship_calendar') }}" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label small fw-semibold text-muted">Category</label>
+                <select name="category" class="form-select">
+                    <option value="">All Categories</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold text-muted">State / Region</label>
+                <select name="state" class="form-select">
+                    <option value="">All States</option>
+                    {% for st in states %}
+                    <option value="{{ st }}" {% if selected_state == st %}selected{% endif %}>{{ st }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold text-muted">Cycle Status</label>
+                <select name="status" class="form-select">
+                    <option value="">All Statuses</option>
+                    <option value="OPEN" {% if selected_status == 'OPEN' %}selected{% endif %}>Open</option>
+                    <option value="CLOSING_SOON" {% if selected_status == 'CLOSING_SOON' %}selected{% endif %}>Closing Soon</option>
+                    <option value="UPCOMING" {% if selected_status == 'UPCOMING' %}selected{% endif %}>Upcoming</option>
+                    <option value="CLOSED" {% if selected_status == 'CLOSED' %}selected{% endif %}>Closed</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary w-100 fw-semibold">Filter</button>
+                <a href="{{ url_for('scholarship.scholarship_calendar') }}" class="btn btn-light border">Reset</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- CALENDAR TIMELINE & CARDS -->
+    {% if events %}
+    <div class="row g-3">
+        {% for sch, cycle in events %}
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 position-relative hover-shadow transition-all bg-white">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge 
+                        {% if cycle.status == 'OPEN' %}bg-success text-white
+                        {% elif cycle.status == 'CLOSING_SOON' %}bg-danger text-white
+                        {% elif cycle.status == 'UPCOMING' %}bg-info text-dark
+                        {% else %}bg-secondary text-white{% endif %} px-2.5 py-1 rounded-pill small">
+                        ● {{ cycle.status.replace('_', ' ') }}
+                    </span>
+                    <span class="badge bg-light text-dark border px-2 py-1 small">
+                        Cycle: {{ cycle.academic_year or 'Current' }}
+                    </span>
+                </div>
+
+                <h5 class="fw-bold text-dark mb-1">
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=sch.slug or sch.id) }}" class="text-decoration-none text-dark">
+                        {{ sch.title }}
+                    </a>
+                </h5>
+                <p class="text-muted small mb-3">
+                    <i data-lucide="landmark" class="icon-xs"></i> {{ sch.provider_name or sch.provider }} • {{ sch.state or 'All India' }}
+                </p>
+
+                <!-- DATES TIMELINE -->
+                <div class="bg-light rounded-3 p-3 mb-3">
+                    <div class="row g-2 text-center text-md-start">
+                        <div class="col-6 col-md-4">
+                            <div class="text-muted small">Opens</div>
+                            <div class="fw-semibold text-dark">
+                                {% if cycle.application_start_date %}
+                                    {{ cycle.application_start_date.strftime('%d %b %Y') if cycle.application_start_date.strftime is defined else cycle.application_start_date }}
+                                {% else %}
+                                    Announced
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                            <div class="text-muted small">Closes</div>
+                            <div class="fw-bold {% if cycle.status == 'CLOSING_SOON' %}text-danger{% else %}text-dark{% endif %}">
+                                {% if cycle.application_end_date %}
+                                    {{ cycle.application_end_date.strftime('%d %b %Y') if cycle.application_end_date.strftime is defined else cycle.application_end_date }}
+                                {% else %}
+                                    Open
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="text-muted small">Verification By</div>
+                            <div class="fw-semibold text-secondary">
+                                {% if cycle.verification_deadline %}
+                                    {{ cycle.verification_deadline.strftime('%d %b %Y') if cycle.verification_deadline.strftime is defined else cycle.verification_deadline }}
+                                {% else %}
+                                    N/A
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KEY INFO & ACTIONS -->
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-2 border-top">
+                    <div>
+                        <span class="text-muted small">Benefit:</span>
+                        <span class="fw-semibold text-success ms-1">{{ sch.amount or 'As per norms' }}</span>
+                    </div>
+                    {% set meta = sch.apply_button_meta %}
+                    <div class="d-flex gap-2">
+                        <a href="{{ url_for('scholarship.scholarship_detail', identifier=sch.slug or sch.id) }}" class="btn btn-sm btn-outline-primary">
+                            Details
+                        </a>
+                        {% if meta.is_enabled %}
+                        <a href="{{ url_for('scholarship.apply_redirect', identifier=sch.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                            Apply 
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('scholarship.scholarship_detail', identifier=sch.slug or sch.id) }}" class="btn btn-sm btn-{{ meta.badge_class }}" title="{{ meta.reason }}">
+                            {{ meta.icon }} {{ meta.label }}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+        <div class="display-5 text-muted mb-3"><i data-lucide="calendar" class="icon-xs"></i></div>
+        <h4 class="fw-bold text-dark">No scholarship calendar deadlines found</h4>
+        <p class="text-muted mb-4">Try relaxing your filter options or browse all verified schemes in the directory.</p>
+        <div>
+            <a href="{{ url_for('scholarship.scholarship_calendar') }}" class="btn btn-outline-secondary me-2">Clear Filters</a>
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-primary">Browse All Scholarships</a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

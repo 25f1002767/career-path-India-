@@ -1,200 +1,343 @@
 {% extends "base.html" %}
 
-{% block title %}
-Explore Careers
-{% endblock %}
+{% block title %}National Career Discovery | MPath Career Counselling{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
 
-    <!-- Header -->
-    <div class="text-center mb-5">
+    <!-- Header Hero (Solid Corporate Blue Banner #00338D) -->
+    <div class="hero-solid-banner mb-4 text-white" style="background-color: #00338D !important; background: linear-gradient(135deg, #00338D 0%, #00225E 100%) !important;">
+        <div class="position-relative z-1">
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill text-white small fw-semibold mb-3 border border-white border-opacity-25" style="background: rgba(255, 255, 255, 0.15);">
+                <i data-lucide="landmark" class="icon-xs"></i>
+                <span>National Occupational Taxonomy (NCS & Sector Skill Councils)</span>
+            </div>
+            <h1 class="display-6 fw-bold mb-2 text-white">National Career Discovery Platform</h1>
+            <p class="banner-subtext mb-4 text-white" style="max-width: 850px; opacity: 0.92;">
+                Explore {{ total_careers_count }}+ authentic Indian career pathways across all major national sectors. Balanced coverage spanning Medicine, Arts, Law, Commerce, Government, Agriculture, Creative, Sports, Skilled Trades, and Science.
+            </p>
 
-        <h1 class="fw-bold display-5">
-            🚀 Explore Careers
-        </h1>
-
-        <p class="text-muted fs-5">
-            Discover career opportunities across technology, business,
-            government, medical, and many other fields.
-        </p>
-
+            <!-- Quick Action Links & Unbiased Discovery Gateways -->
+            <div class="d-flex flex-wrap gap-2 pt-1 mb-3">
+                <a href="{{ url_for('career.no_idea') }}" class="btn-solid-white-pill">
+                    <i data-lucide="help-circle" class="icon-xs"></i>
+                    <span>Help Me Decide</span>
+                </a>
+                <a href="{{ url_for('career.careers_without_coding') }}" class="btn-solid-white-pill-outline">
+                    <i data-lucide="compass" class="icon-xs"></i> Careers Without Coding
+                </a>
+                <a href="{{ url_for('career.careers_without_engineering') }}" class="btn-solid-white-pill-outline">
+                    <i data-lucide="compass" class="icon-xs"></i> Careers Without Engineering
+                </a>
+                <a href="{{ url_for('career.lesser_known_careers') }}" class="btn-solid-white-pill-outline">
+                    <i data-lucide="sparkles" class="icon-xs"></i> Careers You May Not Know
+                </a>
+                <a href="{{ url_for('career.interest_clusters') }}" class="btn-solid-white-pill-outline">
+                    <i data-lucide="compass" class="icon-xs"></i> Interest Clusters
+                </a>
+                <a href="{{ url_for('career.work_styles') }}" class="btn-solid-white-pill-outline">
+                    <i data-lucide="briefcase" class="icon-xs"></i> Work Styles
+                </a>
+            </div>
+            <div class="d-flex flex-wrap gap-2 pt-1">
+                <a href="{{ url_for('career.discover_careers') }}" class="badge-solid-pill text-decoration-none">
+                    <i data-lucide="search" class="icon-xs"></i> Guided Discovery
+                </a>
+                <a href="{{ url_for('career.explore_by_course') }}" class="badge-solid-pill text-decoration-none">
+                    <i data-lucide="graduation-cap" class="icon-xs"></i> Explore by Degree
+                </a>
+                <a href="{{ url_for('career.explore_by_skills') }}" class="badge-solid-pill text-decoration-none">
+                    <i data-lucide="wrench" class="icon-xs"></i> Explore by Skill
+                </a>
+                <a href="{{ url_for('career.explore_by_subject') }}" class="badge-solid-pill text-decoration-none">
+                    <i data-lucide="book-open" class="icon-xs"></i> Explore by Subject
+                </a>
+                <a href="{{ url_for('career.compare') }}" class="badge-solid-pill text-decoration-none">
+                    <i data-lucide="scale" class="icon-xs"></i> Compare Careers
+                </a>
+            </div>
+        </div>
     </div>
 
-    <!-- Search Form -->
-    <form method="GET" class="mb-5">
-
-        <div class="row g-2 justify-content-center">
-
-            <div class="col-md-5">
-
-                <input
-                    type="text"
-                    name="search"
-                    class="form-control form-control-lg"
-                    placeholder="Search career..."
-                    value="{{ search }}">
-
+    <!-- National Metrics Bar -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-primary fs-3 fw-bold">{{ total_careers_count }}</div>
+                <div class="small text-muted fw-semibold">Authentic Careers</div>
             </div>
-
-            <div class="col-md-3">
-
-                <select
-                    name="category"
-                    class="form-select form-select-lg">
-
-                    <option value="">
-                        All Categories
-                    </option>
-
-                    {% for cat in categories %}
-
-                    <option
-                        value="{{ cat }}"
-                        {% if cat == selected_category %}selected{% endif %}>
-
-                        {{ cat }}
-
-                    </option>
-
-                    {% endfor %}
-
-                </select>
-
-            </div>
-
-            <div class="col-md-2 d-grid">
-
-                <button class="btn btn-primary btn-lg">
-
-                    🔍 Search
-
-                </button>
-
-            </div>
-
         </div>
+        <div class="col-6 col-md-3">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-success fs-3 fw-bold">14</div>
+                <div class="small text-muted fw-semibold">National Sectors</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-info fs-3 fw-bold">{{ total_courses_linked }}</div>
+                <div class="small text-muted fw-semibold">Degree Linkages</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white text-center">
+                <div class="text-warning fs-3 fw-bold">{{ total_exams_linked }}</div>
+                <div class="small text-muted fw-semibold">Exams Indexed</div>
+            </div>
+        </div>
+    </div>
 
-    </form>
+    <!-- Sector Pills Horizontal Scroll -->
+    <div class="mb-4">
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="small text-uppercase fw-bold text-muted">Browse by National Sector:</span>
+            {% if selected_category %}
+            <a href="{{ url_for('career.career_list') }}" class="small text-decoration-none">Clear Sector Filter &times;</a>
+            {% endif %}
+        </div>
+        <div class="d-flex gap-2 overflow-auto pb-2" style="scrollbar-width: thin;">
+            <a href="{{ url_for('career.career_list') }}" class="btn btn-sm text-nowrap rounded-pill {% if not selected_category %}btn-dark{% else %}btn-outline-secondary bg-white{% endif %}">
+                All Sectors ({{ total_careers_count }})
+            </a>
+            {% for cat in categories %}
+            {% set count = category_counts.get(cat, 0) %}
+            <a href="{{ url_for('career.career_list', category=cat) }}" class="btn btn-sm text-nowrap rounded-pill {% if selected_category == cat %}btn-primary{% else %}btn-outline-secondary bg-white text-dark{% endif %}">
+                {{ cat }} <span class="badge bg-light text-dark ms-1">{{ count }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
 
-    <!-- Career Cards -->
-    <div class="row">
-
-        {% for career in careers %}
-
-        <div class="col-lg-4 col-md-6 mb-4">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body d-flex flex-column">
-
-                    <!-- Category -->
-                    <span class="badge bg-primary mb-3">
-
-                        {{ career.category }}
-
-                    </span>
-
-                    <!-- Title -->
-                    <h4 class="fw-bold mb-3 text-primary">
-
-                        {{ career.title }}
-
-                    </h4>
-
-                    <!-- Description -->
-                    <p class="text-muted flex-grow-1">
-
-                        {{ career.description }}
-
-                    </p>
-
-                    <!-- Salary -->
-                    <p class="mb-2">
-
-                        💰 <strong>Salary:</strong>
-
-                        {% if career.average_salary is mapping %}
-
-                            {{ career.average_salary.fresher }}
-
-                        {% else %}
-
-                            {{ career.average_salary }}
-
-                        {% endif %}
-
-                    </p>
-
-                    <!-- Future Scope -->
-                    <p class="mb-4">
-
-                        📈 <strong>Future Scope:</strong>
-
-                        {{ career.future_scope }}
-
-                    </p>
-
-                    <!-- Buttons -->
-                    <div class="mt-auto d-grid gap-2">
-
-                        <a
-                            href="{{ url_for('career.career_detail', slug=career.slug) }}"
-                            class="btn btn-outline-primary">
-
-                            Explore Career
-
-                        </a>
-
-                        {% if career.official_link %}
-
-                        <a
-                            href="{{ career.official_link }}"
-                            target="_blank"
-                            class="btn btn-primary">
-
-                            🌐 Official Link
-
-                        </a>
-
-                        {% endif %}
-
+    <!-- Multi-Factor Filter Card -->
+    <div class="card p-4 border shadow-sm mb-4 bg-white rounded-3">
+        <form method="GET" action="{{ url_for('career.career_list') }}">
+            <div class="row g-3">
+                <!-- Search -->
+                <div class="col-lg-4 col-md-12">
+                    <label class="form-label small fw-semibold text-muted">Search Career, Skill, or Industry</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 text-muted"><i data-lucide="search" class="icon-xs"></i></span>
+                        <input type="text" name="search" class="form-control border-start-0" placeholder="e.g. Data Scientist, MBBS, AutoCAD, Cyber Law..." value="{{ search }}">
                     </div>
-
                 </div>
 
+                <!-- Sector -->
+                <div class="col-lg-3 col-md-4">
+                    <label class="form-label small fw-semibold text-muted">National Sector</label>
+                    <select name="category" class="form-select">
+                        <option value="">All Sectors</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>
+                            {{ cat }} ({{ category_counts.get(cat, 0) }})
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Stream -->
+                <div class="col-lg-2 col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Academic Stream</label>
+                    <select name="stream" class="form-select">
+                        <option value="">Any Stream</option>
+                        <option value="PCM" {% if selected_stream == 'PCM' %}selected{% endif %}>Science (PCM)</option>
+                        <option value="PCB" {% if selected_stream == 'PCB' %}selected{% endif %}>Science (PCB)</option>
+                        <option value="Commerce" {% if selected_stream == 'Commerce' %}selected{% endif %}>Commerce</option>
+                        <option value="Arts" {% if selected_stream == 'Arts' %}selected{% endif %}>Arts / Humanities</option>
+                    </select>
+                </div>
+
+                <!-- Education -->
+                <div class="col-lg-3 col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Minimum Qualification</label>
+                    <select name="education" class="form-select">
+                        <option value="">All Qualifications</option>
+                        <option value="Class 12" {% if selected_education == 'Class 12' %}selected{% endif %}>Class 12 Pass</option>
+                        <option value="Diploma" {% if selected_education == 'Diploma' %}selected{% endif %}>Diploma / Polytechnic</option>
+                        <option value="Undergraduate" {% if selected_education == 'Undergraduate' %}selected{% endif %}>Bachelor's Degree</option>
+                        <option value="Postgraduate" {% if selected_education == 'Postgraduate' %}selected{% endif %}>Master's Degree</option>
+                    </select>
+                </div>
+
+                <!-- Work Mode -->
+                <div class="col-lg-3 col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Work Mode</label>
+                    <select name="work_mode" class="form-select">
+                        <option value="">All Work Modes</option>
+                        <option value="Remote" {% if selected_work_mode == 'Remote' %}selected{% endif %}>Remote / Hybrid</option>
+                        <option value="On-site" {% if selected_work_mode == 'On-site' %}selected{% endif %}>On-site Office / Lab</option>
+                        <option value="Clinical" {% if selected_work_mode == 'Clinical' %}selected{% endif %}>Clinical / Hospital</option>
+                    </select>
+                </div>
+
+                <!-- Opportunity Type -->
+                <div class="col-lg-3 col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Opportunity Domain</label>
+                    <select name="opportunity" class="form-select">
+                        <option value="">Public & Private</option>
+                        <option value="government" {% if selected_opportunity == 'government' %}selected{% endif %}>Government / Civil Services / PSUs</option>
+                        <option value="private" {% if selected_opportunity == 'private' %}selected{% endif %}>Private / Corporate / Startups</option>
+                    </select>
+                </div>
+
+                <!-- Sort -->
+                <div class="col-lg-3 col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Sort By</label>
+                    <select name="sort" class="form-select">
+                        <option value="title_asc" {% if sort_by == 'title_asc' %}selected{% endif %}>Alphabetical (A to Z)</option>
+                        <option value="title_desc" {% if sort_by == 'title_desc' %}selected{% endif %}>Alphabetical (Z to A)</option>
+                        <option value="category" {% if sort_by == 'category' %}selected{% endif %}>Sector Grouping</option>
+                        <option value="newest" {% if sort_by == 'newest' %}selected{% endif %}>Recently Added</option>
+                    </select>
+                </div>
+
+                <!-- Actions -->
+                <div class="col-lg-3 col-md-12 d-flex align-items-end gap-2">
+                    <button type="submit" class="btn btn-primary flex-grow-1">
+                        Apply Filters
+                    </button>
+                    <a href="{{ url_for('career.career_list') }}" class="btn btn-outline-secondary">
+                        Reset
+                    </a>
+                </div>
             </div>
-
-        </div>
-
-        {% else %}
-
-        <div class="col-12">
-
-            <div class="alert alert-warning text-center shadow-sm">
-
-                <h5 class="mb-2">
-                    😕 No careers found.
-                </h5>
-
-                <p class="mb-0">
-                    Try searching for
-                    <strong>AI</strong>,
-                    <strong>Software</strong>,
-                    <strong>Data</strong>,
-                    <strong>Cloud</strong>,
-                    or <strong>Security</strong>.
-                </p>
-
-            </div>
-
-        </div>
-
-        {% endfor %}
-
+        </form>
     </div>
 
-</div>
+    <!-- Results Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-bold mb-0 text-dark">
+            Matching Careers
+            <span class="badge bg-secondary ms-1">{{ pagination.total }}</span>
+        </h5>
+        {% if selected_category and sectors_metadata.get(selected_category) %}
+        <a href="{{ url_for('career.career_category', category_slug=sectors_metadata[selected_category].slug) }}" class="btn btn-sm btn-outline-primary">
+            Explore {{ selected_category }} Sector Page →
+        </a>
+        {% endif %}
+    </div>
 
+    <!-- Career Cards Grid -->
+    {% if careers %}
+    <div class="row g-4 mb-4">
+        {% for c in careers %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 border shadow-sm rounded-4 d-flex flex-column bg-white transition-hover position-relative">
+                
+                <!-- Category & Verification -->
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary small fw-semibold">
+                        {{ c.category }}
+                    </span>
+                    <span class="badge bg-success bg-opacity-10 text-success small fw-semibold border border-success border-opacity-25 d-inline-flex align-items-center gap-1">
+                        <i data-lucide="check-circle" class="icon-xs"></i> {{ c.verification_status or 'VERIFIED' }}
+                    </span>
+                </div>
+
+                <!-- Title -->
+                <h4 class="fw-bold mb-1">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="text-decoration-none text-dark">
+                        {{ c.title }}
+                    </a>
+                </h4>
+
+                <!-- Sub-category -->
+                {% if c.sub_category %}
+                <div class="small text-muted mb-2">
+                    <i class="bi bi-tag"></i> {{ c.sub_category }}
+                </div>
+                {% endif %}
+
+                <!-- Short Description -->
+                <p class="small text-muted flex-grow-1 mb-3">
+                    {{ c.short_description or c.description[:140] }}...
+                </p>
+
+                <!-- Key Meta Box -->
+                <div class="bg-light p-3 rounded-3 small mb-3 border">
+                    <div class="mb-1 text-truncate">
+                        <strong>Salary:</strong> {{ c.average_salary or 'As per industry benchmarks' }}
+                    </div>
+                    <div class="mb-1 text-truncate">
+                        <strong>Qualification:</strong> {{ c.minimum_qualification or c.education_required or 'Bachelor’s Degree' }}
+                    </div>
+                    <div class="text-truncate">
+                        <strong><i data-lucide="target" class="icon-xs"></i> Preferred Stream:</strong> {{ c.preferred_streams or 'Any Stream' }}
+                    </div>
+                </div>
+
+                <!-- Top Technical Skills Pills -->
+                <div class="mb-3">
+                    <div class="d-flex flex-wrap gap-1">
+                        {% for s in c.technical_skills_list[:3] %}
+                        <span class="badge bg-secondary bg-opacity-10 text-dark small fw-normal">{{ s }}</span>
+                        {% endfor %}
+                        {% if c.technical_skills_list|length > 3 %}
+                        <span class="badge bg-light text-muted small">+{{ c.technical_skills_list|length - 3 }} more</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="d-flex gap-2 mt-auto pt-3 border-top">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-primary btn-sm flex-grow-1 fw-semibold">
+                        Explore Dossier →
+                    </a>
+                    <a href="{{ url_for('career.compare', career1=c.slug) }}" class="btn btn-outline-secondary btn-sm" title="Compare this career">
+                        <i data-lucide="scale" class="icon-xs"></i>
+                    </a>
+                    <a href="{{ url_for('career.toggle_save', career_id=c.id) }}" class="btn btn-sm {% if c.id in saved_career_ids %}btn-warning text-dark{% else %}btn-outline-warning text-dark{% endif %}" title="Save career">
+                        {% if c.id in saved_career_ids %}<i data-lucide="bookmark-check" class="icon-xs"></i>{% else %}<i data-lucide="bookmark" class="icon-xs"></i>{% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if pagination.pages > 1 %}
+    <nav aria-label="Career pages" class="my-4">
+        <ul class="pagination justify-content-center">
+            <li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('career.career_list', page=pagination.prev_num, search=search, category=selected_category, stream=selected_stream, education=selected_education, work_mode=selected_work_mode, opportunity=selected_opportunity, sort=sort_by) }}">
+                    Previous
+                </a>
+            </li>
+
+            {% for p in pagination.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=2) %}
+                {% if p %}
+                    <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('career.career_list', page=p, search=search, category=selected_category, stream=selected_stream, education=selected_education, work_mode=selected_work_mode, opportunity=selected_opportunity, sort=sort_by) }}">
+                            {{ p }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                {% endif %}
+            {% endfor %}
+
+            <li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+                <a class="page-link" href="{{ url_for('career.career_list', page=pagination.next_num, search=search, category=selected_category, stream=selected_stream, education=selected_education, work_mode=selected_work_mode, opportunity=selected_opportunity, sort=sort_by) }}">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <!-- Empty State -->
+    <div class="card p-5 text-center border shadow-sm my-4 bg-white rounded-4">
+        <div class="fs-1 mb-2"><i data-lucide="search" class="icon-xs"></i></div>
+        <h4 class="fw-bold">No Careers Found</h4>
+        <p class="text-muted">No career records matched your specified search or filter criteria.</p>
+        <div>
+            <a href="{{ url_for('career.career_list') }}" class="btn btn-primary">
+                Clear Filters & View All Careers
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
 {% endblock %}

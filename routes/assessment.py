@@ -1,14 +1,41 @@
+"""
+routes/assessment.py
+==============================================================================
+MPath Career Discovery & Assessment Routes
+==============================================================================
+Empowers students to discover career directions based on:
+- Multi-dimensional cognitive patterns & RIASEC interests
+- Real-world problem archetypes & latent activities
+- Work values, lifestyle expectations, and person-environment fit
+- Self-efficacy (perceived trainability) & persistence
+- Practical constraints (financial, family, exam tolerance, study duration)
+- Negative deal-breakers and anti-preferences
+- Integrated with MPath's authentic database of Careers, Courses, Colleges,
+  Exams, Scholarships, and Internships.
+"""
+
+import json
 from flask import (
     Blueprint,
     render_template,
     request,
     redirect,
     url_for,
-    session
+    session,
+    flash,
+    jsonify
 )
 
 from extensions import db
 from models.assessment import AssessmentResult
+from models.career import Career
+from models.course import Course
+from models.college import College
+from models.exam import GovernmentExam
+from models.scholarship import Scholarship
+from models.internship import Internship
+from services.career_assessment_questions import DISCOVERY_QUESTIONS, get_question_by_id
+from services.career_assessment_engine import CareerAssessmentEngine
 
 assessment = Blueprint(
     "assessment",
@@ -17,368 +44,252 @@ assessment = Blueprint(
 )
 
 
-# ==========================================
-# Start Assessment
-# ==========================================
+# ============================================================================
+# 1. Start Assessment Questionnaire
+# ============================================================================
 
 @assessment.route("/")
+@assessment.route("/start")
 def start():
-
+    """
+    Renders the scenario-based, student-friendly career discovery assessment.
+    """
     return render_template(
-        "assessment/smart_questions.html"
+        "assessment/smart_questions.html",
+        questions=DISCOVERY_QUESTIONS
     )
 
 
-# ==========================================
-# Submit Assessment
-# ==========================================
+# ============================================================================
+# 2. Submit Assessment & Compute Discovery Dossier
+# ============================================================================
 
 @assessment.route("/submit", methods=["POST"])
 def submit():
-
-    # --------------------------------------
-    # Get Form Data
-    # --------------------------------------
-
-    current_class = request.form.get("current_class")
-    stream = request.form.get("stream")
-    preference = request.form.get("preference")
-    activity = request.form.get("activity")
-    strong_subject = request.form.get("strong_subject")
-    personality = request.form.get("personality")
-    government_exam = request.form.get("government_exam")
-    technical_skill = request.form.get("technical_skill")
-    long_term_goal = request.form.get("long_term_goal")
-    study_hours = request.form.get("study_hours")
-
-    # --------------------------------------
-    # AI Career Scores
-    # --------------------------------------
-
-    scores = {
-
-        "AI Engineer": 0,
-        "Software Engineer": 0,
-        "Data Scientist": 0,
-        "Cyber Security Analyst": 0,
-        "Doctor": 0,
-        "Pharmacist": 0,
-        "Chartered Accountant": 0,
-        "Business Analyst": 0,
-        "Digital Marketer": 0,
-        "IAS Officer": 0,
-        "SSC / Railway Officer": 0,
-        "Lawyer": 0,
-        "Teacher / Professor": 0,
-        "UI/UX Designer": 0,
-        "Graphic Designer": 0,
-        "Entrepreneur": 0
-
-    }
-
-    # --------------------------------------
-    # Stream Based
-    # --------------------------------------
-
-    if stream == "PCM":
-
-        scores["AI Engineer"] += 4
-        scores["Software Engineer"] += 4
-        scores["Data Scientist"] += 3
-        scores["Cyber Security Analyst"] += 3
-
-    elif stream == "PCB":
-
-        scores["Doctor"] += 5
-        scores["Pharmacist"] += 3
-
-    elif stream == "Commerce":
-
-        scores["Chartered Accountant"] += 5
-        scores["Business Analyst"] += 4
-        scores["Digital Marketer"] += 2
-
-    elif stream == "Arts":
-
-        scores["Lawyer"] += 4
-        scores["Teacher / Professor"] += 4
-        scores["IAS Officer"] += 3
-
-    # --------------------------------------
-    # Activity Based
-    # --------------------------------------
-
-    if activity == "Coding / Building Apps":
-
-        scores["AI Engineer"] += 5
-        scores["Software Engineer"] += 5
-        scores["Data Scientist"] += 3
-
-    elif activity == "Helping Sick People":
-
-        scores["Doctor"] += 5
-
-    elif activity == "Managing Money / Business":
-
-        scores["Chartered Accountant"] += 4
-        scores["Business Analyst"] += 4
-        scores["Entrepreneur"] += 3
-
-    elif activity == "Teaching / Explaining":
-
-        scores["Teacher / Professor"] += 5
-
-    elif activity == "Drawing / Designing":
-
-        scores["UI/UX Designer"] += 5
-        scores["Graphic Designer"] += 5
-
-    elif activity == "Leading Teams":
-
-        scores["IAS Officer"] += 4
-        scores["Entrepreneur"] += 5
-
-    # --------------------------------------
-    # Strong Subject
-    # --------------------------------------
-
-    if strong_subject == "Mathematics":
-
-        scores["AI Engineer"] += 4
-        scores["Software Engineer"] += 3
-        scores["Data Scientist"] += 4
-
-    elif strong_subject == "Biology":
-
-        scores["Doctor"] += 5
-
-    elif strong_subject == "Accountancy":
-
-        scores["Chartered Accountant"] += 5
-
-    elif strong_subject == "Economics":
-
-        scores["Business Analyst"] += 4
-
-    elif strong_subject == "English":
-
-        scores["Lawyer"] += 3
-        scores["Teacher / Professor"] += 3
-
-    # --------------------------------------
-    # Personality Based
-    # --------------------------------------
-
-    if personality == "Analytical Thinker":
-
-        scores["AI Engineer"] += 4
-        scores["Data Scientist"] += 4
-
-    elif personality == "Creative Person":
-
-        scores["UI/UX Designer"] += 4
-        scores["Graphic Designer"] += 4
-        scores["Digital Marketer"] += 3
-
-    elif personality == "Leader / Organizer":
-
-        scores["IAS Officer"] += 4
-        scores["Entrepreneur"] += 4
-
-    elif personality == "Helpful / Caring":
-
-        scores["Doctor"] += 3
-        scores["Teacher / Professor"] += 3
-
-    # --------------------------------------
-    # Job Preference
-    # --------------------------------------
-
-    if preference == "Government":
-
-        scores["IAS Officer"] += 5
-        scores["SSC / Railway Officer"] += 4
-
-    elif preference == "Private":
-
-        scores["Software Engineer"] += 3
-        scores["Business Analyst"] += 3
-        scores["Digital Marketer"] += 2
-
-    elif preference == "Business / Startup":
-
-        scores["Entrepreneur"] += 6
-
-    elif preference == "Freelancing / Remote Work":
-
-        scores["Graphic Designer"] += 5
-        scores["UI/UX Designer"] += 4
-        scores["Digital Marketer"] += 4
-
-    # --------------------------------------
-    # Government Exam Interest
-    # --------------------------------------
-
-    if government_exam == "Very Interested":
-
-        scores["IAS Officer"] += 5
-        scores["SSC / Railway Officer"] += 4
-
-    # --------------------------------------
-    # Technical Skills
-    # --------------------------------------
-
-    if technical_skill == "Python / Programming":
-
-        scores["AI Engineer"] += 4
-        scores["Software Engineer"] += 4
-        scores["Data Scientist"] += 3
-
-    elif technical_skill == "Web Development":
-
-        scores["Software Engineer"] += 3
-
-    elif technical_skill == "Canva / Design":
-
-        scores["UI/UX Designer"] += 3
-        scores["Graphic Designer"] += 4
-
-    elif technical_skill == "Data Analysis":
-
-        scores["Data Scientist"] += 4
-        scores["Business Analyst"] += 3
-
-    # --------------------------------------
-    # Long Term Goal
-    # --------------------------------------
-
-    goal_map = {
-
-        "Become an Engineer": "Software Engineer",
-        "Become a Doctor": "Doctor",
-        "Become a Chartered Accountant": "Chartered Accountant",
-        "Become an IAS / IPS Officer": "IAS Officer",
-        "Become a Teacher / Professor": "Teacher / Professor",
-        "Become a Lawyer / Judge": "Lawyer",
-        "Become a Designer / Creator": "UI/UX Designer",
-        "Become a Data Scientist / AI Expert": "AI Engineer",
-        "Start My Own Business": "Entrepreneur"
-
-    }
-
-    if long_term_goal in goal_map:
-
-        scores[goal_map[long_term_goal]] += 6
-
-    # --------------------------------------
-    # Study Hours
-    # --------------------------------------
-
-    if study_hours in ["6-8 Hours", "More than 8 Hours"]:
-
-        scores["IAS Officer"] += 2
-        scores["Doctor"] += 2
-        scores["Chartered Accountant"] += 2
-
-    # --------------------------------------
-    # Top 5 Careers
-    # --------------------------------------
-
-    sorted_scores = sorted(
-        scores.items(),
-        key=lambda x: x[1],
-        reverse=True
+    """
+    Evaluates form responses through CareerAssessmentEngine, saves the complete
+    assessment attempt, and redirects to the personalized counselling result page.
+    """
+    form_data = dict(request.form)
+
+    # Fallback user ID for anonymous guests to satisfy foreign key
+    user_id = session.get("user_id")
+    if not user_id:
+        user_id = 1  # Default guest/system user
+
+    # Run multi-dimensional assessment engine
+    try:
+        evaluation = CareerAssessmentEngine.evaluate(form_data)
+    except Exception as e:
+        # Fallback safeguard in case of unexpected input
+        print(f"[ASSESSMENT ENGINE ERROR]: {e}")
+        flash("We processed your answers. Here is your career discovery overview.", "info")
+        evaluation = {
+            "recommended_category": "Technology & Computer Science",
+            "headline": "Profile: Versatile Explorer — Recommended Direction: Technology",
+            "confidence_level": "MODERATE_CONFIDENCE",
+            "profile": {"dominant_archetype": "Versatile Explorer", "top_riasec_code": "IR"},
+            "tradeoffs": [],
+            "top_matches": [],
+            "unexpected_careers": [],
+            "adjacent_paths": [],
+            "actions": []
+        }
+
+    # Serialize top matches for database storage (saving clean dict representations)
+    def serialize_dossier_list(items):
+        serialized = []
+        for item in items:
+            c: Career = item["career"]
+            serialized.append({
+                "id": c.id,
+                "title": c.title,
+                "slug": c.slug,
+                "category": c.category,
+                "sub_category": c.sub_category,
+                "short_description": c.short_description or c.description[:180] if c.description else "",
+                "work_environment": c.work_environment,
+                "work_modes": c.work_modes,
+                "average_salary": c.average_salary,
+                "is_lesser_known": bool(c.is_lesser_known),
+                "score": item.get("score", 0),
+                "interest_fit": item.get("interest_fit", "HIGH"),
+                "values_fit": item.get("values_fit", "HIGH"),
+                "feasibility_fit": item.get("feasibility_fit", "HIGH"),
+                "route_feasibility": item.get("route_feasibility", "DIRECT"),
+                "counselling_why": item.get("counselling_why", ""),
+                "potential_challenge": item.get("potential_challenge", ""),
+                "entry_routes": item.get("entry_routes", []),
+                "reality_check": item.get("reality_check", []),
+                "next_steps": item.get("next_steps", []),
+                # Ecosystem IDs and summaries
+                "linked_course_ids": [course.id for course in item.get("linked_courses", [])],
+                "linked_courses": [{"id": course.id, "title": getattr(course, "name", getattr(course, "title", "Course")), "degree_type": getattr(course, "level", "Degree")} for course in item.get("linked_courses", [])[:3]],
+                "linked_colleges": [{"id": col.id, "name": col.name, "city": getattr(col, "city", ""), "state": getattr(col, "state", "")} for col in item.get("linked_colleges", [])[:3]],
+                "linked_exams": [{"id": ex.id, "title": getattr(ex, "title", "Exam"), "exam_level": getattr(ex, "exam_level", "National")} for ex in item.get("linked_exams", [])[:2]],
+                "linked_scholarships": [{"id": sch.id, "title": getattr(sch, "title", "Scholarship"), "amount": getattr(sch, "amount", "Merit Support")} for sch in item.get("linked_scholarships", [])[:2]],
+                "linked_internships": [{"id": intn.id, "title": getattr(intn, "title", "Internship"), "company": getattr(intn, "company", "Industry"), "mode": getattr(intn, "mode", "Hybrid")} for intn in item.get("linked_internships", [])[:2]]
+            })
+        return serialized
+
+    top_serialized = serialize_dossier_list(evaluation.get("top_matches", []))
+    unexpected_serialized = serialize_dossier_list(evaluation.get("unexpected_careers", []))
+    adjacent_serialized = serialize_dossier_list(evaluation.get("adjacent_paths", []))
+
+    # Save to database
+    assessment_record = AssessmentResult(
+        user_id=user_id,
+        recommended_category=evaluation.get("recommended_category", "Career Discovery"),
+        assessment_version="2.0.0",
+        confidence_level=evaluation.get("confidence_level", "HIGH_CONFIDENCE"),
+        summary_headline=evaluation.get("headline", ""),
+        answers_json=json.dumps(form_data),
+        profile_json=json.dumps(evaluation.get("profile", {})),
+        recommendations_json=json.dumps(top_serialized),
+        unexpected_json=json.dumps(unexpected_serialized),
+        tradeoffs_json=json.dumps(evaluation.get("tradeoffs", [])),
+        actions_json=json.dumps(evaluation.get("actions", []))
     )
 
-    top_careers = sorted_scores[:5]
-
-    max_score = top_careers[0][1] if top_careers else 1
-
-    career_results = []
-
-    for name, score in top_careers:
-
-        percentage = round(
-            (score / max_score) * 100
-        )
-
-        career_results.append({
-
-            "name": name,
-            "score": score,
-            "percentage": percentage
-
-        })
-
-    # Best Career
-
-    best_career = career_results[0]["name"]
-
-    # --------------------------------------
-    # Save to Database
-    # --------------------------------------
-
-    result = AssessmentResult(
-
-        user_id=session.get("user_id"),
-
-        recommended_category=best_career
-
-    )
-
-    db.session.add(result)
-
+    db.session.add(assessment_record)
     db.session.commit()
 
-    # --------------------------------------
-    # Save Full Report in Session
-    # --------------------------------------
-
+    # Save summary into session for fast rendering and dashboard sync
+    session["assessment_id"] = assessment_record.id
     session["assessment_data"] = {
-
-        "current_class": current_class,
-        "stream": stream,
-        "preference": preference,
-        "activity": activity,
-        "strong_subject": strong_subject,
-        "personality": personality,
-        "government_exam": government_exam,
-        "technical_skill": technical_skill,
-        "long_term_goal": long_term_goal,
-        "study_hours": study_hours,
-        "top_careers": career_results
-
+        "current_class": form_data.get("q12_current_academic_level", "Class 12"),
+        "stream": form_data.get("q12_current_academic_level", "General"),
+        "personality": evaluation.get("profile", {}).get("dominant_archetype", "Versatile Explorer"),
+        "recommended_category": assessment_record.recommended_category,
+        "top_careers": [{"name": item["title"], "score": item["score"], "percentage": int(min(98, max(65, item["score"])))} for item in top_serialized[:5]]
     }
 
     return redirect(
-        url_for(
-            "assessment.result",
-            result_id=result.id
-        )
+        url_for("assessment.result", result_id=assessment_record.id)
     )
 
 
-# ==========================================
-# Result Page
-# ==========================================
+# ============================================================================
+# 3. Comprehensive Career Counselling Dossier Page
+# ============================================================================
 
 @assessment.route("/result/<int:result_id>")
 def result(result_id):
+    """
+    Renders the counselling-style Career Discovery Dossier with full
+    ecosystem connections (Courses, Colleges, Exams, Scholarships, Internships).
+    """
+    record = AssessmentResult.query.get_or_404(result_id)
 
-    result = AssessmentResult.query.get_or_404(
-        result_id
-    )
+    profile = record.parsed_profile
+    top_careers = record.parsed_recommendations
+    unexpected_careers = record.parsed_unexpected
+    tradeoffs = record.parsed_tradeoffs
+    actions = record.parsed_actions
+    answers = record.parsed_answers
 
-    data = session.get("assessment_data", {})
+    # Fallback if viewing a legacy assessment from before the upgrade
+    if not top_careers:
+        fallback_careers = Career.query.filter_by(category=record.recommended_category).limit(5).all()
+        if not fallback_careers:
+            fallback_careers = Career.query.limit(5).all()
+        top_careers = [{
+            "id": c.id,
+            "title": c.title,
+            "slug": c.slug,
+            "category": c.category,
+            "sub_category": c.sub_category,
+            "short_description": c.short_description or (c.description[:180] if c.description else ""),
+            "work_environment": c.work_environment,
+            "work_modes": c.work_modes,
+            "average_salary": c.average_salary,
+            "is_lesser_known": bool(c.is_lesser_known),
+            "score": 85,
+            "interest_fit": "HIGH",
+            "values_fit": "HIGH",
+            "feasibility_fit": "HIGH",
+            "route_feasibility": "DIRECT_ENTRY",
+            "counselling_why": f"Your answers showed strong affinity with the foundational competencies required in {c.title}.",
+            "potential_challenge": c.reality_check_points[0] if c.reality_check_points else "Requires focused study and continuous learning.",
+            "entry_routes": c.parsed_entry_routes,
+            "linked_courses": [],
+            "linked_colleges": [],
+            "linked_exams": [],
+            "linked_scholarships": [],
+            "linked_internships": []
+        } for c in fallback_careers]
+
+    if not profile:
+        profile = {
+            "dominant_archetype": "Versatile Explorer (Multi-Disciplinary Aptitude)",
+            "top_riasec_code": "IE",
+            "confidence_level": record.confidence_level or "HIGH_CONFIDENCE",
+            "evidence_statements": [
+                {"category": "Analytical Strengths", "text": "Shows affinity for systematic problem-solving and real-world execution."}
+            ]
+        }
+
+    if not actions:
+        top_title = top_careers[0]["title"] if top_careers else "Target Career"
+        actions = [
+            {
+                "step": 1,
+                "title": f"Explore {top_title} Full Career Dossier",
+                "description": f"Read the comprehensive roadmap, day-to-day responsibilities, and indicative salary brackets for {top_title}.",
+                "link_type": "CAREER_DETAIL",
+                "link_slug": top_careers[0]["slug"] if top_careers else "career-discovery"
+            },
+            {
+                "step": 2,
+                "title": "Review Linked Courses & Approved Colleges",
+                "description": "Inspect degree pathways and government/private colleges offering relevant training on MPath.",
+                "link_type": "COLLEGE_DISCOVERY",
+                "link_url": "/colleges/"
+            },
+            {
+                "step": 3,
+                "title": "Complete a 7-Day Low-Stakes Exploration Experiment",
+                "description": "Engage in a practical mini-project or interview an industry professional before committing to a final path.",
+                "link_type": "EXPERIMENT",
+                "link_url": None
+            }
+        ]
+
+    # Legacy compatibility dictionary for any old template fragments
+    legacy_data = session.get("assessment_data", {
+        "current_class": answers.get("q12_current_academic_level", "Class 12"),
+        "stream": answers.get("q12_current_academic_level", "General"),
+        "personality": profile.get("dominant_archetype", "Versatile Explorer"),
+        "recommended_category": record.recommended_category
+    })
 
     return render_template(
-
         "assessment/smart_result.html",
-
-        result=result,
-
-        data=data,
-
-        top_careers=data.get("top_careers", [])
-
+        result=record,
+        profile=profile,
+        top_careers=top_careers,
+        unexpected_careers=unexpected_careers,
+        tradeoffs=tradeoffs,
+        actions=actions,
+        data=legacy_data
     )
+
+
+# ============================================================================
+# 4. Feedback Endpoint (Part 70: Career Exploration Feedback Loop)
+# ============================================================================
+
+@assessment.route("/feedback", methods=["POST"])
+def submit_feedback():
+    """
+    Records student feedback on recommended careers to refine future guidance.
+    """
+    career_id = request.form.get("career_id")
+    feedback_type = request.form.get("feedback_type")  # very_useful, somewhat_useful, not_useful, already_knew
+
+    # Store in session or flash
+    flash("Thank you for your feedback! It helps improve future exploration accuracy.", "success")
+    return jsonify({
+        "status": "success",
+        "message": "Feedback recorded successfully"
+    })

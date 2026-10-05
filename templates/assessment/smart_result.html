@@ -1,180 +1,416 @@
 {% extends "base.html" %}
 
 {% block title %}
-AI Career Report
+Your Career Discovery Dossier | MPath Career Counselling
 {% endblock %}
 
 {% block content %}
+<div class="container py-5" style="max-width: 1080px;">
 
-<div class="container py-5">
+    <!-- 1. Dossier Header & Senior Counsellor Opening -->
+    <div class="card shadow-sm border rounded mb-5 bg-white">
+        <div class="card-body p-4 p-md-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                <div>
+                    <span class="badge badge-navy me-2">
+                        <i data-lucide="file-text" class="icon-xs"></i>
+                        <span>MPath Discovery Dossier #{{ result.id }}</span>
+                    </span>
+                    <span class="badge badge-verified">
+                        <i data-lucide="shield-check" class="icon-xs"></i>
+                        <span>{{ result.confidence_level or 'HIGH_CONFIDENCE' }}</span>
+                    </span>
+                </div>
+                <div class="text-muted small">
+                    <i data-lucide="calendar" class="icon-xs me-1"></i>
+                    <span>{{ result.created_at.strftime("%d %b %Y") if result.created_at else 'Today' }}</span>
+                </div>
+            </div>
 
-    <div class="text-center mb-5">
+            <h1 class="display-6 fw-bold text-navy mb-2">
+                Your Career Discovery Profile
+            </h1>
+            <h4 class="text-blue fw-bold mb-3">
+                {{ profile.dominant_archetype or 'Versatile Explorer (Multi-Disciplinary Aptitude)' }}
+            </h4>
+            <p class="lead text-muted mb-4" style="max-width: 850px;">
+                MPath does not declare a single restricted outcome. Based on your cognitive problem-solving style,
+                work values, and practical considerations, we have identified multiple viable directions for you to explore,
+                compare, and test.
+            </p>
 
-        <h1 class="fw-bold">
-            🎯 Your AI Career Report
-        </h1>
-
-        <span class="badge bg-primary fs-4 px-4 py-3">
-            {{ result.recommended_category }}
-        </span>
-
+            <!-- Evidence Highlights Summary -->
+            {% if profile.evidence_statements %}
+            <div class="p-3 rounded bg-light border">
+                <div class="small fw-bold text-muted text-uppercase mb-2 d-flex align-items-center gap-2">
+                    <i data-lucide="check-square" class="icon-xs text-blue"></i>
+                    <span>Key Patterns Detected in Your Responses:</span>
+                </div>
+                <ul class="mb-0 small text-muted ps-3">
+                    {% for ev in profile.evidence_statements[:4] %}
+                    <li class="mb-1">{{ ev.text }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
     </div>
 
-    <h3 class="fw-bold mb-4">
-        🚀 Top Career Matches
-    </h3>
-
-    <div class="row">
-
-        {% for item in top_careers %}
-
-        <div class="col-md-6 mb-4">
-
-            <div class="card shadow border-0 h-100">
-
-                <div class="card-body">
-
-                    <div class="d-flex justify-content-between align-items-center">
-
-                        <h5 class="fw-bold">
-                            {{ item.name }}
-                        </h5>
-
-                        <span class="badge bg-success fs-6">
-                            {{ item.percentage }}%
-                        </span>
-
+    <!-- 2. Contradictions & Trade-Offs Alert (If Present) -->
+    {% if tradeoffs %}
+    <div class="mb-5">
+        <h4 class="fw-bold text-navy mb-3 d-flex align-items-center gap-2">
+            <i data-lucide="alert-triangle" class="icon-sm text-warning"></i>
+            <span>Important Realities & Trade-Offs to Consider</span>
+        </h4>
+        {% for t in tradeoffs %}
+        <div class="card border-warning border-start-4 shadow-sm rounded mb-3 bg-white">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                    <h5 class="fw-bold text-navy mb-0">{{ t.title }}</h5>
+                    <span class="badge badge-warning-subtle">
+                        Trade-Off Alert
+                    </span>
+                </div>
+                <p class="text-muted mb-2 small">
+                    <strong>Observation:</strong> {{ t.observation }}
+                </p>
+                <div class="p-3 bg-light rounded small">
+                    <div class="fw-semibold text-blue mb-1 d-flex align-items-center gap-1">
+                        <i data-lucide="arrow-right" class="icon-xs"></i>
+                        <span>Counsellor Guidance:</span>
                     </div>
+                    <p class="mb-2 text-navy">{{ t.guidance }}</p>
+                    {% if t.alternative_avenues %}
+                    <div class="text-muted">
+                        <strong>Suggested Parallel Routes:</strong> {{ t.alternative_avenues }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
-                    <div class="progress mt-3" style="height: 12px;">
+    <!-- 3. TOP RECOMMENDED CAREER DIRECTIONS -->
+    <div class="mb-5">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div>
+                <h3 class="fw-bold text-navy mb-1 d-flex align-items-center gap-2">
+                    <i data-lucide="compass" class="icon-sm text-blue"></i>
+                    <span>Top Recommended Career Directions</span>
+                </h3>
+                <p class="text-muted small mb-0">
+                    High congruence across your problem affinity, work values, and academic feasibility.
+                </p>
+            </div>
+            <span class="badge badge-navy">
+                Primary Directions
+            </span>
+        </div>
 
-                        <div
-                            class="progress-bar bg-success"
-                            style="width: {{ item.percentage }}%">
+        <div class="row g-4">
+            {% for item in top_careers %}
+            <div class="col-12">
+                <div class="card shadow-sm border rounded overflow-hidden bg-white">
+                    <div class="card-body p-4 p-md-5">
 
+                        <!-- Career Header -->
+                        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                            <div>
+                                <span class="badge badge-navy me-2">
+                                    {{ item.category }}
+                                </span>
+                                {% if item.is_lesser_known %}
+                                <span class="badge badge-gold">
+                                    High Opportunity Niche
+                                </span>
+                                {% endif %}
+                                <h3 class="fw-bold text-navy mt-2 mb-1">
+                                    {{ item.title }}
+                                </h3>
+                                {% if item.sub_category %}
+                                <div class="text-muted small">Specialization: {{ item.sub_category }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="text-md-end">
+                                <span class="badge badge-verified fs-6 px-3 py-1">
+                                    Strong Match &bull; Fit: {{ item.interest_fit }}
+                                </span>
+                                {% if item.average_salary %}
+                                <div class="small text-muted mt-1">
+                                    Indicative: {{ item.average_salary }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Fit Dimensions Breakdown -->
+                        <div class="row g-2 mb-4">
+                            <div class="col-6 col-md-3">
+                                <div class="p-2 bg-light rounded text-center border">
+                                    <div class="text-muted small" style="font-size: 0.75rem;">INTEREST FIT</div>
+                                    <div class="fw-bold text-blue">{{ item.interest_fit }}</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="p-2 bg-light rounded text-center border">
+                                    <div class="text-muted small" style="font-size: 0.75rem;">WORK VALUES</div>
+                                    <div class="fw-bold text-success">{{ item.values_fit }}</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="p-2 bg-light rounded text-center border">
+                                    <div class="text-muted small" style="font-size: 0.75rem;">STREAM FEASIBILITY</div>
+                                    <div class="fw-bold text-navy">{{ item.feasibility_fit }}</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="p-2 bg-light rounded text-center border">
+                                    <div class="text-muted small" style="font-size: 0.75rem;">WORK MODE</div>
+                                    <div class="fw-bold text-muted">{{ item.work_modes or 'On-site / Hybrid' }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Why this matches -->
+                        <div class="mb-3">
+                            <h6 class="fw-bold text-navy mb-1 d-flex align-items-center gap-1">
+                                <i data-lucide="check-circle" class="icon-xs text-success"></i>
+                                <span>Why This Fits You:</span>
+                            </h6>
+                            <p class="text-muted small mb-0 lh-base">
+                                {{ item.counselling_why }}
+                            </p>
+                        </div>
+
+                        <!-- Reality Check / Potential Challenge -->
+                        {% if item.potential_challenge %}
+                        <div class="p-3 bg-light rounded mb-4 border">
+                            <div class="small fw-bold text-danger mb-1 d-flex align-items-center gap-1">
+                                <i data-lucide="alert-circle" class="icon-xs"></i>
+                                <span>What Could Be Challenging / Hard Realities:</span>
+                            </div>
+                            <div class="small text-muted">
+                                {{ item.potential_challenge }}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Multiple Entry Routes -->
+                        {% if item.entry_routes %}
+                        <div class="mb-4">
+                            <h6 class="fw-bold text-navy mb-2 d-flex align-items-center gap-1">
+                                <i data-lucide="git-branch" class="icon-xs text-blue"></i>
+                                <span>Multiple Viable Pathways:</span>
+                            </h6>
+                            <div class="row g-2">
+                                {% for route in item.entry_routes[:2] %}
+                                <div class="col-md-6">
+                                    <div class="p-3 rounded border bg-light h-100">
+                                        <div class="fw-semibold text-blue small mb-1">{{ route.title }}</div>
+                                        <div class="small text-muted">{{ route.description }}</div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- MPath Relational Ecosystem Connections -->
+                        <div class="p-3 bg-light rounded border mb-4">
+                            <div class="small fw-bold text-muted text-uppercase mb-2 d-flex align-items-center gap-1">
+                                <i data-lucide="link-2" class="icon-xs text-blue"></i>
+                                <span>Connected MPath Opportunities:</span>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                {% if item.linked_courses %}
+                                    {% for c in item.linked_courses %}
+                                    <a href="{{ url_for('course.course_detail', course_id=c.id) }}"
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i data-lucide="book-open" class="icon-xs"></i>
+                                        <span>{{ c.title }}</span>
+                                    </a>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if item.linked_exams %}
+                                    {% for ex in item.linked_exams %}
+                                    <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}"
+                                       class="btn btn-outline-secondary btn-sm">
+                                        <i data-lucide="file-text" class="icon-xs"></i>
+                                        <span>{{ ex.title }}</span>
+                                    </a>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if item.linked_scholarships %}
+                                    {% for sch in item.linked_scholarships %}
+                                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=sch.id) }}"
+                                       class="btn btn-outline-success btn-sm">
+                                        <i data-lucide="award" class="icon-xs"></i>
+                                        <span>{{ sch.title[:30] }}...</span>
+                                    </a>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if item.linked_internships %}
+                                    {% for intn in item.linked_internships %}
+                                    <a href="{{ url_for('internship.internship_list') }}"
+                                       class="btn btn-outline-secondary btn-sm">
+                                        <i data-lucide="briefcase" class="icon-xs"></i>
+                                        <span>{{ intn.title[:25] }}</span>
+                                    </a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Action Link to Full Career Dossier -->
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                            <div class="text-muted small">
+                                Work Environment: {{ item.work_environment or 'Corporate / Structured' }}
+                            </div>
+                            <div>
+                                <a href="{{ url_for('career.career_detail', slug=item.slug) }}"
+                                   class="btn btn-primary fw-semibold px-4 py-2">
+                                    <span>Explore Full Career Dossier</span>
+                                    <i data-lucide="arrow-right" class="icon-xs"></i>
+                                </a>
+                            </div>
                         </div>
 
                     </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-                    <div class="mt-3">
+    <!-- 4. "CAREERS YOU MAY NOT HAVE CONSIDERED" -->
+    {% if unexpected_careers %}
+    <div class="card shadow-sm border rounded overflow-hidden mb-5 bg-light">
+        <div class="card-body p-4 p-md-5">
+            <div class="d-flex align-items-center mb-3 gap-3">
+                <div class="icon-badge icon-badge-gold">
+                    <i data-lucide="compass" class="icon-md"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold text-navy mb-1">
+                        Careers You May Not Have Considered
+                    </h3>
+                    <p class="text-muted small mb-0">
+                        High-growth, specialized avenues that connect directly to your underlying problem-solving patterns.
+                    </p>
+                </div>
+            </div>
 
-                        {% if "Engineer" in item.name %}
-
-                        <a href="https://www.naukri.com"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            Official Job Source
-                        </a>
-
-                        {% elif "Doctor" in item.name %}
-
-                        <a href="https://www.nmc.org.in"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            Official Medical Source
-                        </a>
-
-                        {% elif "IAS" in item.name %}
-
-                        <a href="https://upsc.gov.in"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            UPSC Official
-                        </a>
-
-                        {% elif "Chartered Accountant" in item.name %}
-
-                        <a href="https://www.icai.org"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            ICAI Official
-                        </a>
-
-                        {% elif "Lawyer" in item.name %}
-
-                        <a href="https://www.barcouncilofindia.org"
-                           target="_blank"
-                           class="btn btn-outline-primary btn-sm">
-                            Bar Council Official
-                        </a>
-
-                        {% endif %}
-
+            <div class="row g-4 mt-2">
+                {% for item in unexpected_careers %}
+                <div class="col-md-4">
+                    <div class="card border shadow-sm rounded h-100 bg-white">
+                        <div class="card-body p-4 d-flex flex-column justify-content-between">
+                            <div>
+                                <span class="badge badge-navy small mb-2">
+                                    {{ item.category }}
+                                </span>
+                                <h5 class="fw-bold text-navy mb-2">
+                                    {{ item.title }}
+                                </h5>
+                                <p class="text-muted small mb-3">
+                                    {{ item.short_description or item.counselling_why }}
+                                </p>
+                            </div>
+                            <div>
+                                <div class="p-2 bg-light rounded small text-muted mb-3">
+                                    <strong>Why explore:</strong> Aligns with your analytical curiosity and gives a distinct domain advantage.
+                                </div>
+                                <a href="{{ url_for('career.career_detail', slug=item.slug) }}"
+                                   class="btn btn-outline-primary btn-sm w-100 fw-semibold">
+                                    <span>Explore Pathway</span>
+                                    <i data-lucide="arrow-right" class="icon-xs"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
-
+                {% endfor %}
             </div>
-
         </div>
-
-        {% endfor %}
-
     </div>
+    {% endif %}
 
-    <div class="card shadow border-0 mt-5">
+    <!-- 5. "YOUR NEXT 3 ACTIONS" -->
+    {% if actions %}
+    <div class="card shadow-sm border rounded mb-5 bg-white">
+        <div class="card-body p-4 p-md-5">
+            <h3 class="fw-bold text-navy mb-2 d-flex align-items-center gap-2">
+                <i data-lucide="check-square" class="icon-sm text-blue"></i>
+                <span>Your Next Practical Actions</span>
+            </h3>
+            <p class="text-muted small mb-4">
+                Career clarity develops through small real-world inquiries and testing, not passive speculation.
+            </p>
 
-        <div class="card-header bg-white">
-
-            <h4 class="fw-bold">
-                📌 Your Profile Summary
-            </h4>
-
-        </div>
-
-        <div class="card-body">
-
-            <div class="row">
-
-                <div class="col-md-6">
-
-                    <p><strong>Class:</strong> {{ data.current_class }}</p>
-                    <p><strong>Stream:</strong> {{ data.stream }}</p>
-                    <p><strong>Career Preference:</strong> {{ data.preference }}</p>
-                    <p><strong>Interest:</strong> {{ data.activity }}</p>
-
+            <div class="row g-4">
+                {% for act in actions %}
+                <div class="col-md-4">
+                    <div class="p-4 rounded border bg-light h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="badge badge-navy rounded p-2 fs-6 mb-3" style="width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center;">
+                                {{ act.step }}
+                            </div>
+                            <h5 class="fw-bold text-navy mb-2">
+                                {{ act.title }}
+                            </h5>
+                            <p class="text-muted small mb-3">
+                                {{ act.description }}
+                            </p>
+                        </div>
+                        <div>
+                            {% if act.link_type == 'CAREER_DETAIL' %}
+                            <a href="{{ url_for('career.career_detail', slug=act.link_slug) }}" class="btn btn-sm btn-primary w-100">
+                                <span>View Dossier</span>
+                                <i data-lucide="arrow-right" class="icon-xs"></i>
+                            </a>
+                            {% elif act.link_type == 'COLLEGE_DISCOVERY' %}
+                            <a href="{{ url_for('college.college_list') }}" class="btn btn-sm btn-outline-primary w-100">
+                                <span>Explore Colleges</span>
+                                <i data-lucide="arrow-right" class="icon-xs"></i>
+                            </a>
+                            {% else %}
+                            <span class="badge badge-verified w-100 py-2 border small d-block text-center">
+                                Practical Task
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-md-6">
-
-                    <p><strong>Strong Subject:</strong> {{ data.strong_subject }}</p>
-                    <p><strong>Personality:</strong> {{ data.personality }}</p>
-                    <p><strong>Technical Skill:</strong> {{ data.technical_skill }}</p>
-                    <p><strong>Long-term Goal:</strong> {{ data.long_term_goal }}</p>
-
-                </div>
-
+                {% endfor %}
             </div>
-
         </div>
-
     </div>
+    {% endif %}
 
-    <div class="text-center mt-5">
-
-        <a href="{{ url_for('career.career_list') }}"
-           class="btn btn-primary btn-lg me-3">
-
-            🚀 Explore Careers
-
-        </a>
-
-        <a href="{{ url_for('college.college_list') }}"
-           class="btn btn-success btn-lg me-3">
-
-            🎓 Find Colleges
-
-        </a>
-
-        <a href="{{ url_for('exam.exam_list') }}"
-           class="btn btn-warning btn-lg text-dark">
-
-            🏛 Government Exams
-
-        </a>
-
+    <!-- 6. Student Agency & Retake Note -->
+    <div class="p-4 rounded bg-light border text-center mb-5">
+        <h5 class="fw-bold text-navy mb-2">Remember: You Are the Decision Maker</h5>
+        <p class="text-muted small mx-auto mb-3" style="max-width: 720px;">
+            MPath provides structured information; your goals will develop as you learn and explore.
+            Use these findings as starting points to investigate colleges, compare courses, and verify your direction.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="{{ url_for('assessment.start') }}" class="btn btn-outline-secondary btn-sm px-4">
+                <i data-lucide="rotate-ccw" class="icon-xs"></i>
+                <span>Retake Assessment</span>
+            </a>
+            <a href="{{ url_for('career.career_list') }}" class="btn btn-primary btn-sm px-4">
+                <i data-lucide="briefcase" class="icon-xs"></i>
+                <span>Browse All Careers</span>
+            </a>
+        </div>
     </div>
 
 </div>
-
 {% endblock %}

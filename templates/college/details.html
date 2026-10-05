@@ -1,104 +1,353 @@
 {% extends "base.html" %}
 
-{% block title %}
-{{ college.name }}
-{% endblock %}
+{% block title %}{{ college.name }} | Higher Education Dossier | MPath Career Counselling{% endblock %}
 
 {% block content %}
+<div class="container py-4">
 
-<div class="container py-5">
+    <!-- BREADCRUMB NAVIGATION -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('college.college_list') }}" class="text-decoration-none">Colleges & Universities</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ college.short_name or college.name }}</li>
+        </ol>
+    </nav>
 
-<h1>
+    <!-- INSTITUTION HEADER CARD -->
+    <div class="card p-4 p-md-5 border rounded-4 shadow-sm mb-4 bg-white">
+        <div class="row g-4 align-items-start">
+            <div class="col-lg-8">
+                
+                <!-- Status & Accreditation Badges -->
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fs-7 fw-semibold">
+                        <i data-lucide="landmark" class="icon-xs"></i> {{ college.display_type }}
+                    </span>
+                    <span class="badge {% if 'gov' in college.government_private|lower %}bg-success bg-opacity-10 text-success{% else %}bg-secondary bg-opacity-10 text-secondary{% endif %} px-3 py-2 fs-7">
+                        {{ college.government_private or 'Government' }}
+                    </span>
+                    <span class="badge bg-light text-dark border px-3 py-2 fs-7">
+                        <i data-lucide="map-pin" class="icon-xs"></i> {{ college.city }}, {{ college.state }}
+                    </span>
 
-{{ college.name }}
+                    {% if college.nirf_rank %}
+                    <span class="badge bg-warning text-dark px-3 py-2 fs-7 fw-bold">
+                        <i data-lucide="award" class="icon-xs"></i> NIRF #{{ college.nirf_rank }} ({{ college.nirf_category or 'National' }}, {{ college.nirf_rank_year or 2024 }})
+                    </span>
+                    {% endif %}
 
-</h1>
+                    {% if college.accreditation_grade %}
+                    <span class="badge bg-info bg-opacity-10 text-info px-3 py-2 fs-7 fw-bold d-inline-flex align-items-center gap-1">
+                        <i data-lucide="award" class="icon-xs"></i> NAAC Grade {{ college.accreditation_grade }}
+                    </span>
+                    {% endif %}
 
-<hr>
+                    {% if college.aishe_code %}
+                    <span class="badge bg-dark text-white px-3 py-2 fs-7 fw-semibold">
+                        ID: AISHE: {{ college.aishe_code }}
+                    </span>
+                    {% endif %}
 
-<p>
+                    <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 fs-7 d-inline-flex align-items-center gap-1">
+                        <i data-lucide="check-circle" class="icon-xs"></i> {{ college.verification_status or 'VERIFIED' }}
+                    </span>
+                </div>
 
-<strong>City:</strong>
+                <!-- Institution Name -->
+                <h1 class="display-6 fw-bold mb-2 text-dark">{{ college.name }}</h1>
+                {% if college.short_name %}
+                <h5 class="text-muted fw-semibold mb-3">{{ college.short_name }}</h5>
+                {% endif %}
 
-{{ college.city }}
+                <!-- Description -->
+                <p class="lead text-muted fs-6 mb-4">
+                    {{ college.description or 'A recognized institution of higher learning accredited under statutory regulations in India.' }}
+                </p>
 
-</p>
+                <!-- ACTION BUTTONS -->
+                <div class="d-flex flex-wrap gap-2 pt-2">
+                    {% if college.display_website %}
+                    <a href="{{ college.display_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-success px-4 py-2 fw-semibold">
+                        <i data-lucide="globe" class="icon-xs"></i> Visit Official Website 
+                    </a>
+                    {% endif %}
 
-<p>
+                    {% if college.admission_url %}
+                    <a href="{{ college.admission_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2 fw-semibold d-inline-flex align-items-center gap-1">
+                        <i data-lucide="file-text" class="icon-xs"></i> Admission Information 
+                    </a>
+                    {% endif %}
 
-<strong>State:</strong>
+                    <a href="{{ url_for('college.compare_colleges', ids=college.id) }}" class="btn btn-outline-secondary px-3 py-2">
+                        <i data-lucide="scale" class="icon-xs"></i> Compare
+                    </a>
 
-{{ college.state }}
+                    <a href="{{ url_for('college.toggle_save', college_id=college.id) }}" class="btn {% if is_saved %}btn-warning text-dark{% else %}btn-outline-primary{% endif %} px-3 py-2">
+                        {% if is_saved %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved in My Profile{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save Institution{% endif %}
+                    </a>
+                </div>
+            </div>
 
-</p>
+            <!-- RIGHT INSTITUTIONAL OVERVIEW CARD -->
+            <div class="col-lg-4">
+                <div class="bg-light p-4 rounded-4 border">
+                    <h5 class="fw-bold text-dark border-bottom pb-2 mb-3">Institutional Overview</h5>
+                    
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Location & Jurisdiction:</span>
+                        <strong>{{ college.city }}{% if college.district %}, {{ college.district }} District{% endif %}, {{ college.state }}</strong>
+                    </div>
 
-<p>
+                    {% if college.aishe_code %}
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">AISHE National Identifier:</span>
+                        <strong class="text-primary">{{ college.aishe_code }}</strong>
+                    </div>
+                    {% endif %}
 
-<strong>Type:</strong>
+                    {% if college.management_type %}
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Management & Governance:</span>
+                        <strong>{{ college.management_type }}</strong>
+                    </div>
+                    {% endif %}
 
-{{ college.college_type }}
+                    {% if college.affiliated_university or college.university_name %}
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Affiliating University / Parent:</span>
+                        <strong>{{ college.affiliated_university or college.university_name }}</strong>
+                    </div>
+                    {% endif %}
 
-</p>
+                    {% if college.established_year %}
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Established:</span>
+                        <strong>Year {{ college.established_year }}</strong>
+                    </div>
+                    {% endif %}
 
-<p>
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Statutory Recognition:</span>
+                        <span class="badge bg-primary bg-opacity-10 text-primary">{{ college.recognition_status or 'UGC / MoE Recognized' }}</span>
+                    </div>
 
-<strong>Course:</strong>
+                    {% if college.accreditation %}
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Accreditation:</span>
+                        <strong>{{ college.accreditation }} {% if college.accreditation_grade %}(Grade {{ college.accreditation_grade }}){% endif %}</strong>
+                    </div>
+                    {% endif %}
 
-{{ college.course }}
+                    <div class="mb-2">
+                        <span class="text-muted small d-block">Data Authority Source:</span>
+                        <span class="small text-secondary">{{ college.source or 'Official Higher Education Board' }}</span>
+                    </div>
 
-</p>
+                    {% if college.last_verified_at %}
+                    <div class="small text-muted mt-2 pt-2 border-top">
+                        <span>Last Verified:</span> <strong>{{ college.last_verified_at.strftime('%B %Y') }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p>
+    <!-- MAIN CONTENT: COURSES & ADMISSION & CAREERS -->
+    <div class="row g-4">
+        
+        <!-- LEFT COLUMN: COURSES & ADMISSION -->
+        <div class="col-lg-8">
+            
+            <!-- STRUCTURED PROGRAMS OFFERED -->
+            <div class="card p-4 border rounded-4 shadow-sm mb-4 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold mb-0 text-dark d-flex align-items-center gap-2">
+                        <i data-lucide="book-open" class="icon-xs"></i>
+                        <span>Academic Programs Offered</span>
+                    </h4>
+                    <span class="badge bg-light text-dark border">
+                        {{ college_courses|length if college_courses else 'Multiple' }} Offerings
+                    </span>
+                </div>
 
-<strong>Fees:</strong>
+                <p class="text-muted small mb-4">
+                    Programs officially conducted at {{ college.name }}. Click any course to explore all institutions across India offering the same discipline.
+                </p>
 
-{{ college.fees }}
+                {% if college_courses %}
+                <div class="row g-3">
+                    {% for cc in college_courses %}
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-3 border h-100 d-flex flex-column hover-shadow transition-all">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <span class="badge {% if cc.course.level == 'UG' %}bg-primary-subtle text-primary border border-primary-subtle{% elif cc.course.level == 'PG' %}bg-info-subtle text-info border border-info-subtle{% else %}bg-secondary-subtle text-secondary border border-secondary-subtle{% endif %} small fw-semibold">
+                                    {{ cc.level or cc.course.level or 'Degree' }}
+                                </span>
+                                <span class="badge bg-white text-muted border small">
+                                    <i data-lucide="clock" class="icon-xs"></i> {{ cc.duration or cc.course.duration or '3-4 Years' }}
+                                </span>
+                            </div>
 
-</p>
+                            <h6 class="fw-bold mb-1">
+                                <a href="{{ url_for('course.course_detail', course_id=cc.course.id) }}" class="text-dark text-decoration-none hover-primary">
+                                    {{ cc.program_name or cc.course.name }}
+                                </a>
+                            </h6>
 
-<p>
+                            {% if cc.specialization and cc.specialization != cc.program_name %}
+                            <div class="text-muted small mb-2 fw-medium">
+                                Specialization: <span class="text-dark">{{ cc.specialization }}</span>
+                            </div>
+                            {% endif %}
 
-<strong>Placement:</strong>
+                            <div class="d-flex flex-wrap gap-2 my-2">
+                                {% if cc.seats %}
+                                <span class="badge bg-warning-subtle text-dark border border-warning-subtle rounded-pill small d-inline-flex align-items-center">
+                                    <i data-lucide="users" class="icon-xs me-1"></i> {{ cc.seats }} Verified Seats
+                                </span>
+                                {% endif %}
+                                {% if cc.admission_mode %}
+                                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill small d-inline-flex align-items-center">
+                                    <i data-lucide="clipboard-check" class="icon-xs me-1"></i> {{ cc.admission_mode }}
+                                </span>
+                                {% endif %}
+                            </div>
 
-{{ college.placement }}
+                            {% if cc.eligibility %}
+                            <div class="small text-muted mb-2 flex-grow-1">
+                                <span class="fw-semibold">Eligibility:</span> {{ cc.eligibility }}
+                            </div>
+                            {% endif %}
 
-</p>
+                            <div class="mt-auto pt-2 border-top d-flex justify-content-between align-items-center">
+                                <a href="{{ url_for('course.course_detail', course_id=cc.course.id) }}" class="text-primary small fw-semibold text-decoration-none">
+                                    Other colleges offering this &rarr;
+                                </a>
+                                {% if cc.academic_year %}
+                                <span class="text-muted small" style="font-size: 0.72rem;">Survey: {{ cc.academic_year }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <!-- TRANSPARENT NOTIFICATION PER SECTION 30 RULE -->
+                <div class="p-4 bg-light rounded-4 border text-center">
+                    <div class="fs-2 mb-2"><i data-lucide="clipboard-list" class="icon-xs"></i></div>
+                    <h6 class="fw-bold mb-1 text-dark">Course Information Currently Synchronizing</h6>
+                    <p class="mb-3 text-secondary small" style="max-width: 500px; margin: 0 auto;">
+                        Official curriculum data for {{ college.name }} is currently undergoing automated validation with the AISHE Higher Education Directory.
+                    </p>
+                    {% if college.display_website %}
+                    <a href="{{ college.display_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        Check Programs on Official Portal 
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
 
-<p>
+            <!-- ADMISSION INFORMATION & GUIDELINES -->
+            <div class="card p-4 border rounded-4 shadow-sm mb-4 bg-white">
+                <h4 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="file-check" class="icon-xs text-primary"></i>
+                    <span>Admission Information & Process</span>
+                </h4>
 
-<strong>Highest Package:</strong>
+                <p class="text-muted small mb-3">
+                    Admissions at {{ college.name }} are governed by statutory guidelines. Depending on the discipline, entry is conducted via national/state examinations or merit-based state counseling.
+                </p>
 
-{{ college.highest_package }}
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-3 bg-light">
+                            <h6 class="fw-bold text-dark mb-1">General Admission Pathway</h6>
+                            <p class="small text-muted mb-0">
+                                Entrance exams commonly accepted include <strong>CUET-UG/PG, JEE Main, NEET-UG, CAT, CLAT</strong>, or state counseling boards.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-3 bg-light">
+                            <h6 class="fw-bold text-dark mb-1">Official Cycle Notifications</h6>
+                            <p class="small text-muted mb-0">
+                                Exact annual application deadlines, fee circulars, and counseling schedules are published on the official institution portal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-</p>
+                {% if college.display_website %}
+                <div class="mt-4 pt-3 border-top d-flex align-items-center justify-content-between">
+                    <span class="small text-muted">Verify current admission notices directly at the source:</span>
+                    <a href="{{ college.display_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success">
+                        Open Official Portal 
+                    </a>
+                </div>
+                {% endif %}
+            </div>
 
-<p>
+        </div>
 
-<strong>Average Package:</strong>
+        <!-- RIGHT COLUMN: RELATED CAREERS & NEARBY COLLEGES -->
+        <div class="col-lg-4">
+            
+            <!-- RELATED CAREERS SECTION -->
+            {% if related_careers %}
+            <div class="card p-4 border rounded-4 shadow-sm mb-4 bg-white">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="briefcase" class="icon-xs"></i>
+                    <span>Related Careers</span>
+                </h5>
+                <p class="text-muted small mb-3">
+                    Graduating from programs at this institution opens pathways to these careers:
+                </p>
+                <div class="list-group list-group-flush">
+                    {% for car in related_careers %}
+                    <a href="{{ url_for('career.career_detail', slug=car.slug) }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center px-0 py-2 border-bottom">
+                        <div>
+                            <div class="fw-semibold text-dark">{{ car.title }}</div>
+                            <small class="text-muted">{{ car.category }}</small>
+                        </div>
+                        <span class="text-primary small">&rarr;</span>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
 
-{{ college.average_package }}
+            <!-- RELATED INSTITUTIONS IN THE SAME STATE -->
+            {% if related %}
+            <div class="card p-4 border rounded-4 shadow-sm bg-white">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="landmark" class="icon-xs"></i>
+                    <span>Explore in {{ college.state }}</span>
+                </h5>
+                <div class="d-flex flex-column gap-3">
+                    {% for rel in related %}
+                    <div class="p-3 bg-light rounded-3 border">
+                        <div class="d-flex justify-content-between align-items-start mb-1">
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary small">{{ rel.display_type }}</span>
+                            <span class="small text-muted"><i data-lucide="map-pin" class="icon-xs"></i> {{ rel.city }}</span>
+                        </div>
+                        <h6 class="fw-bold mb-1">
+                            <a href="{{ url_for('college.college_detail', college_id=rel.id) }}" class="text-dark text-decoration-none">
+                                {{ rel.name }}
+                            </a>
+                        </h6>
+                        <a href="{{ url_for('college.college_detail', college_id=rel.id) }}" class="small text-primary text-decoration-none">
+                            View Dossier &rarr;
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
 
-</p>
-
-<p>
-
-{{ college.description }}
-
-</p>
-
-{% if college.website %}
-
-<a
-href="{{ college.website }}"
-target="_blank"
-class="btn btn-success">
-
-Visit Website
-
-</a>
-
-{% endif %}
-
+        </div>
+    </div>
 </div>
-
 {% endblock %}

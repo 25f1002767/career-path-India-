@@ -1,46 +1,40 @@
+"""
+National Scholarships Dataset Validator & Formatter
+===================================================
+NOTE: Synthetic generation of dummy scholarships ("National Scholarship {i}")
+is strictly deprecated and disabled to protect platform data credibility.
+This script validates knowledge/scholarships/all_india_scholarships.json
+ensuring all records have segregated official_website and official_application_url.
+"""
 import json
 from pathlib import Path
 
-scholarships = []
+knowledge_file = Path("knowledge/scholarships/all_india_scholarships.json")
 
-for i in range(1, 401):
+if not knowledge_file.exists():
+    print(f"Error: {knowledge_file} does not exist.")
+    exit(1)
 
-    scholarships.append({
+with open(knowledge_file, "r", encoding="utf-8") as f:
+    data = json.load(f)
 
-        "name": f"National Scholarship {i}",
+print(f"Validating {len(data)} verified national scholarships...")
+valid_count = 0
+for idx, sch in enumerate(data, 1):
+    title = sch.get("name")
+    web = sch.get("official_website")
+    app = sch.get("official_application_url")
 
-        "provider": "Government of India",
+    # Safety check against synthetic dummy records
+    if "national scholarship " in title.lower() and title.split()[-1].isdigit():
+        print(f"Warning: Synthetic dummy scholarship detected: {title}. Must be flagged!")
+        continue
 
-        "eligibility": "Class 12 / Undergraduate / Postgraduate Students",
+    if not app:
+        print(f"Record #{idx} '{title}' is missing official_application_url")
+    elif app == web:
+        print(f"Record #{idx} '{title}' has identical website and application_url: {app}")
+    else:
+        valid_count += 1
 
-        "amount": f"₹{5000 + (i % 10) * 5000}/year",
-
-        "deadline": "31 December 2026",
-
-        "official_website": "https://scholarships.gov.in",
-
-        "description": (
-            "Financial assistance for Indian students pursuing "
-            "higher education, engineering, medical, commerce, "
-            "science, arts, and professional courses."
-        )
-
-    })
-
-output_path = Path(
-    "knowledge/scholarships/all_india_scholarships.json"
-)
-
-output_path.parent.mkdir(parents=True, exist_ok=True)
-
-with open(output_path, "w", encoding="utf-8") as f:
-
-    json.dump(
-        scholarships,
-        f,
-        indent=2,
-        ensure_ascii=False
-    )
-
-print("400 scholarships generated successfully!")
-print("File created:", output_path)
+print(f"[OK] Completed validation: {valid_count}/{len(data)} scholarships have segregated authentic application links.")

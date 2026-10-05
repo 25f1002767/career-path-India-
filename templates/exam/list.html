@@ -1,342 +1,432 @@
 {% extends "base.html" %}
 
-{% block title %}
-Government Exam Explorer
-{% endblock %}
+{% block title %}Explore Indian Examinations | MPath Career Counselling{% endblock %}
 
 {% block content %}
+<div class="container py-4 py-md-5">
 
-<div class="container py-5">
-
-    <!-- Header -->
-    <div class="text-center mb-5">
-
-        <h1 class="fw-bold display-5">
-            🏛 Government Exam Explorer
-        </h1>
-
-        <p class="text-muted fs-5">
-            Select only one filter to discover the best exams for your profile.
+    <!-- HERO / TITLE SECTION -->
+    <div class="mb-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-semibold small">
+            <i data-lucide="landmark" class="icon-xs"></i>
+            <span>Comprehensive Indian Examination Discovery Portal</span>
+        </div>
+        <h1 class="fw-bold text-dark display-5 mb-2">Explore Indian Examinations</h1>
+        <p class="text-muted lead fs-6 mb-4 max-w-800">
+            Discover entrance, recruitment, eligibility, and competitive examinations across central and state authorities based on your education, academic stream, and career ambitions.
         </p>
 
-    </div>
-
-    <!-- Filter Form -->
-    <form method="GET" class="mb-5" id="filterForm">
-
-        <div class="row g-3">
-
-            <!-- Search -->
-            <div class="col-md-4">
-
-                <input
-                    type="text"
-                    name="search"
-                    class="form-control form-control-lg"
-                    placeholder="Search UPSC, SSC, Banking..."
-                    value="{{ request.args.get('search', '') }}">
-
+        <!-- DYNAMIC REAL STATISTICS CARDS -->
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-md-4 col-lg">
+                <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                    <span class="text-muted small fw-semibold">Total Examinations</span>
+                    <h3 class="fw-bold mb-0 text-primary">{{ counts.total }}</h3>
+                </div>
             </div>
-
-            <!-- Qualification -->
-            <div class="col-md-2">
-
-                <select name="qualification"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">Class</option>
-
-                    <option value="10th"
-                        {% if request.args.get('qualification') == '10th' %}selected{% endif %}>
-                        10th
-                    </option>
-
-                    <option value="12th"
-                        {% if request.args.get('qualification') == '12th' %}selected{% endif %}>
-                        12th
-                    </option>
-
-                    <option value="Graduation"
-                        {% if request.args.get('qualification') == 'Graduation' %}selected{% endif %}>
-                        Graduation
-                    </option>
-
-                    <option value="Post Graduation"
-                        {% if request.args.get('qualification') == 'Post Graduation' %}selected{% endif %}>
-                        Post Graduation
-                    </option>
-
-                </select>
-
+            <div class="col-6 col-md-4 col-lg">
+                <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                    <span class="text-muted small fw-semibold">Government Recruitment</span>
+                    <h3 class="fw-bold mb-0 text-info">{{ counts.government }}</h3>
+                </div>
             </div>
-
-            <!-- Stream -->
-            <div class="col-md-2">
-
-                <select name="stream"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">Stream</option>
-
-                    <option value="PCM"
-                        {% if request.args.get('stream') == 'PCM' %}selected{% endif %}>
-                        PCM
-                    </option>
-
-                    <option value="PCB"
-                        {% if request.args.get('stream') == 'PCB' %}selected{% endif %}>
-                        PCB
-                    </option>
-
-                    <option value="Commerce"
-                        {% if request.args.get('stream') == 'Commerce' %}selected{% endif %}>
-                        Commerce
-                    </option>
-
-                    <option value="Arts"
-                        {% if request.args.get('stream') == 'Arts' %}selected{% endif %}>
-                        Arts
-                    </option>
-
-                </select>
-
+            <div class="col-6 col-md-4 col-lg">
+                <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                    <span class="text-muted small fw-semibold">Entrance Exams</span>
+                    <h3 class="fw-bold mb-0 text-success">{{ counts.entrance }}</h3>
+                </div>
             </div>
-
-            <!-- Graduation -->
-            <div class="col-md-2">
-
-                <select name="graduation"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">Graduation</option>
-
-                    <option value="Engineering"
-                        {% if request.args.get('graduation') == 'Engineering' %}selected{% endif %}>
-                        Engineering
-                    </option>
-
-                    <option value="Science"
-                        {% if request.args.get('graduation') == 'Science' %}selected{% endif %}>
-                        Science
-                    </option>
-
-                    <option value="Commerce"
-                        {% if request.args.get('graduation') == 'Commerce' %}selected{% endif %}>
-                        Commerce
-                    </option>
-
-                    <option value="Arts"
-                        {% if request.args.get('graduation') == 'Arts' %}selected{% endif %}>
-                        Arts
-                    </option>
-
-                    <option value="Law"
-                        {% if request.args.get('graduation') == 'Law' %}selected{% endif %}>
-                        Law
-                    </option>
-
-                </select>
-
+            <div class="col-6 col-md-6 col-lg">
+                <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                    <span class="text-muted small fw-semibold">State PSC & Services</span>
+                    <h3 class="fw-bold mb-0 text-warning">{{ counts.state }}</h3>
+                </div>
             </div>
-
-            <!-- Category -->
-            <div class="col-md-2">
-
-                <select name="category"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">Field</option>
-
-                    <option value="Civil Services"
-                        {% if request.args.get('category') == 'Civil Services' %}selected{% endif %}>
-                        Civil Services
-                    </option>
-
-                    <option value="Banking"
-                        {% if request.args.get('category') == 'Banking' %}selected{% endif %}>
-                        Banking
-                    </option>
-
-                    <option value="Railway"
-                        {% if request.args.get('category') == 'Railway' %}selected{% endif %}>
-                        Railway
-                    </option>
-
-                    <option value="Defence"
-                        {% if request.args.get('category') == 'Defence' %}selected{% endif %}>
-                        Defence
-                    </option>
-
-                    <option value="Medical"
-                        {% if request.args.get('category') == 'Medical' %}selected{% endif %}>
-                        Medical
-                    </option>
-
-                    <option value="Engineering"
-                        {% if request.args.get('category') == 'Engineering' %}selected{% endif %}>
-                        Engineering
-                    </option>
-
-                    <option value="Teaching"
-                        {% if request.args.get('category') == 'Teaching' %}selected{% endif %}>
-                        Teaching
-                    </option>
-
-                    <option value="Police"
-                        {% if request.args.get('category') == 'Police' %}selected{% endif %}>
-                        Police
-                    </option>
-
-                </select>
-
+            <div class="col-12 col-md-6 col-lg">
+                <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                    <span class="text-muted small fw-semibold">Professional Certifications</span>
+                    <h3 class="fw-bold mb-0 text-dark">{{ counts.professional }}</h3>
+                </div>
             </div>
-
         </div>
 
-        <!-- Buttons -->
-        <div class="text-center mt-4">
-
-            <button class="btn btn-primary btn-lg px-5 me-2">
-
-                🔍 Apply Filter
-
-            </button>
-
-            <a href="{{ url_for('exam.exam_list') }}"
-               class="btn btn-outline-secondary btn-lg">
-
-                Reset
-
+        <!-- QUICK NAV BUTTONS -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <a href="{{ url_for('exam.exam_list') }}" class="btn btn-primary px-3 shadow-sm d-inline-flex align-items-center gap-2">
+                <i data-lucide="file-text" class="icon-xs"></i><span>Explore All Exams</span>
             </a>
-
+            <a href="{{ url_for('exam.who_can_apply') }}" class="btn btn-outline-primary px-3">
+                <span><i data-lucide="target" class="icon-xs"></i> Who Can Apply? (Eligibility Finder)</span>
+            </a>
+            <a href="{{ url_for('exam.exam_calendar') }}" class="btn btn-outline-info text-dark px-3">
+                <span><i data-lucide="calendar" class="icon-xs"></i> Exam Calendar & Deadlines</span>
+            </a>
+            <button type="button" class="btn btn-outline-success px-3" data-bs-toggle="modal" data-bs-target="#aiExamDiscoveryModal">
+                <span><i data-lucide="bot" class="icon-xs"></i> Find Exams For Me (AI Matcher)</span>
+            </button>
         </div>
-
-    </form>
-
-    <!-- Results -->
-    <div class="mb-4">
-
-        <h5 class="fw-bold">
-            Showing {{ exams|length }} Exam{{ 's' if exams|length != 1 else '' }}
-        </h5>
-
     </div>
 
-    <!-- Exam Cards -->
-    <div class="row">
+    <!-- COMBINABLE SEARCH & FILTER DRAWER -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('exam.exam_list') }}" id="examFilterForm">
+            <!-- Search row -->
+            <div class="input-group mb-3">
+                <span class="input-group-text bg-light border-end-0"><i data-lucide="search" class="icon-xs"></i></span>
+                <input type="text" name="search" class="form-control form-control-lg bg-light border-start-0" 
+                       placeholder="Search UPSC, SSC, Banking, Railways, Engineering, Medical, Teaching, Defence..." 
+                       value="{{ search }}">
+                <button type="submit" class="btn btn-primary px-4 fw-semibold">
+                    Search Exams
+                </button>
+            </div>
 
-        {% for exam in exams %}
+            <!-- Filters Grid -->
+            <div class="row g-2 align-items-center">
+                <!-- Category Filter -->
+                <div class="col-6 col-md-3">
+                    <label class="form-label small fw-semibold text-muted mb-1">Category</label>
+                    <select name="category" class="form-select form-select-sm" onchange="this.form.submit()">
+                        <option value="">All Categories</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>
+                            {{ cat }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-        <div class="col-lg-4 col-md-6 mb-4">
+                <!-- Exam Type Filter -->
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold text-muted mb-1">Exam Type</label>
+                    <select name="type" class="form-select form-select-sm" onchange="this.form.submit()">
+                        <option value="">All Types</option>
+                        <option value="Entrance" {% if selected_type == 'Entrance' %}selected{% endif %}>Entrance</option>
+                        <option value="Recruitment" {% if selected_type == 'Recruitment' %}selected{% endif %}>Recruitment</option>
+                        <option value="Eligibility" {% if selected_type == 'Eligibility' %}selected{% endif %}>Eligibility</option>
+                        <option value="Professional" {% if selected_type == 'Professional' %}selected{% endif %}>Professional</option>
+                    </select>
+                </div>
 
-            <div class="card shadow border-0 h-100">
+                <!-- Qualification Filter -->
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold text-muted mb-1">Qualification</label>
+                    <select name="qualification" class="form-select form-select-sm" onchange="this.form.submit()">
+                        <option value="">Any Qualification</option>
+                        <option value="10th" {% if selected_qualification == '10th' %}selected{% endif %}>10th Pass</option>
+                        <option value="12th" {% if selected_qualification == '12th' %}selected{% endif %}>12th Pass</option>
+                        <option value="Diploma" {% if selected_qualification == 'Diploma' %}selected{% endif %}>Diploma</option>
+                        <option value="Graduate" {% if selected_qualification == 'Graduate' %}selected{% endif %}>Graduation</option>
+                        <option value="Postgraduate" {% if selected_qualification == 'Postgraduate' %}selected{% endif %}>Postgraduate</option>
+                        <option value="B.Tech" {% if selected_qualification == 'B.Tech' %}selected{% endif %}>Engineering (B.Tech)</option>
+                        <option value="MBBS" {% if selected_qualification == 'MBBS' %}selected{% endif %}>Medical (MBBS)</option>
+                    </select>
+                </div>
 
-                <div class="card-body d-flex flex-column">
+                <!-- State / Jurisdiction -->
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold text-muted mb-1">State / Region</label>
+                    <select name="state" class="form-select form-select-sm" onchange="this.form.submit()">
+                        <option value="">All Regions</option>
+                        <option value="All India" {% if selected_state == 'All India' %}selected{% endif %}>National (All India)</option>
+                        {% for st in states %}
+                        <option value="{{ st }}" {% if st == selected_state %}selected{% endif %}>
+                            {{ st }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                    <h4 class="fw-bold text-primary mb-3">
+                <!-- Status Filter -->
+                <div class="col-6 col-md-2">
+                    <label class="form-label small fw-semibold text-muted mb-1">Cycle Status</label>
+                    <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                        <option value="">All Statuses</option>
+                        <option value="APPLICATION_OPEN" {% if selected_status == 'APPLICATION_OPEN' %}selected{% endif %}> Applications Open</option>
+                        <option value="UPCOMING" {% if selected_status == 'UPCOMING' %}selected{% endif %}> Upcoming</option>
+                        <option value="GENERAL_INFORMATION" {% if selected_status == 'GENERAL_INFORMATION' %}selected{% endif %}> General Info</option>
+                        <option value="APPLICATION_CLOSED" {% if selected_status == 'APPLICATION_CLOSED' %}selected{% endif %}> Closed</option>
+                    </select>
+                </div>
 
-                        {{ exam.name }}
+                <!-- Sort & Reset -->
+                <div class="col-6 col-md-1 d-grid">
+                    <label class="form-label small fw-semibold text-muted mb-1">&nbsp;</label>
+                    <a href="{{ url_for('exam.exam_list') }}" class="btn btn-outline-secondary btn-sm" title="Clear all filters">
+                        Reset
+                    </a>
+                </div>
+            </div>
+        </form>
 
-                    </h4>
+        <!-- Active Filter Badges -->
+        {% if search or selected_category or selected_type or selected_qualification or selected_state or selected_status %}
+        <div class="d-flex flex-wrap align-items-center gap-2 mt-3 pt-3 border-top small">
+            <span class="text-muted fw-semibold">Active Filters:</span>
+            {% if search %}
+            <span class="badge bg-light text-dark border">Keyword: "{{ search }}"</span>
+            {% endif %}
+            {% if selected_category %}
+            <span class="badge bg-light text-dark border">Category: {{ selected_category }}</span>
+            {% endif %}
+            {% if selected_type %}
+            <span class="badge bg-light text-dark border">Type: {{ selected_type }}</span>
+            {% endif %}
+            {% if selected_qualification %}
+            <span class="badge bg-light text-dark border">Eligibility: {{ selected_qualification }}</span>
+            {% endif %}
+            {% if selected_state %}
+            <span class="badge bg-light text-dark border">State: {{ selected_state }}</span>
+            {% endif %}
+            {% if selected_status %}
+            <span class="badge bg-light text-dark border">Status: {{ selected_status }}</span>
+            {% endif %}
+            <a href="{{ url_for('exam.exam_list') }}" class="text-danger text-decoration-none ms-2 small">Clear All ×</a>
+        </div>
+        {% endif %}
+    </div>
 
-                    <p><strong>🏢 Field:</strong> {{ exam.category }}</p>
+    <!-- EXAMS COUNT HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="small text-muted">
+            Showing <strong class="text-dark">{{ exams|length }}</strong> examinations 
+            {% if pagination.total %} (Page {{ pagination.page }} of {{ pagination.pages }}, Total {{ pagination.total }} records){% endif %}
+        </div>
+        <div>
+            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small px-2 py-1">
+                <i data-lucide="check" class="icon-xs text-success"></i> 100% Verified Official Sources Only
+            </span>
+        </div>
+    </div>
 
-                    <p><strong>🎓 Qualification:</strong> {{ exam.eligibility }}</p>
+    <!-- EXAM CARDS GRID -->
+    {% if exams %}
+    <div class="row g-4 mb-4">
+        {% for ex in exams %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 border shadow-sm rounded-4 card-interactive d-flex flex-column bg-white">
+                
+                <!-- Card Top Badges -->
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <div class="d-flex flex-wrap gap-1">
+                        <span class="badge bg-primary bg-opacity-10 text-primary px-2 py-1 small">
+                            {{ ex.category or 'General' }}
+                        </span>
+                        {% if ex.short_name %}
+                        <span class="badge bg-light text-dark border px-2 py-1 small fw-semibold">
+                            {{ ex.short_name }}
+                        </span>
+                        {% endif %}
+                    </div>
+                    {% set display_status = ex.display_status %}
+                    <span class="badge bg-{{ display_status[1] }} px-2 py-1 small">
+                        {{ display_status[2] }} {{ display_status[0] }}
+                    </span>
+                </div>
 
-                    <p><strong>🎂 Age Limit:</strong> {{ exam.age_limit }}</p>
+                <!-- Exam Title -->
+                <h5 class="fw-bold mb-1 text-dark">
+                    <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="text-dark text-decoration-none">
+                        {{ ex.exam_name }}
+                    </a>
+                </h5>
 
-                    <p><strong>🏛 Conducted By:</strong> {{ exam.conducted_by }}</p>
+                <!-- Conducting Authority -->
+                <div class="small text-muted mb-2">
+                    <span>Authority:</span> <strong class="text-secondary">{{ ex.conducted_by or 'Statutory Authority' }}</strong>
+                </div>
 
-                    <p><strong>📅 Notification:</strong> {{ exam.notification_month }}</p>
+                <!-- Brief Description -->
+                <p class="small text-muted flex-grow-1 mb-3" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                    {{ ex.description or 'National/State recognized examination conducted under statutory framework.' }}
+                </p>
 
-                    <p class="text-muted flex-grow-1">
-                        {{ exam.description }}
-                    </p>
+                <!-- Spec Pill Highlights -->
+                <div class="bg-light p-2 rounded-3 small mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Qualification:</span>
+                        <strong class="text-dark text-truncate" style="max-width: 140px;">{{ ex.qualification or 'Graduate' }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted"> Age Limit:</span>
+                        <span class="text-dark text-truncate" style="max-width: 140px;">{{ ex.age_limit or 'Refer notification' }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-muted"><i data-lucide="map-pin" class="icon-xs"></i> Scope:</span>
+                        <span class="text-dark fw-semibold">{{ ex.state or 'All India' }}</span>
+                    </div>
+                </div>
 
-                    <a href="{{ exam.official_website }}"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="btn btn-primary mt-auto w-100">
-
-                        🌐 Official Website
-
+                <!-- Action Buttons -->
+                <div class="d-flex gap-2 mt-auto pt-2 border-top align-items-center">
+                    <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="btn btn-primary btn-sm flex-grow-1">
+                        Inspect Exam Details →
                     </a>
 
+                    {% if ex.official_url or ex.official_website %}
+                    <a href="{{ ex.official_url or ex.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm" title="Visit Official Authority Portal">
+                        Portal 
+                    </a>
+                    {% endif %}
+
+                    <a href="{{ url_for('exam.toggle_save', exam_id=ex.id) }}" 
+                       class="btn btn-sm {% if ex.id in saved_exam_ids %}btn-warning{% else %}btn-light border{% endif %}" 
+                       title="{% if ex.id in saved_exam_ids %}Saved to your profile{% else %}Bookmark exam{% endif %}">
+                        {% if ex.id in saved_exam_ids %}<i data-lucide="bookmark-check" class="icon-xs"></i>{% else %}<i data-lucide="bookmark" class="icon-xs"></i>{% endif %}
+                    </a>
                 </div>
 
             </div>
-
         </div>
-
-        {% else %}
-
-        <div class="col-12">
-
-            <div class="alert alert-warning text-center shadow-sm">
-
-                <h5 class="mb-2">
-                    😕 No exams found.
-                </h5>
-
-                <p class="mb-0">
-                    Try selecting a different filter.
-                </p>
-
-            </div>
-
-        </div>
-
         {% endfor %}
-
     </div>
+
+    <!-- PAGINATION (Preserving all filter query parameters) -->
+    {% if pagination and pagination.pages > 1 %}
+    <nav class="d-flex justify-content-center my-4" aria-label="Exam list pagination">
+        <ul class="pagination pagination-rounded shadow-sm">
+            {% if pagination.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('exam.exam_list', page=pagination.prev_num, search=search, category=selected_category, type=selected_type, qualification=selected_qualification, state=selected_state, status=selected_status) }}">
+                    ← Previous
+                </a>
+            </li>
+            {% endif %}
+
+            {% for p in range(1, pagination.pages + 1) %}
+            <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('exam.exam_list', page=p, search=search, category=selected_category, type=selected_type, qualification=selected_qualification, state=selected_state, status=selected_status) }}">
+                    {{ p }}
+                </a>
+            </li>
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('exam.exam_list', page=pagination.next_num, search=search, category=selected_category, type=selected_type, qualification=selected_qualification, state=selected_state, status=selected_status) }}">
+                    Next →
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <!-- EMPTY STATE -->
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center my-4 bg-white">
+        <div class="fs-1 mb-3"><i data-lucide="clipboard-list" class="icon-xs"></i></div>
+        <h4 class="fw-bold mb-2">No Examinations Match Your Filter</h4>
+        <p class="text-muted max-w-500 mx-auto mb-4">
+            No examinations matched the specific combination of criteria selected. Try broadening your parameters or search for general keywords like "Civil", "Banking", "UPSC", or "Engineering".
+        </p>
+        <a href="{{ url_for('exam.exam_list') }}" class="btn btn-primary px-4 align-self-center">
+            Reset All Filters
+        </a>
+    </div>
+    {% endif %}
 
 </div>
 
-<!-- Single Filter Script -->
+<!-- AI EXAM MATCHING MODAL -->
+<div class="modal fade" id="aiExamDiscoveryModal" tabindex="-1" aria-labelledby="aiExamModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-header border-bottom py-3 px-4">
+                <h5 class="modal-title fw-bold" id="aiExamModalLabel"><i data-lucide="bot" class="icon-xs"></i> Find Examinations For Me</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="text-muted small mb-3">
+                    Enter your academic background, current degree, stream, or career preference. The AI will strictly match you against verified examinations in our database and explain the reasons.
+                </p>
+
+                <div class="input-group mb-3">
+                    <input type="text" id="aiExamQueryInput" class="form-control" placeholder="e.g. B.Sc Mathematics graduate interested in government and data roles">
+                    <button class="btn btn-primary px-4" id="aiExamSubmitBtn" type="button">
+                        <span class="spinner-border spinner-border-sm d-none" id="aiExamSpinner"></span>
+                        Match Exams
+                    </button>
+                </div>
+
+                <!-- Results Stream -->
+                <div id="aiExamResultsArea" class="mt-3">
+                    <div class="text-center py-4 text-muted small" id="aiExamPlaceholder">
+                        Suggested recommendations will appear here with explainable match reasons.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
+    const submitBtn = document.getElementById("aiExamSubmitBtn");
+    const queryInput = document.getElementById("aiExamQueryInput");
+    const spinner = document.getElementById("aiExamSpinner");
+    const resultsArea = document.getElementById("aiExamResultsArea");
 
-    const filters = document.querySelectorAll(".single-filter");
+    submitBtn.addEventListener("click", function () {
+        const query = queryInput.value.trim();
+        if (!query) return;
 
-    function updateFilters() {
+        submitBtn.disabled = true;
+        spinner.classList.remove("d-none");
+        resultsArea.innerHTML = '<div class="text-center py-3 text-muted"><span class="spinner-border spinner-border-sm text-primary"></span> Matching verified database records...</div>';
 
-        let active = null;
-
-        filters.forEach(f => {
-
-            if (f.value !== "") {
-                active = f;
+        fetch("{{ url_for('exam.ai_exam_discovery') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ query: query })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success || !data.results || data.results.length === 0) {
+                resultsArea.innerHTML = '<div class="alert alert-info small mb-0">No direct matches found. Try mentioning your qualification (e.g. 12th, B.Tech, Graduate) or subject interest (e.g. Mathematics, Civil Services, Banking).</div>';
+                return;
             }
 
+            let html = '<div class="row g-3">';
+            data.results.forEach(item => {
+                html += `
+                    <div class="col-md-6">
+                        <div class="card h-100 p-3 border rounded-3 shadow-sm bg-light">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">${item.category || 'Exam'}</span>
+                                <span class="badge bg-${item.status_badge} small">${item.status}</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">${item.name}</h6>
+                            <div class="small text-muted mb-2">Authority: ${item.conducted_by}</div>
+                            
+                            <div class="p-2 mb-2 bg-white rounded border small">
+                                <span class="fw-semibold text-success d-block mb-1">Matched because:</span>
+                                <ul class="mb-0 ps-3 text-secondary small">
+                                    ${item.reasons.map(r => `<li>${r}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="d-flex gap-2 mt-auto pt-2">
+                                <a href="${item.detail_url}" class="btn btn-sm btn-primary flex-grow-1">Inspect Exam →</a>
+                                ${item.official_website ? `<a href="${item.official_website}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">Portal </a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            resultsArea.innerHTML = html;
+        })
+        .catch(err => {
+            resultsArea.innerHTML = '<div class="alert alert-warning small mb-0">Network error while querying recommendations. Please try again.</div>';
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            spinner.classList.add("d-none");
         });
-
-        filters.forEach(f => {
-
-            if (active && f !== active) {
-
-                f.disabled = true;
-
-            } else {
-
-                f.disabled = false;
-
-            }
-
-        });
-
-    }
-
-    filters.forEach(f => {
-
-        f.addEventListener("change", updateFilters);
-
     });
-
-    updateFilters();
-
 });
-
 </script>
-
 {% endblock %}

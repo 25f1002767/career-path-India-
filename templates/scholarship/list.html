@@ -1,85 +1,473 @@
 {% extends "base.html" %}
 
-{% block title %}
-Scholarships
-{% endblock %}
+{% block title %}National Scholarship Portal & Discovery | MPath Career Counselling{% endblock %}
 
 {% block content %}
+<div class="container py-4 py-md-5">
 
-<div class="container py-5">
+    <!-- HERO HEADER -->
+    <div class="mb-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-warning bg-opacity-10 text-dark fw-semibold small">
+            <i data-lucide="award" class="icon-xs text-warning"></i>
+            <span>National Scholarship Directory & Discovery</span>
+        </div>
+        <h1 class="fw-bold text-dark display-6 mb-2">Find Verified Scholarships You May Be Eligible For</h1>
+        <p class="text-muted lead fs-6 mb-4 max-w-800">
+            Discover verified central government schemes, state scholarship portals, premier institutional grants, and legitimate CSR foundations with transparent eligibility criteria.
+        </p>
 
-    <h1 class="fw-bold mb-4">
-        🎓 Scholarship Explorer
-    </h1>
+        <!-- STATS PILLS -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-light text-dark border px-3 py-2">
+                <i data-lucide="landmark" class="icon-xs"></i> <strong>{{ metrics.central }}</strong> Central Government Schemes
+            </span>
+            <span class="badge bg-light text-dark border px-3 py-2">
+                <i data-lucide="map-pin" class="icon-xs"></i> <strong>{{ metrics.state }}</strong> State Flagship Portals
+            </span>
+            <span class="badge bg-light text-dark border px-3 py-2">
+                <i data-lucide="building" class="icon-xs"></i> <strong>{{ metrics.csr }}</strong> Verified CSR & Trusts
+            </span>
+            <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-2 d-inline-flex align-items-center gap-1">
+                <i data-lucide="check-circle" class="icon-xs"></i> <strong>{{ metrics.total }}</strong> Traceable Schemes
+            </span>
+        </div>
 
-    <form method="GET" class="mb-4">
+        <!-- QUICK NAV SHORTCUTS -->
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <a href="{{ url_for('scholarship.find_scholarships_for_me') }}" class="btn btn-primary px-3 fw-semibold">
+                <i data-lucide="target" class="icon-xs"></i> Find Scholarships For Me
+            </a>
+            <a href="{{ url_for('scholarship.my_applications') }}" class="btn btn-outline-primary px-3">
+                <i data-lucide="clipboard-list" class="icon-xs"></i> My Applications
+            </a>
+            <a href="{{ url_for('scholarship.document_vault') }}" class="btn btn-outline-secondary px-3">
+                <i data-lucide="folder" class="icon-xs"></i> Document Vault
+            </a>
+            <a href="{{ url_for('scholarship.scholarship_calendar') }}" class="btn btn-outline-secondary px-3">
+                <i data-lucide="calendar" class="icon-xs"></i> Scholarship Calendar
+            </a>
+            <a href="{{ url_for('scholarship.national_coverage') }}" class="btn btn-outline-info text-dark px-3">
+                <i data-lucide="map" class="icon-xs"></i> National Coverage
+            </a>
+            <a href="{{ url_for('scholarship.saved_scholarships') }}" class="btn btn-outline-warning text-dark px-3">
+                <i data-lucide="bookmark-check" class="icon-xs"></i> Saved ({{ saved_scholarship_ids|length }})
+            </a>
+        </div>
+    </div>
 
-        <input
-            type="text"
-            name="search"
-            class="form-control"
-            placeholder="Search scholarships..."
-            value="{{ search }}">
-
-    </form>
-
-    <div class="row">
-
-        {% for scholarship in scholarships %}
-
-        <div class="col-lg-6 mb-4">
-
-            <div class="card shadow h-100 border-0">
-
-                <div class="card-body">
-
-                    <h4 class="fw-bold">
-                        {{ scholarship.title }}
-                    </h4>
-
-                    <p><strong>Provider:</strong> {{ scholarship.provider }}</p>
-
-                    <p><strong>Level:</strong> {{ scholarship.level }}</p>
-
-                    <p><strong>Category:</strong> {{ scholarship.category }}</p>
-
-                    <p><strong>Amount:</strong> {{ scholarship.amount }}</p>
-
-                    <p><strong>Eligibility:</strong> {{ scholarship.eligibility }}</p>
-
-                    <p>{{ scholarship.description }}</p>
-
+    <!-- ADVANCED FILTER ACCORDION / CARD -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('scholarship.scholarship_list') }}">
+            <div class="row g-3 align-items-center">
+                
+                <!-- Search Box -->
+                <div class="col-lg-5 col-md-12">
+                    <label class="form-label small fw-semibold text-muted mb-1">Search Schemes</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 text-muted"><i data-lucide="search" class="icon-xs"></i></span>
+                        <input type="text" name="search" class="form-control border-start-0" 
+                               placeholder="Scheme name, ministry, course (B.Sc, B.Tech, MBBS)..." value="{{ search }}">
+                    </div>
                 </div>
 
-                <div class="card-footer bg-white border-0">
+                <!-- State Filter -->
+                <div class="col-lg-3 col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">State / Domicile</label>
+                    <select name="state" class="form-select">
+                        <option value="">All States & UTs (Pan-India)</option>
+                        {% for st in states %}
+                        <option value="{{ st }}" {% if st == selected_state %}selected{% endif %}>
+                            {{ st }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                    <a
-                        href="{{ scholarship.official_website }}"
-                        target="_blank"
-                        class="btn btn-primary w-100">
+                <!-- Provider Type -->
+                <div class="col-lg-2 col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Provider Type</label>
+                    <select name="provider_type" class="form-select">
+                        <option value="">All Providers</option>
+                        {% for pt in provider_types %}
+                        <option value="{{ pt }}" {% if pt == selected_provider_type %}selected{% endif %}>
+                            {{ pt }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-                        🔗 Official Website
+                <!-- Category -->
+                <div class="col-lg-2 col-md-4">
+                    <label class="form-label small fw-semibold text-muted mb-1">Category</label>
+                    <select name="category" class="form-select">
+                        <option value="">All Categories</option>
+                        {% for cat in categories %}
+                        <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>
+                            {{ cat }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
 
+                <!-- Secondary Filter Row -->
+                <div class="col-lg-3 col-md-4">
+                    <select name="level" class="form-select form-select-sm">
+                        <option value="">All Education Levels</option>
+                        <option value="Undergraduate" {% if selected_level == 'Undergraduate' %}selected{% endif %}>Undergraduate (UG)</option>
+                        <option value="Postgraduate" {% if selected_level == 'Postgraduate' %}selected{% endif %}>Postgraduate (PG)</option>
+                        <option value="Class 11-12" {% if selected_level == 'Class 11-12' %}selected{% endif %}>Class 11 & 12</option>
+                        <option value="Class 9-10" {% if selected_level == 'Class 9-10' %}selected{% endif %}>Class 9 & 10 (Pre-Matric)</option>
+                        <option value="PhD" {% if selected_level == 'PhD' %}selected{% endif %}>PhD & Research</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <select name="gender" class="form-select form-select-sm">
+                        <option value="">All Genders</option>
+                        <option value="Female Only" {% if selected_gender == 'Female Only' %}selected{% endif %}> Girls / Female Only</option>
+                        <option value="All" {% if selected_gender == 'All' %}selected{% endif %}>All Students</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-4">
+                    <select name="sort" class="form-select form-select-sm">
+                        <option value="closing_soon" {% if selected_sort == 'closing_soon' %}selected{% endif %}>Sort by Relevance & Verification</option>
+                        <option value="name_asc" {% if selected_sort == 'name_asc' %}selected{% endif %}>Name (A to Z)</option>
+                        <option value="state" {% if selected_sort == 'state' %}selected{% endif %}>State-wise</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-3 col-md-12 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary btn-sm flex-grow-1">
+                        Apply Filters
+                    </button>
+                    <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-secondary btn-sm">
+                        Reset
                     </a>
-
                 </div>
 
             </div>
-
-        </div>
-
-        {% else %}
-
-        <div class="alert alert-warning">
-
-            No scholarships found.
-
-        </div>
-
-        {% endfor %}
-
+        </form>
     </div>
+
+    <!-- SCHOLARSHIP CARDS GRID -->
+    {% if scholarships %}
+    <div class="row g-4 mb-5">
+        {% for s in scholarships %}
+        <div class="col-lg-6">
+            <div class="card h-100 p-4 border-0 shadow-sm rounded-4 bg-white card-interactive d-flex flex-column">
+                
+                <!-- TOP BADGES -->
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <div class="d-flex flex-wrap gap-1">
+                        <span class="badge bg-primary bg-opacity-10 text-primary small">
+                            {{ s.provider_type or 'Government' }}
+                        </span>
+                        {% if s.state and s.state != 'All India' %}
+                        <span class="badge bg-info bg-opacity-10 text-dark small">
+                            <i data-lucide="map-pin" class="icon-xs"></i> {{ s.state }}
+                        </span>
+                        {% else %}
+                        <span class="badge bg-secondary bg-opacity-10 text-secondary small">
+                             Pan-India
+                        </span>
+                        {% endif %}
+                        {% if s.gender_eligibility == 'Female Only' %}
+                        <span class="badge bg-danger bg-opacity-10 text-danger small">
+                             Girls Only
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    {% set disp_status = s.display_status %}
+                    <span class="badge bg-{{ disp_status[1] }} small">
+                        {{ disp_status[2] }} {{ disp_status[0] }}
+                    </span>
+                </div>
+
+                <!-- TITLE & PROVIDER -->
+                <h5 class="fw-bold mb-1">
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="text-dark text-decoration-none">
+                        {{ s.title }}
+                    </a>
+                </h5>
+                <div class="small text-muted mb-3">
+                    Provider: <strong class="text-secondary">{{ s.provider_name or s.provider }}</strong>
+                    {% if s.ministry %} • <span class="fst-italic">{{ s.ministry }}</span>{% endif %}
+                </div>
+
+                <!-- HIGHLIGHTS BOX -->
+                <div class="p-3 bg-light rounded-3 small mb-3">
+                    <div class="row g-2">
+                        <div class="col-sm-6">
+                            <span class="text-muted d-block">Financial Support:</span>
+                            <strong class="text-success fs-6">{{ s.amount or 'Tuition & Allowances' }}</strong>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="text-muted d-block">Target Education:</span>
+                            <strong class="text-dark">{{ s.education_level or 'Higher Education' }}</strong>
+                        </div>
+                        <div class="col-12 mt-2 pt-2 border-top">
+                            <span class="text-muted d-block">Core Eligibility Summary:</span>
+                            <span class="text-dark">{{ s.eligibility[:140] }}{% if s.eligibility|length > 140 %}...{% endif %}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VERIFICATION FOOTER -->
+                <div class="small text-muted mb-3 d-flex align-items-center gap-2">
+                    <span class="badge bg-success bg-opacity-10 text-success small"> Verified Source</span>
+                    <span class="text-truncate" style="max-width: 280px;">Source: {{ s.source }}</span>
+                </div>
+
+                <!-- CARD ACTIONS (SECTION 4 & 11 COMPLIANT) -->
+                {% set meta = s.apply_button_meta %}
+                <div class="d-flex flex-wrap gap-2 mt-auto pt-3 border-top align-items-center">
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-outline-primary btn-sm px-3">
+                        View Dossier
+                    </a>
+
+                    <button type="button" class="btn btn-outline-info text-dark btn-sm px-2" 
+                            onclick="checkEligibilityModal({{ s.id }}, '{{ s.title|replace("'", "\\'") }}')">
+                        Check Eligibility
+                    </button>
+
+                    {% if meta.is_enabled %}
+                    <a href="{{ url_for('scholarship.apply_redirect', identifier=s.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm px-3">
+                        <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now 
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-{{ meta.badge_class }} btn-sm px-2" title="{{ meta.reason }}">
+                        {{ meta.icon }} {{ meta.label }}
+                    </a>
+                    {% endif %}
+
+                    <a href="{{ url_for('scholarship.toggle_save', scholarship_id=s.id) }}" 
+                       class="btn btn-sm ms-auto {% if s.id in saved_scholarship_ids %}btn-warning text-dark{% else %}btn-outline-secondary{% endif %}" 
+                       title="{% if s.id in saved_scholarship_ids %}Remove from Saved{% else %}Save Scholarship{% endif %}">
+                        {% if s.id in saved_scholarship_ids %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save{% endif %}
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- PAGINATION -->
+    {% if pagination and pagination.pages > 1 %}
+    <nav class="d-flex justify-content-center my-4" aria-label="Scholarship pagination">
+        <ul class="pagination">
+            {% if pagination.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('scholarship.scholarship_list', page=pagination.prev_num, search=search, state=selected_state, category=selected_category, provider_type=selected_provider_type, level=selected_level, gender=selected_gender) }}">
+                    Previous
+                </a>
+            </li>
+            {% endif %}
+
+            {% for p in range(1, pagination.pages + 1) %}
+            <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('scholarship.scholarship_list', page=p, search=search, state=selected_state, category=selected_category, provider_type=selected_provider_type, level=selected_level, gender=selected_gender) }}">
+                    {{ p }}
+                </a>
+            </li>
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('scholarship.scholarship_list', page=pagination.next_num, search=search, state=selected_state, category=selected_category, provider_type=selected_provider_type, level=selected_level, gender=selected_gender) }}">
+                    Next
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <!-- EMPTY STATE -->
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white my-4">
+        <div class="fs-1 mb-3"><i data-lucide="search" class="icon-xs"></i></div>
+        <h4 class="fw-bold text-dark mb-2">No Matching Scholarships Found</h4>
+        <p class="text-muted max-w-600 mx-auto mb-4">
+            We could not find any verified schemes matching your selected search or filter criteria. Try clearing some filters or exploring pan-India schemes.
+        </p>
+        <div>
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-primary px-4">
+                Clear Filters & View All Scholarships
+            </a>
+        </div>
+    </div>
+    {% endif %}
 
 </div>
 
+<!-- INTERACTIVE ELIGIBILITY MODAL -->
+<div class="modal fade" id="eligibilityCheckModal" tabindex="-1" aria-labelledby="eligibilityCheckModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-header border-bottom">
+                <h5 class="modal-title fw-bold text-dark" id="eligibilityCheckModalLabel">
+                    <i data-lucide="target" class="icon-xs"></i> Eligibility Match Analysis
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <h5 class="fw-bold text-primary mb-1" id="modalScholarshipTitle"></h5>
+                <p class="small text-muted mb-3" id="modalEligibilitySubtitle">Evaluating against your academic profile attributes...</p>
+
+                <div id="modalLoading" class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Evaluating eligibility...</span>
+                    </div>
+                    <div class="small text-muted mt-2">Checking deterministic conditions (education, state, income, category, gender)...</div>
+                </div>
+
+                <div id="modalResult" class="d-none">
+                    <!-- Status & Fit Score -->
+                    <div class="p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center" id="modalStatusBanner">
+                        <div>
+                            <span class="fw-bold fs-6" id="modalStatusText"></span>
+                            <div class="small text-muted" id="modalActionStep"></div>
+                        </div>
+                        <div class="badge fs-6 px-3 py-2" id="modalFitScoreBadge"></div>
+                    </div>
+
+                    <!-- Positive Signals -->
+                    <div class="mb-3">
+                        <h6 class="fw-bold small text-success text-uppercase mb-2"> Requirements Satisfied</h6>
+                        <ul class="list-unstyled small d-flex flex-column gap-1 mb-0 ps-1" id="modalPositiveList"></ul>
+                    </div>
+
+                    <!-- Warnings or Blockers -->
+                    <div class="mb-3" id="modalWarningsContainer">
+                        <h6 class="fw-bold small text-warning text-uppercase mb-2"><i data-lucide="alert-triangle" class="icon-xs text-warning"></i> Attention & Verification Required</h6>
+                        <ul class="list-unstyled small d-flex flex-column gap-1 mb-0 ps-1" id="modalWarningList"></ul>
+                    </div>
+
+                    <div class="mb-3 d-none" id="modalBlockersContainer">
+                        <h6 class="fw-bold small text-danger text-uppercase mb-2"><i data-lucide="x" class="icon-xs text-danger"></i> Ineligibility Blockers</h6>
+                        <ul class="list-unstyled small d-flex flex-column gap-1 mb-0 ps-1" id="modalBlockerList"></ul>
+                    </div>
+
+                    <!-- Documents Needed -->
+                    <div class="p-3 bg-light rounded-3 small">
+                        <strong>Mandatory Document Preparation Checklist:</strong>
+                        <div class="d-flex flex-wrap gap-2 mt-2" id="modalDocsList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                <a href="#" id="modalApplyBtn" class="btn btn-primary btn-sm">
+                    Start Application Assist →
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function checkEligibilityModal(scholarshipId, scholarshipTitle) {
+    document.getElementById('modalScholarshipTitle').innerText = scholarshipTitle;
+    document.getElementById('modalLoading').classList.remove('d-none');
+    document.getElementById('modalResult').classList.add('d-none');
+    document.getElementById('modalApplyBtn').href = "/scholarships/apply/" + scholarshipId;
+
+    const modal = new bootstrap.Modal(document.getElementById('eligibilityCheckModal'));
+    modal.show();
+
+    fetch("{{ url_for('scholarship.api_check_eligibility') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ scholarship_id: scholarshipId })
+    })
+    .then(r => r.json())
+    .then(data => {
+        document.getElementById('modalLoading').classList.add('d-none');
+        document.getElementById('modalResult').classList.remove('d-none');
+
+        const ev = data.evaluation;
+        const banner = document.getElementById('modalStatusBanner');
+        const statusTxt = document.getElementById('modalStatusText');
+        const fitScoreBadge = document.getElementById('modalFitScoreBadge');
+
+        fitScoreBadge.innerText = ev.fit_score + '% Fit Match';
+
+        if (ev.status === "ELIGIBLE") {
+            banner.className = "p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center bg-success bg-opacity-10 text-success border border-success";
+            statusTxt.innerText = " Highly Eligible (All Criteria Satisfied)";
+            fitScoreBadge.className = "badge bg-success fs-6 px-3 py-2";
+        } else if (ev.status === "LIKELY_ELIGIBLE") {
+            banner.className = "p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center bg-info bg-opacity-10 text-dark border border-info";
+            statusTxt.innerText = " Likely Eligible (Verify Certificates)";
+            fitScoreBadge.className = "badge bg-info text-dark fs-6 px-3 py-2";
+        } else if (ev.status === "PARTIALLY_MATCHED") {
+            banner.className = "p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center bg-warning bg-opacity-10 text-dark border border-warning";
+            statusTxt.innerText = " Partially Matched";
+            fitScoreBadge.className = "badge bg-warning text-dark fs-6 px-3 py-2";
+        } else {
+            banner.className = "p-3 rounded-3 mb-3 d-flex justify-content-between align-items-center bg-danger bg-opacity-10 text-danger border border-danger";
+            statusTxt.innerText = " Currently Not Eligible";
+            fitScoreBadge.className = "badge bg-danger fs-6 px-3 py-2";
+        }
+
+        document.getElementById('modalActionStep').innerText = ev.action_step;
+
+        // Positives
+        const posList = document.getElementById('modalPositiveList');
+        posList.innerHTML = '';
+        ev.positive_signals.forEach(p => {
+            const li = document.createElement('li');
+            li.innerText = p;
+            posList.appendChild(li);
+        });
+
+        // Warnings
+        const warnBox = document.getElementById('modalWarningsContainer');
+        const warnList = document.getElementById('modalWarningList');
+        warnList.innerHTML = '';
+        if (ev.warnings && ev.warnings.length > 0) {
+            warnBox.classList.remove('d-none');
+            ev.warnings.forEach(w => {
+                const li = document.createElement('li');
+                li.innerText = w;
+                warnList.appendChild(li);
+            });
+        } else {
+            warnBox.classList.add('d-none');
+        }
+
+        // Blockers
+        const blkBox = document.getElementById('modalBlockersContainer');
+        const blkList = document.getElementById('modalBlockerList');
+        blkList.innerHTML = '';
+        if (ev.blockers && ev.blockers.length > 0) {
+            blkBox.classList.remove('d-none');
+            ev.blockers.forEach(b => {
+                const li = document.createElement('li');
+                li.innerText = b;
+                blkList.appendChild(li);
+            });
+        } else {
+            blkBox.classList.add('d-none');
+        }
+
+        // Docs
+        const docsContainer = document.getElementById('modalDocsList');
+        docsContainer.innerHTML = '';
+        ev.documents_needed.forEach(d => {
+            const span = document.createElement('span');
+            span.className = "badge bg-white text-dark border";
+            span.innerText = "<i data-lucide="file-text" class="icon-xs"></i> " + d;
+            docsContainer.appendChild(span);
+        });
+    })
+    .catch(err => {
+        document.getElementById('modalLoading').classList.add('d-none');
+        alert("Failed to analyze eligibility. Please try again.");
+    });
+}
+</script>
 {% endblock %}

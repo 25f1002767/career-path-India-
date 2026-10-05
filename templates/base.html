@@ -2,359 +2,143 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        {% block title %}MPath Career Counselling{% endblock %}
-    </title>
-
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
-
-    <!-- Google Font -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <style>
-
-        /* ==============================
-           GLOBAL
-        ============================== */
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            min-height: 100%;
-        }
-
-        body {
-
-            margin: 0;
-
-            min-height: 100vh;
-
-            font-family: "Poppins", sans-serif;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #f8fbff 0%,
-                    #eef5ff 50%,
-                    #f8fbff 100%
-                );
-
-            color: #1f2937;
-
-        }
-
-
-        /* ==============================
-           MAIN PAGE WRAPPER
-        ============================== */
-
-        .page-wrapper {
-
-            min-height: 100vh;
-
-            display: flex;
-
-            flex-direction: column;
-
-        }
-
-
-        /* ==============================
-           MAIN CONTENT
-        ============================== */
-
-        .main-content {
-
-            flex: 1;
-
-            width: 100%;
-
-        }
-
-
-        /* ==============================
-           NAVBAR
-        ============================== */
-
-        .navbar {
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #0d6efd,
-                    #1769e0,
-                    #0d6efd
-                ) !important;
-
-        }
-
-
-        /* ==============================
-           FOOTER
-        ============================== */
-
-        .site-footer {
-
-            margin-top: auto;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #0b1f3a,
-                    #123d70
-                );
-
-            color: white;
-
-            padding: 45px 0 20px;
-
-        }
-
-        .site-footer h5 {
-
-            font-weight: 700;
-
-            margin-bottom: 15px;
-
-        }
-
-        .site-footer p {
-
-            color: rgba(255, 255, 255, 0.75);
-
-            margin-bottom: 8px;
-
-        }
-
-        .site-footer a {
-
-            color: rgba(255, 255, 255, 0.8);
-
-            text-decoration: none;
-
-            transition: 0.2s;
-
-        }
-
-        .site-footer a:hover {
-
-            color: white;
-
-        }
-
-        .footer-bottom {
-
-            border-top:
-                1px solid rgba(255, 255, 255, 0.15);
-
-            margin-top: 30px;
-
-            padding-top: 18px;
-
-            text-align: center;
-
-            color: rgba(255, 255, 255, 0.65);
-
-            font-size: 14px;
-
-        }
-
-
-        /* ==============================
-           CARDS
-        ============================== */
-
-        .card {
-
-            border-radius: 16px;
-
-        }
-
-
-        /* ==============================
-           BUTTONS
-        ============================== */
-
-        .btn {
-
-            border-radius: 10px;
-
-        }
-
-
-        /* ==============================
-           MOBILE
-        ============================== */
-
-        @media (max-width: 768px) {
-
-            .site-footer {
-
-                text-align: center;
-
-            }
-
-        }
-
-    </style>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MPath Career Counselling - Discover careers, colleges, scholarships, internships, and examinations based on your education, interests, and skills across India.">
+    <meta property="og:title" content="MPath Career Counselling | Explore Your Possibilities">
+    <meta property="og:description" content="Unbiased career exploration, college discovery, exam guidance, and structured roadmaps for Indian students.">
+    <meta property="og:type" content="website">
+
+    <title>{% block title %}MPath Career Counselling | Explore Your Possibilities. Build Your Path.{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Design System CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}?v=4.2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=4.2">
+
+    {% block extra_css %}{% endblock %}
 </head>
 
-
 <body>
+<div class="d-flex flex-column min-vh-100">
 
-<div class="page-wrapper">
-
-
-    <!-- ==============================
-         NAVBAR
-    ============================== -->
-
+    <!-- NAVBAR -->
     {% include "components/navbar.html" %}
 
+    <!-- FLASH MESSAGES -->
+    <div class="container mt-3">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show shadow-sm" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
 
-    <!-- ==============================
-         MAIN CONTENT
-    ============================== -->
-
-    <main class="main-content">
-
-        {% block content %}
-
-        {% endblock %}
-
+    <!-- MAIN CONTENT WITH ENTRANCE TRANSITION -->
+    <main class="flex-grow-1 page-enter">
+        {% block content %}{% endblock %}
     </main>
 
-
-    <!-- ==============================
-         FOOTER
-    ============================== -->
-
-    <footer class="site-footer">
-
+    <!-- FOOTER -->
+    <footer class="text-white pt-5 pb-4 mt-5 border-top border-white border-opacity-15" style="background-color: #00338D !important;">
         <div class="container">
-
             <div class="row g-4">
 
-                <!-- About -->
-                <div class="col-lg-5 col-md-6">
-
-                    <h5>
-                        🎓 MPath Career Counselling
+                <!-- Brand Column -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">
+                        <span class="brand-mark">
+                            <i data-lucide="graduation-cap" class="icon-sm"></i>
+                        </span>
+                        <span>MPath Career Counselling</span>
                     </h5>
-
-                    <p>
-                        India's AI-powered Career Discovery Platform
-                        helping students discover careers, colleges,
-                        examinations, scholarships and internships.
+                    <p class="text-white-50 small mb-3">
+                        A national-level career guidance and higher education discovery platform empowering students across India to make informed, verified, and confident decisions.
                     </p>
-
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 text-white-50 small">
+                        <i data-lucide="shield-check" class="icon-xs text-warning"></i>
+                        <span>Ethical Guidance: Objective Information, Human Decisions</span>
+                    </div>
                 </div>
 
-
-                <!-- Explore -->
-                <div class="col-lg-3 col-md-3">
-
-                    <h5>
-                        Explore
-                    </h5>
-
-                    <p>
-                        <a href="{{ url_for('career.career_list') }}">
-                            Careers
-                        </a>
-                    </p>
-
-                    <p>
-                        <a href="{{ url_for('college.college_list') }}">
-                            Colleges
-                        </a>
-                    </p>
-
-                    <p>
-                        <a href="{{ url_for('exam.exam_list') }}">
-                            Government Exams
-                        </a>
-                    </p>
-
+                <!-- Career Discovery -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="fw-bold text-white mb-3">Explore Careers</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{{ url_for('career.career_list') }}" class="text-white-50 text-decoration-none">All Careers</a></li>
+                        <li class="mb-2"><a href="{{ url_for('career.career_list', category='Technology') }}" class="text-white-50 text-decoration-none">Technology</a></li>
+                        <li class="mb-2"><a href="{{ url_for('career.career_list', category='Medical & Healthcare') }}" class="text-white-50 text-decoration-none">Healthcare</a></li>
+                        <li class="mb-2"><a href="{{ url_for('career.career_list', category='Government & Civil Services') }}" class="text-white-50 text-decoration-none">Civil Services</a></li>
+                        <li class="mb-2"><a href="{{ url_for('career.compare') }}" class="text-white-50 text-decoration-none">Compare Careers</a></li>
+                    </ul>
                 </div>
 
+                <!-- Opportunities & Education -->
+                <div class="col-lg-3 col-md-6 col-6">
+                    <h6 class="fw-bold text-white mb-3">Opportunities</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{{ url_for('college.college_list') }}" class="text-white-50 text-decoration-none">Colleges Directory</a></li>
+                        <li class="mb-2"><a href="{{ url_for('exam.exam_list') }}" class="text-white-50 text-decoration-none">Government Exams</a></li>
+                        <li class="mb-2"><a href="{{ url_for('scholarship.scholarship_list') }}" class="text-white-50 text-decoration-none">Scholarships</a></li>
+                        <li class="mb-2"><a href="{{ url_for('internship.internship_list') }}" class="text-white-50 text-decoration-none">AICTE Internships</a></li>
+                        <li class="mb-2"><a href="{{ url_for('assessment.start') }}" class="text-white-50 text-decoration-none">Career Assessment</a></li>
+                    </ul>
+                </div>
 
-                <!-- Opportunities -->
-                <div class="col-lg-4 col-md-3">
-
-                    <h5>
-                        Opportunities
-                    </h5>
-
-                    <p>
-                        <a href="{{ url_for('scholarship.scholarship_list') }}">
-                            Scholarships
-                        </a>
-                    </p>
-
-                    <p>
-                        <a href="{{ url_for('internship.internship_list') }}">
-                            Internships
-                        </a>
-                    </p>
-
-                    <p>
-                        <a href="{{ url_for('assessment.start') }}">
-                            Explore All Possible Careers
-                        </a>
-                    </p>
-
+                <!-- Smart Tools & Resources -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-3">Guidance Tools</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{{ url_for('chatbot.home') }}" class="text-white-50 text-decoration-none d-flex align-items-center gap-1"><i data-lucide="bot" class="icon-xs text-gold"></i> AI Career Mentor</a></li>
+                        <li class="mb-2"><a href="{{ url_for('resume.upload_resume') }}" class="text-white-50 text-decoration-none d-flex align-items-center gap-1"><i data-lucide="file-text" class="icon-xs"></i> Resume Skill Analyzer</a></li>
+                        <li class="mb-2"><a href="{{ url_for('dashboard.home') }}" class="text-white-50 text-decoration-none d-flex align-items-center gap-1"><i data-lucide="layout-dashboard" class="icon-xs"></i> Student Dashboard</a></li>
+                        <li class="mb-2"><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none">National Scholarship Portal (External)</a></li>
+                        <li class="mb-2"><a href="https://internship.aicte-india.org/" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none">AICTE Internship Portal (External)</a></li>
+                    </ul>
                 </div>
 
             </div>
 
-
-            <!-- Bottom -->
-            <div class="footer-bottom">
-
-                <p class="mb-1">
-
-                    © 2026 MPath Career Counselling. All rights reserved.
-
+            <!-- Footer Bottom -->
+            <div class="pt-4 mt-4 border-top border-white border-opacity-10 d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small">
+                <p class="mb-2 mb-md-0">
+                    &copy; 2026 MPath Career Counselling. Dedicated to Indian students, parents, and educators.
                 </p>
-
                 <p class="mb-0">
-
-                    Powered by AI • Built for India's Students 🇮🇳
-
+                    Objective Information &bull; Authentic Registries &bull; Verified Guidance
                 </p>
-
             </div>
-
         </div>
-
     </footer>
 
 </div>
 
+<!-- Bootstrap 5.3 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Bootstrap JS -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+<!-- Lucide Icons -->
+<script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
 </script>
 
-
+{% block extra_js %}{% endblock %}
 </body>
 
 </html>
-

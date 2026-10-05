@@ -79,6 +79,9 @@ class CareerService:
 
             }
 
+        if "title" not in career or not career.get("title"):
+            return None
+
         # Slug
         if "slug" not in career:
 
@@ -129,10 +132,9 @@ class CareerService:
 
                 # Single career object
                 if isinstance(data, dict):
-
-                    careers.append(
-                        self.normalize(data)
-                    )
+                    norm = self.normalize(data)
+                    if norm:
+                        careers.append(norm)
 
                 # Multiple career objects
                 elif isinstance(data, list):
@@ -140,10 +142,9 @@ class CareerService:
                     for item in data:
 
                         if isinstance(item, dict):
-
-                            careers.append(
-                                self.normalize(item)
-                            )
+                            norm = self.normalize(item)
+                            if norm:
+                                careers.append(norm)
 
             except Exception as e:
 

@@ -1,26 +1,99 @@
-:root{
+/* ============================================================
+   MPath Career Counselling - Global Design Tokens
+   Authoritative National Higher Education & Career Platform
+   ============================================================ */
 
-    /* Colors */
+:root {
+    /* Primary Deep Corporate & Authority Blues (Unified to College Solid Blue #00338D) */
+    --color-solid-blue: #00338D;
+    --color-solid-blue-dark: #00225E;
+    --color-solid-blue-hover: #002B7A;
+    --color-solid-blue-vibrant: #00338D;
+    --color-solid-blue-light: #E8F0FE;
 
-    --primary:#0D6EFD;
-    --secondary:#198754;
-    --background:#F8F9FA;
-    --text:#212529;
+    --color-deep-blue: #00338D;
+    --color-deep-blue-dark: #00225E;
+    --color-deep-blue-hover: #002B7A;
+    --color-navy: #00338D;
+    --color-navy-dark: #00225E;
+    --color-navy-light: #E8F0FE;
+    --color-navy-subtle: #F0F4FA;
 
-    /* Radius */
+    /* Primary & Interaction Blues */
+    --color-blue: #00338D;
+    --color-blue-dark: #00225E;
+    --color-blue-light: #E8F0FE;
+    --color-interaction: #00338D;
+    --color-interaction-hover: #00225E;
 
-    --radius-sm:8px;
-    --radius-md:12px;
-    --radius-lg:20px;
+    /* Theme Mappings */
+    --primary: #00338D;
+    --primary-hover: #00225E;
+    --primary-light: #E8F0FE;
+    --primary-dark: #00225E;
 
-    /* Shadows */
+    --secondary-brand: #00338D;
+    --secondary-brand-hover: #00225E;
+    --secondary-brand-light: #E8F0FE;
 
-    --shadow-sm:0 5px 15px rgba(0,0,0,.05);
-    --shadow-md:0 10px 30px rgba(0,0,0,.08);
-    --shadow-lg:0 20px 45px rgba(0,0,0,.12);
+    /* Functional States */
+    --success: #1E7E44;
+    --success-light: #EBF8F0;
+    --success-border: #BCE2CC;
 
-    /* Spacing */
+    --warning: #B45309;
+    --warning-light: #FEF3C7;
+    --warning-border: #FDE68A;
 
-    --section-padding:100px;
+    --danger: #B91C1C;
+    --danger-light: #FEE2E2;
+    --danger-border: #FECACA;
 
+    --info: #0284C7;
+    --info-light: #E0F2FE;
+    --info-border: #BAE6FD;
+
+    /* Surfaces & Backgrounds */
+    --bg-page: #F7F9FC;
+    --bg-surface: #FFFFFF;
+    --bg-muted: #F2F5F9;
+    --bg-subtle: #F8FAFC;
+    --bg-header: #FFFFFF;
+    --bg-footer: #00338D;
+
+    /* Text Colors */
+    --text-main: #172033;
+    --text-secondary: #53657D;
+    --text-muted: #53657D;
+    --text-subtle: #8292A6;
+    --text-inverse: #FFFFFF;
+    --text-inverse-secondary: #DCE7F5;
+
+    /* Borders */
+    --border-color: #DCE3EC;
+    --border-subtle: #E8EEF5;
+    --border-focus: #00338D;
+
+    /* Radii - Restrained, Professional (Avoid excessive roundness) */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 10px;
+    --radius-xl: 12px;
+    --radius-pill: 9999px;
+
+    /* Standard Layout */
+    --container-max-width: 1280px;
+
+    /* Controlled Elevation */
+    --shadow-xs: 0 1px 2px rgba(0, 51, 141, 0.04);
+    --shadow-sm: 0 1px 3px rgba(0, 51, 141, 0.06), 0 1px 2px rgba(0, 51, 141, 0.03);
+    --shadow-md: 0 4px 8px -1px rgba(0, 51, 141, 0.06), 0 2px 4px -1px rgba(0, 51, 141, 0.03);
+    --shadow-lg: 0 8px 18px -3px rgba(0, 51, 141, 0.08), 0 4px 6px -2px rgba(0, 51, 141, 0.03);
+    --shadow-card-hover: 0 6px 16px -2px rgba(0, 51, 141, 0.09), 0 2px 4px -1px rgba(0, 51, 141, 0.03);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 200ms ease;
+    --transition-page: 240ms ease-out;
 }

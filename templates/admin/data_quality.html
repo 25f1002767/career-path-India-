@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block title %}Data Quality Audit Dashboard | Admin Panel - MPath{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-lg-5 py-4">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('admin.dashboard') }}" class="text-decoration-none text-muted">Admin</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Data Quality Audit</li>
+        </ol>
+    </nav>
+
+    <!-- HEADER -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <h2 class="fw-bold mb-0 text-dark">Data Quality & Coverage Audit</h2>
+                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill">Real-time DB Metrics</span>
+            </div>
+            <p class="text-muted small mb-0">
+                Auditing curriculum completeness, relational integrity, verified vs unverified offerings, and live AISHE coverage.
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.admin_courses') }}" class="btn btn-primary rounded-3 fw-semibold">
+                Manage Courses Taxonomy →
+            </a>
+        </div>
+    </div>
+
+    <!-- METRICS CARDS GRID (Section 29 Core Requirements) -->
+    <div class="row g-3 mb-4">
+        
+        <!-- Total Institutions -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-semibold text-muted text-uppercase">Total Institutions</span>
+                    <span class="fs-5"><i data-lucide="landmark" class="icon-xs"></i></span>
+                </div>
+                <div class="fs-2 fw-bold text-dark">{{ stats.total_institutions }}</div>
+                <div class="small text-muted mt-1">Colleges & universities in registry</div>
+            </div>
+        </div>
+
+        <!-- Total Canonical Courses -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-semibold text-muted text-uppercase">Standard Courses</span>
+                    <span class="fs-5"><i data-lucide="graduation-cap" class="icon-xs"></i></span>
+                </div>
+                <div class="fs-2 fw-bold text-primary">{{ stats.total_courses }}</div>
+                <div class="small text-muted mt-1">Canonical degrees across disciplines</div>
+            </div>
+        </div>
+
+        <!-- Total Relationships -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-semibold text-muted text-uppercase">College-Course Links</span>
+                    <span class="fs-5"></span>
+                </div>
+                <div class="fs-2 fw-bold text-info">{{ stats.total_relationships }}</div>
+                <div class="small text-muted mt-1">Normalized offerings generated</div>
+            </div>
+        </div>
+
+        <!-- Coverage Percentage -->
+        <div class="col-lg-3 col-sm-6">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white h-100">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-semibold text-muted text-uppercase">Curriculum Coverage</span>
+                    <span class="fs-5"><i data-lucide="trending-up" class="icon-xs"></i></span>
+                </div>
+                <div class="fs-2 fw-bold text-success">{{ stats.coverage_pct }}%</div>
+                <div class="small text-muted mt-1">{{ stats.institutions_with_courses }} colleges have verified programs</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VERIFICATION INTEGRITY BREAKDOWN -->
+    <div class="row g-4 mb-4">
+        
+        <!-- Integrity Stats -->
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                <h5 class="fw-bold mb-3 text-dark">Data Verification Integrity</h5>
+                <p class="small text-muted mb-4">
+                    Every college-course relationship requires a strict verification flag to prevent phantom or synthetic assumptions.
+                </p>
+
+                <div class="d-flex flex-column gap-3">
+                    <div class="p-3 bg-success-subtle rounded-3 border border-success-subtle d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="fw-bold text-success"> Verified Relationships</div>
+                            <div class="small text-muted">Audited via AISHE live directory or gazette</div>
+                        </div>
+                        <div class="fs-3 fw-bold text-success">{{ stats.verified_relationships }}</div>
+                    </div>
+
+                    <div class="p-3 bg-warning-subtle rounded-3 border border-warning-subtle d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="fw-bold text-dark"><i data-lucide="alert-triangle" class="icon-xs text-warning"></i> Needs Review</div>
+                            <div class="small text-muted">Flagged by auditor for verification</div>
+                        </div>
+                        <div class="fs-3 fw-bold text-dark">{{ stats.needs_review }}</div>
+                    </div>
+
+                    <div class="p-3 bg-secondary-subtle rounded-3 border border-secondary-subtle d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="fw-bold text-secondary"><i data-lucide="x" class="icon-xs text-danger"></i> Archived Relationships</div>
+                            <div class="small text-muted">Discontinued programs</div>
+                        </div>
+                        <div class="fs-3 fw-bold text-secondary">{{ stats.archived }}</div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info small mt-4 mb-0">
+                    <strong>Rule Enforced:</strong> Colleges without verified programs will display <em>"Course information currently synchronizing"</em> rather than assuming false offerings.
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Courses by Coverage -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0 text-dark">Top Courses by Institutional Coverage</h5>
+                    <span class="badge bg-light text-muted border">Top 10</span>
+                </div>
+                <p class="small text-muted mb-3">Verified institution distribution across highest-demand academic tracks:</p>
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover align-middle mb-0">
+                        <thead class="table-light small text-muted">
+                            <tr>
+                                <th>Course Title</th>
+                                <th>Level</th>
+                                <th>Discipline</th>
+                                <th class="text-end">Colleges Offering</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cname, clevel, cdisc, cnt in top_courses %}
+                            <tr>
+                                <td class="fw-semibold text-dark">{{ cname }}</td>
+                                <td>
+                                    <span class="badge {% if clevel == 'UG' %}bg-primary-subtle text-primary{% else %}bg-info-subtle text-info{% endif %} rounded-pill small">
+                                        {{ clevel }}
+                                    </span>
+                                </td>
+                                <td class="small text-muted">{{ cdisc }}</td>
+                                <td class="text-end fw-bold text-success">{{ cnt }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATE-WISE COVERAGE AUDIT -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+        <h5 class="fw-bold mb-3 text-dark">Geographic Coverage Audit (State Breakdown)</h5>
+        <div class="row g-3">
+            {% for st, total_inst, with_courses in state_coverage %}
+            <div class="col-md-3 col-sm-6">
+                <div class="p-3 bg-light rounded-3 border">
+                    <div class="fw-bold text-dark text-truncate" title="{{ st }}">{{ st }}</div>
+                    <div class="d-flex justify-content-between align-items-center mt-2 small">
+                        <span class="text-muted">Verified Coverage:</span>
+                        <span class="badge {% if with_courses > 0 %}bg-success-subtle text-success{% else %}bg-secondary-subtle text-secondary{% endif %} fw-bold">
+                            {{ with_courses }} / {{ total_inst }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- CAREER UNIVERSE & DOMAIN BALANCE AUDIT (Sections 26 & 27) -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 bg-white mb-4">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-4">
+            <div>
+                <h5 class="fw-bold text-dark mb-1">Career Coverage & Domain Balance Audit</h5>
+                <p class="text-muted small mb-0">System balance monitoring ensuring broad multidisciplinary coverage across Medical, Arts, Commerce, Law, Govt, Defence, Agriculture, Skilled Trades, and Science.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill fw-semibold">
+                    Non-Tech Careers: {{ career_audit.non_tech_pct }}%
+                </span>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold">
+                    Tech & Engg: {{ career_audit.tech_pct }}%
+                </span>
+            </div>
+        </div>
+
+        <!-- Career Universe Metrics Grid -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 text-center border">
+                    <div class="text-muted small text-uppercase fw-semibold">Total Careers</div>
+                    <div class="fs-3 fw-bold text-dark mt-1">{{ career_audit.total_careers }}</div>
+                    <div class="small text-success fw-medium">All 26 Domains</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 text-center border">
+                    <div class="text-muted small text-uppercase fw-semibold">Verified</div>
+                    <div class="fs-3 fw-bold text-success mt-1">{{ career_audit.verified_careers }}</div>
+                    <div class="small text-muted">Statutory Councils</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 text-center border">
+                    <div class="text-muted small text-uppercase fw-semibold">Lesser-Known</div>
+                    <div class="fs-3 fw-bold text-info mt-1">{{ career_audit.lesser_known_careers }}</div>
+                    <div class="small text-muted">Unique Occupations</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 text-center border">
+                    <div class="text-muted small text-uppercase fw-semibold">Course Links</div>
+                    <div class="fs-3 fw-bold text-primary mt-1">{{ career_audit.total_career_courses }}</div>
+                    <div class="small text-muted">Degree Mappings</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 text-center border">
+                    <div class="text-muted small text-uppercase fw-semibold">Exam Links</div>
+                    <div class="fs-3 fw-bold text-warning mt-1">{{ career_audit.total_career_exams }}</div>
+                    <div class="small text-muted">Government & Entrances</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-6">
+                <div class="p-3 bg-light rounded-3 text-center border">
+                    <div class="text-muted small text-uppercase fw-semibold">Roadmap Stages</div>
+                    <div class="fs-3 fw-bold text-dark mt-1">{{ career_audit.total_career_roadmaps }}</div>
+                    <div class="small text-muted">Structured Steps</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Domain Distribution Breakdown -->
+        <h6 class="fw-bold text-dark mb-3">Domain Distribution & Equity Balance</h6>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light small text-uppercase">
+                    <tr>
+                        <th>Domain / Sector</th>
+                        <th class="text-center">Careers Count</th>
+                        <th class="text-center">Share of Universe</th>
+                        <th>Balance Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in career_audit.category_distribution %}
+                    <tr>
+                        <td class="fw-semibold text-dark">{{ item.category }}</td>
+                        <td class="text-center fw-bold">{{ item.count }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-light text-dark border">{{ item.percentage }}%</span>
+                        </td>
+                        <td>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar {% if 'Technology' in item.category or 'Engineering' in item.category %}bg-secondary{% elif 'Medical' in item.category or 'Healthcare' in item.category %}bg-danger{% elif 'Law' in item.category %}bg-dark{% elif 'Agriculture' in item.category %}bg-success{% else %}bg-primary{% endif %}" 
+                                     role="progressbar" 
+                                     style="width: {{ item.percentage * 5 }}%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

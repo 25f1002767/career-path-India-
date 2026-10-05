@@ -1,110 +1,163 @@
 {% extends "base.html" %}
 
-{% block title %}
-Internships
-{% endblock %}
+{% block title %}Internships Directory | MPath Career Counselling{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
 
-    <h1 class="mb-4 fw-bold">
-        Internship Portal
-    </h1>
-
-    <form method="GET" class="mb-4">
-
-        <input
-            type="text"
-            name="search"
-            class="form-control"
-            placeholder="Search Internship..."
-            value="{{ search }}">
-
-    </form>
-
-    <div class="row">
-
-        {% for internship in internships %}
-
-        <div class="col-lg-4 mb-4">
-
-            <div class="card shadow h-100">
-
-                <div class="card-body">
-
-                    <h4 class="fw-bold">
-                        {{ internship.title }}
-                    </h4>
-
-                    <p>
-                        <strong>Company:</strong>
-                        {{ internship.company }}
-                    </p>
-
-                    <p>
-                        <strong>Location:</strong>
-                        {{ internship.location }}
-                    </p>
-
-                    <p>
-                        <strong>Mode:</strong>
-                        {{ internship.mode or "Remote" }}
-                    </p>
-
-                    <p>
-                        <strong>Stipend:</strong>
-                        {{ internship.stipend or "Not Mentioned" }}
-                    </p>
-
-                    <p>
-                        <strong>Duration:</strong>
-                        {{ internship.duration or "2-6 Months" }}
-                    </p>
-
-                    {% if internship.matched_skills %}
-
-                    <p>
-
-                        <strong>Matched Skills:</strong>
-
-                        {{ internship.matched_skills | join(", ") }}
-
-                    </p>
-
-                    {% endif %}
-
-                    <a
-                        href="{{ internship.apply_link }}"
-                        target="_blank"
-                        class="btn btn-success w-100">
-
-                        Apply Now
-
-                    </a>
-
-                </div>
-
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-info bg-opacity-10 text-dark small fw-semibold mb-2">
+                <i data-lucide="building" class="icon-xs"></i>
+                <span>Practical Skill Development & Exposure</span>
             </div>
-
+            <h1 class="fw-bold mb-1">Internship Opportunities</h1>
+            <p class="text-muted mb-0">Explore verified internship profiles and industry tracks to build hands-on competency.</p>
         </div>
-
-        {% else %}
-
-        <div class="col-12">
-
-            <div class="alert alert-warning">
-
-                No internships available.
-
-            </div>
-
-        </div>
-
-        {% endfor %}
-
     </div>
 
-</div>
+    <!-- Filter Form -->
+    <div class="card p-3 border shadow-sm mb-4 bg-white">
+        <form method="GET" action="{{ url_for('internship.internship_list') }}">
+            <div class="row g-2 align-items-center">
+                <div class="col-lg-5 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0 text-muted"><i data-lucide="search" class="icon-xs"></i></span>
+                        <input type="text" name="search" class="form-control border-start-0" placeholder="Search by role, company, or skill..." value="{{ search }}">
+                    </div>
+                </div>
 
+                <div class="col-lg-3 col-md-3">
+                    <select name="domain" class="form-select">
+                        <option value="">All Domains</option>
+                        {% for d in domains %}
+                        <option value="{{ d }}" {% if d == selected_domain %}selected{% endif %}>
+                            {{ d }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="col-lg-2 col-md-3">
+                    <select name="mode" class="form-select">
+                        <option value="">Any Work Mode</option>
+                        <option value="Remote" {% if selected_mode == 'Remote' %}selected{% endif %}>Remote</option>
+                        <option value="Hybrid" {% if selected_mode == 'Hybrid' %}selected{% endif %}>Hybrid</option>
+                        <option value="Onsite" {% if selected_mode == 'Onsite' %}selected{% endif %}>Onsite</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-2 col-md-12 d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Filter
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Transparency Notice -->
+    <div class="alert alert-light border small text-muted mb-4 d-flex align-items-center gap-2">
+        <span><i data-lucide="info" class="icon-xs text-info"></i></span>
+        <span>
+            <strong>Verification Note:</strong> Listings represent verified organizational internship tracks. Apply directly through official portals (such as the AICTE Internship Portal) to ensure authenticity and avoid scam fees.
+        </span>
+    </div>
+
+    <!-- Internships Grid -->
+    {% if internships %}
+    <div class="row g-4 mb-4">
+        {% for it in internships %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 border shadow-sm card-interactive d-flex flex-column">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-info bg-opacity-10 text-dark">
+                        {{ it.mode or 'Hybrid' }}
+                    </span>
+                    <span class="badge badge-verified d-inline-flex align-items-center gap-1">
+                        <i data-lucide="check-circle" class="icon-xs"></i> {{ it.verification_status or 'VERIFIED' }}
+                    </span>
+                </div>
+
+                <h4 class="fw-bold mb-1 text-dark">
+                    {{ it.title }}
+                </h4>
+
+                <div class="small fw-semibold text-primary mb-2">
+                    {{ it.company }}
+                </div>
+
+                <p class="small text-muted flex-grow-1 mb-3">
+                    {{ it.description[:110] }}{% if it.description|length > 110 %}...{% endif %}
+                </p>
+
+                <div class="bg-light p-3 rounded-3 small mb-3">
+                    <div class="mb-1"><strong>Location:</strong> {{ it.location or 'India' }}</div>
+                    <div class="mb-1"><strong><i data-lucide="clock" class="icon-xs"></i> Duration:</strong> {{ it.duration or '2-6 Months' }}</div>
+                    <div class="mb-1"><strong><i data-lucide="award" class="icon-xs"></i> Stipend:</strong> {{ it.stipend or 'Stipend Provided' }}</div>
+                    <div><strong><i data-lucide="wrench" class="icon-xs"></i> Skills:</strong> {{ it.skills or 'Domain skills' }}</div>
+                </div>
+
+                <div class="d-flex gap-2 mt-auto pt-2 border-top align-items-center">
+                    {% if it.official_url or it.apply_link %}
+                    <a href="{{ it.official_url or it.apply_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm flex-grow-1">
+                        Apply via Portal 
+                    </a>
+                    {% endif %}
+
+                    <a href="{{ url_for('internship.toggle_save', internship_id=it.id) }}" class="btn btn-sm {% if it.id in saved_internship_ids %}btn-warning{% else %}btn-outline-secondary{% endif %}" title="{% if it.id in saved_internship_ids %}Remove from Saved{% else %}Save Internship{% endif %}">
+                        {% if it.id in saved_internship_ids %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save{% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if pagination and pagination.pages > 1 %}
+    <nav class="d-flex justify-content-center my-4" aria-label="Internship list pagination">
+        <ul class="pagination">
+            {% if pagination.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('internship.internship_list', page=pagination.prev_num, search=search, domain=selected_domain, mode=selected_mode) }}">
+                    Previous
+                </a>
+            </li>
+            {% endif %}
+
+            {% for p in range(1, pagination.pages + 1) %}
+            <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('internship.internship_list', page=p, search=search, domain=selected_domain, mode=selected_mode) }}">
+                    {{ p }}
+                </a>
+            </li>
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('internship.internship_list', page=pagination.next_num, search=search, domain=selected_domain, mode=selected_mode) }}">
+                    Next
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+    {% else %}
+    <div class="empty-state py-5 my-4">
+        <div class="empty-state-icon"><i data-lucide="building" class="icon-xs"></i></div>
+        <h4 class="fw-bold">No internships found</h4>
+        <p class="text-muted max-w-500 mx-auto">
+            No internships matched your search criteria. Try removing filters or searching for general skills like "Python", "Data", "Design", or "Web".
+        </p>
+        <a href="{{ url_for('internship.internship_list') }}" class="btn btn-primary mt-2">
+            Reset Filters
+        </a>
+    </div>
+    {% endif %}
+
+</div>
 {% endblock %}

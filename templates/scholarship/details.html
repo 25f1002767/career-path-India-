@@ -1,0 +1,548 @@
+{% extends "base.html" %}
+
+{% block title %}{{ scholarship.title }} - National Scholarship Dossier | MPath{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- BREADCRUMB & BACK NAV -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-secondary btn-sm px-3">
+            ← Back to Scholarship Directory
+        </a>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('scholarship.toggle_save', scholarship_id=scholarship.id) }}" 
+               class="btn btn-sm {% if is_saved %}btn-warning text-dark{% else %}btn-outline-secondary{% endif %}">
+                {% if is_saved %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved to Profile{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save to Shortlist{% endif %}
+            </a>
+            <a href="{{ url_for('scholarship.scholarship_calendar') }}" class="btn btn-outline-secondary btn-sm">
+                <i data-lucide="calendar" class="icon-xs"></i> Calendar
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN DOSSIER HEADER -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-3">
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-primary bg-opacity-10 text-primary fs-6 px-3 py-2">
+                    {{ scholarship.provider_type or 'Central Government' }}
+                </span>
+                {% if scholarship.state and scholarship.state != 'All India' %}
+                <span class="badge bg-info bg-opacity-10 text-dark fs-6 px-3 py-2">
+                    <i data-lucide="map-pin" class="icon-xs"></i> State Domicile: {{ scholarship.state }}
+                </span>
+                {% else %}
+                <span class="badge bg-secondary bg-opacity-10 text-secondary fs-6 px-3 py-2">
+                     All India / National Scheme
+                </span>
+                {% endif %}
+                <span class="badge bg-success bg-opacity-10 text-success fs-6 px-3 py-2">
+                     Officially Verified Scheme
+                </span>
+            </div>
+
+            {% set disp_status = scholarship.display_status %}
+            <span class="badge bg-{{ disp_status[1] }} fs-6 px-3 py-2">
+                {{ disp_status[2] }} {{ disp_status[0] }}
+            </span>
+        </div>
+
+        <h1 class="fw-bold text-dark display-6 mb-2">{{ scholarship.title }}</h1>
+        {% if scholarship.short_title %}
+        <div class="badge bg-light text-dark border px-2 py-1 mb-2">Short Title: {{ scholarship.short_title }}</div>
+        {% endif %}
+
+        <div class="text-muted fs-6 mb-4">
+            Administered by: <strong class="text-secondary">{{ scholarship.provider_name or scholarship.provider }}</strong>
+            {% if scholarship.ministry %} • <span>{{ scholarship.ministry }}</span>{% endif %}
+            {% if scholarship.department %} • <span class="fst-italic">{{ scholarship.department }}</span>{% endif %}
+        </div>
+
+        <!-- KEY STATS MATRIX -->
+        <div class="row g-3 p-3 bg-light rounded-4 mb-4">
+            <div class="col-md-3 col-6">
+                <span class="text-muted small d-block">Financial Support:</span>
+                <strong class="text-success fs-5">{{ scholarship.amount or 'Tuition & Allowances' }}</strong>
+            </div>
+            <div class="col-md-3 col-6">
+                <span class="text-muted small d-block">Academic Level:</span>
+                <strong class="text-dark fs-6">{{ scholarship.education_level or 'Higher Education' }}</strong>
+            </div>
+            <div class="col-md-3 col-6">
+                <span class="text-muted small d-block">Family Income Ceiling:</span>
+                <strong class="text-dark fs-6">
+                    {% if scholarship.family_income_limit and scholarship.family_income_limit > 0 %}
+                    ≤ ₹{{ scholarship.family_income_limit|int }} / Year
+                    {% else %}
+                    No Restrictive Income Limit
+                    {% endif %}
+                </strong>
+            </div>
+            <div class="col-md-3 col-6">
+                <span class="text-muted small d-block">Current Cycle Deadline:</span>
+                <strong class="text-danger fs-6">
+                    {% if cycle and cycle.application_end_date %}
+                    {{ cycle.application_end_date }}
+                    {% else %}
+                    {{ scholarship.deadline or 'Refer Official Notification' }}
+                    {% endif %}
+                </strong>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS (SECTIONS 3, 4, 11, 12, 21 COMPLIANT) -->
+        {% set meta = scholarship.apply_button_meta %}
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+
+            <!-- PRIMARY: <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now (Uses official_application_url) -->
+            {% if meta.is_enabled %}
+            <a href="{{ url_for('scholarship.apply_redirect', identifier=scholarship.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2 fw-semibold shadow-sm">
+                <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now 
+            </a>
+            <a href="{{ url_for('scholarship.apply_scholarship', scholarship_id=scholarship.id) }}" class="btn btn-outline-primary px-3 py-2 fw-semibold">
+                 Prepare Application with MPath Assist
+            </a>
+            {% else %}
+            <button class="btn btn-{{ meta.badge_class }} px-4 py-2 fw-semibold" disabled title="{{ meta.reason }}">
+                {{ meta.icon }} {{ meta.label }}
+            </button>
+            {% endif %}
+
+            <!-- SECONDARY: <i data-lucide="globe" class="icon-xs"></i> Official Website -->
+            {% if scholarship.resolved_official_website %}
+            <a href="{{ scholarship.resolved_official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary px-3 py-2">
+                <i data-lucide="globe" class="icon-xs"></i> Official Website
+            </a>
+            {% endif %}
+
+            <!-- OPTIONAL: <i data-lucide="file-text" class="icon-xs"></i> Official Notification -->
+            {% if scholarship.notification_url %}
+            <a href="{{ scholarship.notification_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark px-3 py-2">
+                <i data-lucide="file-text" class="icon-xs"></i> Official Notification (PDF) 
+            </a>
+            {% endif %}
+
+            <!-- OPTIONAL: <i data-lucide="clipboard-list" class="icon-xs"></i> Guidelines -->
+            {% if scholarship.guidelines_url %}
+            <a href="{{ scholarship.guidelines_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-info text-dark px-3 py-2">
+                <i data-lucide="clipboard-list" class="icon-xs"></i> Guidelines 
+            </a>
+            {% endif %}
+
+            <!-- OPTIONAL: <i data-lucide="help-circle" class="icon-xs"></i> FAQ -->
+            {% if scholarship.faq_url %}
+            <a href="{{ scholarship.faq_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary px-3 py-2">
+                <i data-lucide="help-circle" class="icon-xs"></i> FAQ 
+            </a>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- PERSONALIZED MATCH BANNER (If authenticated) -->
+    {% if match_eval %}
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 {% if match_eval.status == 'ELIGIBLE' %}bg-success bg-opacity-10 border-success{% elif match_eval.status == 'LIKELY_ELIGIBLE' %}bg-info bg-opacity-10 border-info{% elif match_eval.status == 'PARTIALLY_MATCHED' %}bg-warning bg-opacity-10 border-warning{% else %}bg-danger bg-opacity-10 border-danger{% endif %} border">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+            <div>
+                <h5 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                    <i data-lucide="target" class="icon-xs"></i>
+                    <span>Why This Scholarship Matches Your Profile</span>
+                </h5>
+                <div class="small text-muted">{{ match_eval.action_step }}</div>
+            </div>
+            <span class="badge {% if match_eval.status == 'ELIGIBLE' %}bg-success{% elif match_eval.status == 'LIKELY_ELIGIBLE' %}bg-info text-dark{% elif match_eval.status == 'PARTIALLY_MATCHED' %}bg-warning text-dark{% else %}bg-danger{% endif %} fs-6 px-3 py-2">
+                {{ match_eval.fit_score }}% Match Suitability
+            </span>
+        </div>
+
+        <!-- Match signals breakdown -->
+        <div class="row g-3">
+            <div class="col-md-6">
+                <h6 class="small fw-bold text-success text-uppercase mb-2">Requirements Satisfied:</h6>
+                <ul class="list-unstyled small d-flex flex-column gap-1 mb-0 ps-1">
+                    {% for sig in match_eval.positive_signals %}
+                    <li class="d-flex align-items-start gap-2 text-dark">
+                        <span class="text-success fw-bold"></span>
+                        <span>{{ sig }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% if match_eval.warnings or match_eval.blockers %}
+            <div class="col-md-6">
+                {% if match_eval.warnings %}
+                <h6 class="small fw-bold text-warning text-dark text-uppercase mb-2">Verification Needed:</h6>
+                <ul class="list-unstyled small d-flex flex-column gap-1 mb-2 ps-1">
+                    {% for w in match_eval.warnings %}
+                    <li class="d-flex align-items-start gap-2 text-dark">
+                        <span class="text-warning fw-bold"><i data-lucide="alert-triangle" class="icon-xs text-warning"></i></span>
+                        <span>{{ w }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+                {% if match_eval.blockers %}
+                <h6 class="small fw-bold text-danger text-uppercase mb-2">Eligibility Restrictions:</h6>
+                <ul class="list-unstyled small d-flex flex-column gap-1 mb-0 ps-1">
+                    {% for b in match_eval.blockers %}
+                    <li class="d-flex align-items-start gap-2 text-dark">
+                        <span class="text-danger fw-bold"><i data-lucide="x" class="icon-xs text-danger"></i></span>
+                        <span>{{ b }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- TWO-COLUMN CONTENT GRID -->
+    <div class="row g-4 mb-4">
+        
+        <!-- LEFT MAIN COLUMN -->
+        <div class="col-lg-8">
+
+            <!-- 1. Scheme Overview & Objective -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h4 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <span></span>
+                    <span>Scheme Overview & Objective</span>
+                </h4>
+                <p class="text-dark leading-relaxed mb-3">
+                    {{ scholarship.description or 'Official scholarship assistance program dedicated to empowering students from across India in completing higher education.' }}
+                </p>
+                {% if scholarship.objective %}
+                <div class="p-3 bg-light rounded-3 small text-dark mb-0">
+                    <strong>Official Policy Objective:</strong> {{ scholarship.objective }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- 2. Detailed Eligibility Criteria -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h4 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="graduation-cap" class="icon-xs"></i>
+                    <span>Who Can Apply? (Detailed Eligibility Matrix)</span>
+                </h4>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered small align-middle mb-3">
+                        <tbody>
+                            <tr>
+                                <th class="table-light" style="width: 32%;">Target Education Level</th>
+                                <td>{{ scholarship.education_level or 'Higher Education (UG/PG)' }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Minimum Qualification</th>
+                                <td>{{ scholarship.minimum_qualification or 'Class 12 / Relevant Qualifying Examination' }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Academic Disciplines / Streams</th>
+                                <td>{{ scholarship.streams or 'All Regular Academic & Technical Streams' }}</td>
+                            </tr>
+                            {% if scholarship.courses %}
+                            <tr>
+                                <th class="table-light">Eligible Degree Courses</th>
+                                <td>{{ scholarship.courses }}</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th class="table-light">Family Income Limit</th>
+                                <td>
+                                    {% if scholarship.family_income_limit and scholarship.family_income_limit > 0 %}
+                                    Gross annual family income must not exceed <strong>₹{{ scholarship.family_income_limit|int }}</strong> from all sources.
+                                    {% else %}
+                                    No restrictive family income threshold (pure merit evaluation).
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% if scholarship.percentage_requirement %}
+                            <tr>
+                                <th class="table-light">Minimum Academic Score</th>
+                                <td>Minimum <strong>{{ scholarship.percentage_requirement }}%</strong> marks or equivalent CGPA in qualifying exam.</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th class="table-light">Gender Eligibility</th>
+                                <td>
+                                    {% if scholarship.gender_eligibility == 'Female Only' %}
+                                    <span class="badge bg-danger">Female / Girl Students Exclusively</span>
+                                    {% else %}
+                                    Open to All Genders (Male, Female, Transgender)
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Social Reservation Category</th>
+                                <td>{{ scholarship.category_requirement or 'All Categories (General, SC, ST, OBC, EWS)' }}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-light">Domicile / Residence</th>
+                                <td>{{ scholarship.domicile_requirement or scholarship.state or 'All India (Citizen of India)' }}</td>
+                            </tr>
+                            {% if scholarship.disability_requirement and scholarship.disability_requirement != 'None' %}
+                            <tr>
+                                <th class="table-light">Disability Benchmark</th>
+                                <td>{{ scholarship.disability_requirement }} (Minimum 40% certified benchmark disability / UDID card).</td>
+                            </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="small text-muted p-2 bg-light rounded-3">
+                    <strong>Statutory Rule:</strong> Full-time regular attendance is compulsory. Students enrolled in private/distance correspondence degrees are generally ineligible unless explicitly stated in guidelines.
+                </div>
+            </div>
+
+            <!-- 3. Financial Benefits & Allowances -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h4 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="award" class="icon-xs"></i>
+                    <span>Financial Benefits & Allowances</span>
+                </h4>
+                
+                <div class="p-3 bg-success bg-opacity-10 border border-success rounded-3 mb-3">
+                    <div class="fw-bold text-success fs-5 mb-1">{{ scholarship.amount }}</div>
+                    <div class="small text-dark">{{ scholarship.amount_description or 'Comprehensive financial grant directly deposited into the student’s bank account.' }}</div>
+                </div>
+
+                <div class="row g-2 small">
+                    {% if scholarship.tuition_fee_support %}
+                    <div class="col-md-6">
+                        <div class="p-2 border rounded-3 bg-light h-100">
+                            <strong><i data-lucide="graduation-cap" class="icon-xs"></i> Tuition Fee Support:</strong><br>
+                            {{ scholarship.tuition_fee_support }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if scholarship.maintenance_allowance %}
+                    <div class="col-md-6">
+                        <div class="p-2 border rounded-3 bg-light h-100">
+                            <strong> Maintenance Allowance:</strong><br>
+                            {{ scholarship.maintenance_allowance }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if scholarship.hostel_support %}
+                    <div class="col-md-6">
+                        <div class="p-2 border rounded-3 bg-light h-100">
+                            <strong> Hostel Support:</strong><br>
+                            {{ scholarship.hostel_support }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if scholarship.book_allowance %}
+                    <div class="col-md-6">
+                        <div class="p-2 border rounded-3 bg-light h-100">
+                            <strong><i data-lucide="book-open" class="icon-xs"></i> Book & Equipment Grant:</strong><br>
+                            {{ scholarship.book_allowance }}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mt-3 pt-3 border-top small text-muted">
+                    <strong>Disbursement Mode:</strong> Direct Benefit Transfer (DBT) directly into the beneficiary's Aadhaar-seeded active savings bank account via PFMS.
+                </div>
+            </div>
+
+            <!-- 4. Mandatory Document Preparation Checklist -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h4 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="file-text" class="icon-xs"></i>
+                    <span>Mandatory Document Preparation Checklist</span>
+                </h4>
+                <p class="small text-muted mb-3">
+                    Ensure the following documents are in clear PDF / JPG format (under 500 KB each) with valid digital signatures prior to beginning application:
+                </p>
+
+                <div class="d-flex flex-column gap-2 mb-3">
+                    {% for doc in scholarship.parsed_documents %}
+                    <div class="p-3 border rounded-3 bg-light d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center gap-3">
+                            <span class="fs-5"><i data-lucide="clipboard-list" class="icon-xs"></i></span>
+                            <div>
+                                <strong class="text-dark">{{ doc }}</strong>
+                                <div class="small text-muted">Issued by Competent Statutory Authority / Educational Institute</div>
+                            </div>
+                        </div>
+                        <span class="badge bg-secondary small">Required</span>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center p-3 bg-primary bg-opacity-10 rounded-3">
+                    <span class="small text-dark fw-semibold">Save your documents in your MPath Vault once to reuse across schemes!</span>
+                    <a href="{{ url_for('scholarship.document_vault') }}" class="btn btn-outline-primary btn-sm">
+                        Open Document Vault →
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Common Mistakes to Avoid -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-warning bg-opacity-10 border border-warning">
+                <h4 class="fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                    <span><i data-lucide="alert-triangle" class="icon-xs text-warning"></i></span>
+                    <span>Common Application Mistakes to Avoid</span>
+                </h4>
+                <p class="small text-muted mb-3">
+                    Over 35% of scholarship rejections in India occur due to preventable documentation flaws:
+                </p>
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                    {% for m in scholarship.parsed_mistakes %}
+                    <li class="small text-dark d-flex align-items-start gap-2">
+                        <span class="text-warning fw-bold">▪</span>
+                        <span>{{ m }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- 6. Official FAQs -->
+            {% if scholarship.parsed_faqs %}
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h4 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <span><i data-lucide="help-circle" class="icon-xs"></i></span>
+                    <span>Frequently Asked Questions</span>
+                </h4>
+                <div class="accordion accordion-flush" id="scholarshipFaqAccordion">
+                    {% for faq in scholarship.parsed_faqs %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFaq{{ loop.index }}">
+                            <button class="accordion-button collapsed fw-semibold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFaq{{ loop.index }}" aria-expanded="false" aria-controls="collapseFaq{{ loop.index }}">
+                                {{ faq.q }}
+                            </button>
+                        </h2>
+                        <div id="collapseFaq{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="headingFaq{{ loop.index }}" data-bs-parent="#scholarshipFaqAccordion">
+                            <div class="accordion-body small text-muted">
+                                {{ faq.a }}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- RIGHT SIDEBAR COLUMN -->
+        <div class="col-lg-4">
+
+            <!-- Active Cycle Card -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="calendar" class="icon-xs"></i>
+                    <span>Active Application Cycle</span>
+                </h5>
+
+                <div class="p-3 bg-light rounded-3 small mb-3">
+                    <div class="mb-2">
+                        <span class="text-muted d-block">Academic Year:</span>
+                        <strong class="text-dark fs-6">{{ cycle.academic_year if cycle else '2026-27' }}</strong>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-muted d-block">Application Opens:</span>
+                        <strong class="text-dark">{{ cycle.application_start_date if cycle else '01-Jul-2026' }}</strong>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-muted d-block">Last Date to Apply:</span>
+                        <strong class="text-danger fs-6">{{ cycle.application_end_date if cycle else scholarship.deadline or 'Refer Notification' }}</strong>
+                    </div>
+                    {% if cycle and cycle.verification_deadline %}
+                    <div>
+                        <span class="text-muted d-block">Institute Verification Deadline:</span>
+                        <strong class="text-dark">{{ cycle.verification_deadline }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="d-grid gap-2">
+                    {% if meta.is_enabled %}
+                    <a href="{{ url_for('scholarship.apply_redirect', identifier=scholarship.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary fw-semibold shadow-sm">
+                        <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now on Official Portal 
+                    </a>
+                    <a href="{{ url_for('scholarship.apply_scholarship', scholarship_id=scholarship.id) }}" class="btn btn-outline-primary fw-semibold btn-sm">
+                         Apply with MPath Assist
+                    </a>
+                    {% else %}
+                    <button class="btn btn-{{ meta.badge_class }} fw-semibold" disabled title="{{ meta.reason }}">
+                        {{ meta.icon }} {{ meta.label }}
+                    </button>
+                    {% if scholarship.resolved_official_website %}
+                    <a href="{{ scholarship.resolved_official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">
+                        <i data-lucide="globe" class="icon-xs"></i> Visit Official Website 
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Application Status in MPath -->
+            {% if user_app %}
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-primary bg-opacity-10 border border-primary">
+                <h5 class="fw-bold text-dark mb-2">Your Application Status</h5>
+                <div class="small text-muted mb-2">Tracking ID: <strong>{{ user_app.application_number }}</strong></div>
+                {% set b = user_app.display_status_badge %}
+                <div class="mb-3">
+                    <span class="badge bg-{{ b[1] }} fs-6">{{ b[2] }} {{ b[0] }}</span>
+                </div>
+                <a href="{{ url_for('scholarship.my_applications') }}" class="btn btn-outline-primary btn-sm">
+                    View in Applications Dashboard →
+                </a>
+            </div>
+            {% endif %}
+
+            <!-- Transparency & Anti-Scam Notice -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-light border">
+                <h6 class="fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                    <i data-lucide="shield-check" class="icon-xs"></i>
+                    <span>MPath Trust & Security Notice</span>
+                </h6>
+                <p class="small text-muted mb-2">
+                    • Government scholarships <strong>never charge any application fee</strong>.<br>
+                    • MPath never asks for passwords, OTPs, or bank PINs.<br>
+                    • Submissions occur through authorized official portals (NSP, State Portals).
+                </p>
+                <div class="small text-muted fst-italic" style="font-size: 0.75rem;">
+                    Source: {{ scholarship.source }} • Verified on: {{ scholarship.last_verified_at.strftime('%d-%b-%Y') if scholarship.last_verified_at else 'Active' }}
+                </div>
+            </div>
+
+            <!-- Similar Scholarships in Category -->
+            {% if similar %}
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark mb-3">Similar Opportunities</h5>
+                <div class="d-flex flex-column gap-3">
+                    {% for sim in similar %}
+                    <div class="p-2 border rounded-3 bg-light">
+                        <h6 class="fw-bold mb-1">
+                            <a href="{{ url_for('scholarship.scholarship_detail', identifier=sim.slug or sim.id) }}" class="text-decoration-none text-dark">
+                                {{ sim.title }}
+                            </a>
+                        </h6>
+                        <div class="small text-success fw-semibold mb-1">
+                            {{ sim.amount or 'Financial Support' }}
+                        </div>
+                        <a href="{{ url_for('scholarship.scholarship_detail', identifier=sim.slug or sim.id) }}" class="small text-primary text-decoration-none fw-semibold">
+                            View Scheme →
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

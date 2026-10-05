@@ -25,7 +25,38 @@ class Internship(db.Model):
 
     description = db.Column(db.Text)
 
-    created_at = db.Column(
+    domain = db.Column(
+        db.String(100),
+        nullable=True
+    )
+
+    skills = db.Column(
+        db.String(255),
+        nullable=True
+    )
+
+    source = db.Column(
+        db.String(255),
+        default="AICTE & Official Career Portals"
+    )
+
+    official_url = db.Column(
+        db.String(300),
+        nullable=True
+    )
+
+    verification_status = db.Column(
+        db.String(50),
+        default="VERIFIED",
+        index=True
+    )
+
+    last_verified_at = db.Column(
         db.DateTime,
         server_default=db.func.now()
     )
+
+    created_at = db.Column(
+        db.DateTime,
+        server_default=db.func.now()
+    )

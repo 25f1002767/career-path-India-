@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}Offering Institutions for {{ course.name }} | Admin Panel{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-lg-5 py-4">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('admin.dashboard') }}" class="text-decoration-none text-muted">Admin</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('admin.admin_courses') }}" class="text-decoration-none text-muted">Courses</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">{{ course.short_name or course.name }} Offerings</li>
+        </ol>
+    </nav>
+
+    <!-- HEADER -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+                <h2 class="fw-bold mb-0 text-dark">{{ course.name }}</h2>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill">{{ course.level }}</span>
+            </div>
+            <p class="text-muted small mb-0">
+                Managing institutions with verified programs for this canonical course. Total mapped: <strong>{{ pagination.total }}</strong>.
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('course.course_detail', course_id=course.id) }}" target="_blank" class="btn btn-outline-secondary rounded-3 small">
+                 Public View 
+            </a>
+            <button type="button" class="btn btn-primary rounded-3 fw-semibold shadow-sm" data-bs-toggle="modal" data-bs-target="#addMappingModal">
+                + Map New Institution
+            </button>
+        </div>
+    </div>
+
+    <!-- MAPPINGS TABLE -->
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr class="small text-muted text-uppercase">
+                        <th class="ps-4">Institution Name</th>
+                        <th>Location</th>
+                        <th>Program Precision</th>
+                        <th>Intake Seats</th>
+                        <th>Admission Mode</th>
+                        <th>Source & Status</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if mappings %}
+                        {% for cc, col in mappings %}
+                        <tr>
+                            <td class="ps-4">
+                                <div class="fw-bold text-dark">
+                                    <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="text-dark text-decoration-none hover-primary">
+                                        {{ col.name }}
+                                    </a>
+                                </div>
+                                <div class="small text-muted" style="font-size: 0.75rem;">
+                                    AISHE: {{ col.aishe_code or 'Registry N/A' }} • {{ col.government_private }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="small fw-semibold text-dark">{{ col.city }}</div>
+                                <div class="small text-muted" style="font-size: 0.75rem;">{{ col.state }}</div>
+                            </td>
+                            <td>
+                                <div class="small text-primary fw-semibold">{{ cc.program_name or course.name }}</div>
+                                {% if cc.specialization %}
+                                <div class="small text-muted" style="font-size: 0.75rem;">Spec: {{ cc.specialization }}</div>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if cc.seats %}
+                                <span class="badge bg-warning-subtle text-dark border border-warning-subtle rounded-pill small">
+                                     {{ cc.seats }} Seats
+                                </span>
+                                {% else %}
+                                <span class="text-muted small">N/A</span>
+                                {% endif %}
+                            </td>
+                            <td class="small text-secondary">
+                                {{ cc.admission_mode or 'Merit / Counseling' }}
+                            </td>
+                            <td>
+                                <form method="POST" action="{{ url_for('admin.admin_update_mapping_status', mapping_id=cc.id) }}" class="d-inline">
+                                    <select name="status" class="form-select form-select-sm border-0 {% if cc.verification_status == 'VERIFIED' %}bg-success-subtle text-success{% elif cc.verification_status == 'NEEDS_REVIEW' %}bg-warning-subtle text-dark{% else %}bg-secondary-subtle text-secondary{% endif %} fw-semibold rounded-pill py-0.5 px-2" style="font-size: 0.75rem;" onchange="this.form.submit()">
+                                        <option value="VERIFIED" {% if cc.verification_status == 'VERIFIED' %}selected{% endif %}> VERIFIED</option>
+                                        <option value="NEEDS_REVIEW" {% if cc.verification_status == 'NEEDS_REVIEW' %}selected{% endif %}><i data-lucide="alert-triangle" class="icon-xs text-warning"></i> REVIEW</option>
+                                        <option value="ARCHIVED" {% if cc.verification_status == 'ARCHIVED' %}selected{% endif %}><i data-lucide="x" class="icon-xs text-danger"></i> ARCHIVED</option>
+                                    </select>
+                                </form>
+                                <div class="text-muted small mt-1" style="font-size: 0.7rem;">
+                                    {{ cc.source[:24] }}
+                                </div>
+                            </td>
+                            <td class="text-end pe-4">
+                                <form method="POST" action="{{ url_for('admin.admin_delete_mapping', mapping_id=cc.id) }}" class="d-inline" onsubmit="return confirm('Remove this institution-course relationship?');">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" title="Remove Relationship">
+                                        <i data-lucide="trash-2" class="icon-xs"></i> Remove
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="text-center py-5 text-muted">
+                                No institutions currently mapped to {{ course.name }}.
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PAGINATION -->
+    {% if pagination and pagination.pages > 1 %}
+    <div class="d-flex justify-content-center">
+        <ul class="pagination pagination-sm shadow-sm rounded-pill overflow-hidden">
+            {% if pagination.has_prev %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('admin.admin_course_institutions', course_id=course.id, page=pagination.prev_num) }}">‹ Prev</a></li>
+            {% endif %}
+            {% for p in pagination.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                {% if p %}
+                    <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('admin.admin_course_institutions', course_id=course.id, page=p) }}">{{ p }}</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">…</span></li>
+                {% endif %}
+            {% endfor %}
+            {% if pagination.has_next %}
+            <li class="page-item"><a class="page-link" href="{{ url_for('admin.admin_course_institutions', course_id=course.id, page=pagination.next_num) }}">Next ›</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+
+</div>
+
+<!-- ADD MAPPING MODAL -->
+<div class="modal fade" id="addMappingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content rounded-4 border-0">
+            <form method="POST" action="{{ url_for('admin.admin_add_course_institution', course_id=course.id) }}">
+                <div class="modal-header border-bottom">
+                    <h5 class="modal-title fw-bold">Map Institution to {{ course.name }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label small fw-semibold">Select Institution *</label>
+                        <select name="college_id" class="form-select" required>
+                            <option value="">-- Choose Institution from Registry --</option>
+                            {% for col in colleges %}
+                            <option value="{{ col.id }}">{{ col.name }} ({{ col.city }}, {{ col.state }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <label class="form-label small fw-semibold">Specific Program Name at College</label>
+                        <input type="text" name="program_name" class="form-control" value="{{ course.name }}" placeholder="e.g. B.Sc (Hons.) Mathematics">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label small fw-semibold">Specialization</label>
+                        <input type="text" name="specialization" class="form-control" placeholder="e.g. Pure Mathematics">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-semibold">Admission Mode</label>
+                        <input type="text" name="admission_mode" class="form-control" value="Merit-Based / State Counseling">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label small fw-semibold">Verified Seats (Intake)</label>
+                        <input type="number" name="seats" class="form-control" placeholder="e.g. 60">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label small fw-semibold">Status</label>
+                        <select name="verification_status" class="form-select">
+                            <option value="VERIFIED">VERIFIED</option>
+                            <option value="NEEDS_REVIEW">NEEDS_REVIEW</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-top">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary fw-semibold px-4">Create Mapping</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

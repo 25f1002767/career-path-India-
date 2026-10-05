@@ -1,12 +1,15 @@
 import os
-from google import genai
+from dotenv import load_dotenv
+
+load_dotenv()
 
 client = None
 
 try:
     api_key = os.getenv("GEMINI_API_KEY")
-
-    from services.ai_client import client
-
-except Exception:
-    client = None
+    if api_key and api_key.strip():
+        from google import genai
+        client = genai.Client(api_key=api_key.strip())
+except Exception as e:
+    print("Warning: Could not initialize Gemini client:", e)
+    client = None

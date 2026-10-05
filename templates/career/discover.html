@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block title %}Help Me Discover Careers | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Header & Ethical Principle -->
+    <div class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-semibold mb-3">
+            <span></span>
+            <span>Intelligent Possibility Discovery</span>
+        </div>
+        <h1 class="display-6 fw-bold mb-3 text-dark">Help Me Discover Careers</h1>
+        <div class="p-3 bg-light rounded-4 border mb-3">
+            <p class="mb-0 fw-semibold text-primary" style="font-size: 1.05rem;">
+                "AI student ka future decide nahi karega. AI student ko apne future ki possibilities discover karne mein help karega."
+            </p>
+        </div>
+        <p class="text-muted small">
+            Answer a few quick questions about your current academic stream, interests, and working style. We will evaluate our catalog of 200+ authentic careers to reveal promising pathways and explain why each is worth exploring.
+        </p>
+    </div>
+
+    <!-- Questionnaire Form -->
+    {% if not submitted %}
+    <div class="row justify-content-center">
+        <div class="col-lg-9">
+            <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 bg-white">
+                <form method="POST" action="{{ url_for('career.discover_careers') }}">
+                    
+                    <!-- 1. Current Academic Status -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark mb-1">1. Where are you currently in your education?</label>
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <input type="radio" class="btn-check" name="current_status" id="st_c10" value="Class 10">
+                                <label class="btn btn-outline-secondary w-100 text-start p-3 rounded-3" for="st_c10">
+                                    <div class="fw-bold">Class 10 Student</div>
+                                    <div class="small text-muted">Choosing stream next</div>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="radio" class="btn-check" name="current_status" id="st_c12" value="Class 12" checked>
+                                <label class="btn btn-outline-secondary w-100 text-start p-3 rounded-3" for="st_c12">
+                                    <div class="fw-bold">Class 12 Student</div>
+                                    <div class="small text-muted">Exploring college degrees</div>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="radio" class="btn-check" name="current_status" id="st_ug" value="Undergraduate">
+                                <label class="btn btn-outline-secondary w-100 text-start p-3 rounded-3" for="st_ug">
+                                    <div class="fw-bold">College Graduate</div>
+                                    <div class="small text-muted">Entering the job market</div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Academic Stream -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark mb-1">2. What is your current or intended academic stream?</label>
+                        <select name="stream" class="form-select form-select-lg">
+                            <option value="Science (PCM)">Science (PCM - Physics, Chemistry, Mathematics)</option>
+                            <option value="Science (PCB)">Science (PCB - Physics, Chemistry, Biology)</option>
+                            <option value="Commerce">Commerce (Accountancy, Economics, Business)</option>
+                            <option value="Arts / Humanities">Arts / Humanities (History, Political Science, Psychology, Literature)</option>
+                            <option value="Any">General / Flexible / Undecided</option>
+                        </select>
+                    </div>
+
+                    <!-- 3. Affinity Sliders -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark mb-3">3. Rate your interest and enjoyment in each area (1 = Low, 5 = High):</label>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3 border">
+                                    <label class="form-label small fw-semibold text-dark"> Mathematics & Quantitative Logic</label>
+                                    <input type="range" class="form-range" min="1" max="5" value="3" name="math_affinity">
+                                    <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (Love it)</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3 border">
+                                    <label class="form-label small fw-semibold text-dark"><i data-lucide="laptop" class="icon-xs"></i> Technology, Coding & Digital Tools</label>
+                                    <input type="range" class="form-range" min="1" max="5" value="3" name="tech_affinity">
+                                    <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (Love it)</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3 border">
+                                    <label class="form-label small fw-semibold text-dark"> Creative Thinking, Visual Design & Storytelling</label>
+                                    <input type="range" class="form-range" min="1" max="5" value="3" name="creative_affinity">
+                                    <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (Love it)</span></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded-3 border">
+                                    <label class="form-label small fw-semibold text-dark"> People, Empathy, Teaching & Counselling</label>
+                                    <input type="range" class="form-range" min="1" max="5" value="3" name="people_affinity">
+                                    <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (Love it)</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Work Style & Format -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark mb-1">4. What type of daily working environment appeals to you?</label>
+                        <select name="work_mode_pref" class="form-select form-select-lg">
+                            <option value="Hybrid">Hybrid (Flexible Office + Remote Work)</option>
+                            <option value="Remote">Remote (Digital Desk / Software / Creative)</option>
+                            <option value="On-site">On-site (Professional Office, Corporate, Courtroom)</option>
+                            <option value="Clinical">Clinical / Hospital / Diagnostic Laboratory</option>
+                            <option value="Field">Fieldwork / Industrial Plants / Agricultural Land</option>
+                        </select>
+                    </div>
+
+                    <!-- 5. Core Motivation -->
+                    <div class="mb-5">
+                        <label class="form-label fw-bold text-dark mb-1">5. What is your primary career motivation or orientation?</label>
+                        <select name="preferred_orientation" class="form-select form-select-lg">
+                            <option value="Balanced">Balanced Impact, Growth & Quality of Life</option>
+                            <option value="High Tech & Innovation">High Tech Innovation & Global Problem Solving</option>
+                            <option value="Public Service">Public Service, Civil Governance & Social Contribution</option>
+                            <option value="Corporate Advisory & Finance">High Finance, Corporate Strategy & Business Growth</option>
+                            <option value="Creative & Media">Creative Expression, Media Influence & Design</option>
+                            <option value="Healthcare & Healing">Healthcare Healing & Biological Research</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg fw-semibold shadow">
+                            <i data-lucide="arrow-right" class="icon-xs"></i> Discover My Career Possibilities →
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recommendations Result -->
+    {% else %}
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="fw-bold text-dark mb-0">Your Personalized Discovery Results</h3>
+            <a href="{{ url_for('career.discover_careers') }}" class="btn btn-outline-primary btn-sm">
+                ↺ Retake Questionnaire
+            </a>
+        </div>
+        <p class="text-muted">
+            Based on your stream (<strong>{{ user_input.stream }}</strong>) and orientation preference, here are the top 9 authentic career pathways that match your profile.
+        </p>
+    </div>
+
+    <div class="row g-4">
+        {% for match in top_matches %}
+        {% set c = match.career %}
+        {% set fit = match.fit %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 border shadow-sm rounded-4 d-flex flex-column bg-white">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary small">{{ c.category }}</span>
+                    <span class="badge {% if fit.fit_score >= 75 %}bg-success{% elif fit.fit_score >= 60 %}bg-primary{% else %}bg-warning text-dark{% endif %} fs-6">
+                        {{ fit.fit_score }}% Match
+                    </span>
+                </div>
+
+                <h4 class="fw-bold mb-1">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="text-decoration-none text-dark">
+                        {{ c.title }}
+                    </a>
+                </h4>
+                <div class="small text-muted mb-2">{{ c.sub_category }}</div>
+
+                <p class="small text-muted mb-3 flex-grow-1">
+                    {{ c.short_description or c.description[:120] }}...
+                </p>
+
+                <!-- Positive signals -->
+                {% if fit.positive_signals %}
+                <div class="bg-light p-2 rounded-3 small mb-2 border">
+                    <div class="fw-semibold text-success mb-1" style="font-size: 0.75rem;">Why this suits you:</div>
+                    <ul class="mb-0 ps-3 text-muted" style="font-size: 0.8rem;">
+                        {% for pos in fit.positive_signals[:2] %}
+                        <li>{{ pos }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Meta Box -->
+                <div class="small text-muted mb-3">
+                    <div><strong>Salary:</strong> {{ c.average_salary }}</div>
+                    <div><strong><i data-lucide="graduation-cap" class="icon-xs"></i> Entry:</strong> {{ c.minimum_qualification }}</div>
+                </div>
+
+                <div class="mt-auto pt-2 border-top d-flex gap-2">
+                    <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-primary btn-sm flex-grow-1 fw-semibold">
+                        Explore Full Dossier →
+                    </a>
+                    <a href="{{ url_for('career.compare', career1=c.slug) }}" class="btn btn-outline-secondary btn-sm">
+                        <i data-lucide="scale" class="icon-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Application Status | {{ scholarship.title }} - MPath{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 760px;">
+
+    <!-- BACK LINK -->
+    <div class="mb-4">
+        <a href="{{ url_for('scholarship.scholarship_detail', identifier=scholarship.id) }}" class="text-decoration-none text-muted small fw-semibold">
+            ← Back to Scholarship Dossier
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        <!-- HEADER STRIP -->
+        <div class="bg-warning bg-opacity-25 p-4 text-center border-bottom border-warning">
+            <div class="fs-1 mb-2">{{ meta.icon or '<i data-lucide="alert-triangle" class="icon-xs text-warning"></i>' }}</div>
+            <h3 class="fw-bold text-dark mb-1">{{ meta.label or 'Application Link Unavailable' }}</h3>
+            <p class="mb-0 text-muted small">{{ reason or 'An official direct application link is currently unavailable.' }}</p>
+        </div>
+
+        <div class="card-body p-4 p-md-5">
+
+            <!-- SCHOLARSHIP DETAILS SUMMARY -->
+            <div class="p-3 bg-light rounded-4 mb-4 border">
+                <span class="badge bg-secondary small mb-2">
+                    {{ scholarship.provider_type }} • {{ scholarship.state or 'All India' }}
+                </span>
+                <h5 class="fw-bold text-dark mb-1">{{ scholarship.title }}</h5>
+                <div class="small text-muted mb-2">
+                    Administered by: <strong class="text-secondary">{{ scholarship.provider_name or scholarship.provider }}</strong>
+                    {% if scholarship.ministry %} • {{ scholarship.ministry }}{% endif %}
+                </div>
+                <div class="small text-success fw-semibold">
+                    <i data-lucide="award" class="icon-xs"></i> Benefit: {{ scholarship.amount or 'As per scheme guidelines' }}
+                </div>
+            </div>
+
+            <!-- EXPLANATION BOX -->
+            <div class="alert alert-light border rounded-3 mb-4">
+                <h6 class="fw-bold text-dark mb-2">Why is the direct application link not displayed?</h6>
+                <ul class="text-muted small mb-0 ps-3">
+                    {% if meta.label == 'Application Closed' %}
+                    <li>The designated application window for academic cycle <strong>{{ cycle.academic_year if cycle else 'current' }}</strong> concluded on <strong>{{ cycle.application_end_date if cycle else scholarship.deadline }}</strong>.</li>
+                    <li>Please check the official portal or gazette notification for upcoming cycle opening dates.</li>
+                    {% elif 'Upcoming' in meta.label %}
+                    <li>The application cycle for academic year <strong>{{ cycle.academic_year if cycle else '2026-27' }}</strong> has not formally opened yet.</li>
+                    <li>Application window opens on: <strong>{{ cycle.application_start_date if cycle else 'Refer Notification' }}</strong>.</li>
+                    {% else %}
+                    <li>This scheme may require offline application submission through your educational institution or statutory welfare office.</li>
+                    <li>Alternatively, the provider's online application registration server is currently undergoing portal maintenance or re-verification.</li>
+                    <li>To protect students, MPath never redirects to unverified or generic search pages.</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- AUTHORIZED ALTERNATIVE ACTIONS (SECTION 3, 4, 11 COMPLIANCE) -->
+            <div class="d-flex flex-column flex-sm-row gap-3">
+                {% if scholarship.resolved_official_website %}
+                <a href="{{ scholarship.resolved_official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg flex-grow-1 fw-semibold">
+                    <i data-lucide="globe" class="icon-xs"></i> Visit Official Website 
+                </a>
+                {% endif %}
+
+                {% if scholarship.notification_url %}
+                <a href="{{ scholarship.notification_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark btn-lg fw-semibold">
+                    <i data-lucide="file-text" class="icon-xs"></i> Official Notification (PDF) 
+                </a>
+                {% endif %}
+
+                {% if scholarship.guidelines_url %}
+                <a href="{{ scholarship.guidelines_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-info text-dark btn-lg fw-semibold">
+                    <i data-lucide="clipboard-list" class="icon-xs"></i> Guidelines 
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="mt-4 text-center">
+                <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-link text-muted small text-decoration-none">
+                    Browse Other Active Scholarships →
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

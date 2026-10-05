@@ -8,12 +8,12 @@ Admin Dashboard
 
 <style>
     .admin-header {
-        background: linear-gradient(135deg, #0d6efd, #6610f2);
+        background: linear-gradient(135deg, #00338D, #00225E);
         color: white;
         border-radius: 20px;
         padding: 35px;
         margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(13, 110, 253, 0.20);
+        box-shadow: 0 10px 30px rgba(0, 51, 141, 0.22);
     }
 
     .admin-header h1 {
@@ -112,7 +112,7 @@ Admin Dashboard
             <div>
 
                 <h1>
-                    ⚙️ Admin Dashboard
+                    <i data-lucide="settings" class="icon-xs"></i> Admin Dashboard
                 </h1>
 
                 <p>
@@ -124,7 +124,7 @@ Admin Dashboard
             <div>
 
                 <span class="badge bg-light text-primary px-3 py-2">
-                    🔐 Administrator
+                     Administrator
                 </span>
 
             </div>
@@ -149,7 +149,7 @@ Admin Dashboard
                 <div class="card-body py-4">
 
                     <div class="stat-icon bg-primary bg-opacity-10">
-                        👥
+                        <i data-lucide="users" class="icon-xs"></i>
                     </div>
 
                     <h6 class="text-muted mb-2">
@@ -176,7 +176,7 @@ Admin Dashboard
                 <div class="card-body py-4">
 
                     <div class="stat-icon bg-success bg-opacity-10">
-                        🎓
+                        <i data-lucide="graduation-cap" class="icon-xs"></i>
                     </div>
 
                     <h6 class="text-muted mb-2">
@@ -203,7 +203,7 @@ Admin Dashboard
                 <div class="card-body py-4">
 
                     <div class="stat-icon bg-info bg-opacity-10">
-                        ✅
+                        <i data-lucide="check" class="icon-xs text-success"></i>
                     </div>
 
                     <h6 class="text-muted mb-2">
@@ -230,7 +230,7 @@ Admin Dashboard
                 <div class="card-body py-4">
 
                     <div class="stat-icon bg-danger bg-opacity-10">
-                        🚫
+                        
                     </div>
 
                     <h6 class="text-muted mb-2">
@@ -265,7 +265,7 @@ Admin Dashboard
                 <div class="card-body d-flex align-items-center">
 
                     <div class="stat-icon bg-success bg-opacity-10 me-3 mb-0">
-                        💼
+                        <i data-lucide="briefcase" class="icon-xs"></i>
                     </div>
 
                     <div>
@@ -296,7 +296,7 @@ Admin Dashboard
                 <div class="card-body d-flex align-items-center">
 
                     <div class="stat-icon bg-warning bg-opacity-10 me-3 mb-0">
-                        🏫
+                        <i data-lucide="school" class="icon-xs"></i>
                     </div>
 
                     <div>
@@ -327,7 +327,7 @@ Admin Dashboard
                 <div class="card-body d-flex align-items-center">
 
                     <div class="stat-icon bg-danger bg-opacity-10 me-3 mb-0">
-                        📝
+                        
                     </div>
 
                     <div>
@@ -358,7 +358,7 @@ Admin Dashboard
                 <div class="card-body d-flex align-items-center">
 
                     <div class="stat-icon bg-primary bg-opacity-10 me-3 mb-0">
-                        🌐
+                        <i data-lucide="globe" class="icon-xs"></i>
                     </div>
 
                     <div>
@@ -381,6 +381,49 @@ Admin Dashboard
 
     </div>
 
+    <!-- Opportunity Statistics Row -->
+    <div class="row g-4 mb-5">
+        <div class="col-xl-4 col-md-6">
+            <div class="card stat-card shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="stat-icon bg-info bg-opacity-10 me-3 mb-0">
+                        <i data-lucide="landmark" class="icon-xs"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Government Exams</h6>
+                        <h3 class="fw-bold mb-0">{{ stats.exams }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="card stat-card shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="stat-icon bg-success bg-opacity-10 me-3 mb-0">
+                        <i data-lucide="award" class="icon-xs"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Scholarships</h6>
+                        <h3 class="fw-bold mb-0">{{ stats.scholarships }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-6">
+            <div class="card stat-card shadow-sm h-100">
+                <div class="card-body d-flex align-items-center">
+                    <div class="stat-icon bg-primary bg-opacity-10 me-3 mb-0">
+                        <i data-lucide="briefcase" class="icon-xs"></i>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Internships</h6>
+                        <h3 class="fw-bold mb-0">{{ stats.internships }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- ==========================
          QUICK ACTIONS
@@ -391,7 +434,7 @@ Admin Dashboard
         <div class="card-header bg-white border-0 p-4">
 
             <h4 class="fw-bold mb-1">
-                ⚡ Quick Actions
+                <i data-lucide="zap" class="icon-xs"></i> Quick Actions
             </h4>
 
             <p class="text-muted mb-0">
@@ -413,7 +456,7 @@ Admin Dashboard
                         href="{{ url_for('admin.students') }}"
                         class="btn btn-primary quick-btn w-100">
 
-                        👨‍🎓 Manage Students
+                        <i data-lucide="graduation-cap" class="icon-xs"></i> Manage Students
 
                     </a>
 
@@ -428,7 +471,7 @@ Admin Dashboard
                         href="{{ url_for('admin.careers') }}"
                         class="btn btn-success quick-btn w-100">
 
-                        💼 Manage Careers
+                        <i data-lucide="briefcase" class="icon-xs"></i> Manage Careers
 
                     </a>
 
@@ -443,7 +486,7 @@ Admin Dashboard
                         href="{{ url_for('admin.colleges') }}"
                         class="btn btn-warning quick-btn w-100">
 
-                        🏫 Manage Colleges
+                        <i data-lucide="school" class="icon-xs"></i> Manage Colleges
 
                     </a>
 
@@ -458,12 +501,53 @@ Admin Dashboard
                         href="{{ url_for('admin.roadmaps') }}"
                         class="btn btn-info quick-btn w-100 text-white">
 
-                        🗺️ Manage Roadmaps
+                        <i data-lucide="map" class="icon-xs"></i> Manage Roadmaps
 
                     </a>
 
                 </div>
 
+                <!-- Manage Exams -->
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ url_for('admin.exams') }}" class="btn btn-outline-primary quick-btn w-100">
+                        <i data-lucide="landmark" class="icon-xs"></i> Manage Govt Exams
+                    </a>
+                </div>
+
+                <!-- Manage Scholarships -->
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ url_for('admin.scholarships') }}" class="btn btn-outline-success quick-btn w-100">
+                        <i data-lucide="award" class="icon-xs"></i> Manage Scholarships
+                    </a>
+                </div>
+
+                <!-- Manage Internships -->
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ url_for('admin.internships') }}" class="btn btn-outline-info quick-btn w-100">
+                        <i data-lucide="briefcase" class="icon-xs"></i> Manage Internships
+                    </a>
+                </div>
+
+                <!-- Manage Courses Taxonomy -->
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ url_for('admin.admin_courses') }}" class="btn btn-outline-warning quick-btn w-100">
+                        <i data-lucide="graduation-cap" class="icon-xs"></i> Manage Courses
+                    </a>
+                </div>
+
+                <!-- Data Quality Audit -->
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ url_for('admin.admin_data_quality') }}" class="btn btn-outline-success quick-btn w-100">
+                        <i data-lucide="bar-chart-2" class="icon-xs"></i> Data Quality Audit
+                    </a>
+                </div>
+
+                <!-- Bulk Import & Verification -->
+                <div class="col-xl-3 col-md-6">
+                    <a href="{{ url_for('admin.data_import') }}" class="btn btn-secondary quick-btn w-100">
+                         Bulk Data Import
+                    </a>
+                </div>
 
                 <!-- Visit Website -->
 
@@ -473,7 +557,7 @@ Admin Dashboard
                         href="{{ url_for('main.index') }}"
                         class="btn btn-dark quick-btn w-100">
 
-                        🌐 Visit Website
+                        <i data-lucide="globe" class="icon-xs"></i> Visit Website
 
                     </a>
 
@@ -486,9 +570,9 @@ Admin Dashboard
 
                     <a
                         href="{{ url_for('report.career_report') }}"
-                        class="btn btn-success quick-btn w-100">
+                        class="btn btn-outline-secondary quick-btn w-100">
 
-                        🤖 AI Career Report
+                        <i data-lucide="bot" class="icon-xs"></i> AI Career Report
 
                     </a>
 
@@ -519,7 +603,7 @@ Admin Dashboard
                     <div class="d-flex justify-content-between align-items-center">
 
                         <h5 class="fw-bold mb-0">
-                            👥 Recent Users
+                            <i data-lucide="users" class="icon-xs"></i> Recent Users
                         </h5>
 
                         <a
@@ -585,7 +669,7 @@ Admin Dashboard
                         <div class="text-center text-muted py-4">
 
                             <div class="fs-1">
-                                👤
+                                <i data-lucide="user" class="icon-xs"></i>
                             </div>
 
                             <p class="mb-0">
@@ -614,7 +698,7 @@ Admin Dashboard
                     <div class="d-flex justify-content-between align-items-center">
 
                         <h5 class="fw-bold mb-0">
-                            💼 Recent Careers
+                            <i data-lucide="briefcase" class="icon-xs"></i> Recent Careers
                         </h5>
 
                         <a
@@ -655,7 +739,7 @@ Admin Dashboard
                         <div class="text-center text-muted py-4">
 
                             <div class="fs-1">
-                                💼
+                                <i data-lucide="briefcase" class="icon-xs"></i>
                             </div>
 
                             <p class="mb-0">

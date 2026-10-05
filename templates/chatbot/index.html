@@ -1,105 +1,661 @@
 {% extends "base.html" %}
 
-{% block title %}
-AI Career Mentor
-{% endblock %}
+{% block title %}Career Mentor Guidance | MPath Career Counselling{% endblock %}
 
 {% block content %}
+<!-- Markdown & Sanitizer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 
-<div class="container py-5">
+<div class="chat-viewport container-fluid px-lg-4 py-3">
+    <div class="row g-3 h-100">
+        
+        <!-- SIDEBAR: Consultation History -->
+        <div class="col-lg-3 col-md-4 d-none d-md-block" id="chatSidebar">
+            <div class="card border shadow-sm rounded h-100 d-flex flex-column bg-white overflow-hidden">
+                <!-- Sidebar Header -->
+                <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-light">
+                    <button id="newChatBtn" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2 py-2 fw-semibold">
+                        <i data-lucide="plus" class="icon-sm"></i>
+                        <span>New Consultation</span>
+                    </button>
+                </div>
 
-    <div class="row justify-content-center">
-
-        <div class="col-lg-10">
-
-            <div class="text-center mb-5">
-
-                <h1 class="fw-bold text-primary">
-
-                    🤖 MPath Career Counselling AI Mentor
-
-                </h1>
-
-                <p class="lead text-muted">
-
-                    Ask anything about careers, colleges, skills, internships,
-                    government exams, salaries, AI, coding, or your future.
-
-                </p>
-
-            </div>
-
-            <div class="card shadow-lg border-0">
-
-                <div class="card-body p-4">
-
-                    <form method="POST">
-
-                        <div class="mb-4">
-
-                            <label class="form-label fw-bold">
-
-                                Ask Your Question
-
-                            </label>
-
-                            <textarea
-                                class="form-control"
-                                name="question"
-                                rows="6"
-                                placeholder="Example:
-I am studying in Class 12 PCM.
-I want to become an AI Engineer.
-Please guide me."
-                                required></textarea>
-
+                <!-- Conversation List -->
+                <div class="p-2 flex-grow-1 overflow-y-auto" id="conversationList" style="max-height: calc(100vh - 230px);">
+                    {% if conversations %}
+                        {% for conv in conversations %}
+                        <div class="conv-item p-2 mb-1 rounded d-flex align-items-center justify-content-between {% if loop.first %}active{% endif %}" data-id="{{ conv.id }}">
+                            <div class="conv-info text-truncate me-2" onclick="loadConversation({{ conv.id }})">
+                                <div class="conv-title fw-semibold small text-navy text-truncate">{{ conv.title }}</div>
+                                <div class="text-muted text-truncate" style="font-size: 0.75rem;">
+                                    {{ conv.updated_at.strftime('%d %b, %H:%M') if conv.updated_at else 'Active' }}
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-link text-muted p-1 text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Conversation options">
+                                    <i data-lucide="more-vertical" class="icon-xs"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-sm border py-1" style="font-size: 0.85rem;">
+                                    <li>
+                                        <a class="dropdown-item py-1" href="javascript:void(0)" onclick="renameConversation({{ conv.id }}, '{{ conv.title }}')">
+                                            <i data-lucide="edit-2" class="icon-xs text-muted"></i>
+                                            <span>Rename</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item py-1 text-danger" href="javascript:void(0)" onclick="deleteConversation({{ conv.id }})">
+                                            <i data-lucide="trash-2" class="icon-xs text-danger"></i>
+                                            <span>Delete</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center text-muted p-4 small" id="noConvPlaceholder">
+                            <div>No previous consultations.</div>
+                            <div class="mt-1 opacity-75">Start exploring career avenues below.</div>
+                        </div>
+                    {% endif %}
+                </div>
 
-                        <button
-                            type="submit"
-                            class="btn btn-primary btn-lg">
+                <!-- Student Profile Context Pill -->
+                <div class="p-3 border-top bg-light">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="bg-navy text-white rounded d-flex align-items-center justify-content-center fw-bold small" style="width: 32px; height: 32px; background-color: var(--color-navy);">
+                            {{ student_context.name[0] if student_context.name else 'S' }}
+                        </div>
+                        <div class="text-truncate">
+                            <div class="fw-semibold text-navy small text-truncate">{{ student_context.name }}</div>
+                            <div class="text-muted" style="font-size: 0.75rem;">
+                                {{ student_context.stream or student_context.class_grade or "Personalized Consultation" }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            🚀 Ask AI Mentor
-
+        <!-- MAIN CHAT PANEL -->
+        <div class="col-lg-9 col-md-8 col-12 h-100">
+            <div class="card border shadow-sm rounded h-100 d-flex flex-column bg-white overflow-hidden">
+                
+                <!-- Chat Header -->
+                <div class="card-header bg-white border-bottom py-3 px-4 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-badge icon-badge-blue">
+                            <i data-lucide="bot" class="icon-md"></i>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2">
+                                <h2 class="h6 mb-0 fw-bold text-navy" id="currentChatTitle">MPath Career Mentor</h2>
+                                <span class="badge badge-verified">Available</span>
+                            </div>
+                            <div class="text-muted small" style="font-size: 0.78rem;">
+                                Grounded in 200+ Careers, 1,900+ Colleges, Verified Scholarships & Examinations
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-sm btn-outline-secondary d-md-none rounded px-3" id="toggleMobileSidebarBtn">
+                            History
                         </button>
+                        <span class="badge bg-light text-muted border d-none d-sm-inline-flex align-items-center gap-1">
+                            <i data-lucide="shield-check" class="icon-xs text-success"></i>
+                            <span>Verified Guidance</span>
+                        </span>
+                    </div>
+                </div>
 
+                <!-- Messages Stream Area -->
+                <div id="chatMessages" class="card-body p-4 bg-light overflow-y-auto flex-grow-1" style="min-height: 480px; max-height: calc(100vh - 290px);">
+                    
+                    <!-- Welcome Mentor Card -->
+                    <div class="message-row assistant-row mb-4 d-flex gap-3">
+                        <div class="icon-badge icon-badge-blue flex-shrink-0" style="width: 36px; height: 36px;">
+                            <i data-lucide="bot" class="icon-sm"></i>
+                        </div>
+                        <div class="message-bubble card border shadow-sm p-4 bg-white" style="max-width: 88%;">
+                            <div class="fw-semibold text-navy small mb-1">MPath Career Mentor</div>
+                            <div class="chat-content text-navy" style="line-height: 1.65;">
+                                <p class="mb-2">
+                                    Welcome {% if student_context.name and student_context.name != 'Student' %}<strong>{{ student_context.name }}</strong>{% endif %}. 
+                                    I am your career counselling guide inside MPath.
+                                </p>
+                                <p class="mb-2">
+                                    Ask any questions regarding academic streams, higher studies, entry examinations (like UPSC, JEE, NEET, CUET), colleges, scholarship criteria, or multi-stage career roadmaps. You may communicate in <strong>English, Hindi, or Hinglish</strong>.
+                                </p>
+                                <div class="text-muted small border-top pt-2 mt-2 d-flex align-items-start gap-2">
+                                    <i data-lucide="info" class="icon-xs text-blue mt-1"></i>
+                                    <span>Guidance Tip: State your educational level, favourite subjects, and any preferences (e.g. state preference, work mode, or dislikes) for tailored options.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- QUICK PROMPT PILLS -->
+                <div class="px-4 py-2 bg-white border-top border-bottom" id="quickPillsSection">
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <span class="small fw-semibold text-muted me-1">Sample Inquiries:</span>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded prompt-pill" data-prompt="I am in Class 12 PCM. I enjoy mathematics but prefer to explore careers outside conventional B.Tech engineering. What structured pathways exist?">
+                            Class 12 PCM outside Engineering
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded prompt-pill" data-prompt="What technical and data science careers can I pursue through degree routes like B.Sc or BCA?">
+                            Computing & Data without B.Tech
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded prompt-pill" data-prompt="What structured roadmap should I follow over the next 6 to 12 months to prepare for careers in public administration?">
+                            Public Administration Roadmap
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded prompt-pill" data-prompt="Which government recruitment examinations am I eligible to write upon graduating in commerce or arts?">
+                            Government Exams after Graduation
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary rounded prompt-pill" data-prompt="Compare Chartered Accountancy (CA), MBA in Finance, and CFA in terms of eligibility, preparation timeline, and career scope in India.">
+                            Compare CA vs MBA vs CFA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CHAT INPUT COMPONENT -->
+                <div class="card-footer bg-white p-3 border-0">
+                    <form id="chatForm" onsubmit="event.preventDefault(); sendMessage();">
+                        <div class="input-container d-flex gap-2 align-items-end border rounded p-2 bg-white focus-within-shadow">
+                            <textarea id="questionInput" 
+                                      class="form-control border-0 bg-transparent shadow-none p-2" 
+                                      rows="1" 
+                                      placeholder="Ask about career avenues, entrance exams, degree choices, or roadmaps..."
+                                      style="resize: none; max-height: 140px;" 
+                                      onkeydown="handleKeyDown(event)"
+                                      oninput="autoResize(this)"></textarea>
+                            
+                            <button id="sendBtn" type="submit" class="btn btn-primary d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px;" aria-label="Send message">
+                                <span id="sendIcon"><i data-lucide="send" class="icon-sm"></i></span>
+                                <span class="spinner-border spinner-border-sm d-none" id="sendSpinner" role="status"></span>
+                            </button>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-2 px-1">
+                            <span class="text-muted" style="font-size: 0.75rem;">Press Enter to send &bull; Shift + Enter for new line</span>
+                            <span class="text-muted" style="font-size: 0.75rem;">Objective Educational Information &bull; No Speculative Claims</span>
+                        </div>
                     </form>
-
                 </div>
 
             </div>
-
-            {% if guidance %}
-
-            <div class="card shadow-lg border-0 mt-5">
-
-                <div class="card-header bg-primary text-white">
-
-                    <h4 class="mb-0">
-
-                        🎯 Personalized Career Guidance
-
-                    </h4>
-
-                </div>
-
-                <div class="card-body">
-
-                    <pre style="white-space: pre-wrap;
-                                font-family: inherit;
-                                font-size:16px;
-                                line-height:1.7;">{{ guidance }}</pre>
-
-                </div>
-
-            </div>
-
-            {% endif %}
-
         </div>
 
     </div>
-
 </div>
 
+<style>
+.chat-viewport {
+    height: calc(100vh - 100px);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.conv-item {
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    border: 1px solid transparent;
+}
+
+.conv-item:hover {
+    background-color: var(--color-navy-light);
+}
+
+.conv-item.active {
+    background-color: var(--color-blue-light);
+    border-color: #B9D5F0;
+}
+
+.conv-item.active .conv-title {
+    color: var(--color-navy) !important;
+    font-weight: 700;
+}
+
+.user-row .message-bubble {
+    background-color: var(--color-navy) !important;
+    color: #FFFFFF !important;
+    border: 1px solid var(--color-navy-dark);
+}
+
+.user-row .message-bubble .chat-content {
+    color: #FFFFFF !important;
+}
+
+.chat-content h2, .chat-content h3, .chat-content h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-navy);
+}
+
+.chat-content p {
+    margin-bottom: 0.65rem;
+}
+
+.chat-content ul, .chat-content ol {
+    margin-bottom: 0.75rem;
+    padding-left: 1.35rem;
+}
+
+.chat-content li {
+    margin-bottom: 0.35rem;
+}
+
+.chat-content table {
+    width: 100%;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.chat-content table th, .chat-content table td {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+}
+
+.chat-content table th {
+    background-color: var(--bg-subtle);
+    font-weight: 600;
+}
+
+.focus-within-shadow:focus-within {
+    border-color: var(--color-blue) !important;
+    box-shadow: 0 0 0 3px rgba(23, 105, 170, 0.15);
+}
+
+.typing-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--color-blue);
+    animation: typingBounce 1.4s infinite ease-in-out both;
+}
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+</style>
+
+<script>
+let currentConversationId = {% if conversations %}{{ conversations[0].id }}{% else %}null{% endif %};
+let isGenerating = false;
+
+function autoResize(textarea) {
+    textarea.style.height = "auto";
+    textarea.style.height = Math.min(textarea.scrollHeight, 140) + "px";
+}
+
+function handleKeyDown(event) {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+    }
+}
+
+function renderMarkdown(text) {
+    if (!text) return "";
+    try {
+        if (window.marked && window.DOMPurify) {
+            return DOMPurify.sanitize(marked.parse(text));
+        }
+    } catch(e) {
+        console.warn("Markdown parse fallback:", e);
+    }
+    return escapeHtml(text).replace(/\n/g, "<br>");
+}
+
+function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const pills = document.querySelectorAll(".prompt-pill");
+    const input = document.getElementById("questionInput");
+    pills.forEach(p => {
+        p.addEventListener("click", function() {
+            input.value = this.getAttribute("data-prompt");
+            autoResize(input);
+            input.focus();
+        });
+    });
+
+    document.getElementById("newChatBtn").addEventListener("click", startNewChat);
+
+    {% if conversations %}
+    loadConversation({{ conversations[0].id }});
+    {% endif %}
+
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+});
+
+function startNewChat() {
+    fetch("{{ url_for('chatbot.create_conversation') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: "New Career Consultation" })
+    })
+    .then(r => r.json())
+    .then(conv => {
+        currentConversationId = conv.id;
+        document.getElementById("currentChatTitle").textContent = conv.title;
+
+        const list = document.getElementById("conversationList");
+        const placeholder = document.getElementById("noConvPlaceholder");
+        if (placeholder) placeholder.remove();
+
+        document.querySelectorAll(".conv-item").forEach(el => el.classList.remove("active"));
+
+        const item = document.createElement("div");
+        item.className = "conv-item p-2 mb-1 rounded d-flex align-items-center justify-content-between active";
+        item.setAttribute("data-id", conv.id);
+        item.innerHTML = `
+            <div class="conv-info text-truncate me-2" onclick="loadConversation(${conv.id})">
+                <div class="conv-title fw-semibold small text-navy text-truncate">${escapeHtml(conv.title)}</div>
+                <div class="text-muted text-truncate" style="font-size: 0.75rem;">Just now</div>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-link text-muted p-1 text-decoration-none" data-bs-toggle="dropdown" aria-label="Conversation options">
+                    <i data-lucide="more-vertical" class="icon-xs"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm border py-1" style="font-size: 0.85rem;">
+                    <li><a class="dropdown-item py-1" href="javascript:void(0)" onclick="renameConversation(${conv.id}, '${escapeHtml(conv.title)}')">Rename</a></li>
+                    <li><a class="dropdown-item py-1 text-danger" href="javascript:void(0)" onclick="deleteConversation(${conv.id})">Delete</a></li>
+                </ul>
+            </div>
+        `;
+        list.prepend(item);
+        resetChatMessages();
+
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+}
+
+function resetChatMessages() {
+    const container = document.getElementById("chatMessages");
+    container.innerHTML = `
+        <div class="message-row assistant-row mb-4 d-flex gap-3">
+            <div class="icon-badge icon-badge-blue flex-shrink-0" style="width: 36px; height: 36px;">
+                <i data-lucide="bot" class="icon-sm"></i>
+            </div>
+            <div class="message-bubble card border shadow-sm p-4 bg-white" style="max-width: 88%;">
+                <div class="fw-semibold text-navy small mb-1">MPath Career Mentor</div>
+                <div class="chat-content text-navy" style="line-height: 1.65;">
+                    <p class="mb-2">How may I assist your career exploration today? Ask about degrees, entrance examinations, institutions, or roadmaps.</p>
+                </div>
+            </div>
+        </div>
+    `;
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function loadConversation(convId) {
+    currentConversationId = convId;
+    document.querySelectorAll(".conv-item").forEach(el => {
+        el.classList.toggle("active", el.getAttribute("data-id") == convId);
+    });
+
+    fetch(`{{ url_for('chatbot.home') }}conversations/${convId}`)
+    .then(r => r.json())
+    .then(data => {
+        if (!data || !data.messages) return;
+        document.getElementById("currentChatTitle").textContent = data.conversation.title;
+
+        const container = document.getElementById("chatMessages");
+        container.innerHTML = "";
+
+        if (data.messages.length === 0) {
+            resetChatMessages();
+            return;
+        }
+
+        data.messages.forEach(msg => {
+            if (msg.role === "user") {
+                appendUserBubble(msg.content);
+            } else if (msg.role === "assistant") {
+                appendAssistantBubble(msg.content, msg.metadata);
+            }
+        });
+        container.scrollTop = container.scrollHeight;
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    });
+}
+
+function renameConversation(convId, oldTitle) {
+    const newTitle = prompt("Enter new title for this conversation:", oldTitle);
+    if (!newTitle || newTitle.trim() === oldTitle) return;
+
+    fetch(`{{ url_for('chatbot.home') }}conversations/${convId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: newTitle.trim() })
+    })
+    .then(r => r.json())
+    .then(data => {
+        const item = document.querySelector(`.conv-item[data-id="${convId}"] .conv-title`);
+        if (item) item.textContent = data.title;
+        if (currentConversationId == convId) {
+            document.getElementById("currentChatTitle").textContent = data.title;
+        }
+    });
+}
+
+function deleteConversation(convId) {
+    if (!confirm("Are you sure you want to delete this career consultation record?")) return;
+
+    fetch(`{{ url_for('chatbot.home') }}conversations/${convId}`, {
+        method: "DELETE"
+    })
+    .then(r => r.json())
+    .then(() => {
+        const item = document.querySelector(`.conv-item[data-id="${convId}"]`);
+        if (item) item.remove();
+        if (currentConversationId == convId) {
+            const next = document.querySelector(".conv-item");
+            if (next) {
+                loadConversation(next.getAttribute("data-id"));
+            } else {
+                startNewChat();
+            }
+        }
+    });
+}
+
+function sendMessage() {
+    if (isGenerating) return;
+
+    const input = document.getElementById("questionInput");
+    const message = input.value.trim();
+    if (!message) return;
+
+    input.value = "";
+    input.style.height = "auto";
+    appendUserBubble(message);
+
+    const typingBubble = appendTypingIndicator();
+    isGenerating = true;
+    toggleUIState(true);
+
+    fetch("{{ url_for('chatbot.ask') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            message: message,
+            conversation_id: currentConversationId
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Network status: " + res.status);
+        return res.json();
+    })
+    .then(data => {
+        typingBubble.remove();
+        if (data.conversation_id) {
+            currentConversationId = data.conversation_id;
+            const activeItemTitle = document.querySelector(`.conv-item[data-id="${currentConversationId}"] .conv-title`);
+            if (activeItemTitle && data.title) {
+                activeItemTitle.textContent = data.title;
+                document.getElementById("currentChatTitle").textContent = data.title;
+            }
+        }
+        appendAssistantBubble(data.answer, data.metadata);
+    })
+    .catch(err => {
+        typingBubble.remove();
+        appendAssistantBubble("I apologize, but I could not formulate a response at this moment. Please check your network or try again.", {});
+    })
+    .finally(() => {
+        isGenerating = false;
+        toggleUIState(false);
+        input.focus();
+    });
+}
+
+function appendUserBubble(text) {
+    const container = document.getElementById("chatMessages");
+    const row = document.createElement("div");
+    row.className = "message-row user-row mb-4 d-flex justify-content-end gap-2";
+    row.innerHTML = `
+        <div class="message-bubble card border-0 p-3 rounded bg-navy text-white" style="max-width: 82%; background-color: var(--color-navy);">
+            <div class="chat-content text-white" style="line-height: 1.55; white-space: pre-wrap;">${escapeHtml(text)}</div>
+        </div>
+        <div class="avatar bg-secondary bg-opacity-75 text-white rounded d-flex align-items-center justify-content-center flex-shrink-0" style="width: 36px; height: 36px;">
+            <i data-lucide="user" class="icon-sm"></i>
+        </div>
+    `;
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function appendAssistantBubble(text, metadata) {
+    const container = document.getElementById("chatMessages");
+    const row = document.createElement("div");
+    row.className = "message-row assistant-row mb-4 d-flex gap-3";
+
+    let actionsHtml = "";
+    if (metadata && metadata.actions && metadata.actions.length > 0) {
+        actionsHtml = `
+            <div class="action-buttons-strip mt-3 pt-3 border-top">
+                <div class="small fw-semibold text-muted mb-2">Verified MPath Direct Pathways:</div>
+                <div class="d-flex flex-wrap gap-2">
+                    ${metadata.actions.map(act => `
+                        <a href="${act.url}" class="btn btn-sm btn-outline-primary" target="_self">
+                            <span>${escapeHtml(act.label)}</span>
+                            <i data-lucide="arrow-right" class="icon-xs"></i>
+                        </a>
+                    `).join("")}
+                </div>
+            </div>
+        `;
+    }
+
+    let sourceHtml = "";
+    if (metadata && metadata.sources && metadata.sources.length > 0) {
+        sourceHtml = `
+            <div class="mt-2 text-muted" style="font-size: 0.73rem;">
+                <span class="text-success fw-semibold">Verified Source:</span> ${escapeHtml(metadata.sources[0])}
+            </div>
+        `;
+    }
+
+    row.innerHTML = `
+        <div class="icon-badge icon-badge-blue flex-shrink-0" style="width: 36px; height: 36px;">
+            <i data-lucide="bot" class="icon-sm"></i>
+        </div>
+        <div class="message-bubble card border shadow-sm p-4 bg-white" style="max-width: 88%;">
+            <div class="d-flex justify-content-between align-items-center mb-2 border-bottom pb-2">
+                <span class="fw-bold text-navy small">MPath Guidance Intelligence</span>
+                <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="copyBubbleText(this)" title="Copy guidance">
+                    <i data-lucide="copy" class="icon-xs"></i>
+                    <span style="font-size: 0.75rem;">Copy</span>
+                </button>
+            </div>
+            <div class="chat-content text-navy" style="line-height: 1.65;">
+                ${renderMarkdown(text)}
+            </div>
+            ${actionsHtml}
+            ${sourceHtml}
+        </div>
+    `;
+
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+}
+
+function appendTypingIndicator() {
+    const container = document.getElementById("chatMessages");
+    const row = document.createElement("div");
+    row.id = "typingIndicator";
+    row.className = "message-row assistant-row mb-4 d-flex gap-3";
+    row.innerHTML = `
+        <div class="icon-badge icon-badge-blue flex-shrink-0" style="width: 36px; height: 36px;">
+            <i data-lucide="bot" class="icon-sm"></i>
+        </div>
+        <div class="message-bubble card border shadow-sm p-3 bg-white" style="max-width: 85%;">
+            <div class="d-flex align-items-center gap-2 text-muted small">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="ms-2">Consulting verified knowledgebase...</span>
+            </div>
+        </div>
+    `;
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
+    return row;
+}
+
+function toggleUIState(loading) {
+    const btn = document.getElementById("sendBtn");
+    const icon = document.getElementById("sendIcon");
+    const spinner = document.getElementById("sendSpinner");
+    btn.disabled = loading;
+    if (loading) {
+        icon.classList.add("d-none");
+        spinner.classList.remove("d-none");
+    } else {
+        icon.classList.remove("d-none");
+        spinner.classList.add("d-none");
+    }
+}
+
+function copyBubbleText(btn) {
+    const bubble = btn.closest(".message-bubble");
+    const content = bubble.querySelector(".chat-content").innerText;
+    navigator.clipboard.writeText(content).then(() => {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = "<span style='font-size:0.75rem; color: var(--success);'>Copied</span>";
+        setTimeout(() => { btn.innerHTML = originalHtml; }, 2000);
+    });
+}
+</script>
 {% endblock %}

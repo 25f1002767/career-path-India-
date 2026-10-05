@@ -1,340 +1,486 @@
 {% extends "base.html" %}
 
-{% block title %}
-College Explorer
-{% endblock %}
+{% block title %}Explore Colleges & Universities in India | MPath Career Counselling{% endblock %}
 
 {% block content %}
+<div class="container-fluid px-lg-5 py-4">
 
-<div class="container py-5">
+    <!-- HERO HEADER SECTION (Solid Corporate Royal Blue #00338D) -->
+    <div class="hero-solid-banner mb-4 text-white" style="background-color: #00338D !important; background: linear-gradient(135deg, #00338D 0%, #00225E 100%) !important;">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill text-white small fw-semibold mb-3 border border-white border-opacity-25" style="background: rgba(255, 255, 255, 0.15);">
+                    <i data-lucide="landmark" class="icon-xs"></i>
+                    <span>Official Higher Education Registry of India</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-2 text-white">Explore Colleges & Universities</h1>
+                <p class="banner-subtext mb-4 text-white" style="max-width: 720px; opacity: 0.92;">
+                    Discover higher-education institutions across India by course, location, stream, and institution type. Search government universities, premier national institutes, and accredited degree colleges with verified credentials.
+                </p>
 
-    <!-- Header -->
-    <div class="text-center mb-5">
+                <!-- QUICK ACTION BUTTONS -->
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('college.college_finder') }}" class="btn-solid-white-pill">
+                        <i data-lucide="compass" class="icon-xs"></i>
+                        <span>Find Colleges For Me</span>
+                    </a>
+                    <a href="{{ url_for('college.compare_colleges') }}" class="btn-solid-white-pill-outline">
+                        <i data-lucide="scale" class="icon-xs"></i> Compare Institutions
+                    </a>
+                    <button type="button" class="btn-solid-white-pill-outline" data-bs-toggle="modal" data-bs-target="#aiCollegeModal">
+                        <i data-lucide="sparkles" class="icon-xs"></i> AI College Matcher
+                    </button>
+                    {% if search or selected_state or selected_city or selected_type or selected_gov_priv or selected_course_id or selected_discipline or selected_stream %}
+                    <a href="{{ url_for('college.college_list') }}" class="badge-solid-pill text-decoration-none">
+                        &times; Clear All Filters
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
 
-        <h1 class="fw-bold display-5">
-            🎓 College Explorer
-        </h1>
-
-        <p class="text-muted fs-5">
-            Discover colleges according to your stream, course type, and state.
-        </p>
-
+            <!-- DYNAMIC DATABASE METRICS -->
+            <div class="col-lg-4">
+                <div class="row g-2">
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 text-center border border-white border-opacity-25" style="background: rgba(255, 255, 255, 0.14);">
+                            <h3 class="fw-bold mb-0 text-white">{{ counts.total }}</h3>
+                            <div class="text-white small" style="opacity: 0.85;">Total Institutions</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 text-center border border-white border-opacity-25" style="background: rgba(255, 255, 255, 0.14);">
+                            <h3 class="fw-bold mb-0 text-white">{{ counts.universities }}</h3>
+                            <div class="text-white small" style="opacity: 0.85;">Universities</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 text-center border border-white border-opacity-25" style="background: rgba(255, 255, 255, 0.14);">
+                            <h3 class="fw-bold mb-0 text-white">{{ counts.colleges }}</h3>
+                            <div class="text-white small" style="opacity: 0.85;">Colleges</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 text-center border border-white border-opacity-25" style="background: rgba(255, 255, 255, 0.14);">
+                            <h3 class="fw-bold mb-0 text-white">{{ counts.government }}</h3>
+                            <div class="text-white small" style="opacity: 0.85;">Government Portals</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Filter Form -->
-    <form method="GET" class="mb-5">
+    <!-- MAIN DISCOVERY INTERFACE (Sidebar + Directory Grid) -->
+    <div class="row g-4">
+        
+        <!-- FILTER SIDEBAR -->
+        <div class="col-lg-3">
+            <div class="card border rounded-4 shadow-sm p-4 bg-white sticky-lg-top" style="top: 80px; z-index: 10;">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0 text-dark"><i data-lucide="target" class="icon-xs"></i> Filter Directory</h5>
+                    <a href="{{ url_for('college.college_list') }}" class="text-muted small text-decoration-none">Reset</a>
+                </div>
 
-        <div class="row g-3">
+                <form method="GET" action="{{ url_for('college.college_list') }}">
+                    
+                    <!-- Search Input -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Keyword Search</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i data-lucide="search" class="icon-xs"></i></span>
+                            <input type="text" name="search" class="form-control border-start-0" 
+                                   placeholder="College, course, or city..." value="{{ search }}">
+                        </div>
+                    </div>
 
-            <!-- Search -->
-            <div class="col-md-4">
+                    <!-- Course Dropdown (Relational exact match) -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Specific Course Offered</label>
+                        <select name="course_id" class="form-select select-sm">
+                            <option value="">All Standard Courses</option>
+                            {% for crs in all_courses %}
+                            <option value="{{ crs.id }}" {% if selected_course_id == crs.id %}selected{% endif %}>
+                                {{ crs.name }} ({{ crs.level }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                <input
-                    type="text"
-                    name="search"
-                    class="form-control form-control-lg"
-                    placeholder="Search IIT, AIIMS, Delhi University..."
-                    value="{{ request.args.get('search', '') }}">
+                    <!-- State Filter -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">State / UT</label>
+                        <select name="state" class="form-select select-sm">
+                            <option value="">All States of India</option>
+                            {% for st in states %}
+                            <option value="{{ st }}" {% if selected_state == st %}selected{% endif %}>
+                                {{ st }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
+                    <!-- City Filter -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">City / District</label>
+                        <input type="text" name="city" class="form-control" placeholder="e.g. Bhopal, Guna, Indore" value="{{ selected_city }}">
+                    </div>
+
+                    <!-- Institution Type -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Institution Classification</label>
+                        <select name="type" class="form-select select-sm">
+                            <option value="">All Classifications</option>
+                            {% for itype in institution_types %}
+                            <option value="{{ itype }}" {% if selected_type == itype %}selected{% endif %}>
+                                {{ itype }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Governance (Government / Private) -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Governance</label>
+                        <select name="gov_priv" class="form-select select-sm">
+                            <option value="">All Institutions</option>
+                            <option value="Government" {% if selected_gov_priv == 'Government' %}selected{% endif %}>Government / Public</option>
+                            <option value="Private" {% if selected_gov_priv == 'Private' %}selected{% endif %}>Private / Self-Financed</option>
+                        </select>
+                    </div>
+
+                    <!-- Academic Discipline -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-muted">Academic Discipline</label>
+                        <select name="discipline" class="form-select select-sm">
+                            <option value="">All Disciplines</option>
+                            {% for disc in disciplines %}
+                            <option value="{{ disc }}" {% if selected_discipline == disc %}selected{% endif %}>
+                                {{ disc }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Sort Order -->
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold text-muted">Sort By</label>
+                        <select name="sort" class="form-select select-sm">
+                            <option value="name_asc" {% if selected_sort == 'name_asc' %}selected{% endif %}>Name: A to Z</option>
+                            <option value="nirf" {% if selected_sort == 'nirf' %}selected{% endif %}>NIRF Rank (Top First)</option>
+                            <option value="state" {% if selected_sort == 'state' %}selected{% endif %}>Location: State Wise</option>
+                            <option value="newest" {% if selected_sort == 'newest' %}selected{% endif %}>Recently Added</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary fw-semibold py-2">
+                            Apply Filters
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <!-- Stream -->
-            <div class="col-md-2">
-
-                <select name="stream"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">Stream</option>
-
-                    <option value="PCM"
-                        {% if request.args.get('stream') == 'PCM' %}selected{% endif %}>
-                        PCM
-                    </option>
-
-                    <option value="PCB"
-                        {% if request.args.get('stream') == 'PCB' %}selected{% endif %}>
-                        PCB
-                    </option>
-
-                    <option value="Commerce"
-                        {% if request.args.get('stream') == 'Commerce' %}selected{% endif %}>
-                        Commerce
-                    </option>
-
-                    <option value="Arts"
-                        {% if request.args.get('stream') == 'Arts' %}selected{% endif %}>
-                        Arts
-                    </option>
-
-                </select>
-
-            </div>
-
-            <!-- Course Type -->
-            <div class="col-md-3">
-
-                <select name="course_type"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">Course Type</option>
-
-                    <option value="Engineering"
-                        {% if request.args.get('course_type') == 'Engineering' %}selected{% endif %}>
-                        Engineering
-                    </option>
-
-                    <option value="Medical"
-                        {% if request.args.get('course_type') == 'Medical' %}selected{% endif %}>
-                        Medical
-                    </option>
-
-                    <option value="Management"
-                        {% if request.args.get('course_type') == 'Management' %}selected{% endif %}>
-                        Management
-                    </option>
-
-                    <option value="Commerce"
-                        {% if request.args.get('course_type') == 'Commerce' %}selected{% endif %}>
-                        Commerce
-                    </option>
-
-                    <option value="Arts"
-                        {% if request.args.get('course_type') == 'Arts' %}selected{% endif %}>
-                        Arts
-                    </option>
-
-                    <option value="Law"
-                        {% if request.args.get('course_type') == 'Law' %}selected{% endif %}>
-                        Law
-                    </option>
-
-                </select>
-
-            </div>
-
-            <!-- State -->
-            <div class="col-md-3">
-
-                <select name="state"
-                        class="form-select form-select-lg single-filter">
-
-                    <option value="">State</option>
-
-                    <option value="Delhi"
-                        {% if request.args.get('state') == 'Delhi' %}selected{% endif %}>
-                        Delhi
-                    </option>
-
-                    <option value="Maharashtra"
-                        {% if request.args.get('state') == 'Maharashtra' %}selected{% endif %}>
-                        Maharashtra
-                    </option>
-
-                    <option value="Karnataka"
-                        {% if request.args.get('state') == 'Karnataka' %}selected{% endif %}>
-                        Karnataka
-                    </option>
-
-                    <option value="Tamil Nadu"
-                        {% if request.args.get('state') == 'Tamil Nadu' %}selected{% endif %}>
-                        Tamil Nadu
-                    </option>
-
-                    <option value="Madhya Pradesh"
-                        {% if request.args.get('state') == 'Madhya Pradesh' %}selected{% endif %}>
-                        Madhya Pradesh
-                    </option>
-
-                    <option value="Uttar Pradesh"
-                        {% if request.args.get('state') == 'Uttar Pradesh' %}selected{% endif %}>
-                        Uttar Pradesh
-                    </option>
-
-                </select>
-
-            </div>
-
         </div>
 
-        <!-- Buttons -->
-        <div class="text-center mt-4">
+        <!-- MAIN DIRECTORY RESULTS -->
+        <div class="col-lg-9">
+            
+            <!-- Result Summary Bar -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-3 bg-light p-3 rounded-4 border">
+                <div>
+                    <span class="fw-bold text-dark fs-6">
+                        Showing {{ (pagination.page - 1) * pagination.per_page + 1 }} - 
+                        {{ [pagination.page * pagination.per_page, pagination.total]|min }} of {{ pagination.total }} Institutions
+                    </span>
+                    {% if selected_course %}
+                    <span class="badge bg-primary ms-2">Offering {{ selected_course.name }}</span>
+                    {% endif %}
+                    {% if selected_state %}
+                    <span class="badge bg-secondary ms-1">State: {{ selected_state }}</span>
+                    {% endif %}
+                </div>
 
-            <button class="btn btn-primary btn-lg px-5 me-2">
+                <div class="text-muted small">
+                    Page {{ pagination.page }} of {{ pagination.pages or 1 }}
+                </div>
+            </div>
 
-                🔍 Apply Filter
+            <!-- INSTITUTION CARDS GRID -->
+            {% if colleges %}
+            <div class="row g-4 mb-4">
+                {% for col in colleges %}
+                <div class="col-md-6">
+                    <div class="card h-100 p-4 border rounded-4 shadow-sm card-interactive d-flex flex-column bg-white">
+                        
+                        <!-- Top Badges -->
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">
+                                    {{ col.display_type }}
+                                </span>
+                                <span class="badge {% if 'gov' in col.government_private|lower %}bg-success bg-opacity-10 text-success{% else %}bg-secondary bg-opacity-10 text-secondary{% endif %} small">
+                                    {{ col.government_private or 'Government' }}
+                                </span>
+                            </div>
 
-            </button>
+                            {% if col.nirf_rank %}
+                            <span class="badge bg-warning text-dark small fw-bold" title="NIRF {{ col.nirf_category or 'National' }} Rank {{ col.nirf_rank_year or 2024 }}">
+                                <i data-lucide="award" class="icon-xs"></i> NIRF #{{ col.nirf_rank }}
+                            </span>
+                            {% elif col.accreditation_grade %}
+                            <span class="badge bg-info bg-opacity-10 text-info small fw-bold">
+                                NAAC {{ col.accreditation_grade }}
+                            </span>
+                            {% else %}
+                            <span class="badge bg-light text-muted border small">
+                                <i data-lucide="shield-check" class="icon-xs"></i> Verified
+                            </span>
+                            {% endif %}
+                        </div>
 
-            <a href="{{ url_for('college.college_list') }}"
-               class="btn btn-outline-secondary btn-lg">
+                        <!-- College Title -->
+                        <h5 class="fw-bold mb-1">
+                            <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="text-dark text-decoration-none">
+                                {{ col.name }}
+                            </a>
+                        </h5>
 
-                Reset
+                        {% if col.short_name %}
+                        <div class="text-muted small mb-2 fw-semibold">{{ col.short_name }}</div>
+                        {% endif %}
 
-            </a>
+                        <!-- Location & Jurisdiction -->
+                        <div class="small text-muted mb-2">
+                            <i data-lucide="map-pin" class="icon-xs"></i> <strong>{{ col.city }}</strong>, {{ col.state }}
+                            {% if col.district and col.district != col.city %}
+                            <span class="text-secondary">({{ col.district }} District)</span>
+                            {% endif %}
+                        </div>
 
-        </div>
+                        <!-- Affiliated University / Authority -->
+                        {% if col.affiliated_university or col.university_name %}
+                        <div class="small text-muted mb-2">
+                            <span class="text-secondary">Affiliation:</span> 
+                            <strong>{{ col.affiliated_university or col.university_name }}</strong>
+                        </div>
+                        {% endif %}
 
-    </form>
+                        <!-- Courses / Offerings Highlight -->
+                        <div class="small text-muted mb-3 flex-grow-1">
+                            <span class="text-secondary fw-semibold d-block mb-1">Programs & Offerings:</span>
+                            {% set mapped_c = col.college_courses.limit(4).all() %}
+                            {% if mapped_c %}
+                                <div class="d-flex flex-wrap gap-1">
+                                    {% for mc in mapped_c %}
+                                    <a href="{{ url_for('course.course_detail', course_id=mc.course_id) }}" class="badge bg-light text-dark border text-decoration-none hover-primary">
+                                        {{ mc.course.short_name or mc.course.name }}
+                                    </a>
+                                    {% endfor %}
+                                    {% if col.college_courses.count() > 4 %}
+                                    <span class="badge bg-light text-muted border">+{{ col.college_courses.count() - 4 }} more</span>
+                                    {% endif %}
+                                </div>
+                            {% elif col.course %}
+                                <span class="text-dark">{{ col.course[:90] }}{% if col.course|length > 90 %}...{% endif %}</span>
+                            {% else %}
+                                <span class="text-muted fst-italic">Official programs synchronizing with AISHE</span>
+                            {% endif %}
+                        </div>
 
-    <!-- Results Count -->
-    <div class="mb-4">
-
-        <h5 class="fw-bold">
-            Showing {{ colleges|length }} College{{ 's' if colleges|length != 1 else '' }}
-        </h5>
-
-    </div>
-
-    <!-- College Cards -->
-    <div class="row">
-
-        {% if colleges %}
-
-            {% for college in colleges %}
-
-            <div class="col-lg-4 col-md-6 mb-4">
-
-                <div class="card shadow border-0 h-100">
-
-                    <div class="card-body d-flex flex-column">
-
-                        <!-- College Name -->
-                        <h4 class="fw-bold text-primary mb-3">
-
-                            {{ college.name }}
-
-                        </h4>
-
-                        <!-- Location -->
-                        <p>
-
-                            📍 <strong>Location:</strong>
-                            {{ college.city }}, {{ college.state }}
-
-                        </p>
-
-                        <!-- Course -->
-                        <p>
-
-                            🎓 <strong>Course:</strong>
-                            {{ college.course }}
-
-                        </p>
-
-                        <!-- Fees -->
-                        <p>
-
-                            💰 <strong>Fees:</strong>
-                            {{ college.fees }}
-
-                        </p>
-
-                        <!-- Placement -->
-                        <p>
-
-                            🚀 <strong>Placement:</strong>
-                            {{ college.placement }}
-
-                        </p>
-
-                        <!-- Description -->
-                        <p class="text-muted flex-grow-1">
-
-                            {{ college.description }}
-
-                        </p>
-
-                        <!-- Official Website Button -->
-                        <div class="mt-auto d-grid">
-
-                            <a href="{{ college.official_website }}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="btn btn-primary btn-lg">
-
-                                🌐 Official Website
-
+                        <!-- Card Footer Action Buttons -->
+                        <div class="d-flex flex-wrap gap-2 mt-auto pt-3 border-top align-items-center">
+                            <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="btn btn-outline-primary btn-sm flex-grow-1">
+                                View Details →
                             </a>
 
+                            {% if col.display_website %}
+                            <a href="{{ col.display_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success btn-sm">
+                                <i data-lucide="globe" class="icon-xs"></i> Portal 
+                            </a>
+                            {% endif %}
+
+                            <a href="{{ url_for('college.compare_colleges', ids=col.id) }}" class="btn btn-light border btn-sm" title="Add to Comparison Matrix">
+                                <i data-lucide="scale" class="icon-xs"></i>
+                            </a>
+
+                            <a href="{{ url_for('college.toggle_save', college_id=col.id) }}" class="btn btn-light border btn-sm" title="Save College">
+                                {% if col.id in saved_college_ids %}<i data-lucide="bookmark-check" class="icon-xs"></i>{% else %}<i data-lucide="bookmark" class="icon-xs"></i>{% endif %}
+                            </a>
                         </div>
 
                     </div>
-
                 </div>
-
+                {% endfor %}
             </div>
 
-            {% endfor %}
+            <!-- PAGINATION CONTROLS -->
+            {% if pagination.pages > 1 %}
+            <nav aria-label="College directory pagination" class="my-4">
+                <ul class="pagination justify-content-center flex-wrap">
+                    
+                    <!-- Previous Page -->
+                    <li class="page-item {% if not pagination.has_prev %}disabled{% endif %}">
+                        <a class="page-link" href="{{ url_for('college.college_list', page=pagination.prev_num, search=search, state=selected_state, city=selected_city, type=selected_type, gov_priv=selected_gov_priv, course_id=selected_course_id, discipline=selected_discipline, stream=selected_stream, sort=selected_sort) }}">
+                            &laquo; Previous
+                        </a>
+                    </li>
 
-        {% else %}
+                    <!-- Page Numbers -->
+                    {% for p in pagination.iter_pages(left_edge=2, left_current=2, right_current=2, right_edge=2) %}
+                        {% if p %}
+                            <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                                <a class="page-link" href="{{ url_for('college.college_list', page=p, search=search, state=selected_state, city=selected_city, type=selected_type, gov_priv=selected_gov_priv, course_id=selected_course_id, discipline=selected_discipline, stream=selected_stream, sort=selected_sort) }}">
+                                    {{ p }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">&hellip;</span></li>
+                        {% endif %}
+                    {% endfor %}
 
-        <div class="col-12">
+                    <!-- Next Page -->
+                    <li class="page-item {% if not pagination.has_next %}disabled{% endif %}">
+                        <a class="page-link" href="{{ url_for('college.college_list', page=pagination.next_num, search=search, state=selected_state, city=selected_city, type=selected_type, gov_priv=selected_gov_priv, course_id=selected_course_id, discipline=selected_discipline, stream=selected_stream, sort=selected_sort) }}">
+                            Next &raquo;
+                        </a>
+                    </li>
 
-            <div class="alert alert-warning text-center shadow-sm">
+                </ul>
+            </nav>
+            {% endif %}
 
-                <h5 class="mb-2">
-                    😕 No colleges found.
-                </h5>
-
-                <p class="mb-0">
-                    Try selecting a different filter.
+            {% else %}
+            <!-- EMPTY STATE -->
+            <div class="card p-5 text-center border-0 shadow-sm rounded-4 bg-white">
+                <div class="display-1 mb-3"><i data-lucide="landmark" class="icon-xs"></i></div>
+                <h4 class="fw-bold mb-2">No Matching Institutions Found</h4>
+                <p class="text-muted mb-4" style="max-width: 500px; margin: 0 auto;">
+                    We could not find any institutions matching your exact combination of filters. Try broadening your location or clearing specific course criteria.
                 </p>
-
+                <div>
+                    <a href="{{ url_for('college.college_list') }}" class="btn btn-primary px-4 py-2">
+                        Reset All Filters
+                    </a>
+                </div>
             </div>
+            {% endif %}
 
         </div>
-
-        {% endif %}
-
     </div>
-
 </div>
 
-<!-- Single Filter Script -->
+<!-- AI COLLEGE MATCHING MODAL -->
+<div class="modal fade" id="aiCollegeModal" tabindex="-1" aria-labelledby="aiCollegeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-4 border-0 shadow">
+            <div class="modal-header border-bottom py-3 px-4">
+                <h5 class="modal-title fw-bold" id="aiCollegeModalLabel"><i data-lucide="bot" class="icon-xs"></i> Find Colleges For Me (Explainable AI)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <p class="text-muted small mb-3">
+                    Enter your course of interest, preferred state, or education stream. The AI matches you strictly against verified institutional database records with explainable criteria.
+                </p>
+
+                <div class="row g-2 mb-3">
+                    <div class="col-md-7">
+                        <input type="text" id="aiCollegeQuery" class="form-control" placeholder="e.g. B.Sc Mathematics government college in Madhya Pradesh">
+                    </div>
+                    <div class="col-md-3">
+                        <select id="aiCollegeState" class="form-select">
+                            <option value="">Any State</option>
+                            {% for st in states %}
+                            <option value="{{ st }}">{{ st }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <button class="btn btn-primary" id="aiCollegeSubmit" type="button">
+                            <span class="spinner-border spinner-border-sm d-none" id="aiCollegeSpinner"></span>
+                            Match
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Output -->
+                <div id="aiCollegeResultsArea" class="mt-3">
+                    <div class="text-center py-4 text-muted small" id="aiCollegePlaceholder">
+                        Matched institutions will be listed here with verified match reasons.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
+    const submitBtn = document.getElementById("aiCollegeSubmit");
+    const queryInput = document.getElementById("aiCollegeQuery");
+    const stateSelect = document.getElementById("aiCollegeState");
+    const spinner = document.getElementById("aiCollegeSpinner");
+    const resultsArea = document.getElementById("aiCollegeResultsArea");
 
-    const filters = document.querySelectorAll(".single-filter");
+    submitBtn.addEventListener("click", function () {
+        const query = queryInput.value.trim();
+        const state = stateSelect.value;
+        if (!query && !state) return;
 
-    function updateFilters() {
+        submitBtn.disabled = true;
+        spinner.classList.remove("d-none");
+        resultsArea.innerHTML = '<div class="text-center py-3 text-muted"><span class="spinner-border spinner-border-sm text-primary"></span> Matching verified higher education database records...</div>';
 
-        let active = null;
-
-        filters.forEach(f => {
-
-            if (f.value !== "") {
-                active = f;
+        fetch("{{ url_for('college.ai_college_discovery') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ query: query, state: state })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (!data.success || !data.results || data.results.length === 0) {
+                resultsArea.innerHTML = '<div class="alert alert-info small mb-0">No direct institutional matches found. Try entering a degree name (e.g. B.Sc Mathematics, B.Tech, MBBS) or state name.</div>';
+                return;
             }
 
+            let html = '<div class="row g-3">';
+            data.results.forEach(item => {
+                html += `
+                    <div class="col-md-6">
+                        <div class="card h-100 p-3 border rounded-3 shadow-sm bg-light">
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">${item.type}</span>
+                                <span class="badge bg-success bg-opacity-10 text-success small">Verified</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">${item.name}</h6>
+                            <div class="small text-muted mb-2"><i data-lucide="map-pin" class="icon-xs"></i> ${item.location}</div>
+                            
+                            <div class="p-2 mb-2 bg-white rounded border small">
+                                <span class="fw-semibold text-success d-block mb-1">Matched because:</span>
+                                <ul class="mb-0 ps-3 text-secondary small">
+                                    ${item.reasons.map(r => `<li>${r}</li>`).join('')}
+                                </ul>
+                            </div>
+
+                            <div class="d-flex gap-2 mt-auto pt-2">
+                                <a href="${item.detail_url}" class="btn btn-sm btn-primary flex-grow-1">Inspect College →</a>
+                                ${item.official_website ? `<a href="${item.official_website}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">Portal </a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            resultsArea.innerHTML = html;
+        })
+        .catch(err => {
+            resultsArea.innerHTML = '<div class="alert alert-warning small mb-0">Network error while connecting to matching engine.</div>';
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            spinner.classList.add("d-none");
         });
-
-        filters.forEach(f => {
-
-            if (active && f !== active) {
-
-                f.disabled = true;
-
-            } else {
-
-                f.disabled = false;
-
-            }
-
-        });
-
-    }
-
-    filters.forEach(f => {
-
-        f.addEventListener("change", updateFilters);
-
     });
-
-    updateFilters();
-
 });
-
 </script>
-
 {% endblock %}

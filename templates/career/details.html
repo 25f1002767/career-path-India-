@@ -1,198 +1,758 @@
 {% extends "base.html" %}
 
-{% block title %}
-{{ career.title }}
-{% endblock %}
+{% block title %}{{ career.title }} - Comprehensive Career Dossier | MPath{% endblock %}
 
 {% block content %}
+<div class="container py-5">
 
-<div class="container mt-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('career.career_list') }}" class="text-decoration-none">Careers</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('career.career_list', category=career.category) }}" class="text-decoration-none">{{ career.category }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ career.title }}</li>
+        </ol>
+    </nav>
 
-    <div class="card shadow">
+    <!-- Career Dossier Hero Card -->
+    <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 mb-4 bg-white position-relative overflow-hidden">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <!-- Badges -->
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold px-3 py-2 rounded-pill">
+                        {{ career.category }}
+                    </span>
+                    {% if career.sub_category %}
+                    <span class="badge bg-secondary bg-opacity-10 text-dark fw-semibold px-3 py-2 rounded-pill">
+                        {{ career.sub_category }}
+                    </span>
+                    {% endif %}
+                    <span class="badge bg-success bg-opacity-10 text-success fw-semibold px-3 py-2 rounded-pill border border-success border-opacity-25 d-inline-flex align-items-center gap-1">
+                        <i data-lucide="check-circle" class="icon-xs"></i> {{ career.verification_status or 'VERIFIED' }}
+                    </span>
+                    {% if career.source %}
+                    <span class="badge bg-light text-muted border px-2 py-1">
+                        Source: {{ career.source }}
+                    </span>
+                    {% endif %}
+                </div>
 
-        <div class="card-body">
+                <!-- Title & What They Do -->
+                <h1 class="display-6 fw-bold mb-3 text-dark">{{ career.title }}</h1>
+                <p class="lead text-muted fs-6 mb-4">
+                    {{ career.short_description or career.description }}
+                </p>
 
-            <h1 class="fw-bold">
-                {{ career.title }}
-            </h1>
+                <!-- Actions -->
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{{ url_for('career.toggle_save', career_id=career.id) }}" class="btn {% if is_saved %}btn-warning text-dark{% else %}btn-outline-primary{% endif %} fw-semibold">
+                        {% if is_saved %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved to Profile{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save Career{% endif %}
+                    </a>
 
-            <span class="badge bg-primary mb-3">
-                {{ career.category }}
-            </span>
+                    <a href="{{ url_for('career.compare', career1=career.slug) }}" class="btn btn-outline-secondary">
+                        <i data-lucide="scale" class="icon-xs"></i> Compare
+                    </a>
 
-            <hr>
+                    {% if career.official_url %}
+                    <a href="{{ career.official_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-success">
+                        <i data-lucide="globe" class="icon-xs"></i> Official Reference Portal
+                    </a>
+                    {% endif %}
 
-            <!-- Description -->
+                    <a href="#fit-explorer" class="btn btn-primary fw-semibold">
+                        <i data-lucide="target" class="icon-xs"></i> Check My Career Fit
+                    </a>
 
-            <h4>Description</h4>
-
-            <p>
-                {{ career.description }}
-            </p>
-
-            <!-- Future Scope -->
-
-            <h4>Future Scope</h4>
-
-            <p>
-                {{ career.future_scope }}
-            </p>
-
-            <!-- Salary -->
-
-            <h4>Average Salary</h4>
-
-            <ul>
-
-                <li>
-                    <strong>Fresher:</strong>
-                    {{ career.average_salary.fresher }}
-                </li>
-
-                <li>
-                    <strong>Experienced:</strong>
-                    {{ career.average_salary.experienced }}
-                </li>
-
-                <li>
-                    <strong>International:</strong>
-                    {{ career.average_salary.international }}
-                </li>
-
-            </ul>
-
-            <!-- Education -->
-
-            <h4>Education</h4>
-
-            <p>
-                {{ career.education.minimum }}
-            </p>
-
-            <!-- Skills -->
-
-            <h4>Technical Skills</h4>
-
-            <ul>
-
-                {% for skill in career.skills.technical %}
-
-                <li>{{ skill }}</li>
-
-                {% endfor %}
-
-            </ul>
-
-            <!-- Companies -->
-
-            <h4>Top Companies</h4>
-
-            <ul>
-
-                {% for company in career.top_companies %}
-
-                <li>{{ company }}</li>
-
-                {% endfor %}
-
-            </ul>
-
-            <!-- Roadmap -->
-
-            <h4>Roadmap</h4>
-
-            <ol>
-
-                {% for step in career.roadmap %}
-
-                <li class="mb-3">
-
-                    <strong>{{ step.title }}</strong>
-
-                    <br>
-
-                    {{ step.description }}
-
-                </li>
-
-                {% endfor %}
-
-            </ol>
-
-            <!-- Action Buttons -->
-
-            <div class="mt-4 d-flex gap-2 flex-wrap">
-
-                <a
-                    href="{{ url_for('career.career_list') }}"
-                    class="btn btn-secondary">
-
-                    ← Back
-
-                </a>
-
-                <a
-                    href="{{ url_for('college.college_list', search=career.title) }}"
-                    class="btn btn-success">
-
-                    🎓 Find Colleges
-
-                </a>
-
+                    <a href="#ask-counsellor" class="btn btn-light border text-primary fw-semibold">
+                        <i data-lucide="bot" class="icon-xs text-gold"></i> Consult Career Mentor
+                    </a>
+                </div>
             </div>
+
+            <!-- Key Highlight Box -->
+            <div class="col-lg-4">
+                <div class="bg-light p-4 rounded-4 border">
+                    <h6 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                        <i data-lucide="clipboard-list" class="icon-xs"></i>
+                        <span>Official Pathway Highlights</span>
+                    </h6>
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Indicative Salary Scale:</span>
+                        <strong class="text-success fs-5">{{ career.average_salary or 'As per industry scale' }}</strong>
+                        <div class="small text-muted" style="font-size: 0.75rem;">Indicative benchmark across Indian tier-1/tier-2 hubs.</div>
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Minimum Qualification:</span>
+                        <strong class="text-dark">{{ career.minimum_qualification or career.education_required or 'Bachelor’s Degree' }}</strong>
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Preferred Academic Stream:</span>
+                        <strong class="text-dark">{{ career.preferred_streams or 'Any Stream / Open' }}</strong>
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-muted small d-block">Work Format & Environment:</span>
+                        <span class="badge bg-white text-dark border">{{ career.work_modes or 'Hybrid / Office' }}</span>
+                    </div>
+                    {% if career.last_verified_at %}
+                    <div class="small text-muted border-top pt-2 d-inline-flex align-items-center gap-1">
+                        <i data-lucide="check-circle" class="icon-xs text-success"></i> Verified on {{ career.last_verified_at.strftime('%B %Y') if career.last_verified_at.strftime else 'Recent' }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dossier Content Layout -->
+    <div class="row g-4">
+
+        <!-- Left 8 Columns: Deep Details, Routes, Degrees, Exams, Roadmaps -->
+        <div class="col-lg-8">
+
+            <!-- 1. What They Do & Day-to-Day Responsibilities -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h4 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                    <i data-lucide="briefcase" class="icon-xs"></i>
+                    <span>Role Overview & Daily Responsibilities</span>
+                </h4>
+                
+                {% if career.what_they_do %}
+                <div class="mb-3">
+                    <h6 class="fw-semibold text-primary">Core Mission & Function</h6>
+                    <p class="text-muted">{{ career.what_they_do }}</p>
+                </div>
+                {% endif %}
+
+                {% if career.day_to_day_work %}
+                <div class="mb-3">
+                    <h6 class="fw-semibold text-primary">Typical Day-to-Day Tasks</h6>
+                    <div class="bg-light p-3 rounded-3 text-muted" style="white-space: pre-line;">
+                        {{ career.day_to_day_work }}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if career.work_environment %}
+                <div>
+                    <h6 class="fw-semibold text-primary">Work Environment</h6>
+                    <p class="text-muted small mb-0">{{ career.work_environment }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- 2. Multi-Route Pathways (Path A, Path B, Path C) -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                        <i data-lucide="map" class="icon-xs"></i>
+                        <span>Multiple Realistic Entry Routes</span>
+                    </h4>
+                    <span class="badge bg-primary bg-opacity-10 text-primary small">Multi-Pathway Architecture</span>
+                </div>
+                <p class="text-muted small mb-4">
+                    There is rarely only one single way to reach a career. Below are authentic routes including direct, alternative, and lateral avenues.
+                </p>
+
+                {% if entry_routes %}
+                <div class="d-flex flex-column gap-3">
+                    {% for route in entry_routes %}
+                    <div class="border rounded-4 p-3 bg-light">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="fw-bold text-primary mb-0">
+                                <i data-lucide="map-pin" class="icon-xs"></i> {{ route.title or 'Pathway' }}
+                            </h6>
+                            <span class="badge bg-secondary text-white small">{{ route.type or 'ROUTE' }}</span>
+                        </div>
+                        <p class="text-muted small mb-0">{{ route.steps or route.description }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% elif routes_roadmaps %}
+                <div class="d-flex flex-column gap-3">
+                    {% for r in routes_roadmaps %}
+                    <div class="border rounded-4 p-3 bg-light">
+                        <h6 class="fw-bold text-primary mb-2"><i data-lucide="map-pin" class="icon-xs"></i> {{ r.path_name or 'Pathway Option' }} ({{ r.path_type }})</h6>
+                        <p class="text-muted small mb-0">{{ r.roadmap_steps }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted small">Standard Route: Class 12 Pass -> Relevant Degree -> Industry Internship -> Professional Employment.</p>
+                {% endif %}
+            </div>
+
+            <!-- 3. Relational Qualifying Degrees & Offering Colleges Graph -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                        <i data-lucide="graduation-cap" class="icon-xs"></i>
+                        <span>Qualifying Degree Programs & Recommended Degree Courses</span>
+                    </h4>
+                    <span class="badge bg-success bg-opacity-10 text-success small">Career → Course → College</span>
+                </div>
+                <p class="text-muted small mb-3">
+                    Official degrees that establish foundational competence. Offering institutions are dynamically discovered from our verified college registry.
+                </p>
+
+                {% if courses_with_colleges %}
+                <div class="d-flex flex-column gap-4">
+                    {% for item in courses_with_colleges %}
+                    <div class="border rounded-4 p-3 bg-white">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h5 class="fw-bold text-dark mb-1">
+                                    <a href="{{ url_for('course.course_detail', course_id=item.course.id) }}" class="text-decoration-none text-primary">
+                                        {{ item.course.name }}
+                                    </a>
+                                </h5>
+                                <div class="small text-muted">
+                                    {{ item.course.level }} • Duration: {{ item.course.duration or '3-4 Years' }} • Discipline: {{ item.course.discipline }}
+                                </div>
+                            </div>
+                            <span class="badge bg-primary bg-opacity-10 text-primary small">
+                                {{ item.relation.relationship_type }} Pathway
+                            </span>
+                        </div>
+
+                        <!-- Colleges offering this degree -->
+                        {% if item.colleges %}
+                        <div class="mt-3 pt-2 border-top">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="small fw-semibold text-muted">Top Institutions Offering {{ item.course.code or item.course.name }}:</span>
+                                <a href="{{ url_for('college.college_list', course=item.course.id) }}" class="small text-decoration-none">
+                                    View all {{ item.total_colleges_count }} colleges →
+                                </a>
+                            </div>
+                            <div class="row g-2">
+                                {% for col in item.colleges %}
+                                <div class="col-md-4">
+                                    <div class="p-2 border rounded-3 bg-light small h-100">
+                                        <div class="fw-bold text-truncate" title="{{ col.name }}">
+                                            <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="text-decoration-none text-dark">
+                                                {{ col.name }}
+                                            </a>
+                                        </div>
+                                        <div class="text-muted" style="font-size: 0.75rem;">
+                                            <i data-lucide="map-pin" class="icon-xs"></i> {{ col.city or col.state or 'India' }} {% if col.nirf_rank %}• NIRF #{{ col.nirf_rank }}{% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted small">No canonical degree linkages mapped yet.</p>
+                {% endif %}
+            </div>
+
+            <!-- 4. Competitive & Entrance Examinations -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                        <span></span>
+                        <span>Key Entrance & Competitive Examinations</span>
+                    </h4>
+                    <span class="badge bg-info bg-opacity-10 text-info small">Career → Exam</span>
+                </div>
+                <p class="text-muted small mb-3">
+                    National and state-level entrance or recruitment exams providing entry into premier colleges or direct government appointments.
+                </p>
+
+                {% if career_exams %}
+                <div class="row g-3">
+                    {% for ce in career_exams %}
+                    {% set exam = ce.exam %}
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-3 bg-light h-100 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="fw-bold mb-0">
+                                    <a href="{{ url_for('exam.exam_detail', exam_id=exam.id) }}" class="text-decoration-none text-dark">
+                                        {{ exam.name }}
+                                    </a>
+                                </h6>
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">{{ ce.importance }}</span>
+                            </div>
+                            <div class="small text-muted mb-2">
+                                Conducting Body: {{ exam.conducting_body or 'National Authority' }}
+                            </div>
+                            <div class="small text-muted flex-grow-1">
+                                Frequency: {{ exam.frequency or 'Annual' }} • Level: {{ exam.exam_level or 'National' }}
+                            </div>
+                            <div class="mt-2 pt-2 border-top">
+                                <a href="{{ url_for('exam.exam_detail', exam_id=exam.id) }}" class="small text-decoration-none fw-semibold">
+                                    View Exam Pattern & Dates →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted small">Admission primarily through standard university merit or direct corporate hiring.</p>
+                {% endif %}
+            </div>
+
+            <!-- 5. Starting Point Roadmaps (Class 10, Class 12, Graduation, Professional) -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h4 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                    <span></span>
+                    <span>Roadmap by Starting Point</span>
+                </h4>
+                <p class="text-muted small mb-4">
+                    Tailored advice depending on where you are starting your journey today.
+                </p>
+
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-c10-tab" data-bs-toggle="pill" data-bs-target="#pills-c10" type="button" role="tab">
+                            From Class 10
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-c12-tab" data-bs-toggle="pill" data-bs-target="#pills-c12" type="button" role="tab">
+                            From Class 12
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-grad-tab" data-bs-toggle="pill" data-bs-target="#pills-grad" type="button" role="tab">
+                            From College / Degree
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-pro-tab" data-bs-toggle="pill" data-bs-target="#pills-pro" type="button" role="tab">
+                            Working Professional
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content border rounded-4 p-4 bg-light" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-c10" role="tabpanel">
+                        <h6 class="fw-bold text-primary mb-2">Class 10 Foundation Guidance</h6>
+                        <p class="text-muted small mb-0">
+                            {{ starting_point_roadmaps.get('Class 10').roadmap_steps if starting_point_roadmaps.get('Class 10') else 'Focus on building strong academic fundamentals in core subjects. Build reading habits, logical reasoning, and explore beginner projects.' }}
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-c12" role="tabpanel">
+                        <h6 class="fw-bold text-primary mb-2">Class 12 Pathway & Entrance Focus</h6>
+                        <p class="text-muted small mb-0">
+                            {{ starting_point_roadmaps.get('Class 12').roadmap_steps if starting_point_roadmaps.get('Class 12') else 'Select the appropriate stream (PCM / PCB / Commerce / Humanities). Prepare diligently for national and state entrance tests for qualifying degrees.' }}
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-grad" role="tabpanel">
+                        <h6 class="fw-bold text-primary mb-2">Undergraduate Degree & Skill Building</h6>
+                        <p class="text-muted small mb-0">
+                            {{ starting_point_roadmaps.get('Graduation').roadmap_steps if starting_point_roadmaps.get('Graduation') else 'Engage in hands-on internships, industry certifications, and collaborative research or capstone projects to establish workplace readiness.' }}
+                        </p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-pro" role="tabpanel">
+                        <h6 class="fw-bold text-primary mb-2">Working Professional Lateral Transition</h6>
+                        <p class="text-muted small mb-0">
+                            {{ starting_point_roadmaps.get('Working Professional').roadmap_steps if starting_point_roadmaps.get('Working Professional') else 'Leverage transferable skills, pursue specialized post-graduate diplomas or executive certifications, and network within industry associations.' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Career Progression Ladder -->
+            {% if progression_ladder %}
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h4 class="fw-bold mb-3 d-flex align-items-center gap-2 text-dark">
+                    <span><i data-lucide="trending-up" class="icon-xs"></i></span>
+                    <span>Career Progression & Hierarchy Ladder</span>
+                </h4>
+                <p class="text-muted small mb-4">
+                    Typical milestone progression as professional competence and leadership responsibility expand over time.
+                </p>
+
+                <div class="position-relative ps-4 border-start border-3 border-primary ms-2">
+                    {% for step in progression_ladder %}
+                    <div class="mb-4 position-relative">
+                        <span class="position-absolute translate-middle rounded-circle bg-primary" style="left: -19px; top: 12px; width: 14px; height: 14px; border: 3px solid white;"></span>
+                        <div class="bg-light p-3 rounded-4 border">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <h6 class="fw-bold text-dark mb-0">{{ step.stage or step.title }}</h6>
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">{{ step.exp or step.experience or 'Milestone' }}</span>
+                            </div>
+                            <p class="text-muted small mb-0">{{ step.desc or step.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- 7. Interactive Career Fit Explorer Widget -->
+            <div id="fit-explorer" class="card p-4 border-0 shadow rounded-4 mb-4 bg-primary text-white">
+                <h4 class="fw-bold mb-1 d-flex align-items-center gap-2">
+                    <i data-lucide="target" class="icon-xs"></i>
+                    <span>Career Fit Explorer ("Am I Suitable for This Career?")</span>
+                </h4>
+                <p class="text-white-50 small mb-4">
+                    Evaluate your current alignment with {{ career.title }}. We provide objective suitability insights, not rigid declarations.
+                </p>
+
+                <div class="card bg-white text-dark p-4 rounded-4 shadow-sm">
+                    <form id="fitForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold text-muted">Your Academic Stream</label>
+                                <select class="form-select" id="fit_stream">
+                                    <option value="Science (PCM)">Science (PCM - Physics, Chemistry, Maths)</option>
+                                    <option value="Science (PCB)">Science (PCB - Physics, Chemistry, Biology)</option>
+                                    <option value="Commerce">Commerce with / without Maths</option>
+                                    <option value="Arts / Humanities">Arts / Humanities</option>
+                                    <option value="Any">General / Other Stream</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold text-muted">Work Format Preference</label>
+                                <select class="form-select" id="fit_work_mode">
+                                    <option value="Hybrid">Hybrid (Office + Remote)</option>
+                                    <option value="Remote">Fully Remote</option>
+                                    <option value="On-site">On-site Office / Lab</option>
+                                    <option value="Clinical">Clinical / Hospital</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold text-muted">Interest in Mathematics & Quantitative Analysis (1-5)</label>
+                                <input type="range" class="form-range" min="1" max="5" value="3" id="fit_math">
+                                <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (High)</span></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold text-muted">Enthusiasm for Technology, Coding & Tools (1-5)</label>
+                                <input type="range" class="form-range" min="1" max="5" value="3" id="fit_tech">
+                                <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (High)</span></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold text-muted">Enjoyment of Interpersonal & People Work (1-5)</label>
+                                <input type="range" class="form-range" min="1" max="5" value="3" id="fit_people">
+                                <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (High)</span></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold text-muted">Drive for Creative / Visual Ideation (1-5)</label>
+                                <input type="range" class="form-range" min="1" max="5" value="3" id="fit_creative">
+                                <div class="d-flex justify-content-between small text-muted"><span>1 (Low)</span><span>3 (Moderate)</span><span>5 (High)</span></div>
+                            </div>
+
+                            <div class="col-12 mt-3">
+                                <button type="button" class="btn btn-primary w-100 fw-semibold" onclick="calculateFit()">
+                                    <i data-lucide="zap" class="icon-xs"></i> Calculate My Career Suitability Score
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Result Display -->
+                    <div id="fitResult" class="mt-4 p-3 rounded-4 border bg-light d-none">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold text-dark">Suitability Verdict: <span id="fitVerdict" class="text-primary"></span></span>
+                            <span id="fitScoreBadge" class="badge fs-6 bg-success"></span>
+                        </div>
+                        <div class="mb-2">
+                            <div class="small fw-semibold text-success mb-1"> Positive Alignments:</div>
+                            <ul id="fitPositives" class="small text-muted ps-3 mb-2"></ul>
+                        </div>
+                        <div class="mb-2">
+                            <div class="small fw-semibold text-warning text-dark mb-1"><i data-lucide="alert-triangle" class="icon-xs text-warning"></i> Preparation & Growth Areas:</div>
+                            <ul id="fitGrowth" class="small text-muted ps-3 mb-2"></ul>
+                        </div>
+                        <div class="p-2 rounded bg-white border small">
+                            <strong>Recommended Next Action:</strong> <span id="fitAction" class="text-primary"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Grounded AI Career Counsellor Widget -->
+            <div id="ask-counsellor" class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h4 class="fw-bold mb-1 d-flex align-items-center gap-2 text-dark">
+                    <i data-lucide="message-square" class="icon-xs"></i>
+                    <span>AI Career Counsellor (Grounded in Verified DB Facts)</span>
+                </h4>
+                <p class="text-muted small mb-3">
+                    Ask any question about becoming a {{ career.title }}. Responses are strictly grounded in our verified qualifications, courses, and examination database.
+                </p>
+
+                <div class="input-group mb-3">
+                    <input type="text" id="counsellorQuery" class="form-control" placeholder="e.g. Can I pursue this after Class 12 Commerce? What are the key entrance exams?">
+                    <button class="btn btn-primary fw-semibold" type="button" onclick="askCounsellor()">
+                        Ask Counsellor
+                    </button>
+                </div>
+
+                <!-- Answer Container -->
+                <div id="counsellorLoading" class="text-center py-3 d-none">
+                    <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+                    <span class="small text-muted ms-2">Consulting national career knowledge base...</span>
+                </div>
+                <div id="counsellorResponse" class="p-3 rounded-4 bg-light border text-muted small d-none" style="white-space: pre-line;"></div>
+            </div>
+
+        </div>
+
+        <!-- Right 4 Columns: Skills, Provenance, Opportunities, Related -->
+        <div class="col-lg-4">
+
+            <!-- Structured Skills Toolkit -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="wrench" class="icon-xs"></i>
+                    <span>Essential Skills & Tools</span>
+                </h5>
+
+                <!-- Technical Skills -->
+                {% if grouped_skills.get('Technical') %}
+                <div class="mb-3">
+                    <div class="small fw-semibold text-primary mb-2">Technical Competencies</div>
+                    <div class="d-flex flex-wrap gap-1">
+                        {% for s in grouped_skills['Technical'] %}
+                        <span class="badge bg-primary bg-opacity-10 text-primary small fw-normal">{{ s.skill_name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Soft Skills -->
+                {% if grouped_skills.get('Soft Skill') %}
+                <div class="mb-3">
+                    <div class="small fw-semibold text-success mb-2">Essential Soft Skills</div>
+                    <div class="d-flex flex-wrap gap-1">
+                        {% for s in grouped_skills['Soft Skill'] %}
+                        <span class="badge bg-success bg-opacity-10 text-success small fw-normal">{{ s.skill_name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Tools -->
+                {% if grouped_skills.get('Tool / Technology') %}
+                <div class="mb-3">
+                    <div class="small fw-semibold text-dark mb-2">Industry Tools & Software</div>
+                    <div class="d-flex flex-wrap gap-1">
+                        {% for s in grouped_skills['Tool / Technology'] %}
+                        <span class="badge bg-secondary bg-opacity-10 text-dark small fw-normal">{{ s.skill_name }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Certifications -->
+                {% if career.certifications %}
+                <div class="border-top pt-3">
+                    <div class="small fw-semibold text-dark mb-1">Recommended Certifications</div>
+                    <p class="small text-muted mb-0">{{ career.certifications }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Opportunities & Employers -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="building" class="icon-xs"></i>
+                    <span>Employment Opportunities</span>
+                </h5>
+
+                {% if career.government_opportunities %}
+                <div class="mb-3">
+                    <div class="small fw-semibold text-primary mb-1"><i data-lucide="landmark" class="icon-xs"></i> Government & Public Sector</div>
+                    <p class="small text-muted mb-0">{{ career.government_opportunities }}</p>
+                </div>
+                {% endif %}
+
+                {% if career.private_opportunities %}
+                <div class="mb-3">
+                    <div class="small fw-semibold text-success mb-1"><i data-lucide="briefcase" class="icon-xs"></i> Private Sector & Multinational</div>
+                    <p class="small text-muted mb-0">{{ career.private_opportunities }}</p>
+                </div>
+                {% endif %}
+
+                {% if career.higher_study_options %}
+                <div class="mb-3">
+                    <div class="small fw-semibold text-info mb-1"><i data-lucide="graduation-cap" class="icon-xs"></i> Higher Study & Specializations</div>
+                    <p class="small text-muted mb-0">{{ career.higher_study_options }}</p>
+                </div>
+                {% endif %}
+
+                {% if career.entrepreneurship_options %}
+                <div>
+                    <div class="small fw-semibold text-warning text-dark mb-1"><i data-lucide="arrow-right" class="icon-xs"></i> Entrepreneurship & Freelance</div>
+                    <p class="small text-muted mb-0">{{ career.entrepreneurship_options }}</p>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Reality Check: Before You Choose This Career (Section 24) -->
+            <div class="card p-4 border-warning border-opacity-50 shadow-sm rounded-4 mb-4 bg-warning bg-opacity-10">
+                <h6 class="fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                    <span><i data-lucide="alert-triangle" class="icon-xs text-warning"></i></span>
+                    <span>Before You Choose This Career (Reality Check)</span>
+                </h6>
+                <p class="small text-muted mb-3">
+                    Every rewarding career requires realistic foresight regarding educational endurance, entrance competition, regulatory licensing, and early-career realities.
+                </p>
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                    {% for pt in career.reality_check_points %}
+                    <li class="small text-dark d-flex align-items-start gap-2">
+                        <span class="text-warning fw-bold">▪</span>
+                        <span>{{ pt }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Your Next 3 Action Steps (Section 36) -->
+            <div class="card p-4 border-primary border-opacity-50 shadow-sm rounded-4 mb-4 bg-primary bg-opacity-10">
+                <h6 class="fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                    <i data-lucide="target" class="icon-xs"></i>
+                    <span>Your Next 3 Action Steps</span>
+                </h6>
+                <p class="small text-muted mb-3">
+                    Don't finish with only information. Start your journey with these concrete milestone actions:
+                </p>
+                <div class="d-flex flex-column gap-2">
+                    {% for step in career.parsed_next_steps %}
+                    <div class="p-2 bg-white rounded-3 border d-flex align-items-center gap-3">
+                        <span class="badge bg-primary rounded-circle px-2 py-1 text-white fw-bold">{{ loop.index }}</span>
+                        <span class="small fw-semibold text-dark">{{ step }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Indicative Salary Provenance Note -->
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-light">
+                <h6 class="fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                    <i data-lucide="award" class="icon-xs"></i>
+                    <span>Salary Provenance & Verification</span>
+                </h6>
+                <p class="small text-muted mb-2">
+                    {{ career.salary_indicative or 'Salaries in this domain reflect entry-level to senior progressions reported by industry sector councils.' }}
+                </p>
+                <div class="small text-muted fst-italic" style="font-size: 0.75rem;">
+                    *Note: MPath never guarantees salaries. Compensation is subject to candidate skills, college placement, location tier, and macroeconomic demand.
+                </div>
+            </div>
+
+            <!-- Related Careers in Sector -->
+            {% if related %}
+            <div class="card p-4 border shadow-sm rounded-4 mb-4 bg-white">
+                <h5 class="fw-bold text-dark mb-3">Related in {{ career.category }}</h5>
+                <div class="d-flex flex-column gap-3">
+                    {% for rc in related %}
+                    <div class="p-2 border rounded-3 bg-light">
+                        <h6 class="fw-bold mb-1">
+                            <a href="{{ url_for('career.career_detail', slug=rc.slug) }}" class="text-decoration-none text-dark">
+                                {{ rc.title }}
+                            </a>
+                        </h6>
+                        <div class="small text-muted mb-2">
+                            <i data-lucide="award" class="icon-xs"></i> {{ rc.average_salary or 'Industry scale' }}
+                        </div>
+                        <a href="{{ url_for('career.career_detail', slug=rc.slug) }}" class="small text-primary text-decoration-none fw-semibold">
+                            Explore Path →
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
 
         </div>
 
     </div>
 
 </div>
-<hr>
 
-<h4>🎯 AI Skill Gap Analysis</h4>
+<!-- Client-side Scripts for Fit Explorer & Grounded Counsellor -->
+<script>
+function calculateFit() {
+    const payload = {
+        career_id: {{ career.id }},
+        stream: document.getElementById('fit_stream').value,
+        work_mode_pref: document.getElementById('fit_work_mode').value,
+        math_affinity: document.getElementById('fit_math').value,
+        tech_affinity: document.getElementById('fit_tech').value,
+        people_affinity: document.getElementById('fit_people').value,
+        creative_affinity: document.getElementById('fit_creative').value
+    };
 
-<div class="card shadow-sm mb-4">
+    fetch("{{ url_for('career.api_fit_calculator') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        const resBox = document.getElementById('fitResult');
+        resBox.classList.remove('d-none');
+        document.getElementById('fitVerdict').innerText = data.verdict;
+        document.getElementById('fitScoreBadge').innerText = data.fit_score + '% Fit Match';
+        
+        const posList = document.getElementById('fitPositives');
+        posList.innerHTML = '';
+        data.positive_signals.forEach(s => {
+            const li = document.createElement('li');
+            li.innerText = s;
+            posList.appendChild(li);
+        });
 
-    <div class="card-body">
+        const grwList = document.getElementById('fitGrowth');
+        grwList.innerHTML = '';
+        data.growth_areas.forEach(g => {
+            const li = document.createElement('li');
+            li.innerText = g;
+            grwList.appendChild(li);
+        });
 
-        <h5>Match Percentage: {{ gap.percentage }}%</h5>
+        document.getElementById('fitAction').innerText = data.action_step;
+    })
+    .catch(err => {
+        alert("Failed to compute suitability. Please try again.");
+    });
+}
 
-        <div class="row">
+function askCounsellor() {
+    const q = document.getElementById('counsellorQuery').value.trim();
+    if (!q) {
+        alert("Please enter a question.");
+        return;
+    }
 
-            <div class="col-md-6">
+    const loader = document.getElementById('counsellorLoading');
+    const respBox = document.getElementById('counsellorResponse');
+    loader.classList.remove('d-none');
+    respBox.classList.add('d-none');
 
-                <h6 class="text-success">Matched Skills</h6>
-
-                <ul>
-
-                    {% for skill in gap.matched %}
-
-                    <li>{{ skill }}</li>
-
-                    {% endfor %}
-
-                </ul>
-
-            </div>
-
-            <div class="col-md-6">
-
-                <h6 class="text-danger">Missing Skills</h6>
-
-                <ul>
-
-                    {% for skill in gap.missing %}
-
-                    <li>{{ skill }}</li>
-
-                    {% endfor %}
-
-                </ul>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+    fetch("{{ url_for('career.api_counsellor') }}", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            query: q,
+            career_slug: "{{ career.slug }}"
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        loader.classList.add('d-none');
+        respBox.classList.remove('d-none');
+        respBox.innerText = data.response;
+    })
+    .catch(err => {
+        loader.classList.add('d-none');
+        respBox.classList.remove('d-none');
+        respBox.innerText = "Guidance engine temporarily unavailable. Please refer to the verified sections above.";
+    });
+}
+</script>
 {% endblock %}

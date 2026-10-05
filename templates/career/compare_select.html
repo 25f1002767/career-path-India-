@@ -1,80 +1,87 @@
 {% extends "base.html" %}
 
-{% block title %}
-Compare Careers
-{% endblock %}
+{% block title %}Compare Careers | MPath Career Counselling{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
 
-<h1>
+    <div class="max-w-800 mx-auto">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-1 mb-2">Side-by-Side Analysis</span>
+            <h1 class="fw-bold mb-2"><i data-lucide="scale" class="icon-xs"></i> Career Comparison</h1>
+            <p class="text-muted">
+                Select 2 to 4 careers to compare their educational prerequisites, technical skill sets, typical salaries, and industry work environments.
+            </p>
+        </div>
 
-Career Comparison
+        <div class="card p-4 p-md-5 border shadow-sm bg-white">
+            <form action="{{ url_for('career.compare') }}" method="GET">
+                <div class="row g-3 mb-4">
+                    <!-- Career 1 -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold small text-muted">First Career (Required)</label>
+                        <select name="career1" class="form-select form-select-lg" required>
+                            <option value="">Select first career...</option>
+                            {% for c in careers %}
+                            <option value="{{ c.slug }}" {% if selected_slugs and selected_slugs[0] == c.slug %}selected{% endif %}>
+                                {{ c.title }} ({{ c.category }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-</h1>
+                    <!-- Career 2 -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold small text-muted">Second Career (Required)</label>
+                        <select name="career2" class="form-select form-select-lg" required>
+                            <option value="">Select second career...</option>
+                            {% for c in careers %}
+                            <option value="{{ c.slug }}" {% if selected_slugs|length > 1 and selected_slugs[1] == c.slug %}selected{% endif %}>
+                                {{ c.title }} ({{ c.category }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-<form>
+                    <!-- Career 3 (Optional) -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold small text-muted">Third Career (Optional)</label>
+                        <select name="career3" class="form-select">
+                            <option value="">(None - Compare only two)</option>
+                            {% for c in careers %}
+                            <option value="{{ c.slug }}" {% if selected_slugs|length > 2 and selected_slugs[2] == c.slug %}selected{% endif %}>
+                                {{ c.title }} ({{ c.category }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-<div class="row">
+                    <!-- Career 4 (Optional) -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold small text-muted">Fourth Career (Optional)</label>
+                        <select name="career4" class="form-select">
+                            <option value="">(None - Compare up to three)</option>
+                            {% for c in careers %}
+                            <option value="{{ c.slug }}" {% if selected_slugs|length > 3 and selected_slugs[3] == c.slug %}selected{% endif %}>
+                                {{ c.title }} ({{ c.category }})
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
 
-<div class="col-md-5">
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        Compare Selected Careers →
+                    </button>
+                </div>
+            </form>
+        </div>
 
-<select
-name="career1"
-class="form-select">
-
-{% for career in careers %}
-
-<option
-value="{{ career.slug }}">
-
-{{ career.title }}
-
-</option>
-
-{% endfor %}
-
-</select>
+        <div class="alert alert-light border mt-4 text-center text-muted small">
+             <strong>Objective Comparison Principle:</strong> MPath does not declare one career as universally "best". Each pathway offers distinct challenges, growth possibilities, and lifestyles.
+        </div>
+    </div>
 
 </div>
-
-<div class="col-md-5">
-
-<select
-name="career2"
-class="form-select">
-
-{% for career in careers %}
-
-<option
-value="{{ career.slug }}">
-
-{{ career.title }}
-
-</option>
-
-{% endfor %}
-
-</select>
-
-</div>
-
-<div class="col-md-2">
-
-<button
-class="btn btn-primary w-100">
-
-Compare
-
-</button>
-
-</div>
-
-</div>
-
-</form>
-
-</div>
-
 {% endblock %}

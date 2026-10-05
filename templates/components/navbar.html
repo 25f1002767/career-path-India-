@@ -1,772 +1,274 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm career-navbar">
+<nav class="navbar navbar-expand-xl navbar-light career-navbar sticky-top bg-white border-bottom">
+    <div class="container-fluid px-xl-4 px-3">
 
-    <div class="container-fluid px-lg-4">
-
-        <!-- BRAND -->
-        <a class="navbar-brand fw-bold brand-logo"
-           href="{{ url_for('landing') }}">
-            🎓 MPath Career Counselling
+        <!-- BRAND LOGO -->
+        <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none me-3" href="{{ url_for('landing') }}">
+            <div class="brand-mark bg-blue text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background-color: var(--color-blue);">
+                <i data-lucide="graduation-cap" class="icon-md"></i>
+            </div>
+            <div class="d-flex flex-column leading-tight">
+                <span class="fw-bold fs-5 text-navy lh-1" style="color: var(--color-navy); letter-spacing: -0.02em;">MPath</span>
+                <span class="text-muted small fw-medium" style="font-size: 0.725rem; letter-spacing: 0.02em;">Career Counselling</span>
+            </div>
         </a>
 
-
-        <!-- MOBILE TOGGLE -->
-        <button class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarContent"
-                aria-controls="navbarContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-
-            <span class="navbar-toggler-icon"></span>
-
+        <!-- MOBILE TOGGLER -->
+        <button class="navbar-toggler border-0 p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i data-lucide="menu" class="icon-md text-dark"></i>
         </button>
 
-
         <!-- NAVBAR CONTENT -->
-        <div class="collapse navbar-collapse"
-             id="navbarContent">
+        <div class="collapse navbar-collapse" id="navbarContent">
 
-
-            <!-- MAIN NAVIGATION -->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <!-- HOME -->
+            <!-- MAIN NAVIGATION LINKS -->
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0 align-items-xl-center">
                 <li class="nav-item">
-
-                    <a class="nav-link nav-white"
-                       href="{{ url_for('landing') }}">
-
+                    <a class="nav-link nav-item-link {% if request.endpoint == 'landing' or request.path == '/' %}active{% endif %}" href="{{ url_for('landing') }}">
                         Home
-
                     </a>
-
                 </li>
 
+                <!-- CAREERS DROPDOWN -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-item-link dropdown-toggle {% if request.path.startswith('/careers') or request.path.startswith('/career') %}active{% endif %}" href="#" id="careerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Careers
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="careerDropdown">
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.career_list') }}">
+                                <i data-lucide="briefcase" class="icon-xs text-muted"></i>
+                                <span>All Authentic Careers</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.discover_careers') }}">
+                                <i data-lucide="compass" class="icon-xs text-muted"></i>
+                                <span>Guided Discovery</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.careers_without_coding') }}">
+                                <i data-lucide="compass" class="icon-xs text-muted"></i>
+                                <span>Careers Without Coding</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.careers_without_engineering') }}">
+                                <i data-lucide="compass" class="icon-xs text-muted"></i>
+                                <span>Careers Without Engineering</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.explore_by_course') }}">
+                                <i data-lucide="graduation-cap" class="icon-xs text-muted"></i>
+                                <span>Explore by Degree</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.explore_by_skills') }}">
+                                <i data-lucide="wrench" class="icon-xs text-muted"></i>
+                                <span>Explore by Skills</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.compare') }}">
+                                <i data-lucide="scale" class="icon-xs text-muted"></i>
+                                <span>Compare Careers</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-                {% if session.get("user_id") %}
+                <!-- COURSES -->
+                <li class="nav-item">
+                    <a class="nav-link nav-item-link {% if request.path.startswith('/courses') or request.path.startswith('/course') %}active{% endif %}" href="{{ url_for('course.course_list') }}">
+                        Courses
+                    </a>
+                </li>
 
-                    <!-- CAREERS -->
-                    <li class="nav-item">
+                <!-- COLLEGES -->
+                <li class="nav-item">
+                    <a class="nav-link nav-item-link {% if request.path.startswith('/colleges') or request.path.startswith('/college') %}active{% endif %}" href="{{ url_for('college.college_list') }}">
+                        Colleges
+                    </a>
+                </li>
 
-                        <a class="nav-link nav-white"
-                           href="{{ url_for('career.career_list') }}">
+                <!-- EXAMS -->
+                <li class="nav-item">
+                    <a class="nav-link nav-item-link {% if request.path.startswith('/exams') or request.path.startswith('/exam') %}active{% endif %}" href="{{ url_for('exam.exam_list') }}">
+                        Exams
+                    </a>
+                </li>
 
-                            Careers
+                <!-- SCHOLARSHIPS DROPDOWN -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-item-link dropdown-toggle {% if request.path.startswith('/scholarship') %}active{% endif %}" href="#" id="scholarshipDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Scholarships
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="scholarshipDropdown">
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.scholarship_list') }}">
+                                <i data-lucide="award" class="icon-xs text-muted"></i>
+                                <span>All Verified Scholarships</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.find_scholarships_for_me') }}">
+                                <i data-lucide="target" class="icon-xs text-muted"></i>
+                                <span>Find Scholarships For Me</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.scholarship_calendar') }}">
+                                <i data-lucide="calendar" class="icon-xs text-muted"></i>
+                                <span>Scholarship Calendar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.document_vault') }}">
+                                <i data-lucide="folder" class="icon-xs text-muted"></i>
+                                <span>Document Vault</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.national_coverage') }}">
+                                <i data-lucide="map" class="icon-xs text-muted"></i>
+                                <span>National Coverage Map</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-                        </a>
+                <!-- INTERNSHIPS -->
+                <li class="nav-item">
+                    <a class="nav-link nav-item-link {% if request.path.startswith('/internships') or request.path.startswith('/internship') %}active{% endif %}" href="{{ url_for('internship.internship_list') }}">
+                        Internships
+                    </a>
+                </li>
 
-                    </li>
-
-
-                    <!-- COLLEGES -->
-                    <li class="nav-item">
-
-                        <a class="nav-link nav-white"
-                           href="{{ url_for('college.college_list') }}">
-
-                            Colleges
-
-                        </a>
-
-                    </li>
-
-
-                    <!-- EXAMS -->
-                    <li class="nav-item">
-
-                        <a class="nav-link nav-white"
-                           href="{{ url_for('exam.exam_list') }}">
-
-                            Exams
-
-                        </a>
-
-                    </li>
-
-
-                    <!-- SCHOLARSHIPS -->
-                    <li class="nav-item">
-
-                        <a class="nav-link nav-white"
-                           href="{{ url_for('go_scholarships') }}">
-
-                            Scholarships
-
-                        </a>
-
-                    </li>
-
-
-                    <!-- INTERNSHIPS -->
-                    <li class="nav-item">
-
-                        <a class="nav-link nav-white"
-                           href="{{ url_for('go_internships') }}">
-
-                            Internships
-
-                        </a>
-
-                    </li>
-
-
-                    <!-- =================================================
-                         CAREER ASSESSMENT
-                         KEEP THIS NAME EXACTLY AS IT IS
-                         ================================================= -->
-
-                    <li class="nav-item assessment-nav-item">
-
-                        <a class="nav-link assessment-nav-link"
-                           href="{{ url_for('assessment.start') }}">
-
-                            🎯 Career Assessment
-
-                        </a>
-
-                    </li>
-
-                {% endif %}
-
+                <!-- RESOURCES DROPDOWN -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-item-link dropdown-toggle {% if request.path.startswith('/opportunities') or request.path.startswith('/resume') or request.path.startswith('/report') %}active{% endif %}" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Resources
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="resourcesDropdown">
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('opportunity.home') }}">
+                                <i data-lucide="sparkles" class="icon-xs text-muted"></i>
+                                <span>Opportunity Hub</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.compare') }}">
+                                <i data-lucide="scale" class="icon-xs text-muted"></i>
+                                <span>Career Comparison Matrix</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('college.compare_colleges') }}">
+                                <i data-lucide="building" class="icon-xs text-muted"></i>
+                                <span>College Comparison</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('resume.upload_resume') }}">
+                                <i data-lucide="file-text" class="icon-xs text-muted"></i>
+                                <span>Resume Analyzer</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
 
+            <!-- RIGHT ACTIONS CLUSTER -->
+            <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0 flex-wrap">
 
-            <!-- RIGHT SIDE -->
-            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <!-- SEARCH ICON BUTTON -->
+                <a href="{{ url_for('main.search') }}" class="btn btn-search-circle" title="Search Platform">
+                    <i data-lucide="search" class="icon-sm"></i>
+                </a>
 
+                <!-- CAREER ASSESSMENT CTA (SOFT BLUE) -->
+                <a href="{{ url_for('assessment.start') }}" class="btn btn-nav-assessment d-inline-flex align-items-center gap-2">
+                    <i data-lucide="bar-chart-2" class="icon-sm"></i>
+                    <span>Career Assessment</span>
+                </a>
+
+                <!-- AI CAREER MENTOR CTA (DARK NAVY) -->
+                <a href="{{ url_for('chatbot.home') }}" class="btn btn-nav-mentor d-inline-flex align-items-center gap-2">
+                    <i data-lucide="bot" class="icon-sm"></i>
+                    <span>AI Career Mentor</span>
+                </a>
 
                 {% if session.get("user_id") %}
 
-                    <!-- =================================================
-                         AI ASSISTANT
-                         USER-FACING NAME:
-                         EXPLORE ALL POSSIBLE CAREERS
-                         ================================================= -->
+                    {% if session.get("role") == "admin" %}
+                    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.dashboard') }}">
+                        <i data-lucide="shield" class="icon-xs"></i>
+                        <span>Admin</span>
+                    </a>
+                    {% endif %}
 
-                    <li class="nav-item me-lg-3 mb-2 mb-lg-0">
-
-                        <a class="ai-assistant-btn"
-                           href="{{ url_for('go_ai_assistant') }}"
-                           title="Explore All Possible Careers">
-
-                            <span class="ai-icon">
-                                🤖
-                            </span>
-
-                            <span class="ai-text">
-                                Explore All Possible Careers
-                            </span>
-
-                            <span class="ai-arrow">
-                                →
-                            </span>
-
-                        </a>
-
-                    </li>
-
-
-                    <!-- ACCOUNT -->
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link dropdown-toggle nav-white"
-                           href="#"
-                           role="button"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
-
-                            👤 Account
-
-                        </a>
-
-
-                        <ul class="dropdown-menu dropdown-menu-end shadow">
-
-                            <!-- DASHBOARD -->
+                    <!-- USER ACCOUNT DROPDOWN -->
+                    <div class="dropdown">
+                        <button class="btn btn-nav-login dropdown-toggle d-inline-flex align-items-center gap-2" type="button" id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i data-lucide="user" class="icon-xs"></i>
+                            <span>{{ session.get("user_name") or "Account" }}</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm border py-2" aria-labelledby="userMenuBtn">
                             <li>
-
-                                <a class="dropdown-item"
-                                   href="{{ url_for('dashboard.home') }}">
-
-                                    📊 Dashboard
-
+                                <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('dashboard.home') }}">
+                                    <i data-lucide="layout-dashboard" class="icon-xs text-muted"></i>
+                                    <span>Student Dashboard</span>
                                 </a>
-
                             </li>
-
-
-                            <!-- CAREER ASSESSMENT -->
                             <li>
-
-                                <a class="dropdown-item fw-semibold"
-                                   href="{{ url_for('assessment.start') }}">
-
-                                    🎯 Career Assessment
-
+                                <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('profile.view_profile') }}">
+                                    <i data-lucide="user" class="icon-xs text-muted"></i>
+                                    <span>My Profile</span>
                                 </a>
-
                             </li>
-
-
-                            <!-- PROFILE -->
                             <li>
-
-                                <a class="dropdown-item"
-                                   href="{{ url_for('profile.view_profile') }}">
-
-                                    👤 Profile
-
+                                <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.my_applications') }}">
+                                    <i data-lucide="clipboard-list" class="icon-xs text-muted"></i>
+                                    <span>My Applications</span>
                                 </a>
-
                             </li>
-
-
                             <li>
-
-                                <hr class="dropdown-divider">
-
-                            </li>
-
-
-                            <!-- LOGOUT -->
-                            <li>
-
-                                <a class="dropdown-item text-danger"
-                                   href="{{ url_for('auth.logout') }}">
-
-                                    🚪 Logout
-
+                                <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.document_vault') }}">
+                                    <i data-lucide="folder" class="icon-xs text-muted"></i>
+                                    <span>Document Vault</span>
                                 </a>
-
                             </li>
-
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item py-2 text-danger d-flex align-items-center gap-2" href="{{ url_for('auth.logout') }}">
+                                    <i data-lucide="log-out" class="icon-xs text-danger"></i>
+                                    <span>Sign Out</span>
+                                </a>
+                            </li>
                         </ul>
-
-                    </li>
-
+                    </div>
 
                 {% else %}
 
+                    <!-- LOGIN (OUTLINE PILL) -->
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-nav-login d-inline-flex align-items-center gap-2">
+                        <i data-lucide="user" class="icon-xs"></i>
+                        <span>Login</span>
+                    </a>
 
-                    <!-- =================================================
-                         NOT LOGGED IN
-                         ONLY LOGIN + REGISTER
-                         ================================================= -->
-
-                    <!-- LOGIN -->
-                    <li class="nav-item me-2">
-
-                        <a class="btn login-btn"
-                           href="{{ url_for('auth.login') }}">
-
-                            🔐 Login
-
-                        </a>
-
-                    </li>
-
-
-                    <!-- REGISTER -->
-                    <li class="nav-item">
-
-                        <a class="btn register-btn"
-                           href="{{ url_for('auth.register') }}">
-
-                            📝 Register
-
-                        </a>
-
-                    </li>
+                    <!-- REGISTER (SOLID BLUE PILL) -->
+                    <a href="{{ url_for('auth.register') }}" class="btn btn-nav-register d-inline-flex align-items-center gap-2">
+                        <span>Register</span>
+                    </a>
 
                 {% endif %}
 
-            </ul>
+            </div>
 
         </div>
-
     </div>
-
 </nav>
-
-
-<!-- =============================================================
-     NAVBAR STYLING
-     ============================================================= -->
-
-<style>
-
-.career-navbar {
-
-    background:
-        linear-gradient(
-            90deg,
-            #0866ff,
-            #1769e8,
-            #0866ff
-        ) !important;
-
-    min-height: 72px;
-
-    border-bottom:
-        1px solid rgba(255,255,255,0.15);
-
-}
-
-
-/* BRAND */
-
-.brand-logo {
-
-    color: #ffffff !important;
-
-    font-size: 23px;
-
-    letter-spacing: -0.4px;
-
-    white-space: nowrap;
-
-    transition:
-        transform 0.25s ease,
-        text-shadow 0.25s ease;
-
-}
-
-
-.brand-logo:hover {
-
-    color: #ffffff !important;
-
-    transform: translateY(-1px);
-
-    text-shadow:
-        0 0 15px rgba(255,255,255,0.45);
-
-}
-
-
-/* NORMAL NAVIGATION */
-
-.nav-white {
-
-    color: #ffffff !important;
-
-    font-weight: 500;
-
-    opacity: 0.92;
-
-    padding-left: 12px !important;
-
-    padding-right: 12px !important;
-
-    position: relative;
-
-    transition:
-        all 0.2s ease;
-
-}
-
-
-.nav-white:hover {
-
-    color: #ffffff !important;
-
-    opacity: 1;
-
-    transform: translateY(-1px);
-
-}
-
-
-/* UNDERLINE */
-
-.nav-white::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 12px;
-
-    right: 12px;
-
-    bottom: 3px;
-
-    height: 2px;
-
-    border-radius: 10px;
-
-    background: #ffffff;
-
-    transform: scaleX(0);
-
-    transform-origin: center;
-
-    transition:
-        transform 0.25s ease;
-
-}
-
-
-.nav-white:hover::after {
-
-    transform: scaleX(1);
-
-}
-
-
-/* CAREER ASSESSMENT */
-
-.assessment-nav-item {
-
-    margin-left: 5px;
-
-}
-
-
-.assessment-nav-link {
-
-    color: #ffffff !important;
-
-    font-weight: 700;
-
-    background:
-        rgba(255,255,255,0.14);
-
-    border:
-        1px solid rgba(255,255,255,0.35);
-
-    border-radius: 10px;
-
-    padding:
-        8px 13px !important;
-
-    transition:
-        all 0.25s ease;
-
-}
-
-
-.assessment-nav-link::after {
-
-    display: none;
-
-}
-
-
-.assessment-nav-link:hover {
-
-    background:
-        rgba(255,255,255,0.25);
-
-    color: #ffffff !important;
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 5px 15px rgba(0,0,0,0.15);
-
-}
-
-
-/* EXPLORE ALL POSSIBLE CAREERS */
-
-.ai-assistant-btn {
-
-    position: relative;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    padding: 9px 18px;
-
-    border-radius: 30px;
-
-    text-decoration: none;
-
-    font-weight: 700;
-
-    color: #ffffff !important;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #2563eb,
-            #06b6d4
-        );
-
-    border:
-        2px solid rgba(255,255,255,0.85);
-
-    box-shadow:
-        0 0 8px rgba(99,102,241,0.8),
-        0 0 18px rgba(59,130,246,0.6),
-        0 0 30px rgba(6,182,212,0.4);
-
-    transition:
-        all 0.25s ease;
-
-    animation:
-        aiGlow 2s infinite ease-in-out;
-
-}
-
-
-.ai-assistant-btn:hover {
-
-    color: #ffffff !important;
-
-    text-decoration: none;
-
-    transform:
-        translateY(-2px)
-        scale(1.03);
-
-    box-shadow:
-        0 0 12px rgba(129,140,248,1),
-        0 0 25px rgba(59,130,246,0.9),
-        0 0 45px rgba(6,182,212,0.7);
-
-}
-
-
-.ai-icon {
-
-    font-size: 20px;
-
-    animation:
-        robotFloat 2s infinite ease-in-out;
-
-}
-
-
-.ai-arrow {
-
-    font-size: 19px;
-
-    transition:
-        transform 0.2s ease;
-
-}
-
-
-.ai-assistant-btn:hover .ai-arrow {
-
-    transform:
-        translateX(5px);
-
-}
-
-
-/* LOGIN */
-
-.login-btn {
-
-    color: #ffffff !important;
-
-    border:
-        1px solid rgba(255,255,255,0.85);
-
-    border-radius: 9px;
-
-    padding:
-        8px 18px;
-
-    font-weight: 600;
-
-    transition:
-        all 0.2s ease;
-
-}
-
-
-.login-btn:hover {
-
-    background:
-        rgba(255,255,255,0.15);
-
-    color: #ffffff !important;
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* REGISTER */
-
-.register-btn {
-
-    background: #ffffff;
-
-    color: #0866ff !important;
-
-    border-radius: 9px;
-
-    padding:
-        8px 18px;
-
-    font-weight: 700;
-
-    transition:
-        all 0.2s ease;
-
-}
-
-
-.register-btn:hover {
-
-    background: #f1f5ff;
-
-    color: #0755d4 !important;
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* DROPDOWN */
-
-.dropdown-menu {
-
-    border: none;
-
-    border-radius: 12px;
-
-    padding: 8px;
-
-}
-
-
-.dropdown-item {
-
-    border-radius: 8px;
-
-    padding:
-        9px 12px;
-
-}
-
-
-.dropdown-item:hover {
-
-    background:
-        #eef5ff;
-
-}
-
-
-/* AI GLOW */
-
-@keyframes aiGlow {
-
-    0% {
-
-        box-shadow:
-            0 0 6px rgba(99,102,241,0.6),
-            0 0 15px rgba(59,130,246,0.4);
-
-    }
-
-    50% {
-
-        box-shadow:
-            0 0 12px rgba(129,140,248,0.95),
-            0 0 28px rgba(59,130,246,0.75),
-            0 0 40px rgba(6,182,212,0.55);
-
-    }
-
-    100% {
-
-        box-shadow:
-            0 0 6px rgba(99,102,241,0.6),
-            0 0 15px rgba(59,130,246,0.4);
-
-    }
-
-}
-
-
-/* ROBOT */
-
-@keyframes robotFloat {
-
-    0%,
-    100% {
-
-        transform:
-            translateY(0);
-
-    }
-
-    50% {
-
-        transform:
-            translateY(-3px);
-
-    }
-
-}
-
-
-/* MOBILE */
-
-@media (max-width: 991px) {
-
-    .assessment-nav-item {
-
-        margin-top: 8px;
-
-    }
-
-
-    .assessment-nav-link {
-
-        display: inline-block;
-
-    }
-
-
-    .ai-assistant-btn {
-
-        width: 100%;
-
-        margin-top: 8px;
-
-    }
-
-
-    .login-btn,
-    .register-btn {
-
-        display: inline-block;
-
-        margin-top: 8px;
-
-    }
-
-}
-
-
-/* SMALL MOBILE */
-
-@media (max-width: 600px) {
-
-    .brand-logo {
-
-        font-size: 18px;
-
-    }
-
-}
-
-</style>

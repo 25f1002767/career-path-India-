@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Who Can Apply? — Examination Eligibility Finder | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="text-center max-w-700 mx-auto mb-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-success bg-opacity-10 text-success fw-semibold small">
+            <i data-lucide="target" class="icon-xs"></i>
+            <span>Targeted Eligibility Discovery</span>
+        </div>
+        <h1 class="fw-bold text-dark display-6 mb-2">Who Can Apply?</h1>
+        <p class="text-muted lead fs-6">
+            Tell us your current educational level and academic stream to find the exact national and state examinations you are eligible to explore.
+        </p>
+    </div>
+
+    <!-- ELIGIBILITY FORM CARD -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5 bg-white max-w-900 mx-auto">
+        <form method="GET" action="{{ url_for('exam.who_can_apply') }}" class="row g-4">
+            
+            <!-- Qualification -->
+            <div class="col-md-4">
+                <label class="form-label fw-bold text-dark small">1. Educational Level</label>
+                <select name="qualification" class="form-select bg-light" required>
+                    <option value="" disabled {% if not selected_qualification %}selected{% endif %}>Select your qualification...</option>
+                    <option value="10th" {% if selected_qualification == '10th' %}selected{% endif %}>Class 10th Pass (Matric)</option>
+                    <option value="12th" {% if selected_qualification == '12th' %}selected{% endif %}>Class 12th Pass (Higher Secondary)</option>
+                    <option value="Diploma" {% if selected_qualification == 'Diploma' %}selected{% endif %}>Polytechnic / Diploma</option>
+                    <option value="Graduate" {% if selected_qualification == 'Graduate' %}selected{% endif %}>Graduate (Bachelor's Degree)</option>
+                    <option value="Postgraduate" {% if selected_qualification == 'Postgraduate' %}selected{% endif %}>Postgraduate (Master's Degree)</option>
+                    <option value="B.Tech" {% if selected_qualification == 'B.Tech' %}selected{% endif %}>B.Tech / B.E. (Engineering)</option>
+                    <option value="MBBS" {% if selected_qualification == 'MBBS' %}selected{% endif %}>MBBS (Medicine)</option>
+                </select>
+            </div>
+
+            <!-- Stream -->
+            <div class="col-md-4">
+                <label class="form-label fw-bold text-dark small">2. Academic Stream</label>
+                <select name="stream" class="form-select bg-light">
+                    <option value="" {% if not selected_stream %}selected{% endif %}>Any Stream / All</option>
+                    <option value="PCM" {% if selected_stream == 'PCM' %}selected{% endif %}>Science (PCM - Physics, Chem, Math)</option>
+                    <option value="PCB" {% if selected_stream == 'PCB' %}selected{% endif %}>Science (PCB - Physics, Chem, Bio)</option>
+                    <option value="Commerce" {% if selected_stream == 'Commerce' %}selected{% endif %}>Commerce</option>
+                    <option value="Arts" {% if selected_stream == 'Arts' %}selected{% endif %}>Arts / Humanities</option>
+                    <option value="Engineering" {% if selected_stream == 'Engineering' %}selected{% endif %}>Engineering</option>
+                    <option value="Agriculture" {% if selected_stream == 'Agriculture' %}selected{% endif %}>Agriculture</option>
+                </select>
+            </div>
+
+            <!-- Category / Preference -->
+            <div class="col-md-4">
+                <label class="form-label fw-bold text-dark small">3. Sector Preference</label>
+                <select name="category" class="form-select bg-light">
+                    <option value="" {% if not selected_category %}selected{% endif %}>All Sectors</option>
+                    <option value="Civil Services" {% if selected_category == 'Civil Services' %}selected{% endif %}>Civil Services (UPSC / State)</option>
+                    <option value="Government Recruitment" {% if selected_category == 'Government Recruitment' %}selected{% endif %}>Government Recruitment (SSC)</option>
+                    <option value="Banking" {% if selected_category == 'Banking' %}selected{% endif %}>Banking & Regulatory</option>
+                    <option value="Defence" {% if selected_category == 'Defence' %}selected{% endif %}>Defence & Paramilitary</option>
+                    <option value="Engineering" {% if selected_category == 'Engineering' %}selected{% endif %}>Engineering Entrance</option>
+                    <option value="Medical" {% if selected_category == 'Medical' %}selected{% endif %}>Medical & Pharmacy</option>
+                    <option value="Law" {% if selected_category == 'Law' %}selected{% endif %}>Law</option>
+                    <option value="Management" {% if selected_category == 'Management' %}selected{% endif %}>Management (MBA)</option>
+                    <option value="Teaching" {% if selected_category == 'Teaching' %}selected{% endif %}>Teaching & Research</option>
+                </select>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="col-12 text-center pt-2">
+                <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm fw-semibold">
+                    Find Eligible Examinations <i data-lucide="arrow-right" class="icon-xs"></i>
+                </button>
+                {% if has_searched %}
+                <a href="{{ url_for('exam.who_can_apply') }}" class="btn btn-outline-secondary btn-lg ms-2">
+                    Reset
+                </a>
+                {% endif %}
+            </div>
+
+        </form>
+    </div>
+
+    <!-- MATCHED EXAMINATIONS LIST -->
+    {% if has_searched %}
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="fw-bold text-dark mb-0">
+                Matched Examinations ({{ matched_exams|length }})
+            </h4>
+            <a href="{{ url_for('exam.exam_list') }}" class="btn btn-sm btn-outline-secondary">
+                View Full Directory →
+            </a>
+        </div>
+
+        {% if matched_exams %}
+        <div class="row g-4">
+            {% for ex in matched_exams %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-4 border-0 shadow-sm rounded-4 bg-white card-interactive d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-primary bg-opacity-10 text-primary small">
+                            {{ ex.category or 'General' }}
+                        </span>
+                        <span class="badge bg-success bg-opacity-10 text-success small">
+                            <i data-lucide="check" class="icon-xs text-success"></i> Eligible
+                        </span>
+                    </div>
+
+                    <h5 class="fw-bold mb-1 text-dark">
+                        <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="text-dark text-decoration-none">
+                            {{ ex.exam_name }}
+                        </a>
+                    </h5>
+                    <div class="small text-muted mb-2">Authority: <strong class="text-secondary">{{ ex.conducted_by or 'Board' }}</strong></div>
+
+                    <div class="p-2 mb-3 bg-light rounded-3 small">
+                        <div class="mb-1"><strong>Required:</strong> {{ ex.qualification }}</div>
+                        {% if ex.streams %}<div><strong>Streams:</strong> {{ ex.streams }}</div>{% endif %}
+                        {% if ex.age_limit %}<div><strong>Age:</strong> {{ ex.age_limit }}</div>{% endif %}
+                    </div>
+
+                    <p class="small text-muted mb-3 flex-grow-1" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                        {{ ex.description or 'Statutory examination matching your academic profile.' }}
+                    </p>
+
+                    <div class="d-flex gap-2 mt-auto pt-2 border-top align-items-center">
+                        <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="btn btn-primary btn-sm flex-grow-1">
+                            Inspect Details →
+                        </a>
+                        {% if ex.official_url or ex.official_website %}
+                        <a href="{{ ex.official_url or ex.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm">
+                            Portal 
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+            <div class="fs-1 mb-2"><i data-lucide="search" class="icon-xs"></i></div>
+            <h5 class="fw-bold">No Examinations Found For This Combination</h5>
+            <p class="text-muted small mb-3">Try adjusting your stream or sector preference to see broader opportunities.</p>
+            <a href="{{ url_for('exam.who_can_apply') }}" class="btn btn-primary btn-sm px-4 align-self-center">
+                Clear Filters
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

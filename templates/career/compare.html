@@ -1,179 +1,163 @@
 {% extends "base.html" %}
 
-{% block title %}
-Career Comparison
-{% endblock %}
+{% block title %}Comparing {{ careers|map(attribute='title')|join(' vs ') }} | MPath Career Counselling{% endblock %}
 
 {% block content %}
-
 <div class="container py-5">
 
-    <div class="text-center mb-5">
-
-        <h1 class="fw-bold">
-
-            ⚖️ AI Career Comparison
-
-        </h1>
-
-        <p class="text-muted">
-
-            Compare two careers side by side.
-
-        </p>
-
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-semibold mb-2">
+                <i data-lucide="scale" class="icon-xs"></i>
+                <span>Side-by-Side Comparison ({{ careers|length }} Careers)</span>
+            </div>
+            <h1 class="fw-bold mb-1">
+                {{ careers|map(attribute='title')|join(' vs ') }}
+            </h1>
+            <p class="text-muted mb-0">Evaluate education prerequisites, skills, workplaces, and earning potential.</p>
+        </div>
+        <div>
+            <a href="{{ url_for('career.compare') }}" class="btn btn-outline-primary">
+                Change Selection
+            </a>
+        </div>
     </div>
 
-    <div class="card shadow border-0">
-
+    <!-- Comparison Table Card -->
+    <div class="card border shadow-sm bg-white overflow-hidden mb-5">
         <div class="table-responsive">
-
-            <table class="table table-bordered align-middle">
-
-                <thead class="table-primary">
-
+            <table class="table table-bordered align-middle mb-0">
+                <thead class="table-light">
                     <tr>
-
-                        <th>Feature</th>
-
-                        <th>{{ comparison.career1.title }}</th>
-
-                        <th>{{ comparison.career2.title }}</th>
-
+                        <th style="width: 20%;" class="py-3 px-4">Evaluation Dimension</th>
+                        {% for c in careers %}
+                        <th class="py-3 px-4 text-center">
+                            <span class="badge badge-category mb-1">{{ c.category }}</span>
+                            <h5 class="fw-bold text-dark mb-1">{{ c.title }}</h5>
+                            <a href="{{ url_for('career.career_detail', slug=c.slug) }}" class="btn btn-sm btn-outline-primary mt-2">
+                                Details →
+                            </a>
+                        </th>
+                        {% endfor %}
                     </tr>
-
                 </thead>
 
                 <tbody>
-
+                    <!-- Category -->
                     <tr>
-
-                        <th>Category</th>
-
-                        <td>{{ comparison.career1.category }}</td>
-
-                        <td>{{ comparison.career2.category }}</td>
-
+                        <th class="px-4 py-3 bg-light text-muted small">Domain & Category</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 text-center fw-semibold">{{ c.category }}</td>
+                        {% endfor %}
                     </tr>
 
+                    <!-- Minimum Education -->
                     <tr>
-
-                        <th>Average Salary</th>
-
-                        <td>{{ comparison.career1.average_salary }}</td>
-
-                        <td>{{ comparison.career2.average_salary }}</td>
-
+                        <th class="px-4 py-3 bg-light text-muted small">Required Education</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small">{{ c.education_required or 'Bachelor’s Degree' }}</td>
+                        {% endfor %}
                     </tr>
 
+                    <!-- Average Salary Scale -->
                     <tr>
-
-                        <th>Future Scope</th>
-
-                        <td>{{ comparison.career1.future_scope }}</td>
-
-                        <td>{{ comparison.career2.future_scope }}</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <th>Education</th>
-
-                        <td>{{ comparison.career1.education_required }}</td>
-
-                        <td>{{ comparison.career2.education_required }}</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <th>Required Skills</th>
-
-                        <td>
-
-                            <ul>
-
-                                {% for skill in comparison.skills1 %}
-
-                                <li>{{ skill }}</li>
-
-                                {% endfor %}
-
-                            </ul>
-
+                        <th class="px-4 py-3 bg-light text-muted small">Typical Salary Scale</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small text-center text-primary fw-bold">
+                            {{ c.average_salary or 'As per industry scale' }}
                         </td>
-
-                        <td>
-
-                            <ul>
-
-                                {% for skill in comparison.skills2 %}
-
-                                <li>{{ skill }}</li>
-
-                                {% endfor %}
-
-                            </ul>
-
-                        </td>
-
+                        {% endfor %}
                     </tr>
 
+                    <!-- Required Skills -->
+                    <tr>
+                        <th class="px-4 py-3 bg-light text-muted small">Key Technical & Core Skills</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small">
+                            <div class="d-flex flex-wrap gap-1 justify-content-center">
+                                {% if c.skills_required %}
+                                    {% for sk in c.skills_required.split(',')[:6] %}
+                                    <span class="badge bg-light text-dark border">{{ sk.strip() }}</span>
+                                    {% endfor %}
+                                {% else %}
+                                    <span class="text-muted">Domain skills</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- Entrance Examinations -->
+                    <tr>
+                        <th class="px-4 py-3 bg-light text-muted small">Entrance / Qualifying Exams</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small text-center">
+                            {{ c.entrance_exams or 'Direct Merit / Standard University Admission' }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- Top Colleges -->
+                    <tr>
+                        <th class="px-4 py-3 bg-light text-muted small">Renowned Institutions</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small">
+                            {{ c.top_colleges or 'IITs, Central Universities, State Colleges' }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- Future Scope & Growth -->
+                    <tr>
+                        <th class="px-4 py-3 bg-light text-muted small">Growth Outlook</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small text-center">
+                            <span class="badge bg-success bg-opacity-10 text-success">
+                                {{ c.future_scope or 'High Growth' }}
+                            </span>
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- Work Environment -->
+                    <tr>
+                        <th class="px-4 py-3 bg-light text-muted small">Working Environment</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small text-center">
+                            {{ c.work_environment or 'Professional Office / Industry' }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- Top Hiring Organizations -->
+                    <tr>
+                        <th class="px-4 py-3 bg-light text-muted small">Top Employers</th>
+                        {% for c in careers %}
+                        <td class="px-4 py-3 small">
+                            {{ c.top_companies or 'Industry Enterprises & Government' }}
+                        </td>
+                        {% endfor %}
+                    </tr>
                 </tbody>
-
             </table>
-
         </div>
-
     </div>
 
-    <div class="card shadow border-0 mt-5">
-
-        <div class="card-body">
-
-            <h3>
-
-                🤖 AI Insight
-
-            </h3>
-
-            <hr>
-
-            {% if comparison.salary_equal and comparison.future_equal %}
-
-                <div class="alert alert-info">
-
-                    Both careers offer similar salary potential and future opportunities.
-
-                </div>
-
-            {% else %}
-
-                <div class="alert alert-success">
-
-                    Compare salary, required skills, education, and future scope carefully before making your career decision.
-
-                </div>
-
-            {% endif %}
-
-        </div>
-
+    <!-- Ethical Non-Deterministic Guidance Principle -->
+    <div class="card p-4 border shadow-sm bg-light">
+        <h5 class="fw-bold mb-2"><i data-lucide="target" class="icon-xs"></i> How to Choose Between These Paths</h5>
+        <p class="text-muted small mb-0">
+            No single career is universally "better" than another. An administrative role in civil services offers governance impact and job security; a software or AI role offers high digital flexibility and rapid salary compounding; a healthcare career provides high direct clinical satisfaction. 
+            Evaluate which alignment matches your personal aptitude, financial goals, and preferred working style.
+        </p>
     </div>
 
     <div class="text-center mt-5">
-
-        <a
-            href="{{ url_for('career.compare') }}"
-            class="btn btn-primary">
-
-            Compare More Careers
-
+        <a href="{{ url_for('assessment.start') }}" class="btn btn-primary px-4">
+            <i data-lucide="target" class="icon-xs"></i> Take Career Assessment to Check Your Natural Fit
         </a>
-
     </div>
 
 </div>
-
 {% endblock %}

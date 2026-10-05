@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}I Don't Know What Career I Want | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('career.career_list') }}" class="text-decoration-none">Careers</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Self-Discovery Compass</li>
+        </ol>
+    </nav>
+
+    <!-- Hero Card -->
+    <div class="card text-white border-0 shadow-lg rounded-4 p-4 p-md-5 mb-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;">
+        <div class="position-relative z-1">
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-25 text-white small fw-semibold mb-3">
+                <span></span>
+                <span>Judgment-Free Exploration</span>
+            </div>
+            <h1 class="display-6 fw-bold mb-2">"I Don't Know What Career I Want"</h1>
+            <p class="lead fs-6 mb-3 text-white-50" style="max-width: 800px;">
+                That is completely normal. Choosing a path doesn't begin with rigid job titles—it begins with understanding what energizes you, what subjects make you curious, and how you enjoy spending your time.
+            </p>
+            <div class="small text-white-50">
+                Pick 1 or 2 areas below that spark your curiosity to reveal genuine career fields.
+            </div>
+        </div>
+    </div>
+
+    <!-- 12 Intuitive Interest Clusters Grid -->
+    <h4 class="fw-bold text-dark mb-3">Step 1: What kinds of activities or challenges excite you?</h4>
+    <p class="text-muted small mb-4">Click any cluster below to view authentic careers matching that natural affinity.</p>
+
+    <div class="row g-4 mb-5">
+        {% for cl in clusters %}
+        <div class="col-lg-4 col-md-6">
+            <a href="{{ url_for('career.interest_clusters', cluster=cl.name.split(' ')[0]) }}" class="text-decoration-none">
+                <div class="card h-100 border shadow-sm rounded-4 p-4 hover-lift bg-white transition-all">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="p-3 bg-light rounded-circle text-primary fs-3">
+                            {% if cl.icon == 'people' %}<i data-lucide="users" class="icon-xs"></i>
+                            {% elif cl.icon == 'calculator' %}<i data-lucide="bar-chart-2" class="icon-xs"></i>
+                            {% elif cl.icon == 'heart-pulse' %}<i data-lucide="stethoscope" class="icon-xs"></i>
+                            {% elif cl.icon == 'tree' %}
+                            {% elif cl.icon == 'pen' %}
+                            {% elif cl.icon == 'palette' %}
+                            {% elif cl.icon == 'bank' %}<i data-lucide="scale" class="icon-xs"></i>
+                            {% elif cl.icon == 'shield-check' %}
+                            {% elif cl.icon == 'mortarboard' %}<i data-lucide="graduation-cap" class="icon-xs"></i>
+                            {% elif cl.icon == 'tools' %}<i data-lucide="wrench" class="icon-xs"></i>
+                            {% elif cl.icon == 'trophy' %}<i data-lucide="award" class="icon-xs"></i>
+                            {% else %}{% endif %}
+                        </div>
+                        <div>
+                            <h5 class="fw-bold text-dark mb-1">{{ cl.name }}</h5>
+                            <span class="badge bg-success-subtle text-success small rounded-pill">Explore Cluster →</span>
+                        </div>
+                    </div>
+                    <p class="small text-muted mb-0">
+                        {{ cl.desc }}
+                    </p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Work Style Alternative Gateway -->
+    <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4 bg-light">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <h4 class="fw-bold text-dark mb-2">Prefer to start with your preferred daily environment?</h4>
+                <p class="text-muted small mb-3">
+                    Whether you love open outdoor nature, active hospital wards, quiet scientific laboratories, creative media studios, or dynamic courtroom chambers—filter careers by physical work atmosphere.
+                </p>
+                <a href="{{ url_for('career.work_styles') }}" class="btn btn-dark rounded-pill px-4 fw-semibold">
+                    Browse Careers by Work Environment →
+                </a>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="display-1"><i data-lucide="building" class="icon-xs"></i><i data-lucide="stethoscope" class="icon-xs"></i><i data-lucide="scale" class="icon-xs"></i></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

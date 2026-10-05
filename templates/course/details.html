@@ -1,0 +1,374 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.name }} - Offering Colleges, Eligibility & Admission | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-lg-5 py-4">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none text-muted">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('course.course_list') }}" class="text-decoration-none text-muted">Courses</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">{{ course.name }}</li>
+        </ol>
+    </nav>
+
+    <!-- COURSE HEADER DOSSIER (Solid Corporate Blue #00338D) -->
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4" style="background-color: #00338D !important; background: linear-gradient(135deg, #00338D 0%, #00225E 100%) !important; color: white;">
+        <div class="card-body p-4 p-md-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <!-- Badges -->
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-warning text-dark px-3 py-1.5 rounded-pill fw-bold">
+                            {{ course.level }} Degree
+                        </span>
+                        <span class="badge bg-white bg-opacity-25 text-white px-3 py-1.5 rounded-pill">
+                            <i data-lucide="book-open" class="icon-xs"></i> {{ course.discipline or 'General' }}
+                        </span>
+                        <span class="badge bg-white bg-opacity-25 text-white px-3 py-1.5 rounded-pill">
+                            <i data-lucide="clock" class="icon-xs"></i> {{ course.duration or '3-4 Years' }}
+                        </span>
+                        {% if course.stream %}
+                        <span class="badge bg-white bg-opacity-25 text-white px-3 py-1.5 rounded-pill">
+                            <i data-lucide="target" class="icon-xs"></i> {{ course.stream }}
+                        </span>
+                        {% endif %}
+                    </div>
+
+                    <!-- Heading -->
+                    <h1 class="display-5 fw-bold text-white mb-2">{{ course.name }}</h1>
+                    {% if course.short_name and course.short_name != course.name %}
+                    <div class="fs-5 text-warning mb-3 fw-medium">Commonly known as {{ course.short_name }}</div>
+                    {% endif %}
+
+                    <!-- Description -->
+                    <p class="lead text-white-50 mb-4" style="line-height: 1.7; max-width: 820px;">
+                        {{ course.description }}
+                    </p>
+
+                    <!-- Quick Facts Pill Grid -->
+                    <div class="row g-3" style="max-width: 820px;">
+                        {% if course.eligibility_summary %}
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white bg-opacity-10 rounded-3 h-100">
+                                <div class="small text-warning fw-semibold text-uppercase">Standard Eligibility</div>
+                                <div class="text-white small mt-1">{{ course.eligibility_summary }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if course.admission_modes %}
+                        <div class="col-md-6">
+                            <div class="p-3 bg-white bg-opacity-10 rounded-3 h-100">
+                                <div class="small text-warning fw-semibold text-uppercase">Common Admission Modes</div>
+                                <div class="text-white small mt-1">{{ course.admission_modes }}</div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                <!-- Verified Count Card -->
+                <div class="col-lg-4 mt-4 mt-lg-0 text-center">
+                    <div class="card border-0 bg-white text-dark p-4 rounded-4 shadow-lg mx-auto" style="max-width: 320px;">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-1 rounded-pill fw-bold mx-auto mb-2">
+                             100% Verified Registry
+                        </span>
+                        <div class="display-3 fw-bold text-primary mb-1">{{ total_count }}</div>
+                        <div class="fs-6 fw-semibold text-secondary mb-3">Offering Institutions in India</div>
+                        <p class="small text-muted mb-0">
+                            Strict relational mapping verified via AISHE official records & statutory registry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN TWO-COLUMN SECTION -->
+    <div class="row g-4">
+
+        <!-- LEFT: OFFERING INSTITUTIONS EXPLORER -->
+        <div class="col-lg-8">
+
+            <!-- FILTER SUB-TOOLBAR -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-3 p-md-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="fw-bold mb-0 text-dark">
+                            Institutions Offering {{ course.short_name or course.name }}
+                        </h4>
+                        <span class="badge bg-light text-muted border px-2.5 py-1.5 rounded-pill">
+                            {{ total_count }} Results
+                        </span>
+                    </div>
+
+                    <form method="GET" action="{{ url_for('course.course_detail', course_id=course.id) }}" class="row g-2">
+                        <!-- State Filter -->
+                        <div class="col-md-4 col-sm-6">
+                            <select name="state" class="form-select form-select-sm border-light-subtle rounded-3" onchange="this.form.submit()">
+                                <option value="">All States ({{ states|length }})</option>
+                                {% for st in states %}
+                                <option value="{{ st }}" {% if selected_state == st %}selected{% endif %}>{{ st }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Governance -->
+                        <div class="col-md-4 col-sm-6">
+                            <select name="gov_priv" class="form-select form-select-sm border-light-subtle rounded-3" onchange="this.form.submit()">
+                                <option value="">Govt & Private</option>
+                                <option value="Government" {% if selected_gov_priv == 'Government' %}selected{% endif %}>Government Only</option>
+                                <option value="Private" {% if selected_gov_priv == 'Private' %}selected{% endif %}>Private Only</option>
+                            </select>
+                        </div>
+
+                        <!-- City / District Search -->
+                        <div class="col-md-4">
+                            <div class="input-group input-group-sm">
+                                <input type="text" name="city" class="form-control border-light-subtle rounded-start-3" 
+                                       placeholder="Filter city/district (e.g. Bhopal, Guna)..." value="{{ selected_city }}">
+                                <button class="btn btn-primary" type="submit">Filter</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% if selected_state or selected_city or selected_gov_priv %}
+                    <div class="mt-2 pt-2 border-top d-flex align-items-center gap-2 small">
+                        <span class="text-muted fw-semibold">Filtered by:</span>
+                        {% if selected_state %}<span class="badge bg-light text-dark border">{{ selected_state }}</span>{% endif %}
+                        {% if selected_city %}<span class="badge bg-light text-dark border">{{ selected_city }}</span>{% endif %}
+                        {% if selected_gov_priv %}<span class="badge bg-light text-dark border">{{ selected_gov_priv }}</span>{% endif %}
+                        <a href="{{ url_for('course.course_detail', course_id=course.id) }}" class="btn btn-link btn-sm text-danger text-decoration-none p-0 ms-auto">Clear Filters</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- OFFERING INSTITUTIONS LIST -->
+            {% if results %}
+                <div class="d-flex flex-column gap-3">
+                    {% for cc, col in results %}
+                    <div class="card border-0 shadow-sm rounded-4 hover-shadow transition-all overflow-hidden">
+                        <div class="card-body p-4">
+                            <div class="row align-items-start">
+                                <div class="col-md-8">
+                                    <div class="d-flex flex-wrap gap-2 align-items-center mb-2">
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-0.5 rounded-pill small fw-semibold">
+                                             Verified Offering
+                                        </span>
+                                        <span class="badge {% if 'Gov' in col.government_private %}bg-primary-subtle text-primary border border-primary-subtle{% else %}bg-secondary-subtle text-secondary border border-secondary-subtle{% endif %} px-2 py-0.5 rounded-pill small">
+                                            {{ col.government_private or 'Government' }}
+                                        </span>
+                                        {% if col.institution_type %}
+                                        <span class="badge bg-light text-muted border px-2 py-0.5 rounded-pill small">
+                                            {{ col.institution_type }}
+                                        </span>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- College Name -->
+                                    <h5 class="fw-bold mb-1">
+                                        <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="text-decoration-none text-dark hover-primary">
+                                            {{ col.name }}
+                                        </a>
+                                    </h5>
+
+                                    <!-- Program-Level Precision -->
+                                    <div class="text-primary fw-semibold small mb-2">
+                                        <i data-lucide="graduation-cap" class="icon-xs"></i> Offered as: {{ cc.program_name or course.name }}
+                                        {% if cc.specialization and cc.specialization != cc.program_name %}
+                                        <span class="text-muted fw-normal">({{ cc.specialization }})</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Location & University -->
+                                    <div class="text-muted small d-flex flex-wrap align-items-center gap-3 mb-2">
+                                        <span><i data-lucide="map-pin" class="icon-xs"></i> {{ col.city }}, {{ col.state }}</span>
+                                        {% if col.university_name and col.university_name != col.name %}
+                                        <span><i data-lucide="landmark" class="icon-xs"></i> Affiliated to: {{ col.university_name[:35] }}</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Key Admission & Seat Badges -->
+                                    <div class="d-flex flex-wrap gap-2 mt-2">
+                                        {% if cc.seats %}
+                                        <span class="badge bg-warning-subtle text-dark border border-warning-subtle rounded-pill small">
+                                             {{ cc.seats }} Verified Seats
+                                        </span>
+                                        {% endif %}
+                                        {% if cc.admission_mode %}
+                                        <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill small">
+                                             Admission: {{ cc.admission_mode }}
+                                        </span>
+                                        {% endif %}
+                                        {% if cc.duration %}
+                                        <span class="badge bg-light text-muted border rounded-pill small">
+                                            <i data-lucide="clock" class="icon-xs"></i> {{ cc.duration }}
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="col-md-4 mt-3 mt-md-0 d-flex flex-column justify-content-between align-items-md-end gap-2 h-100">
+                                    <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="btn btn-primary btn-sm rounded-3 fw-semibold px-3 py-2 w-100 w-md-auto text-center">
+                                        View College Dossier →
+                                    </a>
+                                    {% if col.display_website %}
+                                    <a href="{{ col.display_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-3 px-3 py-1.5 w-100 w-md-auto text-center small">
+                                        Official Website 
+                                    </a>
+                                    {% endif %}
+                                    <span class="text-muted small" style="font-size: 0.75rem;">
+                                        Source: {{ cc.source[:28] }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- PAGINATION -->
+                {% if pagination and pagination.pages > 1 %}
+                <div class="d-flex justify-content-center mt-4">
+                    <ul class="pagination pagination-sm shadow-sm rounded-pill overflow-hidden">
+                        {% if pagination.has_prev %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('course.course_detail', course_id=course.id, page=pagination.prev_num, state=selected_state, city=selected_city, gov_priv=selected_gov_priv, type=selected_type) }}">‹ Prev</a>
+                        </li>
+                        {% endif %}
+                        {% for p in pagination.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                            {% if p %}
+                                <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                                    <a class="page-link" href="{{ url_for('course.course_detail', course_id=course.id, page=p, state=selected_state, city=selected_city, gov_priv=selected_gov_priv, type=selected_type) }}">{{ p }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled"><span class="page-link">…</span></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if pagination.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('course.course_detail', course_id=course.id, page=pagination.next_num, state=selected_state, city=selected_city, gov_priv=selected_gov_priv, type=selected_type) }}">Next ›</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+
+            {% else %}
+                <div class="card border-0 shadow-sm rounded-4 p-5 text-center">
+                    <div class="fs-1 mb-2"><i data-lucide="landmark" class="icon-xs"></i></div>
+                    <h5 class="fw-bold mb-2">No institutions found matching these filters</h5>
+                    <p class="text-muted mb-3">Try adjusting your state or location filter to see colleges offering this course.</p>
+                    <div>
+                        <a href="{{ url_for('course.course_detail', course_id=course.id) }}" class="btn btn-outline-primary btn-sm rounded-pill px-4">
+                            Reset Location Filters
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+
+        <!-- RIGHT SIDEBAR: RELATED CAREERS & ADVICE -->
+        <div class="col-lg-4">
+
+            <!-- CAREER -> COURSE -> COLLEGE LINK -->
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="fs-4"><i data-lucide="arrow-right" class="icon-xs"></i></span>
+                        <h5 class="fw-bold mb-0 text-dark">Related Career Opportunities</h5>
+                    </div>
+                    <p class="small text-muted mb-3">
+                        Graduating with a degree in <strong>{{ course.short_name or course.name }}</strong> enables career pathways in:
+                    </p>
+
+                    {% if related_careers %}
+                    <div class="d-flex flex-column gap-2 mb-3">
+                        {% for car in related_careers %}
+                        <a href="{{ url_for('career.career_detail', slug=car.slug) }}" class="p-3 bg-light rounded-3 text-decoration-none text-dark hover-bg-primary transition-all d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-bold text-primary small">{{ car.title }}</div>
+                                <div class="text-muted small" style="font-size: 0.78rem;">{{ car.category }} • Avg Salary: {{ car.average_salary or '₹6 - 15 LPA' }}</div>
+                            </div>
+                            <span class="text-muted">→</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="p-3 bg-light rounded-3 text-muted small mb-3">
+                        Academic and industrial careers across {{ course.discipline }}.
+                    </div>
+                    {% endif %}
+
+                    <div class="d-grid">
+                        <a href="{{ url_for('career.career_list') }}" class="btn btn-outline-primary btn-sm rounded-3 fw-semibold">
+                            Explore All Careers →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPECIALIZATIONS INFO CARD -->
+            {% if course.specialization %}
+            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
+                        <i data-lucide="target" class="icon-xs"></i> Popular Specializations
+                    </h5>
+                    <p class="small text-secondary mb-3">
+                        Institutions across India commonly offer {{ course.short_name or course.name }} in these areas:
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for spec in course.specialization.split(',') %}
+                        <span class="badge bg-light text-dark border px-2.5 py-1.5 rounded-pill small">
+                            {{ spec.strip() }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- AI ADVISOR PROMPT -->
+            <div class="card border-0 shadow-sm rounded-4" style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);">
+                <div class="card-body p-4 text-center">
+                    <div class="fs-1 mb-2"><i data-lucide="bot" class="icon-xs"></i></div>
+                    <h5 class="fw-bold text-dark mb-1">Need Guidance on {{ course.short_name or course.name }}?</h5>
+                    <p class="small text-secondary mb-3">
+                        Ask our MPath AI Career Mentor about eligibility requirements, entrance preparation, best colleges, and salary outlook.
+                    </p>
+                    <a href="{{ url_for('chatbot.home') }}" class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm">
+                        Chat with AI Mentor
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+.hover-shadow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07) !important;
+}
+.transition-all {
+    transition: all 0.2s ease-in-out;
+}
+.hover-primary:hover {
+    color: #00338D !important;
+}
+.hover-bg-primary:hover {
+    background-color: #E8F0FE !important;
+}
+</style>
+{% endblock %}

@@ -59,7 +59,7 @@ def seed_careers():
 
             db.session.commit()
 
-            print("✅ Careers Imported Successfully")
+            print("[SUCCESS] Careers Imported Successfully")
 
 
 if __name__ == "__main__":

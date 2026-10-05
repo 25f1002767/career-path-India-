@@ -1,7 +1,42 @@
-﻿.env
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
 venv/
+.venv/
+env/
+venv_old/
+
+# Python cache & bytecode
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+
+# Node / frontend artifacts
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Local databases & runtimes (database can be seeded via python seed.py)
 *.db
 *.sqlite3
 instance/
+scratch/
+
+# Logs
+*.log
+logs/
+
+# Uploads & temporary artifacts
+uploads/*
+!uploads/.gitkeep
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -43,7 +43,7 @@ export const DOMAIN_CURATED_ROLES: Record<string, RoleBlueprint[]> = {
       portalUrl: "https://upsc.gov.in",
       notifMonth: "February",
       examMonth: "May (Prelims) / September (Mains)",
-      growth: "SDM ➔ District Magistrate / Collector ➔ Joint Secretary ➔ Chief Secretary ➔ Cabinet Secretary of India",
+      growth: "SDM  District Magistrate / Collector  Joint Secretary  Chief Secretary  Cabinet Secretary of India",
       steps: [
         { title: "UPSC Civil Services Prelims (GS + CSAT)", description: "Pass nationwide screening exam covering Indian Polity, Economy, History, and Aptitude." },
         { title: "UPSC CSE Mains (9 Written Papers)", description: "In-depth subjective essays, GS I-IV, and chosen Optional Subject." },
@@ -69,7 +69,7 @@ export const DOMAIN_CURATED_ROLES: Record<string, RoleBlueprint[]> = {
       portalUrl: "https://uppsc.up.nic.in",
       notifMonth: "March",
       examMonth: "June / October",
-      growth: "SDM ➔ Additional District Magistrate (ADM) ➔ IAS Induction (Promoted Cadre) ➔ Special Secretary",
+      growth: "SDM  Additional District Magistrate (ADM)  IAS Induction (Promoted Cadre)  Special Secretary",
       steps: [
         { title: "State PSC Combined Examination", description: "State-specific General Studies (History, Geography, State Economy) & Aptitude." },
         { title: "State Mains & Administrative Interview", description: "Written descriptive papers and personal interview before State Public Service Commission." }
@@ -94,7 +94,7 @@ export const DOMAIN_CURATED_ROLES: Record<string, RoleBlueprint[]> = {
       portalUrl: "https://upsc.gov.in",
       notifMonth: "February",
       examMonth: "July",
-      growth: "Enforcement Officer ➔ Assistant PF Commissioner (APFC) ➔ Regional PF Commissioner",
+      growth: "Enforcement Officer  Assistant PF Commissioner (APFC)  Regional PF Commissioner",
       steps: [
         { title: "UPSC Special Recruitment Test", description: "Objective paper on Labor Laws, Industrial Relations, Indian Economy, and Social Security." },
         { title: "UPSC Interview", description: "In-person evaluation at Dholpur House, New Delhi." }
@@ -122,7 +122,7 @@ export const DOMAIN_CURATED_ROLES: Record<string, RoleBlueprint[]> = {
       portalUrl: "https://linkedin.com",
       notifMonth: "Rolling",
       examMonth: "Continuous Hiring",
-      growth: "AI Researcher ➔ Senior Applied Scientist ➔ Principal AI Architect ➔ VP Artificial Intelligence",
+      growth: "AI Researcher  Senior Applied Scientist  Principal AI Architect  VP Artificial Intelligence",
       steps: [
         { title: "Deep Learning & Transformer Research", description: "Master PyTorch, attention mechanisms, reinforcement learning from human feedback (RLHF), and GPU cluster optimization." },
         { title: "High-Impact AI Publications & Benchmark Systems", description: "Deliver production foundation model architectures beating open benchmarks." }
@@ -147,7 +147,7 @@ export const DOMAIN_CURATED_ROLES: Record<string, RoleBlueprint[]> = {
       portalUrl: "https://naukri.com",
       notifMonth: "Rolling",
       examMonth: "Continuous Hiring",
-      growth: "Data Scientist ➔ Senior Data Scientist ➔ Data Science Lead ➔ Head of Analytics",
+      growth: "Data Scientist  Senior Data Scientist  Data Science Lead  Head of Analytics",
       steps: [
         { title: "Machine Learning, Statistics & Python", description: "Master scikit-learn, XGBoost, SQL, feature engineering, and statistical hypothesis testing." },
         { title: "MLOps & Real-time Model Serving", description: "Deploy low-latency containerized inference endpoints with MLflow and FastAPI." }
@@ -172,7 +172,7 @@ export const DOMAIN_CURATED_ROLES: Record<string, RoleBlueprint[]> = {
       portalUrl: "https://rbi.org.in",
       notifMonth: "June",
       examMonth: "August",
-      growth: "Research Officer ➔ Assistant General Manager ➔ Chief General Manager",
+      growth: "Research Officer  Assistant General Manager  Chief General Manager",
       steps: [
         { title: "RBI DSIM / DEPR Specialized Examination", description: "Advanced Probability, Mathematical Statistics, Econometrics, and Stochastic Calculus." },
         { title: "Quantitative Research Viva", description: "Defend empirical economic forecasting and financial market surveillance models." }
@@ -1517,8 +1517,8 @@ function synthesizeCareer(title: string, domain: string, tier: TierType, idx: nu
       applicationFee: sector === "GOVT" ? "₹100 - ₹500" : "Free",
     },
     growthProspects: isElite 
-      ? "Lead Specialist ➔ Principal Director ➔ Executive Head / C-Suite" 
-      : "Junior Officer ➔ Senior Officer ➔ Department Head / Manager",
+      ? "Lead Specialist  Principal Director  Executive Head / C-Suite" 
+      : "Junior Officer  Senior Officer  Department Head / Manager",
     tags: [domain, tier, sector, "2025-2026 Verified"],
   };
 }

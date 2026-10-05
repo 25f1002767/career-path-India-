@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}AISHE Higher Education Importer | Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-semibold mb-2">
+                <i data-lucide="landmark" class="icon-xs"></i>
+                <span>Ministry of Education — AISHE Data Engine</span>
+            </div>
+            <h2 class="fw-bold mb-1">AISHE National Institution Importer</h2>
+            <p class="text-muted mb-0">Synchronize verified higher education directories directly from the official AISHE national portal.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.colleges') }}" class="btn btn-outline-secondary">
+                &larr; Back to Colleges
+            </a>
+            <a href="{{ url_for('college.college_list') }}" target="_blank" class="btn btn-light border">
+                View Public Directory 
+            </a>
+        </div>
+    </div>
+
+    <!-- DATA HEALTH METRICS -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Total Institutions</div>
+                <h3 class="fw-bold mb-0 text-primary">{{ stats.total }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Verified AISHE Codes</div>
+                <h3 class="fw-bold mb-0 text-success">{{ stats.with_aishe }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Official Web Portals</div>
+                <h3 class="fw-bold mb-0 text-info">{{ stats.with_website }}</h3>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 border rounded-3 bg-white shadow-sm text-center">
+                <div class="text-muted small">Universities Mapped</div>
+                <h3 class="fw-bold mb-0 text-warning">{{ stats.universities }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTION CARDS -->
+    <div class="row g-4 mb-4">
+        
+        <!-- RUN IMPORTER FORM -->
+        <div class="col-lg-6">
+            <div class="card border rounded-4 shadow-sm p-4 bg-white h-100">
+                <h5 class="fw-bold text-dark mb-3">Execute Live AISHE Import</h5>
+                <p class="text-muted small mb-4">
+                    Trigger the authenticated AES-encrypted pipeline to fetch live, verified institutional data from the Ministry of Education AISHE repository.
+                </p>
+
+                <form method="POST" action="{{ url_for('admin.aishe_importer_dashboard') }}">
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-dark">Data Feed Scope</label>
+                        <select name="import_scope" class="form-select mb-2" id="scopeSelector">
+                            <option value="pm_vidyalaxmi">PM Vidyalaxmi Top Quality Institutions (1,441 records nationwide)</option>
+                            <option value="rnd">National R&D Institutes (ISRO, DRDO, CSIR, ICAR - 288 records)</option>
+                            <option value="state_mp">Madhya Pradesh Recognized Universities & Colleges</option>
+                            <option value="all_premier">Complete Premier Package (PM Vidyalaxmi + R&D + MP State)</option>
+                        </select>
+                    </div>
+
+                    <div class="p-3 bg-light rounded-3 border small mb-4">
+                        <div class="fw-semibold text-success mb-1"> Automated Safeguards Active:</div>
+                        <ul class="mb-0 ps-3 text-secondary">
+                            <li>Primary key duplicate matching via official AISHE code (`U-xxxx`, `C-xxxx`, `R-xxxx`).</li>
+                            <li>Secondary fallback matching on normalized name + state.</li>
+                            <li>Existing manually verified records are enriched without clobbering.</li>
+                            <li>Zero synthetic records, fake dates, or mock URLs.</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" onclick="return confirm('Initiate live AISHE sync? This will query official endpoints.')">
+                        <i data-lucide="arrow-right" class="icon-xs"></i> Run AISHE Sync Pipeline
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- SOURCE PROVENANCE & TECHNICAL DETAILS -->
+        <div class="col-lg-6">
+            <div class="card border rounded-4 shadow-sm p-4 bg-white h-100">
+                <h5 class="fw-bold text-dark mb-3">Authoritative Data Provenance</h5>
+                
+                <div class="mb-3">
+                    <span class="text-muted small d-block">Source Authority:</span>
+                    <strong>Ministry of Education, Government of India</strong>
+                </div>
+
+                <div class="mb-3">
+                    <span class="text-muted small d-block">Registry Endpoint:</span>
+                    <code class="text-primary small">https://dashboard.aishe.gov.in/hedirectory/#/hedirectory</code>
+                </div>
+
+                <div class="mb-3">
+                    <span class="text-muted small d-block">Backend Microservices Discovered:</span>
+                    <ul class="small text-secondary ps-3 mb-0">
+                        <li><code>/aisheinstitutemanagement/institutionDirectory /pm-vidya-laxmi</code></li>
+                        <li><code>/aisheinstitutemanagement/institutionDirectory /rnd-institute</code></li>
+                        <li><code>/aisheinstitutemanagement/institutionDirectory /getUniversityList</code></li>
+                        <li><code>/aisheinstitutemanagement/institutionDirectory /getCollegeList</code></li>
+                    </ul>
+                </div>
+
+                <div class="mb-2">
+                    <span class="text-muted small d-block">Protocol Security & Crypto:</span>
+                    <span class="badge bg-success bg-opacity-10 text-success">AES-128-CBC + PBKDF2 (SHA-1)</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GEOGRAPHIC COVERAGE TABLE -->
+    <div class="card border rounded-4 shadow-sm bg-white overflow-hidden">
+        <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-dark">Current State-Wise Institutional Distribution</span>
+            <span class="badge bg-light text-dark border">{{ stats.state_counts|length }} States & UTs Covered</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>State / Union Territory</th>
+                        <th class="text-center">Total Verified Institutions</th>
+                        <th class="text-center">Share</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for st, count in stats.state_counts %}
+                    <tr>
+                        <td class="fw-semibold text-dark">{{ st or 'National Jurisdiction' }}</td>
+                        <td class="text-center">
+                            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 fw-bold">
+                                {{ count }}
+                            </span>
+                        </td>
+                        <td class="text-center text-muted small">
+                            {{ ((count / stats.total) * 100)|round(1) }}%
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

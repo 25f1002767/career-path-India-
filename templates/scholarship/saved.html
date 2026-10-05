@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Saved Scholarships | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- HEADER -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-warning bg-opacity-10 text-dark fw-semibold small">
+                <span><i data-lucide="bookmark-check" class="icon-xs"></i></span>
+                <span>My Saved Scholarships</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">Your Shortlisted Scholarships</h1>
+            <p class="text-muted mb-0">Review, compare, and prepare your applications for scholarships you have bookmarked.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-outline-secondary">
+                ← Explore More
+            </a>
+            <a href="{{ url_for('scholarship.my_applications') }}" class="btn btn-primary">
+                My Applications
+            </a>
+        </div>
+    </div>
+
+    {% if scholarships %}
+    <!-- COMPARISON PROMPT BAR -->
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-primary bg-opacity-10 border border-primary">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <span class="fs-4"><i data-lucide="scale" class="icon-xs"></i></span>
+                <div>
+                    <div class="fw-bold text-dark">Compare Saved Scholarships</div>
+                    <div class="small text-muted">Select up to 3 scholarships to view eligibility, allowances, and rules side-by-side.</div>
+                </div>
+            </div>
+            <div>
+                {% set id_list = [] %}
+                {% for s in scholarships[:3] %}
+                    {% set _ = id_list.append(s.id|string) %}
+                {% endfor %}
+                <a href="{{ url_for('scholarship.compare_scholarships', ids=id_list|join(',')) }}" class="btn btn-primary fw-semibold">
+                    Compare First 3 Schemes
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARDS GRID -->
+    <div class="row g-4">
+        {% for s in scholarships %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 p-4 position-relative bg-white hover-shadow transition-all d-flex flex-column">
+                
+                <!-- TOP BADGES -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="badge bg-light text-dark border px-2.5 py-1 small">
+                        {{ s.provider_type or 'Government' }}
+                    </span>
+                    <a href="{{ url_for('scholarship.toggle_save', scholarship_id=s.id) }}" class="btn btn-sm btn-outline-danger border-0 p-1" title="Remove from saved">
+                        <i data-lucide="bookmark-check" class="icon-xs"></i> Remove
+                    </a>
+                </div>
+
+                <h5 class="fw-bold text-dark mb-1">
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="text-decoration-none text-dark">
+                        {{ s.title }}
+                    </a>
+                </h5>
+                <p class="text-muted small mb-3">
+                    <i data-lucide="landmark" class="icon-xs"></i> {{ s.provider_name or s.provider }} • {{ s.state or 'All India' }}
+                </p>
+
+                <!-- BENEFIT & ELIGIBILITY HIGHLIGHTS -->
+                <div class="bg-light rounded-3 p-3 mb-3 small">
+                    <div class="mb-1 text-truncate">
+                        <strong><i data-lucide="award" class="icon-xs"></i> Benefit:</strong> <span class="text-success fw-semibold">{{ s.amount or 'Financial Grant' }}</span>
+                    </div>
+                    {% if s.family_income_limit %}
+                    <div class="mb-1 text-truncate">
+                        <strong><i data-lucide="trending-down" class="icon-xs"></i> Income Limit:</strong> Up to ₹{{ "{:,.0f}".format(s.family_income_limit) }}/year
+                    </div>
+                    {% endif %}
+                    <div class="text-truncate">
+                        <strong><i data-lucide="target" class="icon-xs"></i> Category:</strong> {{ s.category or 'General / All' }}
+                    </div>
+                </div>
+
+                <!-- ACTIONS -->
+                {% set meta = s.apply_button_meta %}
+                <div class="d-flex gap-2 mt-auto pt-2 border-top">
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-sm btn-outline-secondary w-50">
+                        View Details
+                    </a>
+                    {% if meta.is_enabled %}
+                    <a href="{{ url_for('scholarship.apply_redirect', identifier=s.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary w-50 fw-semibold">
+                        <i data-lucide="graduation-cap" class="icon-xs"></i> Apply Now 
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('scholarship.scholarship_detail', identifier=s.slug or s.id) }}" class="btn btn-sm btn-{{ meta.badge_class }} w-50 fw-semibold" title="{{ meta.reason }}">
+                        {{ meta.icon }} {{ meta.label }}
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+        <div class="display-5 text-muted mb-3"><i data-lucide="bookmark-check" class="icon-xs"></i></div>
+        <h4 class="fw-bold text-dark">No Saved Scholarships Yet</h4>
+        <p class="text-muted mb-4 max-w-500 mx-auto">
+            As you browse through the national scholarship directory, click the "<i data-lucide="bookmark-check" class="icon-xs"></i> Save" button on any scholarship card to keep track of it here.
+        </p>
+        <div>
+            <a href="{{ url_for('scholarship.scholarship_list') }}" class="btn btn-primary px-4 py-2 fw-semibold">
+                Explore Verified Scholarships
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
