@@ -20,8 +20,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Design System CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}?v=4.2">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=4.2">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}?v=5.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}?v=5.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}?v=5.0">
 
     {% block extra_css %}{% endblock %}
 </head>
@@ -29,7 +30,7 @@
 <body>
 <div class="d-flex flex-column min-vh-100">
 
-    <!-- NAVBAR -->
+    <!-- TOP NAVBAR -->
     {% include "components/navbar.html" %}
 
     <!-- FLASH MESSAGES -->
@@ -46,79 +47,100 @@
         {% endwith %}
     </div>
 
-    <!-- MAIN CONTENT WITH ENTRANCE TRANSITION -->
+    <!-- MAIN CONTENT -->
     <main class="flex-grow-1 page-enter">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- FOOTER -->
-    <footer class="text-white pt-5 pb-4 mt-5 border-top border-white border-opacity-15" style="background-color: #00338D !important;">
-        <div class="container">
-            <div class="row g-4">
+    <!-- GLOBAL SEARCH MODAL -->
+    {% include "components/search_modal.html" %}
 
-                <!-- Brand Column -->
+    <!-- INSTITUTIONAL FOOTER (#063B8F) -->
+    <footer class="footer-institutional text-white pt-5 pb-4 mt-5 border-top border-white border-opacity-15" style="background-color: var(--color-deep-blue, #063B8F) !important;">
+        <div class="container">
+            <div class="row g-4 pb-4">
+
+                <!-- Brand & Mission Column -->
                 <div class="col-lg-4 col-md-6">
                     <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">
-                        <span class="brand-mark">
+                        <span class="brand-mark bg-white text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; color: var(--color-deep-blue) !important;">
                             <i data-lucide="graduation-cap" class="icon-sm"></i>
                         </span>
-                        <span>MPath Career Counselling</span>
+                        <span class="text-white">MPath Career Counselling</span>
                     </h5>
-                    <p class="text-white-50 small mb-3">
-                        A national-level career guidance and higher education discovery platform empowering students across India to make informed, verified, and confident decisions.
+                    <p class="text-white-50 small mb-3 lh-base">
+                        A national-level career discovery and higher education registry empowering students across India to make verified, objective, and confident decisions.
                     </p>
-                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 text-white-50 small">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 text-white-50 small border border-white border-opacity-15">
                         <i data-lucide="shield-check" class="icon-xs text-warning"></i>
                         <span>Ethical Guidance: Objective Information, Human Decisions</span>
                     </div>
                 </div>
 
-                <!-- Career Discovery -->
+                <!-- Explore Column -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.06em;">Explore</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{{ url_for('career.career_list') }}" class="footer-link">All Careers</a></li>
+                        <li class="mb-2"><a href="{{ url_for('course.course_list') }}" class="footer-link">Degree Courses</a></li>
+                        <li class="mb-2"><a href="{{ url_for('college.college_list') }}" class="footer-link">Colleges Directory</a></li>
+                        <li class="mb-2"><a href="{{ url_for('exam.exam_list') }}" class="footer-link">Government Exams</a></li>
+                        <li class="mb-2"><a href="{{ url_for('scholarship.scholarship_list') }}" class="footer-link">Scholarships</a></li>
+                        <li class="mb-2"><a href="{{ url_for('internship.internship_list') }}" class="footer-link">AICTE Internships</a></li>
+                    </ul>
+                </div>
+
+                <!-- For Students Column -->
+                <div class="col-lg-2 col-md-3 col-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.06em;">For Students</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{{ url_for('assessment.start') }}" class="footer-link">Career Assessment</a></li>
+                        <li class="mb-2"><a href="{{ url_for('chatbot.home') }}" class="footer-link d-flex align-items-center gap-1"><i data-lucide="bot" class="icon-xs text-info"></i> AI Career Mentor</a></li>
+                        <li class="mb-2"><a href="{{ url_for('career.compare') }}" class="footer-link">Compare Careers</a></li>
+                        <li class="mb-2"><a href="{{ url_for('college.compare_colleges') }}" class="footer-link">Compare Colleges</a></li>
+                        <li class="mb-2"><a href="{{ url_for('resume.upload_resume') }}" class="footer-link">Resume Analyzer</a></li>
+                        <li class="mb-2"><a href="{{ url_for('dashboard.home') }}" class="footer-link">Student Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <!-- Guidance & Resources Column -->
                 <div class="col-lg-2 col-md-6 col-6">
-                    <h6 class="fw-bold text-white mb-3">Explore Careers</h6>
+                    <h6 class="fw-bold text-white mb-3 text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.06em;">Resources</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="{{ url_for('career.career_list') }}" class="text-white-50 text-decoration-none">All Careers</a></li>
-                        <li class="mb-2"><a href="{{ url_for('career.career_list', category='Technology') }}" class="text-white-50 text-decoration-none">Technology</a></li>
-                        <li class="mb-2"><a href="{{ url_for('career.career_list', category='Medical & Healthcare') }}" class="text-white-50 text-decoration-none">Healthcare</a></li>
-                        <li class="mb-2"><a href="{{ url_for('career.career_list', category='Government & Civil Services') }}" class="text-white-50 text-decoration-none">Civil Services</a></li>
-                        <li class="mb-2"><a href="{{ url_for('career.compare') }}" class="text-white-50 text-decoration-none">Compare Careers</a></li>
+                        <li class="mb-2"><a href="{{ url_for('opportunity.home') }}" class="footer-link">Opportunity Hub</a></li>
+                        <li class="mb-2"><a href="{{ url_for('scholarship.document_vault') }}" class="footer-link">Document Vault</a></li>
+                        <li class="mb-2"><a href="{{ url_for('scholarship.scholarship_calendar') }}" class="footer-link">Scholarship Calendar</a></li>
+                        <li class="mb-2"><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" class="footer-link">NSP Portal (External)</a></li>
+                        <li class="mb-2"><a href="https://internship.aicte-india.org/" target="_blank" rel="noopener noreferrer" class="footer-link">AICTE Portal (External)</a></li>
                     </ul>
                 </div>
 
-                <!-- Opportunities & Education -->
-                <div class="col-lg-3 col-md-6 col-6">
-                    <h6 class="fw-bold text-white mb-3">Opportunities</h6>
+                <!-- Institutional Policies Column -->
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.06em;">Institutional</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="{{ url_for('college.college_list') }}" class="text-white-50 text-decoration-none">Colleges Directory</a></li>
-                        <li class="mb-2"><a href="{{ url_for('exam.exam_list') }}" class="text-white-50 text-decoration-none">Government Exams</a></li>
-                        <li class="mb-2"><a href="{{ url_for('scholarship.scholarship_list') }}" class="text-white-50 text-decoration-none">Scholarships</a></li>
-                        <li class="mb-2"><a href="{{ url_for('internship.internship_list') }}" class="text-white-50 text-decoration-none">AICTE Internships</a></li>
-                        <li class="mb-2"><a href="{{ url_for('assessment.start') }}" class="text-white-50 text-decoration-none">Career Assessment</a></li>
-                    </ul>
-                </div>
-
-                <!-- Smart Tools & Resources -->
-                <div class="col-lg-3 col-md-6">
-                    <h6 class="fw-bold text-white mb-3">Guidance Tools</h6>
-                    <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="{{ url_for('chatbot.home') }}" class="text-white-50 text-decoration-none d-flex align-items-center gap-1"><i data-lucide="bot" class="icon-xs text-gold"></i> AI Career Mentor</a></li>
-                        <li class="mb-2"><a href="{{ url_for('resume.upload_resume') }}" class="text-white-50 text-decoration-none d-flex align-items-center gap-1"><i data-lucide="file-text" class="icon-xs"></i> Resume Skill Analyzer</a></li>
-                        <li class="mb-2"><a href="{{ url_for('dashboard.home') }}" class="text-white-50 text-decoration-none d-flex align-items-center gap-1"><i data-lucide="layout-dashboard" class="icon-xs"></i> Student Dashboard</a></li>
-                        <li class="mb-2"><a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none">National Scholarship Portal (External)</a></li>
-                        <li class="mb-2"><a href="https://internship.aicte-india.org/" target="_blank" rel="noopener noreferrer" class="text-white-50 text-decoration-none">AICTE Internship Portal (External)</a></li>
+                        <li class="mb-2"><a href="{{ url_for('landing') }}#mpathFaqSection" class="footer-link">FAQs &amp; Guidance</a></li>
+                        <li class="mb-2"><a href="{{ url_for('landing') }}#mpathCorePrinciples" class="footer-link">Core Principles</a></li>
+                        <li class="mb-2"><span class="text-white-50">Zero Sponsored Rankings</span></li>
+                        <li class="mb-2"><span class="text-white-50">Public Service Design</span></li>
+                        <li class="mb-2"><span class="text-white-50">Data Privacy Verified</span></li>
                     </ul>
                 </div>
 
             </div>
 
-            <!-- Footer Bottom -->
-            <div class="pt-4 mt-4 border-top border-white border-opacity-10 d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small">
-                <p class="mb-2 mb-md-0">
+            <!-- Footer Bottom Strip -->
+            <div class="pt-4 border-top border-white border-opacity-10 d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small gap-2">
+                <div>
                     &copy; 2026 MPath Career Counselling. Dedicated to Indian students, parents, and educators.
-                </p>
-                <p class="mb-0">
-                    Objective Information &bull; Authentic Registries &bull; Verified Guidance
-                </p>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <span>Objective Information</span>
+                    <span>&bull;</span>
+                    <span>Authentic Registries</span>
+                    <span>&bull;</span>
+                    <span>Verified Guidance</span>
+                </div>
             </div>
         </div>
     </footer>
@@ -130,13 +152,9 @@
 
 <!-- Lucide Icons -->
 <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-    });
-</script>
+
+<!-- MPath Client-Side Engine -->
+<script src="{{ url_for('static', filename='js/main.js') }}?v=5.0"></script>
 
 {% block extra_js %}{% endblock %}
 </body>

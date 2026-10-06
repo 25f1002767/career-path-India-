@@ -297,10 +297,18 @@ p {
 .career-navbar {
     background-color: #FFFFFF !important;
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 1px 3px rgba(18, 59, 109, 0.05);
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
+    box-shadow: 0 1px 3px rgba(6, 59, 143, 0.04);
+    padding-top: 0.95rem;
+    padding-bottom: 0.95rem;
+    transition: padding 240ms ease, box-shadow 240ms ease, border-color 240ms ease;
     z-index: 1030;
+}
+
+.career-navbar.navbar-scrolled {
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
+    box-shadow: 0 4px 16px rgba(6, 59, 143, 0.08);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .brand-mark {
@@ -309,7 +317,7 @@ p {
     justify-content: center;
     width: 36px;
     height: 36px;
-    background-color: var(--color-blue);
+    background-color: var(--color-deep-blue, #063B8F);
     border-radius: var(--radius-md);
     color: #FFFFFF;
     flex-shrink: 0;
@@ -329,13 +337,13 @@ p {
 }
 
 .nav-item-link:hover {
-    color: var(--color-blue) !important;
+    color: var(--color-deep-blue, #063B8F) !important;
 }
 
 /* Clear, subtle Active indicator bar */
 .nav-item-link.active,
 .nav-item.active .nav-item-link {
-    color: var(--color-navy) !important;
+    color: var(--color-deep-blue, #063B8F) !important;
     font-weight: 600;
 }
 
@@ -343,21 +351,33 @@ p {
 .nav-item.active .nav-item-link::after {
     content: "";
     position: absolute;
-    bottom: -0.75rem;
+    bottom: -0.55rem;
     left: 0.85rem;
     right: 0.85rem;
     height: 2.5px;
-    background-color: var(--color-blue);
+    background-color: var(--color-deep-blue, #063B8F);
     border-radius: 2px 2px 0 0;
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu with gentle fade-up */
 .dropdown-menu-custom {
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-md);
-    padding: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    padding: 0.65rem;
     margin-top: 0.5rem;
+    animation: dropdownPop 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownPop {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .dropdown-menu-custom .dropdown-item {

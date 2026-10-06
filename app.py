@@ -100,6 +100,7 @@ def require_login():
         "health",
         "main.index",
         "main.search",
+        "main.quick_search",
         "auth.login",
         "auth.register",
         "auth.logout",
@@ -133,6 +134,7 @@ def require_login():
         "/scholarship",
         "/internships",
         "/search",
+        "/api",
         "/auth",
         "/static",
         "/assessment",
@@ -370,16 +372,10 @@ def landing():
     Visitors can explore the homepage without login.
     """
 
-    counts = {
-        "careers": Career.query.count(),
-        "colleges": College.query.count(),
-        "exams": GovernmentExam.query.count(),
-        "opportunities": Scholarship.query.count() + Internship.query.count()
-    }
-
+    from routes.main import get_home_context
     return render_template(
         "home/hero.html",
-        counts=counts
+        **get_home_context()
     )
 
 

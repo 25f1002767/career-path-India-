@@ -3,12 +3,12 @@
 
         <!-- BRAND LOGO -->
         <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none me-3" href="{{ url_for('landing') }}">
-            <div class="brand-mark bg-blue text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background-color: var(--color-blue);">
+            <div class="brand-mark text-white rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background-color: var(--color-deep-blue, #063B8F);">
                 <i data-lucide="graduation-cap" class="icon-md"></i>
             </div>
             <div class="d-flex flex-column leading-tight">
-                <span class="fw-bold fs-5 text-navy lh-1" style="color: var(--color-navy); letter-spacing: -0.02em;">MPath</span>
-                <span class="text-muted small fw-medium" style="font-size: 0.725rem; letter-spacing: 0.02em;">Career Counselling</span>
+                <span class="fw-bold fs-5 lh-1" style="color: var(--color-deep-blue, #063B8F); letter-spacing: -0.02em;">MPath</span>
+                <span class="text-secondary fw-semibold" style="font-size: 0.725rem; letter-spacing: 0.02em;">Career Counselling</span>
             </div>
         </a>
 
@@ -29,56 +29,61 @@
                     </a>
                 </li>
 
-                <!-- CAREERS DROPDOWN -->
+                <!-- CAREERS MEGA DROPDOWN -->
                 <li class="nav-item dropdown">
                     <a class="nav-link nav-item-link dropdown-toggle {% if request.path.startswith('/careers') or request.path.startswith('/career') %}active{% endif %}" href="#" id="careerDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Careers
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="careerDropdown">
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.career_list') }}">
-                                <i data-lucide="briefcase" class="icon-xs text-muted"></i>
-                                <span>All Authentic Careers</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.discover_careers') }}">
-                                <i data-lucide="compass" class="icon-xs text-muted"></i>
-                                <span>Guided Discovery</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.careers_without_coding') }}">
-                                <i data-lucide="compass" class="icon-xs text-muted"></i>
-                                <span>Careers Without Coding</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.careers_without_engineering') }}">
-                                <i data-lucide="compass" class="icon-xs text-muted"></i>
-                                <span>Careers Without Engineering</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.explore_by_course') }}">
-                                <i data-lucide="graduation-cap" class="icon-xs text-muted"></i>
-                                <span>Explore by Degree</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.explore_by_skills') }}">
-                                <i data-lucide="wrench" class="icon-xs text-muted"></i>
-                                <span>Explore by Skills</span>
-                            </a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('career.compare') }}">
-                                <i data-lucide="scale" class="icon-xs text-muted"></i>
-                                <span>Compare Careers</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <div class="dropdown-menu dropdown-menu-custom dropdown-mega shadow-sm border p-3" aria-labelledby="careerDropdown" style="min-width: 480px;">
+                        <div class="row g-3">
+                            <div class="col-sm-6 border-end-sm">
+                                <span class="dropdown-header text-uppercase fw-bold ps-0 text-navy" style="font-size: 0.725rem; letter-spacing: 0.05em;">Explore Tracks</span>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.career_list') }}">
+                                    <i data-lucide="briefcase" class="icon-xs text-primary"></i>
+                                    <span>All 214+ Careers</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.career_list', category='Technology') }}">
+                                    <i data-lucide="cpu" class="icon-xs text-muted"></i>
+                                    <span>Technology &amp; AI</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.career_list', category='Medical & Healthcare') }}">
+                                    <i data-lucide="heart-pulse" class="icon-xs text-muted"></i>
+                                    <span>Medical &amp; Healthcare</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.career_list', category='Government & Civil Services') }}">
+                                    <i data-lucide="landmark" class="icon-xs text-muted"></i>
+                                    <span>Civil Services &amp; Govt</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.career_list', category='Finance & Commerce') }}">
+                                    <i data-lucide="trending-up" class="icon-xs text-muted"></i>
+                                    <span>Finance &amp; Commerce</span>
+                                </a>
+                            </div>
+                            <div class="col-sm-6">
+                                <span class="dropdown-header text-uppercase fw-bold ps-0 text-navy" style="font-size: 0.725rem; letter-spacing: 0.05em;">Discovery Tools</span>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.discover_careers') }}">
+                                    <i data-lucide="compass" class="icon-xs text-muted"></i>
+                                    <span>Guided Questionnaire</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.careers_without_coding') }}">
+                                    <i data-lucide="code" class="icon-xs text-muted"></i>
+                                    <span>Careers Without Coding</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.careers_without_engineering') }}">
+                                    <i data-lucide="compass" class="icon-xs text-muted"></i>
+                                    <span>Without Engineering</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.explore_by_course') }}">
+                                    <i data-lucide="graduation-cap" class="icon-xs text-muted"></i>
+                                    <span>Explore by Degree</span>
+                                </a>
+                                <a class="dropdown-item py-2 px-2 rounded d-flex align-items-center gap-2" href="{{ url_for('career.compare') }}">
+                                    <i data-lucide="scale" class="icon-xs text-muted"></i>
+                                    <span>Compare Careers</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
 
                 <!-- COURSES -->
@@ -88,11 +93,44 @@
                     </a>
                 </li>
 
-                <!-- COLLEGES -->
-                <li class="nav-item">
-                    <a class="nav-link nav-item-link {% if request.path.startswith('/colleges') or request.path.startswith('/college') %}active{% endif %}" href="{{ url_for('college.college_list') }}">
+                <!-- COLLEGES (Fully Verified Navigation) -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-item-link dropdown-toggle {% if request.path.startswith('/colleges') or request.path.startswith('/college') %}active{% endif %}" href="#" id="collegeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Colleges
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="collegeDropdown">
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('college.college_list') }}">
+                                <i data-lucide="landmark" class="icon-xs text-primary"></i>
+                                <span>Colleges Directory (1,946+)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('college.college_finder') }}">
+                                <i data-lucide="compass" class="icon-xs text-muted"></i>
+                                <span>Find Colleges For Me</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('college.compare_colleges') }}">
+                                <i data-lucide="scale" class="icon-xs text-muted"></i>
+                                <span>Compare Institutions</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('college.college_list', type='University') }}">
+                                <i data-lucide="building-2" class="icon-xs text-muted"></i>
+                                <span>Central &amp; State Universities</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('college.college_list', search='IIT') }}">
+                                <i data-lucide="award" class="icon-xs text-muted"></i>
+                                <span>IITs &amp; National Institutes</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- EXAMS -->
@@ -110,8 +148,8 @@
                     <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="scholarshipDropdown">
                         <li>
                             <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('scholarship.scholarship_list') }}">
-                                <i data-lucide="award" class="icon-xs text-muted"></i>
-                                <span>All Verified Scholarships</span>
+                                <i data-lucide="award" class="icon-xs text-primary"></i>
+                                <span>All Verified Schemes</span>
                             </a>
                         </li>
                         <li>
@@ -185,18 +223,19 @@
             <!-- RIGHT ACTIONS CLUSTER -->
             <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0 flex-wrap">
 
-                <!-- SEARCH ICON BUTTON -->
-                <a href="{{ url_for('main.search') }}" class="btn btn-search-circle" title="Search Platform">
+                <!-- GLOBAL SEARCH BUTTON (Opens Modal) -->
+                <button type="button" class="btn btn-search-circle" data-bs-toggle="modal" data-bs-target="#globalSearchModal" title="Search Platform (Ctrl + K)">
                     <i data-lucide="search" class="icon-sm"></i>
-                </a>
+                    <span class="d-none d-xxl-inline ms-1 text-muted small" style="font-size: 0.75rem;">Ctrl K</span>
+                </button>
 
-                <!-- CAREER ASSESSMENT CTA (SOFT BLUE) -->
+                <!-- CAREER ASSESSMENT CTA (Interaction Blue) -->
                 <a href="{{ url_for('assessment.start') }}" class="btn btn-nav-assessment d-inline-flex align-items-center gap-2">
                     <i data-lucide="bar-chart-2" class="icon-sm"></i>
                     <span>Career Assessment</span>
                 </a>
 
-                <!-- AI CAREER MENTOR CTA (DARK NAVY) -->
+                <!-- AI CAREER MENTOR CTA (Deep Navy) -->
                 <a href="{{ url_for('chatbot.home') }}" class="btn btn-nav-mentor d-inline-flex align-items-center gap-2">
                     <i data-lucide="bot" class="icon-sm"></i>
                     <span>AI Career Mentor</span>

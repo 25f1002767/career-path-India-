@@ -233,7 +233,10 @@ def career_category(category_slug):
 
 @career.route("/<slug>")
 def career_detail(slug):
-    career_data = Career.query.filter_by(slug=slug).first()
+    if slug.isdigit():
+        career_data = Career.query.filter(or_(Career.id == int(slug), Career.slug == slug)).first()
+    else:
+        career_data = Career.query.filter_by(slug=slug).first()
     if career_data is None:
         abort(404)
 

@@ -1,0 +1,50 @@
+<!-- GLOBAL SEARCH MODAL (Triggered by Ctrl+K, /, or Navbar Search Icon) -->
+<div class="modal fade" id="globalSearchModal" tabindex="-1" aria-labelledby="globalSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden" style="background-color: var(--bg-surface);">
+            
+            <!-- Modal Header with Search Input -->
+            <div class="p-3 border-bottom d-flex align-items-center gap-3 bg-white">
+                <i data-lucide="search" class="icon-sm text-primary flex-shrink-0"></i>
+                <input type="text"
+                       id="globalSearchInput"
+                       class="form-control border-0 shadow-none px-0 fs-5"
+                       placeholder="Search careers, degrees, colleges, exams, scholarships..."
+                       autocomplete="off"
+                       aria-label="Search platform">
+                <button type="button" class="btn-close flex-shrink-0" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Quick Filter Chips & Popular Topics -->
+            <div class="p-3 bg-light border-bottom d-flex flex-wrap align-items-center gap-2" style="font-size: 0.825rem;">
+                <span class="text-secondary fw-semibold">Popular:</span>
+                <a href="{{ url_for('main.search') }}?q=Data+Scientist" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">Data Scientist</a>
+                <a href="{{ url_for('main.search') }}?q=Doctor" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">Doctor</a>
+                <a href="{{ url_for('main.search') }}?q=UPSC" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">UPSC Civil Services</a>
+                <a href="{{ url_for('college.college_list') }}?search=IIT" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">IITs &amp; NITs</a>
+                <a href="{{ url_for('scholarship.scholarship_list') }}" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">National Scholarships</a>
+            </div>
+
+            <!-- Live Results Container -->
+            <div id="globalSearchResults" class="overflow-y-auto" style="max-height: 420px; min-height: 160px;">
+                <div class="p-4 text-center text-muted small">
+                    <div class="mb-2">
+                        <i data-lucide="compass" class="icon-md text-secondary"></i>
+                    </div>
+                    <span>Type any term above to discover verified careers, courses, colleges, or examinations.</span>
+                </div>
+            </div>
+
+            <!-- Modal Footer: Keyboard Hints -->
+            <div class="p-2 px-3 bg-light border-top d-flex justify-content-between align-items-center text-muted" style="font-size: 0.75rem;">
+                <div class="d-flex align-items-center gap-3">
+                    <span><kbd class="bg-white border text-dark px-1 rounded">ESC</kbd> to close</span>
+                    <span><kbd class="bg-white border text-dark px-1 rounded">&uarr;</kbd> <kbd class="bg-white border text-dark px-1 rounded">&darr;</kbd> to navigate</span>
+                    <span><kbd class="bg-white border text-dark px-1 rounded">&crarr;</kbd> to select</span>
+                </div>
+                <span class="text-secondary">Official Higher Education Registry &bull; Zero Sponsored Ads</span>
+            </div>
+
+        </div>
+    </div>
+</div>

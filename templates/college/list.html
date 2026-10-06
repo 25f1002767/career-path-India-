@@ -288,8 +288,9 @@
 
                         <!-- Card Footer Action Buttons -->
                         <div class="d-flex flex-wrap gap-2 mt-auto pt-3 border-top align-items-center">
-                            <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="btn btn-outline-primary btn-sm flex-grow-1">
-                                View Details →
+                            <a href="{{ url_for('college.college_detail', college_id=col.id) }}" class="btn btn-outline-primary btn-sm flex-grow-1 d-inline-flex align-items-center justify-content-center gap-1">
+                                <span>View Details</span>
+                                <i data-lucide="arrow-right" class="icon-xs"></i>
                             </a>
 
                             {% if col.display_website %}

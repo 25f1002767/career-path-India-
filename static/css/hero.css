@@ -1,1034 +1,663 @@
-/* =========================================================
-   MPATH CAREER COUNSELLING HOMEPAGE
-   TRICOLOUR THEME
-   ========================================================= */
+/* ============================================================
+   MPath Career Counselling - Homepage & Interactive Showcase CSS
+   Institutional, Dynamic, Purposeful, Zero Emojis
+   Palette: Deep Blue #063B8F | Navy #123B6D | Accent #2563EB
+   ============================================================ */
 
-.cpi-home {
+/* ============================================================
+   1. HERO SECTION
+   ============================================================ */
+.hero-ref-wrapper {
     position: relative;
-    min-height: calc(100vh - 72px);
-    overflow: hidden;
-
-    background:
-        radial-gradient(
-            circle at 15% 20%,
-            rgba(255, 153, 51, 0.28),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(19, 136, 8, 0.24),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(255, 255, 255, 0.12),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #071a12 0%,
-            #10291d 45%,
-            #071812 100%
-        );
-
-    color: white;
+    background-color: var(--bg-surface, #FFFFFF);
+    padding: 3.5rem 0 2rem 0;
+    overflow: visible;
 }
 
-
-/* =========================================================
-   PARTICLE CANVAS
-   ========================================================= */
-
-#particles {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   BACKGROUND GLOW
-   ========================================================= */
-
-.ai-glow {
-    position: absolute;
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 153, 51, 0.22),
-            rgba(19, 136, 8, 0.14),
-            transparent 70%
-        );
-
-    filter: blur(10px);
-
-    animation:
-        glowMove 8s ease-in-out infinite;
-
-    pointer-events: none;
-}
-
-
-.ai-glow-one {
-    top: -180px;
-    left: -150px;
-}
-
-
-.ai-glow-two {
-    right: -170px;
-    bottom: -180px;
-    animation-delay: -4s;
-}
-
-
-@keyframes glowMove {
-
-    0%, 100% {
-        transform:
-            translate3d(0,0,0)
-            scale(1);
+@media (min-width: 992px) {
+    .hero-ref-wrapper {
+        padding: 4.5rem 0 2.5rem 0;
     }
-
-    50% {
-        transform:
-            translate3d(35px,-20px,0)
-            scale(1.08);
-    }
-
 }
 
+.hero-ref-title {
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: var(--text-navy, #123B6D);
+    margin-bottom: 1.25rem;
+}
 
-/* =========================================================
-   MAIN CONTENT
-   ========================================================= */
+.hero-ref-title-blue {
+    color: var(--color-deep-blue, #063B8F);
+}
 
-.hero-content {
+.hero-ref-subtitle {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-secondary, #5B6B82);
+    max-width: 540px;
+    margin-bottom: 2rem;
+}
+
+/* ============================================================
+   2. QUICK PATH NAVIGATOR (Search Box & Suggestions Dropdown)
+   ============================================================ */
+.hero-search-card {
     position: relative;
-    z-index: 5;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-lg, 12px);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--timing-fast), box-shadow var(--timing-fast);
+}
 
-    min-height: calc(100vh - 72px);
+.hero-search-card:focus-within {
+    border-color: var(--color-deep-blue, #063B8F);
+    box-shadow: var(--shadow-md);
+}
 
+.hero-search-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
-    text-align: center;
-
-    padding:
-        80px 20px 120px;
+    margin-bottom: 0.75rem;
 }
 
+.quick-navigator-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-deep-blue, #063B8F);
+    background-color: var(--color-navy-light, #EBF2FA);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+}
 
-/* =========================================================
-   TOP BADGE
-   ========================================================= */
+.hero-search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-soft, #F7F9FC);
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-md, 8px);
+    padding: 0.4rem 0.5rem 0.4rem 0.85rem;
+    transition: background-color var(--timing-fast), border-color var(--timing-fast);
+}
 
-.ai-status {
+.hero-search-bar:focus-within {
+    background-color: #FFFFFF;
+    border-color: var(--color-deep-blue, #063B8F);
+}
+
+.hero-search-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary, #5B6B82);
+    margin-right: 0.65rem;
+    flex-shrink: 0;
+}
+
+.hero-search-field {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: var(--text-main, #172033);
+    outline: none;
+}
+
+.hero-search-field::placeholder {
+    color: var(--text-subtle, #8292A6);
+    font-size: 0.9rem;
+}
+
+.hero-search-submit {
     display: inline-flex;
     align-items: center;
-
-    gap: 9px;
-
-    padding:
-        8px 16px;
-
-    margin-bottom: 25px;
-
-    border-radius: 999px;
-
-    background:
-        rgba(255,255,255,0.08);
-
-    border:
-        1px solid rgba(255,255,255,0.20);
-
-    backdrop-filter:
-        blur(12px);
-
-    color:
-        rgba(255,255,255,0.92);
-
-    font-size: 14px;
+    gap: 0.4rem;
+    background-color: var(--color-deep-blue, #063B8F);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--radius-sm, 6px);
+    padding: 0.55rem 1.1rem;
+    font-size: 0.875rem;
     font-weight: 600;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,0.15);
-
-    animation:
-        fadeDown 0.8s ease forwards;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color var(--timing-fast), transform var(--timing-fast);
 }
 
-
-.status-dot {
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: #ff9933;
-
-    box-shadow:
-        0 0 8px #ff9933;
-
-    animation:
-        statusPulse 1.8s infinite;
+.hero-search-submit:hover {
+    background-color: var(--color-deep-blue-hover, #0849B0);
 }
 
-
-@keyframes statusPulse {
-
-    0%,100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.35);
-        opacity: 0.65;
-    }
-
+.hero-search-submit i {
+    transition: transform var(--timing-fast);
 }
 
-
-/* =========================================================
-   TITLE
-   ========================================================= */
-
-#hero-title {
-    margin: 0;
-
-    font-size:
-        clamp(48px, 8vw, 100px);
-
-    line-height: 0.95;
-
-    font-weight: 800;
-
-    letter-spacing:
-        -3px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #ff9933,
-            #ffffff,
-            #138808,
-            #ffffff,
-            #ff9933,
-            #ffffff
-        );
-
-    background-size:
-        300% auto;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-
-    color: transparent;
-
-    animation:
-        titleReveal 1s ease forwards,
-        titleShine 7s linear infinite;
-
-    text-shadow:
-        0 0 50px rgba(255,153,51,0.15);
+.hero-search-submit:hover i {
+    transform: translateX(3px);
 }
 
-
-@keyframes titleReveal {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(25px)
-            scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-
+/* Suggestions Dropdown */
+.hero-suggestions-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-md, 8px);
+    box-shadow: var(--shadow-lg);
+    z-index: 1050;
+    max-height: 380px;
+    overflow-y: auto;
 }
 
-
-@keyframes titleShine {
-
-    0% {
-        background-position:
-            0% center;
-    }
-
-    100% {
-        background-position:
-            300% center;
-    }
-
+.hero-suggestions-dropdown.show {
+    display: block;
+    animation: dropdownFade 180ms ease forwards;
 }
 
-
-/* =========================================================
-   SUBTITLE
-   ========================================================= */
-
-.hero-subtitle {
-    max-width: 720px;
-
-    margin:
-        25px auto 0;
-
-    color:
-        rgba(255,255,255,0.80);
-
-    font-size:
-        clamp(17px, 2vw, 21px);
-
-    line-height: 1.7;
-
-    animation:
-        fadeUp 1s 0.25s ease both;
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-
-/* =========================================================
-   AI PROCESSING TEXT
-   ========================================================= */
-
-.ai-thinking {
-    min-height: 25px;
-
-    margin-top: 15px;
-
-    color:
-        #ff9933;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    letter-spacing: 0.4px;
-
-    opacity: 0;
-
-    transition:
-        opacity 0.35s ease;
+.suggestion-item {
+    transition: background-color 150ms ease;
+    border-bottom: 1px solid var(--border-subtle, #E8EEF5);
 }
 
-
-.ai-thinking.show {
-    opacity: 1;
+.suggestion-item:last-child {
+    border-bottom: none;
 }
 
+.suggestion-item:hover,
+.suggestion-item.active {
+    background-color: var(--bg-soft, #F7F9FC);
+}
 
-/* =========================================================
-   BUTTONS
-   ========================================================= */
+.suggestion-item:hover i {
+    color: var(--color-deep-blue, #063B8F) !important;
+    transform: translateX(2px);
+}
 
-.hero-buttons {
+/* Category Badges */
+.badge-cat-career {
+    background-color: #EBF2FA;
+    color: #063B8F;
+    border: 1px solid #D1E1F5;
+}
+
+.badge-cat-course {
+    background-color: #EFF6FF;
+    color: #2563EB;
+    border: 1px solid #DBEAFE;
+}
+
+.badge-cat-college {
+    background-color: #FEF7E8;
+    color: #B45309;
+    border: 1px solid #FDE68A;
+}
+
+.badge-cat-exam {
+    background-color: #E0F2FE;
+    color: #0284C7;
+    border: 1px solid #BAE6FD;
+}
+
+.badge-cat-scholarship {
+    background-color: #EBF8F0;
+    color: #1E7E44;
+    border: 1px solid #BCE2CC;
+}
+
+.badge-cat-default {
+    background-color: #F1F5F9;
+    color: #475569;
+}
+
+/* Popular Pills */
+.popular-search-wrapper {
     display: flex;
-
-    justify-content: center;
-
+    align-items: center;
+    gap: 0.5rem;
     flex-wrap: wrap;
-
-    gap: 14px;
-
-    margin-top: 35px;
-
-    animation:
-        fadeUp 1s 0.45s ease both;
+    font-size: 0.8rem;
 }
 
+.popular-search-label {
+    color: var(--text-secondary, #5B6B82);
+    font-weight: 600;
+}
 
-.hero-action {
+.popular-search-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.popular-pill {
+    background-color: var(--bg-soft, #F7F9FC);
+    color: var(--text-navy, #123B6D);
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-pill);
+    padding: 0.2rem 0.65rem;
+    font-size: 0.775rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--timing-fast), border-color var(--timing-fast), color var(--timing-fast);
+}
+
+.popular-pill:hover {
+    background-color: #FFFFFF;
+    border-color: var(--color-deep-blue, #063B8F);
+    color: var(--color-deep-blue, #063B8F);
+}
+
+/* Action Buttons */
+.btn-hero-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-deep-blue, #063B8F);
+    color: #FFFFFF !important;
+    border-radius: var(--radius-pill);
+    padding: 0.75rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--timing-fast), transform var(--timing-fast), box-shadow var(--timing-fast);
+}
+
+.btn-hero-primary:hover {
+    background-color: var(--color-deep-blue-hover, #0849B0);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-hero-primary:hover i[data-lucide="arrow-right"] {
+    transform: translateX(3px);
+}
+
+.btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--bg-soft, #F7F9FC);
+    color: var(--text-navy, #123B6D) !important;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-pill);
+    padding: 0.75rem 1.35rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--timing-fast), border-color var(--timing-fast), transform var(--timing-fast);
+}
+
+.btn-hero-secondary:hover {
+    background-color: #FFFFFF;
+    border-color: var(--color-deep-blue, #063B8F);
+    transform: translateY(-2px);
+}
+
+.btn-hero-tertiary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-deep-blue, #063B8F) !important;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color var(--timing-fast);
+}
+
+.btn-hero-tertiary:hover {
+    color: var(--color-deep-blue-hover, #0849B0) !important;
+}
+
+/* Trust Checklist */
+.hero-trust-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary, #5B6B82);
+}
+
+.hero-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ============================================================
+   3. HERO RIGHT COLUMN: STUDENT SHOWCASE
+   ============================================================ */
+.hero-student-wrapper {
     position: relative;
-
-    min-width: 205px;
-
-    padding:
-        13px 24px;
-
-    border-radius:
-        12px;
-
-    font-weight:
-        700;
-
-    text-decoration:
-        none;
-
-    overflow:
-        hidden;
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    max-width: 520px;
+    margin: 0 auto;
 }
 
-
-.hero-action:hover {
-    transform:
-        translateY(-4px);
-}
-
-
-/* =========================================================
-   PRIMARY BUTTON
-   ========================================================= */
-
-.hero-primary {
-    color:
-        white !important;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff9933,
-            #e87500
-        );
-
-    border:
-        1px solid rgba(255,255,255,0.25);
-
-    box-shadow:
-        0 10px 30px rgba(255,153,51,0.35);
-}
-
-
-.hero-primary:hover {
-    box-shadow:
-        0 15px 40px rgba(255,153,51,0.50);
-}
-
-
-/* =========================================================
-   SECONDARY BUTTON
-   ========================================================= */
-
-.hero-secondary {
-    color:
-        white !important;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(19,136,8,0.75),
-            rgba(10,100,6,0.85)
-        );
-
-    border:
-        1px solid rgba(255,255,255,0.30);
-
-    backdrop-filter:
-        blur(10px);
-}
-
-
-.hero-secondary:hover {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(19,136,8,0.90),
-            rgba(10,100,6,0.95)
-        );
-}
-
-
-/* =========================================================
-   BUTTON SHINE
-   ========================================================= */
-
-.hero-action::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 70%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.40),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-}
-
-
-.hero-action:hover::before {
-    animation:
-        buttonShine 0.8s ease;
-}
-
-
-@keyframes buttonShine {
-
-    from {
-        left: -120%;
-    }
-
-    to {
-        left: 140%;
-    }
-
-}
-
-
-/* =========================================================
-   AI ORB
-   ========================================================= */
-
-.ai-orb-container {
+.hero-student-container {
     position: relative;
-
-    width: 170px;
-    height: 170px;
-
-    margin-top: 55px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    animation:
-        fadeUp 1s 0.65s ease both;
+    border-radius: var(--radius-xl, 16px);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color, #DCE3EC);
+    background-color: #FFFFFF;
 }
 
-
-.ai-orb {
-    position: relative;
-
-    width: 88px;
-    height: 88px;
-
-    border-radius: 50%;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    font-size: 38px;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #ffffff,
-            #ff9933 38%,
-            #138808 72%,
-            #075b05 100%
-        );
-
-    box-shadow:
-        0 0 25px rgba(255,153,51,0.70),
-        0 0 60px rgba(19,136,8,0.45);
-
-    animation:
-        orbFloat 4s ease-in-out infinite;
-
-    z-index: 3;
+.hero-student-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 600ms ease;
 }
 
+.hero-student-container:hover .hero-student-img {
+    transform: scale(1.02);
+}
 
-.ai-orb::after {
-    content: "";
-
+.hero-floating-badge {
     position: absolute;
-
-    inset: 8px;
-
-    border-radius: 50%;
-
-    border:
-        1px solid rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-lg, 12px);
+    padding: 0.65rem 1rem;
+    box-shadow: var(--shadow-md);
+    z-index: 2;
 }
 
+.hero-badge-bottom {
+    bottom: 20px;
+    left: 20px;
+}
 
-/* =========================================================
-   ORBITS
-   ========================================================= */
-
-.orbit {
+.hero-floating-pill {
     position: absolute;
-
-    border:
-        1px solid rgba(255,153,51,0.38);
-
-    border-radius: 50%;
+    bottom: 20px;
+    right: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-pill);
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-navy, #123B6D);
+    box-shadow: var(--shadow-md);
+    z-index: 2;
 }
 
-
-.orbit-one {
-    width: 125px;
-    height: 125px;
-
-    animation:
-        orbitRotate 7s linear infinite;
+/* ============================================================
+   4. FLOATING STATISTICS STRIP
+   ============================================================ */
+.hero-floating-stats {
+    background-color: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-xl, 16px);
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow-sm);
 }
 
-
-.orbit-two {
-    width: 160px;
-    height: 160px;
-
-    border-color:
-        rgba(19,136,8,0.38);
-
-    animation:
-        orbitRotateReverse 10s linear infinite;
+.stat-item-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-
-.orbit-three {
-    width: 195px;
-    height: 195px;
-
-    border:
-        1px dashed rgba(255,255,255,0.22);
-
-    animation:
-        orbitRotate 14s linear infinite;
+.stat-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg, 12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-navy-light, #EBF2FA);
+    color: var(--color-deep-blue, #063B8F);
+    flex-shrink: 0;
 }
 
-
-.orbit::before {
-    content: "";
-
-    position: absolute;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background:
-        #ff9933;
-
-    box-shadow:
-        0 0 12px #ff9933;
-
-    top: 50%;
-    left: -4px;
+.stat-value {
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text-navy, #123B6D);
+    letter-spacing: -0.02em;
 }
 
-
-.orbit-two::before {
-    background:
-        #138808;
-
-    box-shadow:
-        0 0 12px #138808;
-
-    left: auto;
-    right: -4px;
+.stat-label {
+    font-size: 0.825rem;
+    color: var(--text-secondary, #5B6B82);
+    font-weight: 500;
 }
 
-
-@keyframes orbFloat {
-
-    0%,100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(-9px);
-    }
-
+/* ============================================================
+   5. EDITORIAL STATEMENT SECTION (Reference Rhythm)
+   ============================================================ */
+.editorial-quote-section {
+    background-color: var(--bg-soft, #F7F9FC);
+    border-top: 1px solid var(--border-color, #DCE3EC);
+    border-bottom: 1px solid var(--border-color, #DCE3EC);
+    padding: 4.5rem 0;
 }
 
-
-@keyframes orbitRotate {
-
-    from {
-        transform:
-            rotate(0deg);
-    }
-
-    to {
-        transform:
-            rotate(360deg);
-    }
-
+.editorial-quote-text {
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-navy, #123B6D);
+    letter-spacing: -0.02em;
+    max-width: 900px;
 }
 
-
-@keyframes orbitRotateReverse {
-
-    from {
-        transform:
-            rotate(360deg);
-    }
-
-    to {
-        transform:
-            rotate(0deg);
-    }
-
+.editorial-author-tag {
+    font-size: 0.875rem;
+    color: var(--text-secondary, #5B6B82);
+    font-weight: 600;
 }
 
-
-/* =========================================================
-   FEATURE STRIP
-   ========================================================= */
-
-.feature-strip {
-    position: relative;
-
-    z-index: 5;
-
-    max-width: 1050px;
-
-    width:
-        calc(100% - 40px);
-
-    margin:
-        -75px auto 50px;
-
-    display:
-        grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 12px;
+/* ============================================================
+   6. INTERACTIVE CAREER ECOSYSTEM JOURNEY
+   ============================================================ */
+.ecosystem-flow-nav {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
 }
 
-
-.feature-item {
-    padding:
-        18px;
-
-    border-radius:
-        15px;
-
-    background:
-        rgba(255,255,255,0.07);
-
-    border:
-        1px solid rgba(255,255,255,0.14);
-
-    backdrop-filter:
-        blur(14px);
-
-    text-align:
-        center;
-
-    color:
-        rgba(255,255,255,0.90);
-
-    transition:
-        all 0.25s ease;
-
-    cursor:
-        pointer;
+.ecosystem-flow-nav::-webkit-scrollbar {
+    display: none;
 }
 
-
-.feature-item:hover {
-    transform:
-        translateY(-5px);
-
-    background:
-        rgba(255,255,255,0.12);
-
-    border-color:
-        rgba(255,153,51,0.40);
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,0.18);
+.eco-step-pill {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-pill);
+    padding: 0.6rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-navy, #123B6D);
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all var(--timing-fast);
 }
 
-
-.feature-icon {
-    display:
-        block;
-
-    font-size:
-        25px;
-
-    margin-bottom:
-        6px;
+.eco-step-pill:hover {
+    border-color: var(--color-deep-blue, #063B8F);
+    color: var(--color-deep-blue, #063B8F);
 }
 
-
-.feature-name {
-    font-size:
-        14px;
-
-    font-weight:
-        600;
+.eco-step-pill.active {
+    background-color: var(--color-deep-blue, #063B8F);
+    color: #FFFFFF;
+    border-color: var(--color-deep-blue, #063B8F);
+    box-shadow: var(--shadow-sm);
 }
 
-
-/* =========================================================
-   CLICK BURST
-   ========================================================= */
-
-#click-burst {
-    position:
-        fixed;
-
-    inset:
-        0;
-
-    pointer-events:
-        none;
-
-    z-index:
-        100;
+.eco-stage-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-xl, 16px);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-sm);
+    transition: opacity 300ms ease, transform 300ms ease;
 }
 
-
-.burst-ring {
-    position:
-        absolute;
-
-    width:
-        20px;
-
-    height:
-        20px;
-
-    margin-left:
-        -10px;
-
-    margin-top:
-        -10px;
-
-    border:
-        2px solid #ff9933;
-
-    border-radius:
-        50%;
-
-    animation:
-        burstRing 0.65s ease-out forwards;
+.fade-in-active {
+    animation: fadeInStep 260ms ease forwards;
 }
 
-
-.burst-particle {
-    position:
-        absolute;
-
-    width:
-        6px;
-
-    height:
-        6px;
-
-    border-radius:
-        50%;
-
-    background:
-        #138808;
-
-    box-shadow:
-        0 0 10px #138808;
-
-    animation:
-        burstParticle 0.7s ease-out forwards;
+@keyframes fadeInStep {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-
-@keyframes burstRing {
-
-    from {
-        transform:
-            scale(0.2);
-
-        opacity:
-            1;
-    }
-
-    to {
-        transform:
-            scale(5);
-
-        opacity:
-            0;
-    }
-
+/* ============================================================
+   7. STICKY STORY SECTION (Your Journey)
+   ============================================================ */
+.sticky-journey-section {
+    background-color: #FFFFFF;
+    padding: 5rem 0;
+    border-bottom: 1px solid var(--border-color, #DCE3EC);
 }
 
-
-@keyframes burstParticle {
-
-    from {
-        transform:
-            translate(0,0)
-            scale(1);
-
-        opacity:
-            1;
-    }
-
-    to {
-        transform:
-            translate(
-                var(--x),
-                var(--y)
-            )
-            scale(0);
-
-        opacity:
-            0;
-    }
-
+.sticky-col-header {
+    position: sticky;
+    top: 100px;
 }
 
-
-/* =========================================================
-   GENERAL ANIMATIONS
-   ========================================================= */
-
-@keyframes fadeDown {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(-15px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-
+.journey-step-item {
+    background-color: var(--bg-soft, #F7F9FC);
+    border: 1px solid var(--border-color, #DCE3EC);
+    border-radius: var(--radius-lg, 12px);
+    padding: 1.75rem;
+    margin-bottom: 1.5rem;
+    transition: transform var(--timing-fast), box-shadow var(--timing-fast), border-color var(--timing-fast);
 }
 
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0);
-    }
-
+.journey-step-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-deep-blue, #063B8F);
+    background-color: #FFFFFF;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 900px) {
-
-    .feature-strip {
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        margin-top:
-            -45px;
-    }
-
+/* ============================================================
+   8. AI CAREER MENTOR PREVIEW WIDGET
+   ============================================================ */
+.mentor-preview-shell {
+    background-color: var(--text-navy, #123B6D);
+    border-radius: var(--radius-xl, 16px);
+    color: #FFFFFF;
+    padding: 2.25rem;
+    box-shadow: var(--shadow-lg);
 }
 
-
-@media (max-width: 600px) {
-
-    .hero-content {
-        padding:
-            65px 18px 100px;
-    }
-
-    #hero-title {
-        letter-spacing:
-            -1.5px;
-    }
-
-    .hero-buttons {
-        width:
-            100%;
-
-        flex-direction:
-            column;
-
-        align-items:
-            stretch;
-    }
-
-    .hero-action {
-        width:
-            100%;
-    }
-
-    .ai-orb-container {
-        transform:
-            scale(0.8);
-    }
-
-    .feature-strip {
-        width:
-            calc(100% - 25px);
-
-        grid-template-columns:
-            1fr 1fr;
-    }
-
+.mentor-chip {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    color: #FFFFFF;
+    border-radius: var(--radius-pill);
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--timing-fast), border-color var(--timing-fast);
 }
 
+.mentor-chip:hover,
+.mentor-chip.active {
+    background: rgba(255, 255, 255, 0.24);
+    border-color: #FFFFFF;
+}
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+.mentor-dialog-box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md, 8px);
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+}
 
+.mentor-response-card {
+    background: #FFFFFF;
+    color: var(--text-main, #172033);
+    border-radius: var(--radius-md, 8px);
+    padding: 1.25rem;
+    font-size: 0.925rem;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   9. SCROLL REVEAL SYSTEM CLASSES
+   ============================================================ */
+.reveal,
+.reveal-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fade {
+    opacity: 0;
+    transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+.reveal-stagger .stagger-item {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1), transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-stagger .stagger-item.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Reduced Motion Override */
 @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        scroll-behavior:
-            auto !important;
+    .reveal,
+    .reveal-up,
+    .reveal-fade,
+    .reveal-scale,
+    .stagger-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
-
 }
