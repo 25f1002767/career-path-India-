@@ -9,7 +9,8 @@ from services.eligibility_engine import (
     is_career_eligible,
     is_exam_eligible,
     is_scholarship_eligible,
-    is_internship_eligible
+    is_internship_eligible,
+    OpportunityEligibilityEvaluator
 )
 
 
@@ -61,47 +62,43 @@ def discover_opportunities(profile):
             })
 
     # ==========================================
-    # Government Exams
+    # Government Exams & National Opportunities
     # ==========================================
 
     exams = GovernmentExam.query.all()
 
     for exam in exams:
+        eval_res = OpportunityEligibilityEvaluator.evaluate(exam, profile) if profile else None
 
-        if is_exam_eligible(profile, exam):
+        # Filter out opportunities where student fails hard criteria (e.g. age/rank disqualification)
+        if eval_res and eval_res.get("status") == "NOT_ELIGIBLE":
+            continue
 
-            match = AIMatchingEngine.calculate(
-                profile,
-                exam
-            )
+        if eval_res:
+            score = eval_res.get("score", 70)
+            reasons = list(eval_res.get("reasons", []))
+            if profile and getattr(profile, "career_goal", None) and profile.career_goal.lower() in (exam.exam_name or "").lower():
+                score = min(100, score + 10)
+                reasons.append("Aligned with your stated career ambition.")
+        else:
+            match = AIMatchingEngine.calculate(profile, exam)
+            score = match["score"]
+            reasons = match["reasons"]
 
-            opportunities.append({
-
-                "type": "Government Exam",
-
-                "id": exam.id,
-
-                "title": exam.exam_name,
-
-                "category": exam.category,
-
-                "description": exam.description,
-
-                "salary": exam.salary,
-
-                "future_scope": "",
-
-                "education": exam.qualification,
-
-                "details": exam,
-
-                "icon": "bi bi-file-earmark-text-fill",
-
-                "match": match["score"],
-
-                "reasons": match["reasons"]
-
-            })
+        opportunities.append({
+            "type": "Government Exam",
+            "id": exam.id,
+            "title": exam.exam_name,
+            "category": exam.category,
+            "description": exam.description,
+            "salary": exam.salary,
+            "future_scope": f"Conducted by {exam.conducting_body}",
+            "education": exam.qualification,
+            "details": exam,
+            "icon": "bi bi-file-earmark-text-fill",
+            "match": score,
+            "reasons": reasons
+        })
 
     # ==========================================
     # Scholarships

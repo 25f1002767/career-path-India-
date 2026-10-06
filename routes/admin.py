@@ -32,7 +32,12 @@ from models.career import Career
 from models.college import College
 from models.scholarship import Scholarship, ScholarshipCycle, ScholarshipApplication, ScholarshipField
 from models.internship import Internship
+from models.internship_import_log import InternshipImportLog
+from services.internship.importer import InternshipImporter
+from services.internship.national_catalog import NATIONAL_INTERNSHIP_RECORDS
 from models.exam import GovernmentExam
+from models.opportunity_source import OpportunitySource
+from models.exam_cycle import ExamCycle
 from models.assessment import AssessmentResult
 from models.roadmap import CareerRoadmap
 from models.website_visit import WebsiteVisit
@@ -1630,17 +1635,171 @@ def import_scholarships():
 @admin.route("/internships")
 @admin_required
 def internships():
-    internships_list = Internship.query.order_by(Internship.id.desc()).limit(150).all()
-    return render_template("admin/internships.html", internships=internships_list)
+    search = request.args.get("search", "").strip()
+    status_filter = request.args.get("status", "").strip()
+    verified_filter = request.args.get("verified", "").strip()
+    page = request.args.get("page", 1, type=int)
+    per_page = 20
+
+    query = Internship.query
+
+    if search:
+        pat = f"%{search}%"
+        query = query.filter(
+            or_(
+                Internship.title.ilike(pat),
+                Internship.organisation_name.ilike(pat),
+                Internship.scheme_name.ilike(pat),
+                Internship.category.ilike(pat),
+                Internship.city.ilike(pat)
+            )
+        )
+
+    if status_filter:
+        query = query.filter(Internship.status == status_filter)
+
+    if verified_filter:
+        query = query.filter(Internship.verification_status == verified_filter)
+
+    pagination = query.order_by(Internship.id.desc()).paginate(page=page, per_page=per_page, error_out=False)
+
+    return render_template(
+        "admin/internships.html",
+        internships=pagination.items,
+        pagination=pagination,
+        search=search,
+        status_filter=status_filter,
+        verified_filter=verified_filter
+    )
+
+
+@admin.route("/internships/quality")
+@admin_required
+def internship_quality():
+    today = date.today()
+    total_count = Internship.query.count()
+    active_count = Internship.query.filter(
+        Internship.is_active == True,
+        or_(Internship.application_deadline.is_(None), Internship.application_deadline >= today)
+    ).count()
+
+    closing_soon = Internship.query.filter(
+        Internship.is_active == True,
+        Internship.application_deadline.isnot(None),
+        Internship.application_deadline >= today,
+        Internship.application_deadline <= today + timedelta(days=7)
+    ).count()
+
+    expired_count = Internship.query.filter(
+        Internship.application_deadline.isnot(None),
+        Internship.application_deadline < today
+    ).count()
+
+    verified_count = Internship.query.filter(Internship.verification_status.in_(["VERIFIED", "SOURCE_VERIFIED"])).count()
+    needs_review_count = Internship.query.filter(Internship.verification_status == "NEEDS_REVIEW").count()
+
+    # Broken or missing application links
+    missing_apply_urls = Internship.query.filter(
+        or_(
+            Internship.official_application_url.is_(None),
+            Internship.official_application_url == "",
+            Internship.application_url.is_(None),
+            Internship.application_url == ""
+        )
+    ).count()
+
+    missing_stipend = Internship.query.filter(
+        or_(
+            Internship.stipend.is_(None),
+            Internship.stipend == ""
+        )
+    ).count()
+
+    # Duplicate title candidates
+    duplicate_titles = db.session.query(
+        Internship.title, Internship.organisation_name, func.count(Internship.id)
+    ).group_by(Internship.title, Internship.organisation_name).having(func.count(Internship.id) > 1).all()
+
+    quality_score = round(((verified_count + (total_count - missing_apply_urls)) / max(2 * total_count, 1)) * 100, 1)
+
+    return render_template(
+        "admin/internships_quality.html",
+        stats={
+            "total": total_count,
+            "active": active_count,
+            "closing_soon": closing_soon,
+            "expired": expired_count,
+            "verified": verified_count,
+            "needs_review": needs_review_count,
+            "missing_urls": missing_apply_urls,
+            "missing_stipend": missing_stipend,
+            "duplicate_count": len(duplicate_titles),
+            "quality_score": quality_score
+        },
+        duplicate_titles=duplicate_titles
+    )
+
+
+@admin.route("/internships/import", methods=["GET", "POST"])
+@admin_required
+def internship_import_center():
+    import_result = None
+
+    if request.method == "POST":
+        action = request.form.get("action")
+        dry_run = bool(request.form.get("dry_run"))
+
+        if action == "national_catalog":
+            import_result = InternshipImporter.ingest_records(
+                records=NATIONAL_INTERNSHIP_RECORDS,
+                source_name="National Statutory Catalog",
+                source_code="aicte-national-hub",
+                dry_run=dry_run
+            )
+            flash(f"Catalog Ingestion: {import_result['new']} new, {import_result['updated']} updated, {import_result['duplicates']} duplicates.", "success")
+
+        elif "file" in request.files:
+            file = request.files["file"]
+            if file and file.filename:
+                filename = file.filename.lower()
+                content = file.read().decode("utf-8-sig")
+
+                records = []
+                if filename.endswith(".json"):
+                    data = json.loads(content)
+                    records = data if isinstance(data, list) else data.get("internships", [])
+                elif filename.endswith(".csv"):
+                    reader = csv.DictReader(StringIO(content))
+                    records = list(reader)
+
+                if records:
+                    import_result = InternshipImporter.ingest_records(
+                        records=records,
+                        source_name=f"Admin Upload ({file.filename})",
+                        source_code="admin-custom-upload",
+                        dry_run=dry_run
+                    )
+                    flash(f"File Ingestion: {import_result['new']} new, {import_result['updated']} updated, {import_result['duplicates']} duplicates.", "success")
+                else:
+                    flash("No valid records found in uploaded file.", "warning")
+
+    logs = InternshipImportLog.query.order_by(InternshipImportLog.id.desc()).limit(10).all()
+
+    return render_template(
+        "admin/internships_import.html",
+        import_result=import_result,
+        logs=logs
+    )
 
 
 @admin.route("/internships/delete/<int:id>")
 @admin_required
 def delete_internship(id):
     item = Internship.query.get_or_404(id)
+    title = item.title
     db.session.delete(item)
     db.session.commit()
-    flash(f"{item.title} deleted.", "success")
+    flash(f"Internship '{title}' deleted successfully.", "success")
     return redirect(url_for("admin.internships"))
 
 
@@ -2261,5 +2420,199 @@ def admin_data_quality():
             "category_distribution": category_distribution
         }
     )
+
+
+# =========================================================================
+# OPPORTUNITY CONTROL CENTER & STATUTORY SOURCE GOVERNANCE
+# =========================================================================
+
+@admin.route("/exams")
+@admin.route("/opportunities")
+@admin_required
+def opportunities_list():
+    search = request.args.get("search", "").strip()
+    category = request.args.get("category", "").strip()
+    verification = request.args.get("verification", "").strip()
+    page = request.args.get("page", 1, type=int)
+    per_page = 20
+
+    query = GovernmentExam.query
+    if search:
+        pattern = f"%{search}%"
+        query = query.filter(
+            or_(
+                GovernmentExam.exam_name.ilike(pattern),
+                GovernmentExam.short_name.ilike(pattern),
+                GovernmentExam.conducted_by.ilike(pattern)
+            )
+        )
+    if category:
+        query = query.filter(GovernmentExam.category == category)
+    if verification:
+        query = query.filter(GovernmentExam.verification_status == verification)
+
+    pagination = query.order_by(GovernmentExam.id.asc()).paginate(page=page, per_page=per_page, error_out=False)
+    exams = pagination.items
+
+    total_count = GovernmentExam.query.count()
+    verified_count = GovernmentExam.query.filter(GovernmentExam.verification_status.in_(["VERIFIED_OFFICIAL", "VERIFIED_GOVERNMENT"])).count()
+    needs_review_count = GovernmentExam.query.filter(GovernmentExam.verification_status == "NEEDS_REVIEW").count()
+    cycles_count = ExamCycle.query.count()
+    sources_count = OpportunitySource.query.count()
+
+    categories_raw = db.session.query(GovernmentExam.category).distinct().all()
+    categories = sorted([c[0] for c in categories_raw if c[0]])
+
+    return render_template(
+        "admin/opportunities/list.html",
+        exams=exams,
+        pagination=pagination,
+        search=search,
+        selected_category=category,
+        selected_verification=verification,
+        categories=categories,
+        stats={
+            "total": total_count,
+            "verified": verified_count,
+            "needs_review": needs_review_count,
+            "cycles": cycles_count,
+            "sources": sources_count
+        }
+    )
+
+
+@admin.route("/opportunities/edit/<int:exam_id>", methods=["GET", "POST"])
+@admin_required
+def opportunity_edit(exam_id):
+    exam_obj = GovernmentExam.query.get_or_404(exam_id)
+
+    if request.method == "POST":
+        exam_obj.exam_name = request.form.get("exam_name", "").strip() or exam_obj.exam_name
+        exam_obj.short_name = request.form.get("short_name", "").strip()
+        exam_obj.conducting_organisation = request.form.get("conducting_organisation", "").strip()
+        exam_obj.category = request.form.get("category", "").strip()
+        exam_obj.qualification = request.form.get("qualification", "").strip()
+        exam_obj.streams = request.form.get("streams", "").strip()
+        exam_obj.age_min = request.form.get("age_min", type=int)
+        exam_obj.age_max = request.form.get("age_max", type=int)
+        exam_obj.age_relaxation = request.form.get("age_relaxation", "").strip()
+        exam_obj.selection_process = request.form.get("selection_process", "").strip()
+        exam_obj.salary = request.form.get("salary", "").strip()
+        exam_obj.official_website = request.form.get("official_website", "").strip()
+        exam_obj.application_url = request.form.get("application_url", "").strip()
+        exam_obj.notification_url = request.form.get("notification_url", "").strip()
+        exam_obj.verification_status = request.form.get("verification_status", "VERIFIED_OFFICIAL").strip()
+        exam_obj.status = request.form.get("status", "UPCOMING").strip()
+
+        db.session.commit()
+        flash(f"Updated {exam_obj.exam_name} successfully.", "success")
+        return redirect(url_for("admin.opportunities_list"))
+
+    all_sources = OpportunitySource.query.order_by(OpportunitySource.name.asc()).all()
+    return render_template(
+        "admin/opportunities/edit.html",
+        exam=exam_obj,
+        sources=all_sources
+    )
+
+
+@admin.route("/opportunities/sources")
+@admin_required
+def opportunity_sources():
+    sources = OpportunitySource.query.order_by(OpportunitySource.authority_level.asc(), OpportunitySource.name.asc()).all()
+    total_sources = len(sources)
+    active_sources = sum(1 for s in sources if s.active)
+    official_statutory = sum(1 for s in sources if s.authority_level == "TIER_1_OFFICIAL")
+
+    return render_template(
+        "admin/opportunities/sources.html",
+        sources=sources,
+        stats={
+            "total": total_sources,
+            "active": active_sources,
+            "statutory": official_statutory
+        }
+    )
+
+
+@admin.route("/opportunities/sync-sources", methods=["POST"])
+@admin_required
+def sync_statutory_sources():
+    try:
+        from services.sources.statutory_ingest import StatutoryCatalogIngestionService
+        result = StatutoryCatalogIngestionService.ingest_catalog()
+        flash(f"Statutory Catalog Ingest Completed: {result.get('synced_opportunities', 0)} opportunities synced, {result.get('cycles_created', 0)} exam cycles recorded.", "success")
+    except Exception as e:
+        flash(f"Sync error: {str(e)}", "danger")
+
+    return redirect(url_for("admin.opportunity_sources"))
+
+
+@admin.route("/opportunities/verify/<int:exam_id>", methods=["POST"])
+@admin_required
+def toggle_exam_verification(exam_id):
+    exam_obj = GovernmentExam.query.get_or_404(exam_id)
+    new_status = request.form.get("status", "VERIFIED_OFFICIAL")
+    exam_obj.verification_status = new_status
+    db.session.commit()
+
+    if request.is_json:
+        return jsonify({"success": True, "verification_status": new_status})
+
+    flash(f"Verification status for {exam_obj.exam_name} set to {new_status}.", "info")
+    return redirect(request.referrer or url_for("admin.opportunities_list"))
+
+
+@admin.route("/opportunities/quality")
+@admin_required
+def opportunity_quality_dashboard():
+    total_exams = GovernmentExam.query.count()
+    verified_official = GovernmentExam.query.filter(GovernmentExam.verification_status == "VERIFIED_OFFICIAL").count()
+    needs_review = GovernmentExam.query.filter(GovernmentExam.verification_status == "NEEDS_REVIEW").count()
+    has_https_portal = GovernmentExam.query.filter(
+        or_(
+            GovernmentExam.official_website.ilike("https://%"),
+            GovernmentExam.official_url.ilike("https://%")
+        )
+    ).count()
+    has_age_limits = GovernmentExam.query.filter(
+        or_(
+            GovernmentExam.age_min.isnot(None),
+            GovernmentExam.age_max.isnot(None)
+        )
+    ).count()
+    has_cycles = db.session.query(GovernmentExam.id).join(ExamCycle).distinct().count()
+
+    # Find duplicate exam names or slugs
+    duplicate_names = db.session.query(
+        GovernmentExam.exam_name, func.count(GovernmentExam.id)
+    ).group_by(GovernmentExam.exam_name).having(func.count(GovernmentExam.id) > 1).all()
+
+    # Broken/Missing URLs
+    missing_urls = GovernmentExam.query.filter(
+        or_(
+            GovernmentExam.official_website.is_(None),
+            GovernmentExam.official_website == "",
+            GovernmentExam.official_url.is_(None),
+            GovernmentExam.official_url == ""
+        )
+    ).limit(10).all()
+
+    return render_template(
+        "admin/opportunities/quality.html",
+        stats={
+            "total_exams": total_exams,
+            "verified_official": verified_official,
+            "needs_review": needs_review,
+            "has_https_portal": has_https_portal,
+            "has_age_limits": has_age_limits,
+            "has_cycles": has_cycles,
+            "quality_score": round((verified_official + has_https_portal + has_age_limits) / (3 * max(1, total_exams)) * 100, 1),
+            "duplicate_count": len(duplicate_names)
+        },
+        duplicate_names=duplicate_names,
+        missing_urls=missing_urls
+    )
+
 
 

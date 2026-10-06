@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}Internship Data Quality Audit | Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Internship Data Quality Dashboard</h2>
+            <p class="text-muted mb-0">Audit national internship data integrity, application URL health, and provenance.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.internships') }}" class="btn btn-outline-secondary btn-sm">
+                Back to Listings
+            </a>
+            <a href="{{ url_for('admin.internship_import_center') }}" class="btn btn-primary btn-sm">
+                Import Center
+            </a>
+        </div>
+    </div>
+
+    <!-- Health Metrics Grid -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-3 col-6">
+            <div class="card border p-3 rounded-3 bg-white h-100 shadow-sm">
+                <div class="small text-muted mb-1">Total National Internships</div>
+                <div class="fs-4 fw-bold text-dark">{{ stats.total }}</div>
+                <div class="small text-success fw-semibold">{{ stats.active }} Currently Active</div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="card border p-3 rounded-3 bg-white h-100 shadow-sm">
+                <div class="small text-muted mb-1">Closing Soon (&le; 7 Days)</div>
+                <div class="fs-4 fw-bold text-warning">{{ stats.closing_soon }}</div>
+                <div class="small text-muted">{{ stats.expired }} Past Deadline</div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="card border p-3 rounded-3 bg-white h-100 shadow-sm">
+                <div class="small text-muted mb-1">Verification Rate</div>
+                <div class="fs-4 fw-bold text-primary">{{ stats.verified }} Verified</div>
+                <div class="small text-muted">{{ stats.needs_review }} Under Review</div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-6">
+            <div class="card border p-3 rounded-3 bg-white h-100 shadow-sm">
+                <div class="small text-muted mb-1">URL Health & Integrity</div>
+                <div class="fs-4 fw-bold {% if stats.missing_urls > 0 %}text-danger{% else %}text-success{% endif %}">
+                    {{ stats.missing_urls }} Missing URLs
+                </div>
+                <div class="small text-muted">Quality Index: {{ stats.quality_score }}%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audit Breakdown -->
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <div class="card border shadow-sm p-4 rounded-3 bg-white h-100">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="shield-alert" class="icon-sm text-warning"></i> Potential Duplicate Candidates
+                </h5>
+
+                {% if duplicate_titles %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Role Title</th>
+                                <th>Organization</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for dup in duplicate_titles %}
+                            <tr>
+                                <td class="fw-semibold">{{ dup[0] }}</td>
+                                <td>{{ dup[1] }}</td>
+                                <td><span class="badge bg-danger">{{ dup[2] }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4 text-success">
+                    <i data-lucide="check-circle" class="icon-lg mb-2"></i>
+                    <div>Zero duplicate titles detected in national registry.</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card border shadow-sm p-4 rounded-3 bg-white h-100">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="check-check" class="icon-sm text-success"></i> Statutory Verification Protocol
+                </h5>
+                <p class="small text-muted mb-3 leading-relaxed">
+                    National opportunities are validated against official gazetted scheme guidelines (AICTE, MoHUA, Central Ministries) and corporate career portals.
+                </p>
+
+                <ul class="list-group list-group-flush small">
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <span>HTTPS Secure Portals</span>
+                        <span class="badge bg-success">100% Enforced</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <span>Anti-Fraud Compliance (Zero Application Fee)</span>
+                        <span class="badge bg-success">Verified</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <span>Missing Compensation Fields</span>
+                        <span class="badge bg-secondary">{{ stats.missing_stipend }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <span>Audit Quality Score</span>
+                        <span class="badge bg-primary fs-6">{{ stats.quality_score }}%</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -4,35 +4,75 @@
 
 {% block content %}
 <div class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
-            <h2 class="fw-bold mb-1">Internship Opportunities</h2>
-            <p class="text-muted mb-0">Manage verified industry and institutional internships.</p>
+            <h2 class="fw-bold mb-1">National Internship Management</h2>
+            <p class="text-muted mb-0">Manage verified industry, statutory government, and research opportunities.</p>
         </div>
-        <div class="d-flex gap-2">
-            <a href="{{ url_for('admin.data_import') }}" class="btn btn-outline-primary">
-                Bulk Import
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{{ url_for('admin.internship_import_center') }}" class="btn btn-primary btn-sm">
+                <i data-lucide="upload" class="icon-xs me-1"></i> Ingestion Center
             </a>
-            <a href="{{ url_for('internship.internship_list') }}" target="_blank" class="btn btn-light border">
-                View Public Directory 
+            <a href="{{ url_for('admin.internship_quality') }}" class="btn btn-outline-info btn-sm">
+                <i data-lucide="shield-check" class="icon-xs me-1"></i> Quality Audit
+            </a>
+            <a href="{{ url_for('internship.internship_list') }}" target="_blank" class="btn btn-outline-secondary btn-sm">
+                Public Directory <i data-lucide="external-link" class="icon-xs ms-1"></i>
             </a>
         </div>
     </div>
 
-    <div class="card shadow-sm border-0 rounded-3">
+    <!-- Search & Filter Ribbon -->
+    <div class="card p-3 border shadow-sm mb-4 bg-white rounded-3">
+        <form method="GET" action="{{ url_for('admin.internships') }}">
+            <div class="row g-2 align-items-center">
+                <div class="col-md-5">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text bg-white text-muted"><i data-lucide="search" class="icon-xs"></i></span>
+                        <input type="text" name="search" class="form-control" placeholder="Search by role, organization, city, or scheme..." value="{{ search }}">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <select name="status" class="form-select form-select-sm">
+                        <option value="">All Statuses</option>
+                        <option value="OPEN" {% if status_filter == 'OPEN' %}selected{% endif %}>Open</option>
+                        <option value="CLOSING_SOON" {% if status_filter == 'CLOSING_SOON' %}selected{% endif %}>Closing Soon</option>
+                        <option value="CLOSED" {% if status_filter == 'CLOSED' %}selected{% endif %}>Closed / Expired</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2">
+                    <select name="verified" class="form-select form-select-sm">
+                        <option value="">All Verification</option>
+                        <option value="VERIFIED" {% if verified_filter == 'VERIFIED' %}selected{% endif %}>Verified</option>
+                        <option value="NEEDS_REVIEW" {% if verified_filter == 'NEEDS_REVIEW' %}selected{% endif %}>Needs Review</option>
+                    </select>
+                </div>
+
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table Card -->
+    <div class="card shadow-sm border-0 rounded-3 bg-white">
         <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
-            <span class="fw-semibold text-dark">Internship Listings ({{ internships|length }})</span>
-            <span class="badge bg-primary bg-opacity-10 text-primary">AICTE / Verified Portals</span>
+            <span class="fw-semibold text-dark">Internship Listings (Total: {{ pagination.total }})</span>
+            <span class="badge bg-primary bg-opacity-10 text-primary">National Verified Catalog</span>
         </div>
         <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
+            <table class="table table-hover align-middle mb-0 small">
                 <thead class="table-light">
                     <tr>
-                        <th style="width: 60px;">ID</th>
+                        <th style="width: 50px;">ID</th>
                         <th>Role / Title</th>
                         <th>Organization</th>
                         <th>Mode & Location</th>
                         <th>Duration / Stipend</th>
+                        <th>Deadline</th>
                         <th>Verification</th>
                         <th class="text-center">Official Portal</th>
                         <th class="text-center">Actions</th>
@@ -41,21 +81,33 @@
                 <tbody>
                     {% for item in internships %}
                     <tr>
-                        <td class="text-muted small">#{{ item.id }}</td>
+                        <td class="text-muted">#{{ item.id }}</td>
                         <td>
-                            <div class="fw-semibold text-dark">{{ item.title }}</div>
-                            <div class="small text-muted text-truncate" style="max-width: 250px;">{{ item.skills or item.domain or 'Hands-on training' }}</div>
+                            <div class="fw-semibold text-dark">
+                                <a href="{{ url_for('internship.internship_detail', slug=item.slug) }}" target="_blank" class="text-dark text-decoration-none">
+                                    {{ item.title }}
+                                </a>
+                            </div>
+                            {% if item.scheme_name %}
+                            <span class="badge bg-info bg-opacity-10 text-dark border border-info border-opacity-25" style="font-size: 0.7rem;">
+                                {{ item.scheme_name }}
+                            </span>
+                            {% endif %}
                         </td>
                         <td>
-                            <span class="badge bg-light text-dark border">{{ item.company or 'Organization' }}</span>
+                            <span class="badge bg-light text-dark border">{{ item.organisation_name }}</span>
+                            <div class="text-muted" style="font-size: 0.7rem;">{{ item.organisation_type }}</div>
                         </td>
                         <td>
-                            <span class="badge bg-secondary bg-opacity-10 text-secondary">{{ item.mode or 'Hybrid' }}</span>
-                            <div class="small text-muted">{{ item.location or 'India' }}</div>
+                            <span class="badge bg-secondary bg-opacity-10 text-secondary">{{ item.work_mode }}</span>
+                            <div class="text-muted" style="font-size: 0.75rem;">{{ item.city or item.location or 'India' }}</div>
                         </td>
-                        <td class="small">
-                            <div>{{ item.duration or '2-3 Months' }}</div>
-                            <div class="text-success fw-semibold">{{ item.stipend or 'Stipend available' }}</div>
+                        <td>
+                            <div>{{ item.duration_text or '3 Months' }}</div>
+                            <div class="text-success fw-semibold">{{ item.stipend or 'Provided' }}</div>
+                        </td>
+                        <td>
+                            <span class="text-nowrap">{{ item.deadline_text }}</span>
                         </td>
                         <td>
                             {% set status = item.verification_status or 'VERIFIED' %}
@@ -66,17 +118,18 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            {% if item.official_url or item.apply_link %}
-                            <a href="{{ item.official_url or item.apply_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info">
-                                Portal 
+                            {% if item.primary_apply_url %}
+                            <a href="{{ url_for('internship.apply_redirect', id=item.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info py-0 px-2" style="font-size: 0.75rem;">
+                                Portal <i data-lucide="external-link" class="icon-xs"></i>
                             </a>
                             {% else %}
-                            <span class="text-muted small">—</span>
+                            <span class="text-muted">—</span>
                             {% endif %}
                         </td>
                         <td class="text-center">
                             <a href="{{ url_for('admin.delete_internship', id=item.id) }}"
-                               class="btn btn-outline-danger btn-sm"
+                               class="btn btn-outline-danger btn-sm py-0 px-2"
+                               style="font-size: 0.75rem;"
                                onclick="return confirm('Delete internship {{ item.title }}?');">
                                 Delete
                             </a>
@@ -84,14 +137,44 @@
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="8" class="text-center py-4 text-muted">
-                            No internships found in database.
+                        <td colspan="9" class="text-center py-4 text-muted">
+                            No internships found matching your search.
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+
+        <!-- Pagination -->
+        {% if pagination and pagination.pages > 1 %}
+        <div class="card-footer bg-white py-3 border-top d-flex justify-content-between align-items-center">
+            <span class="small text-muted">Page {{ pagination.page }} of {{ pagination.pages }}</span>
+            <ul class="pagination pagination-sm mb-0">
+                {% if pagination.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('admin.internships', page=pagination.prev_num, search=search, status=status_filter, verified=verified_filter) }}">Previous</a>
+                </li>
+                {% endif %}
+
+                {% for p in range(1, pagination.pages + 1) %}
+                {% if p == pagination.page or (p >= pagination.page - 2 and p <= pagination.page + 2) or p == 1 or p == pagination.pages %}
+                <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('admin.internships', page=p, search=search, status=status_filter, verified=verified_filter) }}">{{ p }}</a>
+                </li>
+                {% elif p == pagination.page - 3 or p == pagination.page + 3 %}
+                <li class="page-item disabled"><span class="page-link">...</span></li>
+                {% endif %}
+                {% endfor %}
+
+                {% if pagination.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('admin.internships', page=pagination.next_num, search=search, status=status_filter, verified=verified_filter) }}">Next</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

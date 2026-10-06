@@ -1,163 +1,439 @@
 {% extends "base.html" %}
 
-{% block title %}Internships Directory | MPath Career Counselling{% endblock %}
+{% block title %}National Internship Discovery Platform | MPath Career Counselling{% endblock %}
 
 {% block content %}
-<div class="container py-5">
+<div class="container py-4 py-lg-5">
 
-    <!-- Header -->
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
-        <div>
-            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-info bg-opacity-10 text-dark small fw-semibold mb-2">
-                <i data-lucide="building" class="icon-xs"></i>
-                <span>Practical Skill Development & Exposure</span>
-            </div>
-            <h1 class="fw-bold mb-1">Internship Opportunities</h1>
-            <p class="text-muted mb-0">Explore verified internship profiles and industry tracks to build hands-on competency.</p>
-        </div>
-    </div>
-
-    <!-- Filter Form -->
-    <div class="card p-3 border shadow-sm mb-4 bg-white">
-        <form method="GET" action="{{ url_for('internship.internship_list') }}">
-            <div class="row g-2 align-items-center">
-                <div class="col-lg-5 col-md-6">
-                    <div class="input-group">
-                        <span class="input-group-text bg-white border-end-0 text-muted"><i data-lucide="search" class="icon-xs"></i></span>
-                        <input type="text" name="search" class="form-control border-start-0" placeholder="Search by role, company, or skill..." value="{{ search }}">
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-3">
-                    <select name="domain" class="form-select">
-                        <option value="">All Domains</option>
-                        {% for d in domains %}
-                        <option value="{{ d }}" {% if d == selected_domain %}selected{% endif %}>
-                            {{ d }}
-                        </option>
-                        {% endfor %}
-                    </select>
-                </div>
-
-                <div class="col-lg-2 col-md-3">
-                    <select name="mode" class="form-select">
-                        <option value="">Any Work Mode</option>
-                        <option value="Remote" {% if selected_mode == 'Remote' %}selected{% endif %}>Remote</option>
-                        <option value="Hybrid" {% if selected_mode == 'Hybrid' %}selected{% endif %}>Hybrid</option>
-                        <option value="Onsite" {% if selected_mode == 'Onsite' %}selected{% endif %}>Onsite</option>
-                    </select>
-                </div>
-
-                <div class="col-lg-2 col-md-12 d-grid">
-                    <button type="submit" class="btn btn-primary">
-                        Filter
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <!-- Transparency Notice -->
-    <div class="alert alert-light border small text-muted mb-4 d-flex align-items-center gap-2">
-        <span><i data-lucide="info" class="icon-xs text-info"></i></span>
-        <span>
-            <strong>Verification Note:</strong> Listings represent verified organizational internship tracks. Apply directly through official portals (such as the AICTE Internship Portal) to ensure authenticity and avoid scam fees.
-        </span>
-    </div>
-
-    <!-- Internships Grid -->
-    {% if internships %}
-    <div class="row g-4 mb-4">
-        {% for it in internships %}
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 p-4 border shadow-sm card-interactive d-flex flex-column">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <span class="badge bg-info bg-opacity-10 text-dark">
-                        {{ it.mode or 'Hybrid' }}
-                    </span>
-                    <span class="badge badge-verified d-inline-flex align-items-center gap-1">
-                        <i data-lucide="check-circle" class="icon-xs"></i> {{ it.verification_status or 'VERIFIED' }}
-                    </span>
-                </div>
-
-                <h4 class="fw-bold mb-1 text-dark">
-                    {{ it.title }}
-                </h4>
-
-                <div class="small fw-semibold text-primary mb-2">
-                    {{ it.company }}
-                </div>
-
-                <p class="small text-muted flex-grow-1 mb-3">
-                    {{ it.description[:110] }}{% if it.description|length > 110 %}...{% endif %}
+    <!-- Hero / National Hub Header -->
+    <div class="card border-0 shadow-sm p-4 p-lg-5 mb-4 rounded-4" style="background-color: #0039A8 !important; background: linear-gradient(135deg, #0039A8 0%, #002875 100%) !important; color: #ffffff !important;">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <span class="badge bg-white px-3 py-2 rounded-pill fw-semibold mb-3 shadow-sm" style="color: #0039A8 !important;">
+                    <i data-lucide="shield-check" class="icon-xs" style="color: #0039A8;"></i> Statutory &amp; Flagship Ecosystem
+                </span>
+                <h1 class="display-6 fw-bold text-white mb-2" style="color: #ffffff !important;">Explore Real National Internships Across India</h1>
+                <p class="mb-4 fs-6 text-white" style="color: rgba(255, 255, 255, 0.9) !important; max-width: 700px;">
+                    Discover verified statutory government programs (TULIP, Smart Cities, Indian Army, NHAI, C-DAC), premier research fellowships (DRDO, ISRO, CSIR), and leading corporate drives with authentic official application channels.
                 </p>
 
-                <div class="bg-light p-3 rounded-3 small mb-3">
-                    <div class="mb-1"><strong>Location:</strong> {{ it.location or 'India' }}</div>
-                    <div class="mb-1"><strong><i data-lucide="clock" class="icon-xs"></i> Duration:</strong> {{ it.duration or '2-6 Months' }}</div>
-                    <div class="mb-1"><strong><i data-lucide="award" class="icon-xs"></i> Stipend:</strong> {{ it.stipend or 'Stipend Provided' }}</div>
-                    <div><strong><i data-lucide="wrench" class="icon-xs"></i> Skills:</strong> {{ it.skills or 'Domain skills' }}</div>
+                <!-- Search Input with Auto-Submit -->
+                <div class="bg-white p-2 rounded-3 shadow-lg max-w-700">
+                    <form id="explorer-search-form" method="GET" action="{{ url_for('internship.internship_list') }}">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-0 text-muted ps-2">
+                                <i data-lucide="search" class="icon-sm" style="color: #0039A8;"></i>
+                            </span>
+                            <input type="text" id="filter-search-input" name="search" class="form-control border-0 shadow-none ps-2" placeholder="Search by role, company, skill, city, or statutory scheme (e.g., TULIP, DRDO, Python)..." value="{{ filters.get('search', '') }}">
+                            <button type="submit" class="btn px-4 fw-semibold rounded-2 text-white shadow-sm" style="background-color: #0039A8 !important; border-color: #0039A8 !important;">
+                                Search
+                            </button>
+                        </div>
+                    </form>
                 </div>
+            </div>
 
-                <div class="d-flex gap-2 mt-auto pt-2 border-top align-items-center">
-                    {% if it.official_url or it.apply_link %}
-                    <a href="{{ it.official_url or it.apply_link }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm flex-grow-1">
-                        Apply via Portal 
-                    </a>
-                    {% endif %}
-
-                    <a href="{{ url_for('internship.toggle_save', internship_id=it.id) }}" class="btn btn-sm {% if it.id in saved_internship_ids %}btn-warning{% else %}btn-outline-secondary{% endif %}" title="{% if it.id in saved_internship_ids %}Remove from Saved{% else %}Save Internship{% endif %}">
-                        {% if it.id in saved_internship_ids %}<i data-lucide="bookmark-check" class="icon-xs"></i> Saved{% else %}<i data-lucide="bookmark" class="icon-xs"></i> Save{% endif %}
-                    </a>
+            <!-- Stats Ribbon -->
+            <div class="col-lg-4">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 bg-white bg-opacity-10 backdrop-blur text-center border border-white border-opacity-10">
+                            <div class="fs-4 fw-bold text-white">{{ total_national_count }}</div>
+                            <div class="small" style="color: rgba(255, 255, 255, 0.85) !important;">Verified Opportunities</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 bg-white bg-opacity-10 backdrop-blur text-center border border-white border-opacity-10">
+                            <div class="fs-4 fw-bold text-info">{{ govt_count }}</div>
+                            <div class="small" style="color: rgba(255, 255, 255, 0.85) !important;">Govt &amp; Schemes</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 bg-white bg-opacity-10 backdrop-blur text-center border border-white border-opacity-10">
+                            <div class="fs-4 fw-bold text-warning">{{ remote_count }}</div>
+                            <div class="small" style="color: rgba(255, 255, 255, 0.85) !important;">Remote Opportunities</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 rounded-3 bg-white bg-opacity-10 backdrop-blur text-center border border-white border-opacity-10">
+                            <div class="fs-4 fw-bold text-success">100%</div>
+                            <div class="small" style="color: rgba(255, 255, 255, 0.85) !important;">Zero Scam Guarantee</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
 
-    <!-- Pagination -->
-    {% if pagination and pagination.pages > 1 %}
-    <nav class="d-flex justify-content-center my-4" aria-label="Internship list pagination">
-        <ul class="pagination">
-            {% if pagination.has_prev %}
-            <li class="page-item">
-                <a class="page-link" href="{{ url_for('internship.internship_list', page=pagination.prev_num, search=search, domain=selected_domain, mode=selected_mode) }}">
-                    Previous
-                </a>
-            </li>
-            {% endif %}
-
-            {% for p in range(1, pagination.pages + 1) %}
-            <li class="page-item {% if p == pagination.page %}active{% endif %}">
-                <a class="page-link" href="{{ url_for('internship.internship_list', page=p, search=search, domain=selected_domain, mode=selected_mode) }}">
-                    {{ p }}
-                </a>
-            </li>
-            {% endfor %}
-
-            {% if pagination.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="{{ url_for('internship.internship_list', page=pagination.next_num, search=search, domain=selected_domain, mode=selected_mode) }}">
-                    Next
-                </a>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
-
-    {% else %}
-    <div class="empty-state py-5 my-4">
-        <div class="empty-state-icon"><i data-lucide="building" class="icon-xs"></i></div>
-        <h4 class="fw-bold">No internships found</h4>
-        <p class="text-muted max-w-500 mx-auto">
-            No internships matched your search criteria. Try removing filters or searching for general skills like "Python", "Data", "Design", or "Web".
-        </p>
-        <a href="{{ url_for('internship.internship_list') }}" class="btn btn-primary mt-2">
-            Reset Filters
+    <!-- Specialized Hub Navigation Tabs -->
+    <div class="d-flex flex-wrap gap-2 mb-4 pb-2 border-bottom overflow-auto">
+        <a href="{{ url_for('internship.internship_list') }}" class="btn btn-sm {% if not filters.get('org_type') and not filters.get('mode') %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+            <i data-lucide="layers" class="icon-xs me-1"></i> All Opportunities
         </a>
+        <a href="{{ url_for('internship.government_hub') }}" class="btn btn-sm {% if filters.get('org_type') == 'Government' %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+            <i data-lucide="landmark" class="icon-xs me-1 text-info"></i> Government & Statutory Schemes
+        </a>
+        <a href="{{ url_for('internship.corporate_hub') }}" class="btn btn-sm {% if filters.get('org_type') == 'Corporate' %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+            <i data-lucide="briefcase" class="icon-xs me-1 text-primary"></i> Corporate & Industry Drives
+        </a>
+        <a href="{{ url_for('internship.research_hub') }}" class="btn btn-sm {% if filters.get('org_type') == 'Research' %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+            <i data-lucide="microscope" class="icon-xs me-1 text-danger"></i> Premier Research Labs
+        </a>
+        <a href="{{ url_for('internship.remote_hub') }}" class="btn btn-sm {% if filters.get('mode') == 'Remote' %}btn-primary{% else %}btn-outline-secondary{% endif %} rounded-pill px-3">
+            <i data-lucide="laptop" class="icon-xs me-1 text-success"></i> Remote & Flexible
+        </a>
+        {% if session.get('user_id') %}
+        <a href="{{ url_for('internship.student_tracker') }}" class="btn btn-sm btn-outline-primary rounded-pill px-3 ms-auto">
+            <i data-lucide="clipboard-list" class="icon-xs me-1"></i> My Application Tracker
+        </a>
+        {% endif %}
     </div>
-    {% endif %}
 
+    <!-- Main Explorer Layout -->
+    <div class="row g-4">
+
+        <!-- Left Filters Sidebar (collapsible on mobile) -->
+        <div class="col-lg-3">
+            <div class="d-lg-none mb-3">
+                <button class="btn btn-outline-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#filters-collapse">
+                    <span><i data-lucide="sliders" class="icon-xs me-2"></i> Filter Opportunities</span>
+                    <i data-lucide="chevron-down" class="icon-xs"></i>
+                </button>
+            </div>
+
+            <div class="collapse d-lg-block" id="filters-collapse">
+                <div class="card border shadow-sm p-3 rounded-3 bg-white sticky-top" style="top: 80px; z-index: 10;">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                            <i data-lucide="filter" class="icon-xs text-primary"></i> Filter Opportunities
+                        </h6>
+                        <a href="{{ url_for('internship.internship_list') }}" class="small text-decoration-none text-muted">
+                            Reset All
+                        </a>
+                    </div>
+
+                    <form id="filter-sidebar-form" method="GET" action="{{ url_for('internship.internship_list') }}">
+                        <input type="hidden" name="search" value="{{ filters.get('search', '') }}">
+
+                        <!-- Work Mode -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Work Mode</label>
+                            <select name="mode" class="form-select form-select-sm filter-trigger">
+                                <option value="">Any Work Mode</option>
+                                <option value="Remote" {% if filters.get('mode') == 'Remote' %}selected{% endif %}>Remote (Work From Home)</option>
+                                <option value="Hybrid" {% if filters.get('mode') == 'Hybrid' %}selected{% endif %}>Hybrid</option>
+                                <option value="Onsite" {% if filters.get('mode') == 'Onsite' %}selected{% endif %}>Onsite</option>
+                            </select>
+                        </div>
+
+                        <!-- Category / Domain -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Domain / Category</label>
+                            <select name="category" class="form-select form-select-sm filter-trigger">
+                                <option value="">All Domains</option>
+                                {% for cat in categories %}
+                                <option value="{{ cat }}" {% if filters.get('category') == cat or filters.get('domain') == cat %}selected{% endif %}>{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Organization Type -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Provider Sector</label>
+                            <select name="org_type" class="form-select form-select-sm filter-trigger">
+                                <option value="">All Sectors</option>
+                                <option value="Government" {% if filters.get('org_type') == 'Government' %}selected{% endif %}>Government / Ministries</option>
+                                <option value="Corporate" {% if filters.get('org_type') == 'Corporate' %}selected{% endif %}>Corporate & MNCs</option>
+                                <option value="Research" {% if filters.get('org_type') == 'Research' %}selected{% endif %}>Research Institutions</option>
+                                <option value="PSU" {% if filters.get('org_type') == 'PSU' %}selected{% endif %}>Public Sector (PSUs)</option>
+                                <option value="Startup" {% if filters.get('org_type') == 'Startup' %}selected{% endif %}>Startups</option>
+                            </select>
+                        </div>
+
+                        <!-- State -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">State / Region</label>
+                            <select name="state" class="form-select form-select-sm filter-trigger">
+                                <option value="">All India / Pan-India</option>
+                                {% for st in states %}
+                                <option value="{{ st }}" {% if filters.get('state') == st %}selected{% endif %}>{{ st }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Stipend Range -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Monthly Stipend</label>
+                            <select name="stipend" class="form-select form-select-sm filter-trigger">
+                                <option value="">Any Compensation</option>
+                                <option value="unpaid" {% if filters.get('stipend') == 'unpaid' %}selected{% endif %}>Unpaid / Fellowship</option>
+                                <option value="1-5k" {% if filters.get('stipend') == '1-5k' %}selected{% endif %}>₹1,000 – ₹5,000</option>
+                                <option value="5-10k" {% if filters.get('stipend') == '5-10k' %}selected{% endif %}>₹5,000 – ₹10,000</option>
+                                <option value="10-20k" {% if filters.get('stipend') == '10-20k' %}selected{% endif %}>₹10,000 – ₹20,000</option>
+                                <option value="20-30k" {% if filters.get('stipend') == '20-30k' %}selected{% endif %}>₹20,000 – ₹30,000</option>
+                                <option value="30k+" {% if filters.get('stipend') == '30k+' %}selected{% endif %}>₹30,000+ (High Stipend)</option>
+                            </select>
+                        </div>
+
+                        <!-- Duration -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Duration</label>
+                            <select name="duration" class="form-select form-select-sm filter-trigger">
+                                <option value="">Any Duration</option>
+                                <option value="1m" {% if filters.get('duration') == '1m' %}selected{% endif %}>Up to 1 Month</option>
+                                <option value="2-3m" {% if filters.get('duration') == '2-3m' %}selected{% endif %}>2 – 3 Months</option>
+                                <option value="4-6m" {% if filters.get('duration') == '4-6m' %}selected{% endif %}>4 – 6 Months</option>
+                                <option value="6m+" {% if filters.get('duration') == '6m+' %}selected{% endif %}>6+ Months (Semester)</option>
+                            </select>
+                        </div>
+
+                        <!-- Feature Checkboxes -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-uppercase text-muted">Benefits & Features</label>
+                            <div class="form-check form-check-sm mb-1">
+                                <input class="form-check-input filter-trigger" type="checkbox" name="ppo" value="1" id="ppoCheck" {% if filters.get('ppo') == '1' %}checked{% endif %}>
+                                <label class="form-check-label small" for="ppoCheck">Pre-Placement Offer (PPO)</label>
+                            </div>
+                            <div class="form-check form-check-sm mb-1">
+                                <input class="form-check-input filter-trigger" type="checkbox" name="credits" value="1" id="creditsCheck" {% if filters.get('credits') == '1' %}checked{% endif %}>
+                                <label class="form-check-label small" for="creditsCheck">Academic Credits Available</label>
+                            </div>
+                            <div class="form-check form-check-sm">
+                                <input class="form-check-input filter-trigger" type="checkbox" name="verified" value="1" id="verifiedCheck" {% if filters.get('verified') == '1' %}checked{% endif %}>
+                                <label class="form-check-label small" for="verifiedCheck">Statutory Verified Only</label>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 pt-2 border-top">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Apply Filters
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Results Section -->
+        <div class="col-lg-9">
+
+            <!-- Controls Bar: Result Count & Sort Selector -->
+            <div class="card border shadow-sm p-3 mb-3 rounded-3 bg-white">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
+                    <div>
+                        <span class="fw-bold text-dark fs-6" id="total-results-count">{{ pagination.total }}</span>
+                        <span class="text-muted small"> opportunities matched</span>
+                        {% if filters.get('search') %}
+                        <span class="badge bg-light text-dark border ms-2">Search: "{{ filters.get('search') }}"</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="sortSelector" class="small text-muted text-nowrap mb-0">Sort By:</label>
+                        <select id="sortSelector" name="sort" class="form-select form-select-sm" style="width: auto;">
+                            <option value="relevant" {% if filters.get('sort') == 'relevant' %}selected{% endif %}>Most Relevant</option>
+                            <option value="deadline" {% if filters.get('sort') == 'deadline' %}selected{% endif %}>Closing Soonest</option>
+                            <option value="newest" {% if filters.get('sort') == 'newest' %}selected{% endif %}>Newest Opportunities</option>
+                            <option value="stipend_high" {% if filters.get('sort') == 'stipend_high' %}selected{% endif %}>Highest Stipend</option>
+                            <option value="duration_short" {% if filters.get('sort') == 'duration_short' %}selected{% endif %}>Shortest Duration</option>
+                            <option value="verified" {% if filters.get('sort') == 'verified' %}selected{% endif %}>Verified First</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Opportunities Grid -->
+            <div id="internships-grid-container" class="row g-3">
+                {% if internships %}
+                {% for it in internships %}
+                {% set status_info = it.display_status %}
+                <div class="col-md-6">
+                    <div class="card h-100 p-3 p-xl-4 border shadow-sm card-interactive d-flex flex-column rounded-3 bg-white">
+                        
+                        <!-- Top Badges -->
+                        <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                            <div class="d-flex flex-wrap gap-1">
+                                <span class="badge bg-light text-dark border">
+                                    <i data-lucide="laptop" class="icon-xs me-1"></i> {{ it.work_mode }}
+                                </span>
+                                {% if it.scheme_name %}
+                                <span class="badge bg-info bg-opacity-10 text-dark border border-info border-opacity-25" title="{{ it.scheme_name }}">
+                                    <i data-lucide="award" class="icon-xs me-1"></i> {{ it.scheme_name[:20] }}
+                                </span>
+                                {% endif %}
+                            </div>
+
+                            <span class="badge bg-{{ status_info[1] }} bg-opacity-10 text-{{ status_info[1] }} border border-{{ status_info[1] }} border-opacity-25">
+                                {{ status_info[0] }}
+                            </span>
+                        </div>
+
+                        <!-- Title & Organisation -->
+                        <h5 class="fw-bold mb-1">
+                            <a href="{{ url_for('internship.internship_detail', slug=it.slug) }}" class="text-dark text-decoration-none hover-primary">
+                                {{ it.title }}
+                            </a>
+                        </h5>
+
+                        <div class="small fw-semibold text-primary mb-2 d-flex align-items-center gap-1">
+                            {% if it.organisation %}
+                            <a href="{{ url_for('internship.organisation_detail', slug=it.organisation.slug) }}" class="text-primary text-decoration-none">
+                                {{ it.organisation_name }}
+                            </a>
+                            {% else %}
+                            <span>{{ it.organisation_name }}</span>
+                            {% endif %}
+
+                            <span class="badge bg-success bg-opacity-10 text-success ms-1 py-0 px-1" style="font-size: 0.7rem;">
+                                <i data-lucide="check" class="icon-xs"></i> Verified Source
+                            </span>
+                        </div>
+
+                        <!-- Brief Description -->
+                        <p class="small text-muted flex-grow-1 mb-3 line-clamp-2">
+                            {{ it.short_description or it.description[:130] }}
+                        </p>
+
+                        <!-- Highlights Box -->
+                        <div class="bg-light p-2 rounded-2 small mb-3">
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <div class="text-muted" style="font-size: 0.75rem;">Stipend</div>
+                                    <div class="fw-bold text-dark text-truncate">{{ it.stipend or 'Provided' }}</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-muted" style="font-size: 0.75rem;">Duration</div>
+                                    <div class="fw-bold text-dark text-truncate">{{ it.duration_text or (it.duration_value ~ ' Months') }}</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-muted" style="font-size: 0.75rem;">Location</div>
+                                    <div class="fw-bold text-dark text-truncate">{{ it.city or it.location or 'India' }}</div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="text-muted" style="font-size: 0.75rem;">Deadline</div>
+                                    <div class="fw-bold text-dark text-truncate">{{ it.deadline_text }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Skills Tags -->
+                        {% if it.skills_list %}
+                        <div class="d-flex flex-wrap gap-1 mb-3">
+                            {% for sk in it.skills_list[:3] %}
+                            <span class="badge bg-white text-muted border" style="font-size: 0.75rem;">{{ sk }}</span>
+                            {% endfor %}
+                            {% if it.skills_list|length > 3 %}
+                            <span class="badge bg-white text-muted border" style="font-size: 0.75rem;">+{{ it.skills_list|length - 3 }}</span>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+                        <!-- Card Action Buttons -->
+                        <div class="d-flex gap-2 mt-auto pt-2 border-top align-items-center">
+                            <a href="{{ url_for('internship.internship_detail', slug=it.slug) }}" class="btn btn-outline-primary btn-sm flex-grow-1">
+                                View Dossier
+                            </a>
+
+                            {% if it.primary_apply_url %}
+                            <a href="{{ url_for('internship.apply_redirect', id=it.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm px-3 shadow-sm" style="background-color: #0039A8 !important; border-color: #0039A8 !important;" title="Apply on {{ it.organisation_name }} Official Portal">
+                                Apply <i data-lucide="external-link" class="icon-xs ms-1"></i>
+                            </a>
+                            {% endif %}
+
+                            <a href="{{ url_for('internship.toggle_save', internship_id=it.id) }}" class="btn btn-sm {% if it.id in saved_internship_ids %}btn-warning{% else %}btn-outline-secondary{% endif %}" title="{% if it.id in saved_internship_ids %}Saved{% else %}Save for Later{% endif %}">
+                                <i data-lucide="bookmark" class="icon-xs"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <div class="col-12">
+                    <div class="card border p-5 text-center bg-white rounded-3">
+                        <div class="mb-3">
+                            <i data-lucide="folder-search" class="icon-lg text-muted"></i>
+                        </div>
+                        <h5 class="fw-bold">No Internships Found</h5>
+                        <p class="text-muted max-w-500 mx-auto small">
+                            No verified opportunities matched your selected filters. Try loosening your criteria or search for broader keywords like "Python", "Civil", "Management", or "Delhi".
+                        </p>
+                        <div>
+                            <a href="{{ url_for('internship.internship_list') }}" class="btn btn-primary btn-sm px-4">
+                                Reset All Filters
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- SSR Pagination -->
+            {% if pagination and pagination.pages > 1 %}
+            <nav class="d-flex justify-content-center my-4" aria-label="Internship pagination">
+                <ul class="pagination pagination-sm">
+                    {% if pagination.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('internship.internship_list', page=pagination.prev_num, **filters) }}">
+                            Previous
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for p in range(1, pagination.pages + 1) %}
+                    {% if p == pagination.page or (p >= pagination.page - 2 and p <= pagination.page + 2) or p == 1 or p == pagination.pages %}
+                    <li class="page-item {% if p == pagination.page %}active{% endif %}">
+                        <a class="page-link" href="{{ url_for('internship.internship_list', page=p, **filters) }}">
+                            {{ p }}
+                        </a>
+                    </li>
+                    {% elif p == pagination.page - 3 or p == pagination.page + 3 %}
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if pagination.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('internship.internship_list', page=pagination.next_num, **filters) }}">
+                            Next
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+
+        </div>
+    </div>
 </div>
+
+<!-- Dynamic Search & Filter Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterForm = document.getElementById('filter-sidebar-form');
+    const sortSelector = document.getElementById('sortSelector');
+
+    // Auto-submit on change for sidebar selectors
+    if (filterForm) {
+        const triggers = filterForm.querySelectorAll('.filter-trigger');
+        triggers.forEach(el => {
+            el.addEventListener('change', function() {
+                filterForm.submit();
+            });
+        });
+    }
+
+    if (sortSelector && filterForm) {
+        sortSelector.addEventListener('change', function() {
+            const hiddenSort = document.createElement('input');
+            hiddenSort.type = 'hidden';
+            hiddenSort.name = 'sort';
+            hiddenSort.value = this.value;
+            filterForm.appendChild(hiddenSort);
+            filterForm.submit();
+        });
+    }
+});
+</script>
 {% endblock %}

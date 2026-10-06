@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}{{ organisation.name }} - Internships & Opportunities | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-lg-5">
+
+    <!-- Organisation Header -->
+    <div class="card border-0 shadow-sm p-4 p-lg-5 mb-4 rounded-4" style="background-color: #0039A8 !important; background: linear-gradient(135deg, #0039A8 0%, #002875 100%) !important; color: #ffffff !important;">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+            <div>
+                <div class="d-flex flex-wrap gap-2 mb-2">
+                    <span class="badge bg-white bg-opacity-20 text-white">
+                        {{ organisation.organisation_type }}
+                    </span>
+                    <span class="badge bg-success bg-opacity-20 text-white border border-success border-opacity-25">
+                        <i data-lucide="shield-check" class="icon-xs me-1"></i> Verified Provider
+                    </span>
+                </div>
+                <h1 class="display-6 fw-bold text-white mb-2">{{ organisation.name }}</h1>
+                <div class="text-white-50 fs-6">
+                    <span>{{ organisation.headquarters or organisation.city or 'India' }}</span>
+                    {% if organisation.industry %}
+                    <span class="mx-2">&bull;</span>
+                    <span>{{ organisation.industry }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if organisation.official_website %}
+            <a href="{{ organisation.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light">
+                Official Website <i data-lucide="external-link" class="icon-xs ms-1"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Active Opportunities -->
+    <div class="mb-4">
+        <h4 class="fw-bold mb-3 d-flex align-items-center gap-2">
+            <i data-lucide="briefcase" class="icon-sm text-primary"></i> Active Internship Drives ({{ internships|length }})
+        </h4>
+
+        {% if internships %}
+        <div class="row g-3">
+            {% for it in internships %}
+            {% set status_info = it.display_status %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 p-3 border shadow-sm rounded-3 bg-white d-flex flex-column">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-light text-dark border">{{ it.work_mode }}</span>
+                        <span class="badge bg-{{ status_info[1] }} bg-opacity-10 text-{{ status_info[1] }}">{{ status_info[0] }}</span>
+                    </div>
+
+                    <h5 class="fw-bold mb-1">
+                        <a href="{{ url_for('internship.internship_detail', slug=it.slug) }}" class="text-dark text-decoration-none">
+                            {{ it.title }}
+                        </a>
+                    </h5>
+
+                    <p class="small text-muted flex-grow-1 mb-3">
+                        {{ it.short_description or it.description[:110] }}...
+                    </p>
+
+                    <div class="bg-light p-2 rounded-2 small mb-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Stipend:</span>
+                            <span class="fw-bold">{{ it.stipend or 'Provided' }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-1">
+                            <span class="text-muted">Duration:</span>
+                            <span class="fw-bold">{{ it.duration_text or '3 Months' }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-muted">Deadline:</span>
+                            <span class="fw-bold">{{ it.deadline_text }}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-auto">
+                        <a href="{{ url_for('internship.internship_detail', slug=it.slug) }}" class="btn btn-outline-primary btn-sm flex-grow-1">
+                            Details
+                        </a>
+                        {% if it.primary_apply_url %}
+                        <a href="{{ url_for('internship.apply_redirect', id=it.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm px-3 shadow-sm" style="background-color: #0039A8 !important; border-color: #0039A8 !important;">
+                            Apply <i data-lucide="external-link" class="icon-xs ms-1"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card p-4 border text-center text-muted bg-white rounded-3">
+            <p class="mb-0">No active public internships currently open for this organisation.</p>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

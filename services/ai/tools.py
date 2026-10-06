@@ -111,14 +111,49 @@ OPENAI_TOOLS = [
         "type": "function",
         "function": {
             "name": "search_internships",
-            "description": "Find student internship and trainee opportunities across tech, business, and non-profit sectors.",
+            "description": "Find verified student internship opportunities across statutory government programs, premier research labs, and corporate drives.",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "query": {"type": "string", "description": "Role or keywords, e.g. 'Data Analyst Intern', 'Content Writer'"},
-                    "domain": {"type": "string", "description": "Sector or industry domain"}
+                    "query": {"type": "string", "description": "Role, skills, company, or statutory scheme (e.g., 'TULIP', 'DRDO', 'Python', 'Civil')"},
+                    "category": {"type": "string", "description": "Sector or domain (e.g., 'Technology', 'Civil & Architecture', 'Finance')"},
+                    "mode": {"type": "string", "description": "Work mode: 'Remote', 'Hybrid', 'Onsite'"},
+                    "org_type": {"type": "string", "description": "Provider type: 'Government', 'Corporate', 'Research', 'PSU'"},
+                    "state": {"type": "string", "description": "Indian state or territory"}
                 },
-                "required": ["query"]
+                "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_internship_details",
+            "description": "Retrieve complete structured dossier for a specific internship opportunity including eligibility, stipend, duration, and verified application link.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "identifier": {"type": "string", "description": "Internship title, slug, or ID"}
+                },
+                "required": ["identifier"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "find_internships_for_student",
+            "description": "Deterministic discovery and ranking of verified internships matching student's degree, skills, career goal, and work mode preferences.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "degree": {"type": "string", "description": "Current or completed degree, e.g. 'B.Tech CSE', 'B.Sc Mathematics', 'BCA'"},
+                    "skills": {"type": "string", "description": "Student skills comma-separated, e.g. 'Python, SQL, Statistics'"},
+                    "target_career": {"type": "string", "description": "Career interest, e.g. 'Data Scientist', 'Urban Planner'"},
+                    "work_mode": {"type": "string", "description": "'Remote', 'Hybrid', 'Onsite', or 'Any'"},
+                    "state": {"type": "string", "description": "Student state or preferred location"}
+                },
+                "required": []
             }
         }
     },
@@ -150,6 +185,39 @@ OPENAI_TOOLS = [
                     "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
                 },
                 "required": ["category", "key", "value"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "find_opportunities_for_student",
+            "description": "Deterministic discovery of verified Indian examinations, government recruitment, entrance tests, apprenticeships, and opportunities matching a student's education level, stream, state, and age with zero hallucination.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "education_level": {"type": "string", "description": "e.g. 'Class 12', 'Graduate / UG', 'Postgraduate'"},
+                    "stream": {"type": "string", "description": "e.g. 'Mathematics', 'PCM', 'Commerce', 'PCB', 'Arts'"},
+                    "state": {"type": "string", "description": "Indian state or domicile, e.g. 'Madhya Pradesh', 'Delhi'"},
+                    "age": {"type": "integer", "description": "Student age in years"},
+                    "course": {"type": "string", "description": "Specific degree or course, e.g. 'B.Sc Mathematics', 'BCA', 'B.Tech'"},
+                    "category": {"type": "string", "description": "Reservation category if applicable (General, OBC, SC, ST, EWS)"}
+                },
+                "required": []
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_exam_details",
+            "description": "Retrieve comprehensive structured dossier for an Indian competitive exam or recruitment drive including eligibility criteria, latest exam cycle, syllabus, selection stages, pay scale, and verified official portals.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "exam_identifier": {"type": "string", "description": "Exam name, short name, or slug (e.g. 'UPSC CSE', 'MPPSC', 'IIT JAM', 'CSIR NET')"}
+                },
+                "required": ["exam_identifier"]
             }
         }
     }
@@ -204,6 +272,20 @@ class ToolExecutor:
                     limit=5
                 )
 
+            elif tool_name == "find_opportunities_for_student":
+                return MPathRetriever.discover_opportunities_for_student(
+                    education_level=args.get("education_level"),
+                    stream=args.get("stream"),
+                    state=args.get("state"),
+                    age=args.get("age"),
+                    category=args.get("category"),
+                    course=args.get("course"),
+                    limit=6
+                )
+
+            elif tool_name == "get_exam_details":
+                return MPathRetriever.get_exam_details(args.get("exam_identifier", ""))
+
             elif tool_name == "search_scholarships":
                 return MPathRetriever.search_scholarships(
                     query=args.get("query", ""),
@@ -216,9 +298,27 @@ class ToolExecutor:
             elif tool_name == "search_internships":
                 return MPathRetriever.search_internships(
                     query=args.get("query", ""),
-                    domain=args.get("domain"),
+                    category=args.get("category") or args.get("domain"),
+                    mode=args.get("mode"),
+                    org_type=args.get("org_type"),
+                    state=args.get("state"),
                     limit=5
                 )
+
+            elif tool_name == "get_internship_details":
+                ident = args.get("identifier", "")
+                res = MPathRetriever.get_internship_details(ident)
+                return res or {"status": "not_found", "message": f"No internship found for '{ident}'"}
+
+            elif tool_name == "find_internships_for_student":
+                profile_payload = {
+                    "degree": args.get("degree", "B.Tech"),
+                    "skills": args.get("skills", ""),
+                    "target_career": args.get("target_career", ""),
+                    "work_mode": args.get("work_mode", "Any"),
+                    "state": args.get("state", "")
+                }
+                return MPathRetriever.find_internships_for_student(profile_payload, limit=5)
 
             elif tool_name == "compare_careers":
                 titles = args.get("career_titles", [])

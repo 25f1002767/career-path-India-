@@ -1,0 +1,327 @@
+{% extends "base.html" %}
+
+{% block title %}Compare National Examinations | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('landing') }}" class="text-decoration-none text-muted">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('exam.exam_list') }}" class="text-decoration-none text-muted">Examinations</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Compare Examinations</li>
+        </ol>
+    </nav>
+
+    <!-- HEADER SECTION -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-semibold small">
+                <i data-lucide="split" class="icon-xs"></i>
+                <span>Decision Support Matrix</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">Side-by-Side Exam Comparison</h1>
+            <p class="text-muted fs-6 mb-0">
+                Compare eligibility, pattern, age criteria, stages, and syllabus across up to 3 competitive examinations.
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('exam.exam_list') }}" class="btn btn-outline-secondary px-3">
+                <i data-lucide="arrow-left" class="icon-xs"></i> All Exams
+            </a>
+            <a href="{{ url_for('exam.who_can_apply') }}" class="btn btn-outline-primary px-3">
+                <i data-lucide="check-circle" class="icon-xs"></i> Eligibility Finder
+            </a>
+        </div>
+    </div>
+
+    <!-- EXAM SELECTOR BAR -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('exam.compare_exams') }}" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label small fw-semibold text-muted">Exam 1</label>
+                <select name="id" class="form-select">
+                    <option value="">-- Choose Examination 1 --</option>
+                    {% for ex in all_exams %}
+                    <option value="{{ ex.id }}" {% if selected_ids|length > 0 and selected_ids[0] == ex.id %}selected{% endif %}>
+                        {{ ex.exam_name }} ({{ ex.conducting_body }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label small fw-semibold text-muted">Exam 2</label>
+                <select name="id" class="form-select">
+                    <option value="">-- Choose Examination 2 --</option>
+                    {% for ex in all_exams %}
+                    <option value="{{ ex.id }}" {% if selected_ids|length > 1 and selected_ids[1] == ex.id %}selected{% endif %}>
+                        {{ ex.exam_name }} ({{ ex.conducting_body }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold text-muted">Exam 3 (Optional)</label>
+                <select name="id" class="form-select">
+                    <option value="">-- Choose Examination 3 --</option>
+                    {% for ex in all_exams %}
+                    <option value="{{ ex.id }}" {% if selected_ids|length > 2 and selected_ids[2] == ex.id %}selected{% endif %}>
+                        {{ ex.exam_name }} ({{ ex.conducting_body }})
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary w-100 fw-semibold">
+                    <i data-lucide="refresh-cw" class="icon-xs"></i> Compare
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if compared_exams|length < 2 %}
+    <!-- EMPTY OR SINGLE EXAM STATE -->
+    <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+        <div class="mb-3">
+            <span class="p-3 bg-light rounded-circle text-primary d-inline-flex">
+                <i data-lucide="layers" style="width: 42px; height: 42px;"></i>
+            </span>
+        </div>
+        <h4 class="fw-bold text-dark">Select At Least 2 Examinations</h4>
+        <p class="text-muted max-w-500 mx-auto mb-4">
+            Pick 2 or 3 exams from the dropdown menus above to compare their educational criteria, age limits, syllabus stages, and salaries side by side.
+        </p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            <span class="text-muted small fw-semibold align-self-center me-2">Popular Comparisons:</span>
+            <a href="{{ url_for('exam.compare_exams', ids='1,2') }}" class="btn btn-sm btn-outline-primary rounded-pill">
+                UPSC CSE vs SSC CGL
+            </a>
+            <a href="{{ url_for('exam.compare_exams', ids='3,4') }}" class="btn btn-sm btn-outline-primary rounded-pill">
+                IBPS PO vs SBI Clerk
+            </a>
+        </div>
+    </div>
+    {% else %}
+
+    <!-- COMPARISON TABLE -->
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white mb-4">
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle mb-0" style="table-layout: fixed; min-width: 800px;">
+                <colgroup>
+                    <col style="width: 220px;">
+                    {% for _ in compared_exams %}
+                    <col style="width: calc((100% - 220px) / {{ compared_exams|length }});">
+                    {% endfor %}
+                </colgroup>
+                
+                <!-- TOP HEADER: EXAM NAMES & BADGES -->
+                <thead class="table-light">
+                    <tr>
+                        <th class="p-3 text-muted fw-bold text-uppercase small">Dimension</th>
+                        {% for ex in compared_exams %}
+                        <th class="p-3 align-top">
+                            <div class="d-flex flex-wrap align-items-center gap-1 mb-2">
+                                <span class="badge bg-primary bg-opacity-10 text-primary small">
+                                    {{ ex.category or 'Competitive' }}
+                                </span>
+                                <span class="badge bg-success bg-opacity-10 text-success small">
+                                    <i data-lucide="check" class="icon-xs"></i> {{ ex.verification_status or 'VERIFIED' }}
+                                </span>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">{{ ex.exam_name }}</h5>
+                            <div class="text-muted small mb-3">
+                                <i data-lucide="building" class="icon-xs"></i> {{ ex.conducting_body }}
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="btn btn-sm btn-primary">
+                                    Full Dossier
+                                </a>
+                                {% if ex.official_url or ex.official_website %}
+                                <a href="{{ ex.official_url or ex.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">
+                                    <i data-lucide="external-link" class="icon-xs"></i> Portal
+                                </a>
+                                {% endif %}
+                                <a href="{{ url_for('exam.track_opportunity', exam_id=ex.id) }}" class="btn btn-sm btn-outline-info text-dark">
+                                    <i data-lucide="plus-circle" class="icon-xs"></i> Track
+                                </a>
+                            </div>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- 1. JURISDICTION & FREQUENCY -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Scope & Jurisdiction</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            <div class="fw-semibold">{{ ex.state or 'National / All India' }}</div>
+                            <div class="small text-muted">{{ ex.national_or_state or 'National' }} Examination</div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Exam Frequency</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            <span class="badge bg-light text-dark border">{{ ex.frequency or 'Annual' }}</span>
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 2. APPLICATION STATUS & DATES -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Current Cycle Status</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            {% set display_status = ex.display_status %}
+                            <span class="badge bg-{{ display_status[1] }} px-2 py-1">
+                                {{ display_status[2] }} {{ display_status[0] }}
+                            </span>
+                            {% if ex.application_end_date %}
+                            <div class="small text-danger fw-semibold mt-1">
+                                Last Date: {{ ex.application_end_date }}
+                            </div>
+                            {% endif %}
+                            {% if ex.exam_date %}
+                            <div class="small text-muted mt-1">
+                                Exam Date: {{ ex.exam_date }}
+                            </div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 3. MINIMUM EDUCATION CRITERIA -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Educational Qualification</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            <div class="fw-semibold text-dark">{{ ex.qualification or ex.minimum_qualification or 'Specified in Notification' }}</div>
+                            {% if ex.streams %}
+                            <div class="small text-muted mt-1">
+                                <strong>Permitted Streams:</strong> {{ ex.streams }}
+                            </div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 4. AGE CRITERIA & RELAXATION -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Age Requirements</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            {% if ex.age_min or ex.age_max %}
+                            <div class="fw-bold text-dark">
+                                {{ ex.age_min or 'No min' }} to {{ ex.age_max or 'No max' }} years
+                            </div>
+                            {% else %}
+                            <div class="text-muted">As per notification rules</div>
+                            {% endif %}
+                            {% if ex.age_relaxation %}
+                            <div class="small text-muted mt-1">
+                                <strong>Relaxation:</strong> {{ ex.age_relaxation }}
+                            </div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 5. SELECTION PROCESS & STAGES -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Selection Stages</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            {% if ex.selection_process %}
+                            <div class="small text-dark">{{ ex.selection_process }}</div>
+                            {% else %}
+                            <div class="text-muted small">Standard Written Exam + Interview / Skill Test</div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 6. EXAM PATTERN & MARKING -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Pattern & Negative Marking</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            <div class="small mb-1">
+                                <strong>Mode:</strong> {{ ex.exam_mode or 'Computer Based Test (CBT) / Offline' }}
+                            </div>
+                            <div class="small mb-1">
+                                <strong>Negative Marking:</strong> 
+                                {% if ex.negative_marking %}
+                                <span class="text-danger fw-semibold">Yes ({{ ex.negative_marking }})</span>
+                                {% else %}
+                                <span class="text-muted">Check notification</span>
+                                {% endif %}
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 7. PAY SCALE / SALARY -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Pay Scale / Compensation</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            {% if ex.salary %}
+                            <div class="fw-bold text-success">{{ ex.salary }}</div>
+                            {% else %}
+                            <div class="text-muted small">Pay Level as per 7th CPC / UGC / Industry norms</div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 8. CAREER OPPORTUNITIES -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Connected Career Roles</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            {% if ex.career_opportunities %}
+                            <div class="small text-dark">{{ ex.career_opportunities }}</div>
+                            {% else %}
+                            <div class="text-muted small">Gazetted & Non-Gazetted Positions / Academic Admissions</div>
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+
+                    <!-- 9. OFFICIAL LINKS -->
+                    <tr>
+                        <th class="p-3 bg-light text-muted small fw-bold">Official Portals</th>
+                        {% for ex in compared_exams %}
+                        <td class="p-3">
+                            <div class="d-flex flex-column gap-2 small">
+                                {% if ex.official_url or ex.official_website %}
+                                <a href="{{ ex.official_url or ex.official_website }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none fw-semibold">
+                                    <i data-lucide="globe" class="icon-xs text-primary"></i> Authority Website
+                                </a>
+                                {% endif %}
+                                {% if ex.notification_url %}
+                                <a href="{{ ex.notification_url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-danger fw-semibold">
+                                    <i data-lucide="file-text" class="icon-xs"></i> Official Notification PDF
+                                </a>
+                                {% endif %}
+                                {% if ex.application_url %}
+                                <a href="{{ ex.application_url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-success fw-semibold">
+                                    <i data-lucide="check-square" class="icon-xs"></i> Online Application Link
+                                </a>
+                                {% endif %}
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

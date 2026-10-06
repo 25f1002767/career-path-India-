@@ -399,13 +399,17 @@ class MPathRetriever:
     def search_internships(
         query: str = "",
         domain: Optional[str] = None,
+        category: Optional[str] = None,
         mode: Optional[str] = None,
+        org_type: Optional[str] = None,
+        state: Optional[str] = None,
         limit: int = 5
     ) -> List[Dict[str, Any]]:
         """
-        Retrieves real-world student internship opportunities.
+        Retrieves authentic national student internship opportunities from MPath.
+        Supports statutory schemes (TULIP, Army, NHAI, C-DAC), research labs, and corporate drives.
         """
-        q = Internship.query
+        q = Internship.query.filter(Internship.is_active == True)
         if query:
             tokens = [t.strip() for t in query.split() if len(t.strip()) > 2]
             for token in tokens:
@@ -413,31 +417,239 @@ class MPathRetriever:
                 q = q.filter(
                     or_(
                         Internship.title.ilike(pat),
-                        Internship.company.ilike(pat),
+                        Internship.organisation_name.ilike(pat),
+                        Internship.scheme_name.ilike(pat),
                         Internship.description.ilike(pat),
-                        Internship.domain.ilike(pat),
-                        Internship.skills.ilike(pat)
+                        Internship.category.ilike(pat),
+                        Internship.skills.ilike(pat),
+                        Internship.city.ilike(pat)
                     )
                 )
 
-        if domain:
-            q = q.filter(Internship.domain.ilike(f"%{domain}%"))
+        cat = category or domain
+        if cat:
+            q = q.filter(Internship.category.ilike(f"%{cat}%"))
 
-        if mode:
-            q = q.filter(Internship.mode.ilike(f"%{mode}%"))
+        if mode and mode.lower() != "all":
+            q = q.filter(Internship.work_mode.ilike(f"%{mode}%"))
 
-        internships = q.limit(limit).all()
+        if org_type:
+            q = q.filter(Internship.organisation_type.ilike(f"%{org_type}%"))
+
+        if state:
+            q = q.filter(or_(Internship.state.ilike(f"%{state}%"), Internship.is_pan_india == True, Internship.work_mode == "Remote"))
+
+        internships = q.order_by(Internship.scheme_name.isnot(None).desc(), Internship.id.desc()).limit(limit).all()
         results = []
         for i in internships:
             results.append({
                 "id": i.id,
                 "title": i.title,
-                "company": i.company,
-                "location": i.location,
-                "mode": i.mode,
-                "stipend": i.stipend or "Competitive",
-                "duration": i.duration or "2-3 months",
-                "apply_link": i.apply_link or "/go/internships",
-                "url": "/internships/"
+                "slug": i.slug,
+                "organisation": i.organisation_name,
+                "scheme_name": i.scheme_name,
+                "category": i.category,
+                "location": i.location or f"{i.city or ''}, {i.state or ''}",
+                "mode": i.work_mode,
+                "stipend": i.stipend or ("₹" + str(i.stipend_min) if i.stipend_min else "Provided"),
+                "duration": i.duration_text or (str(i.duration_value) + " Months"),
+                "deadline": i.deadline_text,
+                "skills": i.skills_list[:4],
+                "apply_url": i.primary_apply_url,
+                "dossier_url": f"/internships/{i.slug}"
             })
         return results
+
+    @staticmethod
+    def get_internship_details(identifier: str) -> Optional[Dict[str, Any]]:
+        """
+        Retrieves complete structured dossier for an internship opportunity.
+        """
+        i = None
+        if identifier.isdigit():
+            i = Internship.query.get(int(identifier))
+        if not i:
+            i = Internship.query.filter_by(slug=identifier).first()
+        if not i:
+            i = Internship.query.filter_by(source_record_id=identifier).first()
+        if not i:
+            i = Internship.query.filter(Internship.title.ilike(f"%{identifier}%")).first()
+
+        if not i:
+            return None
+
+        status_label, _, _ = i.display_status
+        return {
+            "id": i.id,
+            "title": i.title,
+            "slug": i.slug,
+            "organisation": i.organisation_name,
+            "organisation_type": i.organisation_type,
+            "scheme_name": i.scheme_name,
+            "category": i.category,
+            "location": i.location,
+            "city": i.city,
+            "state": i.state,
+            "work_mode": i.work_mode,
+            "stipend": i.stipend,
+            "duration": i.duration_text or f"{i.duration_value} Months",
+            "deadline": i.deadline_text,
+            "status": status_label,
+            "academic_credits": i.academic_credit_available,
+            "ppo_available": i.ppo_available,
+            "eligibility": i.eligibility,
+            "eligible_degrees": i.eligible_degrees,
+            "skills": i.skills_list,
+            "responsibilities": i.responsibilities,
+            "selection_process": i.selection_process,
+            "official_apply_url": i.primary_apply_url,
+            "source_name": i.source_name,
+            "verification_status": i.verification_status,
+            "dossier_url": f"/internships/{i.slug}"
+        }
+
+    @staticmethod
+    def find_internships_for_student(student_profile: Dict[str, Any], limit: int = 5) -> List[Dict[str, Any]]:
+        """
+        Deterministic matching of verified internships for student profile.
+        """
+        from services.internship.matching_engine import InternshipMatchingEngine
+
+        all_active = Internship.query.filter_by(is_active=True).all()
+        scored = []
+        for it in all_active:
+            m = InternshipMatchingEngine.compute_match(student_profile, it)
+            if m["eligibility_passed"] or m["score"] >= 45:
+                scored.append((m["score"], it, m))
+
+        scored.sort(key=lambda x: x[0], reverse=True)
+        top = scored[:limit]
+
+        results = []
+        for score, it, m in top:
+            results.append({
+                "id": it.id,
+                "title": it.title,
+                "slug": it.slug,
+                "organisation": it.organisation_name,
+                "scheme_name": it.scheme_name,
+                "match_score": score,
+                "match_tier": m["tier"],
+                "work_mode": it.work_mode,
+                "location": it.location,
+                "stipend": it.stipend,
+                "duration": it.duration_text or f"{it.duration_value} Months",
+                "counselling_fit": m["counselling"]["why_fits"],
+                "recommended_next_step": m["counselling"]["recommended_next_step"],
+                "apply_url": it.primary_apply_url,
+                "dossier_url": f"/internships/{it.slug}"
+            })
+        return results
+
+    @staticmethod
+    def get_exam_details(identifier: str) -> Optional[Dict[str, Any]]:
+        """
+        Retrieves complete structured dossier for a specific examination from MPath.
+        """
+        e = None
+        if str(identifier).strip().isdigit():
+            e = GovernmentExam.query.get(int(str(identifier).strip()))
+        if not e:
+            e = GovernmentExam.query.filter_by(slug=identifier).first()
+        if not e:
+            e = GovernmentExam.query.filter(
+                or_(
+                    GovernmentExam.exam_name.ilike(f"%{identifier}%"),
+                    GovernmentExam.short_name.ilike(f"%{identifier}%")
+                )
+            ).first()
+
+        if not e:
+            return None
+
+        # Fetch latest cycle if available
+        latest_cycle = e.cycles.order_by(db.desc("cycle_year")).first() if hasattr(e, "cycles") else None
+        cycle_info = None
+        if latest_cycle:
+            cycle_info = {
+                "year": latest_cycle.cycle_year,
+                "cycle_name": latest_cycle.cycle_name,
+                "status": latest_cycle.status,
+                "notification_date": str(latest_cycle.notification_date) if latest_cycle.notification_date else None,
+                "application_end_date": str(latest_cycle.application_end_date) if latest_cycle.application_end_date else None,
+                "exam_date": str(latest_cycle.exam_date) if latest_cycle.exam_date else None,
+                "notification_url": latest_cycle.official_notification_url,
+                "application_url": latest_cycle.official_application_url
+            }
+
+        return {
+            "id": e.id,
+            "exam_name": e.exam_name,
+            "short_name": e.short_name,
+            "conducting_body": e.conducting_body,
+            "category": e.category,
+            "qualification": e.qualification or e.minimum_qualification,
+            "streams": e.streams,
+            "age_criteria": f"{e.age_min or 'Any'} to {e.age_max or 'Any'} years" if (e.age_min or e.age_max) else "As per notification",
+            "age_relaxation": e.age_relaxation,
+            "selection_process": e.selection_process,
+            "syllabus_summary": e.syllabus[:300] if e.syllabus else "Prescribed syllabus available in notification",
+            "salary": e.salary,
+            "career_opportunities": e.career_opportunities,
+            "official_portal": e.official_url or e.official_website,
+            "notification_url": e.notification_url or (cycle_info["notification_url"] if cycle_info else None),
+            "latest_cycle": cycle_info,
+            "verification_status": e.verification_status,
+            "url": f"/exams/{e.id}"
+        }
+
+    @staticmethod
+    def discover_opportunities_for_student(
+        education_level: Optional[str] = None,
+        stream: Optional[str] = None,
+        state: Optional[str] = None,
+        age: Optional[int] = None,
+        category: Optional[str] = None,
+        course: Optional[str] = None,
+        limit: int = 6
+    ) -> List[Dict[str, Any]]:
+        """
+        Deterministic multi-factor opportunity matching for Indian students.
+        Zero hallucination. Matches real statutory exams and opportunities from DB.
+        """
+        from services.eligibility_engine import OpportunityEligibilityEvaluator
+
+        student_data = {
+            "education_level": education_level,
+            "stream": stream,
+            "state": state,
+            "age": age,
+            "category": category,
+            "course": course
+        }
+
+        all_exams = GovernmentExam.query.all()
+        matched = []
+
+        for ex in all_exams:
+            eval_res = OpportunityEligibilityEvaluator.evaluate(ex, student_data)
+            if eval_res.get("status") in ("ELIGIBLE", "LIKELY_ELIGIBLE"):
+                matched.append({
+                    "id": ex.id,
+                    "name": ex.exam_name,
+                    "short_name": ex.short_name or ex.exam_name,
+                    "conducting_body": ex.conducting_body,
+                    "category": ex.category,
+                    "status": eval_res.get("status"),
+                    "match_score": eval_res.get("score"),
+                    "reasons": eval_res.get("reasons", [])[:3],
+                    "official_portal": ex.official_url or ex.official_website,
+                    "qualification": ex.qualification or ex.minimum_qualification,
+                    "salary": ex.salary,
+                    "url": f"/exams/{ex.id}"
+                })
+
+        # Rank by match score descending
+        matched.sort(key=lambda x: x["match_score"], reverse=True)
+        return matched[:limit]
+

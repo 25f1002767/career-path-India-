@@ -5,10 +5,11 @@
             
             <!-- Modal Header with Search Input -->
             <div class="p-3 border-bottom d-flex align-items-center gap-3 bg-white">
-                <i data-lucide="search" class="icon-sm text-primary flex-shrink-0"></i>
+                <i data-lucide="search" class="icon-sm text-primary flex-shrink-0" style="color: var(--color-deep-blue, #063B8F) !important;"></i>
                 <input type="text"
                        id="globalSearchInput"
                        class="form-control border-0 shadow-none px-0 fs-5"
+                       style="color: var(--text-main, #172033); font-weight: 500;"
                        placeholder="Search careers, degrees, colleges, exams, scholarships..."
                        autocomplete="off"
                        aria-label="Search platform">
@@ -17,12 +18,12 @@
 
             <!-- Quick Filter Chips & Popular Topics -->
             <div class="p-3 bg-light border-bottom d-flex flex-wrap align-items-center gap-2" style="font-size: 0.825rem;">
-                <span class="text-secondary fw-semibold">Popular:</span>
-                <a href="{{ url_for('main.search') }}?q=Data+Scientist" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">Data Scientist</a>
-                <a href="{{ url_for('main.search') }}?q=Doctor" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">Doctor</a>
-                <a href="{{ url_for('main.search') }}?q=UPSC" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">UPSC Civil Services</a>
-                <a href="{{ url_for('college.college_list') }}?search=IIT" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">IITs &amp; NITs</a>
-                <a href="{{ url_for('scholarship.scholarship_list') }}" class="badge bg-white text-navy border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">National Scholarships</a>
+                <span class="fw-semibold text-dark">Popular:</span>
+                <a href="{{ url_for('main.search') }}?q=Data+Scientist" class="badge bg-white text-dark border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">Data Scientist</a>
+                <a href="{{ url_for('main.search') }}?q=Doctor" class="badge bg-white text-dark border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">Doctor</a>
+                <a href="{{ url_for('main.search') }}?q=UPSC" class="badge bg-white text-dark border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">UPSC Civil Services</a>
+                <a href="{{ url_for('college.college_list') }}?search=IIT" class="badge bg-white text-dark border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">IITs &amp; NITs</a>
+                <a href="{{ url_for('scholarship.scholarship_list') }}" class="badge bg-white text-dark border text-decoration-none py-2 px-3 rounded-pill hover-bg-primary">National Scholarships</a>
             </div>
 
             <!-- Live Results Container -->

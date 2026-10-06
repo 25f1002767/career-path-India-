@@ -79,14 +79,36 @@ class CareerReasoningEngine:
                 for col in colleges:
                     retrieval_text_blocks.append(f"• {col['name']} ({col['city']}, {col['state']}) | NIRF Rank: {col['nirf_rank'] or 'N/A'}")
 
-        # 4. Exam Search
-        if intent in ["EXAM_SEARCH", "CAREER_EXPLORATION"]:
+        # 4. Exam Search & Statutory Opportunities
+        if intent in ["EXAM_SEARCH", "CAREER_EXPLORATION", "OPPORTUNITY_SEARCH"] or any(k in user_message.lower() for k in ["exam", "opportunity", "apply", "upsc", "ssc", "recruitment"]):
             exams = MPathRetriever.search_exams(query=user_message, stream=stream, limit=3)
             if exams:
                 tool_records.extend(exams)
                 retrieval_text_blocks.append("\nVerified Competitive / Entrance Exams:")
                 for ex in exams:
                     retrieval_text_blocks.append(f"• {ex['name']} ({ex['short_name']}) | Type: {ex['exam_type']} | Schedule: {ex['exam_date'] or 'Annual'}")
+
+            # Deterministic opportunity matching based on student profile attributes
+            ed_lvl = student_context.get("education_level") or student_context.get("class_grade")
+            st_state = student_context.get("state")
+            st_course = student_context.get("course")
+            if ed_lvl or st_state or st_course:
+                opps = MPathRetriever.discover_opportunities_for_student(
+                    education_level=ed_lvl,
+                    stream=stream,
+                    state=st_state,
+                    course=st_course,
+                    limit=3
+                )
+                if opps:
+                    tool_records.extend(opps)
+                    retrieval_text_blocks.append("\nDeterministically Verified Statutory Opportunities for Student Profile:")
+                    for op in opps:
+                        retrieval_text_blocks.append(
+                            f"• {op['name']} ({op['conducting_body']}) | Status: {op['status']} (Match: {op['match_score']}%)\n"
+                            f"  Eligibility: {'; '.join(op['reasons'])}\n"
+                            f"  Official Portal: {op['official_portal']}"
+                        )
 
         # 5. Scholarship Search
         if intent in ["SCHOLARSHIP_SEARCH"]:

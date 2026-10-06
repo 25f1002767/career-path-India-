@@ -8,7 +8,7 @@
     --color-primary-deep: #063B8F;
     --color-deep-blue: #063B8F;
     --color-deep-blue-dark: #042966;
-    --color-deep-blue-hover: #0849B0;
+    --color-deep-blue-hover: #042966;
     
     --color-secondary-navy: #123B6D;
     --color-navy: #123B6D;
@@ -16,30 +16,30 @@
     --color-navy-light: #EBF2FA;
     --color-navy-subtle: #F0F5FA;
 
-    /* Interaction & Accent Blues */
-    --color-interaction: #1769AA;
-    --color-interaction-hover: #12558A;
-    --color-interaction-light: #EAF3FA;
-    --color-accent: #2563EB;
-    --color-accent-hover: #1D4ED8;
-    --color-accent-light: #EFF6FF;
+    /* Interaction & Accent Blues (Unified to #063B8F) */
+    --color-interaction: #063B8F;
+    --color-interaction-hover: #042966;
+    --color-interaction-light: #EBF2FA;
+    --color-accent: #063B8F;
+    --color-accent-hover: #042966;
+    --color-accent-light: #EBF2FA;
 
     /* Theme Mappings */
     --primary: #063B8F;
-    --primary-hover: #0849B0;
+    --primary-hover: #042966;
     --primary-light: #EBF2FA;
     --primary-dark: #042966;
 
-    --secondary-brand: #123B6D;
-    --secondary-brand-hover: #0c2748;
-    --secondary-brand-light: #F0F5FA;
+    --secondary-brand: #063B8F;
+    --secondary-brand-hover: #042966;
+    --secondary-brand-light: #EBF2FA;
 
     --color-solid-blue: #063B8F;
     --color-solid-blue-dark: #042966;
-    --color-solid-blue-hover: #0849B0;
-    --color-blue: #1769AA;
-    --color-blue-dark: #12558A;
-    --color-blue-light: #EAF3FA;
+    --color-solid-blue-hover: #042966;
+    --color-blue: #063B8F;
+    --color-blue-dark: #042966;
+    --color-blue-light: #EBF2FA;
 
     /* Functional States */
     --success: #1E7E44;
@@ -54,8 +54,8 @@
     --danger-light: #FEE2E2;
     --danger-border: #FECACA;
 
-    --info: #1769AA;
-    --info-light: #EAF3FA;
+    --info: #063B8F;
+    --info-light: #EBF2FA;
     --info-border: #BAE6FD;
 
     /* Surfaces & Backgrounds */
@@ -79,7 +79,7 @@
     /* Borders */
     --border-color: #DCE3EC;
     --border-subtle: #E8EEF5;
-    --border-focus: #1769AA;
+    --border-focus: #063B8F;
 
     /* Radii - Restrained, Professional */
     --radius-xs: 4px;

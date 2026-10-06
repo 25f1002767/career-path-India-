@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Internship Ingestion & Import Center | Admin{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold mb-1">Internship Ingestion & Import Center</h2>
+            <p class="text-muted mb-0">Idempotent bulk upload, preview dry-runs, and statutory catalog pipelines.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.internships') }}" class="btn btn-outline-secondary btn-sm">
+                Back to Listings
+            </a>
+            <a href="{{ url_for('admin.internship_quality') }}" class="btn btn-outline-info btn-sm">
+                Quality Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Import Results Flash if available -->
+    {% if import_result %}
+    <div class="card border-primary border-opacity-25 shadow-sm p-4 mb-4 rounded-3 bg-white">
+        <h5 class="fw-bold text-primary mb-3 d-flex align-items-center gap-2">
+            <i data-lucide="check-circle" class="icon-sm"></i> Ingestion Batch Report
+        </h5>
+        <div class="row g-3 text-center">
+            <div class="col-md-2 col-4">
+                <div class="p-2 bg-light rounded-2">
+                    <div class="fs-5 fw-bold text-dark">{{ import_result.total_found }}</div>
+                    <div class="small text-muted">Detected</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="p-2 bg-light rounded-2">
+                    <div class="fs-5 fw-bold text-success">{{ import_result.new }}</div>
+                    <div class="small text-muted">New Inserted</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="p-2 bg-light rounded-2">
+                    <div class="fs-5 fw-bold text-info">{{ import_result.updated }}</div>
+                    <div class="small text-muted">Refreshed</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="p-2 bg-light rounded-2">
+                    <div class="fs-5 fw-bold text-warning">{{ import_result.duplicates }}</div>
+                    <div class="small text-muted">Duplicates</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="p-2 bg-light rounded-2">
+                    <div class="fs-5 fw-bold text-danger">{{ import_result.invalid }}</div>
+                    <div class="small text-muted">Invalid</div>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="p-2 bg-light rounded-2">
+                    <div class="fs-5 fw-bold text-muted">{{ import_result.errors|length }}</div>
+                    <div class="small text-muted">Errors</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row g-4 mb-4">
+        <!-- Option 1: Built-in National Catalog Pipeline -->
+        <div class="col-lg-6">
+            <div class="card border shadow-sm p-4 rounded-3 bg-white h-100">
+                <div class="d-flex align-items-center gap-2 text-primary mb-2">
+                    <i data-lucide="landmark" class="icon-sm"></i>
+                    <h5 class="fw-bold mb-0">Verified National Statutory Catalog</h5>
+                </div>
+                <p class="small text-muted mb-4">
+                    Instantly sync verified flagship initiatives: TULIP (MoHUA/AICTE), Indian Army Cyber Cell, NHAI, C-DAC, DRDO, ISRO, NITI Aayog, and premier corporate drives.
+                </p>
+
+                <form method="POST" action="{{ url_for('admin.internship_import_center') }}" class="mt-auto">
+                    <input type="hidden" name="action" value="national_catalog">
+
+                    <div class="form-check form-check-sm mb-3">
+                        <input class="form-check-input" type="checkbox" name="dry_run" value="1" id="dryRunCatalog">
+                        <label class="form-check-label small" for="dryRunCatalog">
+                            Dry Run / Preview Mode (Do not modify database)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i data-lucide="refresh-cw" class="icon-xs me-1"></i> Ingest Statutory Catalog
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Option 2: Upload CSV or JSON -->
+        <div class="col-lg-6">
+            <div class="card border shadow-sm p-4 rounded-3 bg-white h-100">
+                <div class="d-flex align-items-center gap-2 text-dark mb-2">
+                    <i data-lucide="upload-cloud" class="icon-sm text-primary"></i>
+                    <h5 class="fw-bold mb-0">Upload Dataset (CSV or JSON)</h5>
+                </div>
+                <p class="small text-muted mb-3">
+                    Upload formatted opportunity records. The deterministic ingestion engine automatically normalizes titles, organizations, deadlines, and verifies HTTPS URLs.
+                </p>
+
+                <form method="POST" action="{{ url_for('admin.internship_import_center') }}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Select File (.json or .csv)</label>
+                        <input type="file" name="file" class="form-control form-control-sm" accept=".json,.csv" required>
+                    </div>
+
+                    <div class="form-check form-check-sm mb-3">
+                        <input class="form-check-input" type="checkbox" name="dry_run" value="1" id="dryRunUpload" checked>
+                        <label class="form-check-label small" for="dryRunUpload">
+                            Dry Run / Preview Mode (Test validation without saving)
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-primary w-100">
+                        <i data-lucide="upload" class="icon-xs me-1"></i> Upload & Process
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Import Logs -->
+    <div class="card border shadow-sm rounded-3 bg-white">
+        <div class="card-header bg-white py-3 border-bottom">
+            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                <i data-lucide="history" class="icon-xs text-muted"></i> Recent Ingestion Audit Logs
+            </h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 small">
+                <thead class="table-light">
+                    <tr>
+                        <th>Batch Source</th>
+                        <th>Status</th>
+                        <th>Detected</th>
+                        <th>New</th>
+                        <th>Updated</th>
+                        <th>Duplicates</th>
+                        <th>Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lg in logs %}
+                    <tr>
+                        <td class="fw-semibold">{{ lg.source_name }}</td>
+                        <td>
+                            <span class="badge {% if lg.status == 'COMPLETED' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                                {{ lg.status }}
+                            </span>
+                        </td>
+                        <td>{{ lg.records_found }}</td>
+                        <td class="text-success fw-bold">+{{ lg.created_count }}</td>
+                        <td class="text-info">{{ lg.updated_count }}</td>
+                        <td class="text-muted">{{ lg.duplicate_count }}</td>
+                        <td class="text-muted">{{ lg.started_at.strftime('%d %b %Y, %H:%M') if lg.started_at else '—' }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">No prior import batches logged.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

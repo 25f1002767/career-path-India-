@@ -63,15 +63,15 @@
                 <!-- Brand & Mission Column -->
                 <div class="col-lg-4 col-md-6">
                     <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">
-                        <span class="brand-mark bg-white text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; color: var(--color-deep-blue) !important;">
+                        <span class="brand-mark bg-white text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; color: var(--color-deep-blue, #063B8F) !important;">
                             <i data-lucide="graduation-cap" class="icon-sm"></i>
                         </span>
                         <span class="text-white">MPath Career Counselling</span>
                     </h5>
-                    <p class="text-white-50 small mb-3 lh-base">
+                    <p class="small mb-3 lh-base" style="color: rgba(255, 255, 255, 0.92) !important;">
                         A national-level career discovery and higher education registry empowering students across India to make verified, objective, and confident decisions.
                     </p>
-                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 text-white-50 small border border-white border-opacity-15">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-10 small border border-white border-opacity-25" style="color: rgba(255, 255, 255, 0.95) !important;">
                         <i data-lucide="shield-check" class="icon-xs text-warning"></i>
                         <span>Ethical Guidance: Objective Information, Human Decisions</span>
                     </div>
@@ -95,7 +95,7 @@
                     <h6 class="fw-bold text-white mb-3 text-uppercase" style="font-size: 0.8rem; letter-spacing: 0.06em;">For Students</h6>
                     <ul class="list-unstyled small">
                         <li class="mb-2"><a href="{{ url_for('assessment.start') }}" class="footer-link">Career Assessment</a></li>
-                        <li class="mb-2"><a href="{{ url_for('chatbot.home') }}" class="footer-link d-flex align-items-center gap-1"><i data-lucide="bot" class="icon-xs text-info"></i> AI Career Mentor</a></li>
+                        <li class="mb-2"><a href="{{ url_for('chatbot.home') }}" class="footer-link d-flex align-items-center gap-1"><i data-lucide="bot" class="icon-xs text-white"></i> <span>AI Career Mentor</span></a></li>
                         <li class="mb-2"><a href="{{ url_for('career.compare') }}" class="footer-link">Compare Careers</a></li>
                         <li class="mb-2"><a href="{{ url_for('college.compare_colleges') }}" class="footer-link">Compare Colleges</a></li>
                         <li class="mb-2"><a href="{{ url_for('resume.upload_resume') }}" class="footer-link">Resume Analyzer</a></li>
@@ -121,16 +121,16 @@
                     <ul class="list-unstyled small">
                         <li class="mb-2"><a href="{{ url_for('landing') }}#mpathFaqSection" class="footer-link">FAQs &amp; Guidance</a></li>
                         <li class="mb-2"><a href="{{ url_for('landing') }}#mpathCorePrinciples" class="footer-link">Core Principles</a></li>
-                        <li class="mb-2"><span class="text-white-50">Zero Sponsored Rankings</span></li>
-                        <li class="mb-2"><span class="text-white-50">Public Service Design</span></li>
-                        <li class="mb-2"><span class="text-white-50">Data Privacy Verified</span></li>
+                        <li class="mb-2"><span style="color: rgba(255, 255, 255, 0.9) !important;">Zero Sponsored Rankings</span></li>
+                        <li class="mb-2"><span style="color: rgba(255, 255, 255, 0.9) !important;">Public Service Design</span></li>
+                        <li class="mb-2"><span style="color: rgba(255, 255, 255, 0.9) !important;">Data Privacy Verified</span></li>
                     </ul>
                 </div>
 
             </div>
 
             <!-- Footer Bottom Strip -->
-            <div class="pt-4 border-top border-white border-opacity-10 d-flex flex-column flex-md-row justify-content-between align-items-center text-white-50 small gap-2">
+            <div class="pt-4 border-top border-white border-opacity-15 d-flex flex-column flex-md-row justify-content-between align-items-center small gap-2" style="color: rgba(255, 255, 255, 0.9) !important;">
                 <div>
                     &copy; 2026 MPath Career Counselling. Dedicated to Indian students, parents, and educators.
                 </div>

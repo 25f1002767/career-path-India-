@@ -133,11 +133,44 @@
                     </ul>
                 </li>
 
-                <!-- EXAMS -->
-                <li class="nav-item">
-                    <a class="nav-link nav-item-link {% if request.path.startswith('/exams') or request.path.startswith('/exam') %}active{% endif %}" href="{{ url_for('exam.exam_list') }}">
+                <!-- EXAMS & OPPORTUNITIES DROPDOWN -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link nav-item-link dropdown-toggle {% if request.path.startswith('/exams') or request.path.startswith('/exam') %}active{% endif %}" href="#" id="examDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Exams
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-custom shadow-sm border" aria-labelledby="examDropdown">
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('exam.exam_list') }}">
+                                <i data-lucide="file-text" class="icon-xs text-primary"></i>
+                                <span>National Examinations Catalog</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('exam.who_can_apply') }}">
+                                <i data-lucide="check-circle" class="icon-xs text-success"></i>
+                                <span>Who Can Apply? (Eligibility Finder)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('exam.compare_exams') }}">
+                                <i data-lucide="split" class="icon-xs text-info"></i>
+                                <span>Compare Examinations</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('exam.exam_calendar') }}">
+                                <i data-lucide="calendar" class="icon-xs text-warning"></i>
+                                <span>Exam Calendar &amp; Deadlines</span>
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('exam.student_tracker') }}">
+                                <i data-lucide="compass" class="icon-xs text-purple"></i>
+                                <span>My Opportunity Tracker</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <!-- SCHOLARSHIPS DROPDOWN -->
@@ -221,21 +254,22 @@
             </ul>
 
             <!-- RIGHT ACTIONS CLUSTER -->
-            <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0 flex-wrap">
+            <div class="d-flex align-items-center gap-2 mt-3 mt-xl-0 flex-nowrap ms-xl-auto">
 
-                <!-- GLOBAL SEARCH BUTTON (Opens Modal) -->
-                <button type="button" class="btn btn-search-circle" data-bs-toggle="modal" data-bs-target="#globalSearchModal" title="Search Platform (Ctrl + K)">
-                    <i data-lucide="search" class="icon-sm"></i>
-                    <span class="d-none d-xxl-inline ms-1 text-muted small" style="font-size: 0.75rem;">Ctrl K</span>
+                <!-- GLOBAL QUICK SEARCH TRIGGER -->
+                <button type="button" class="btn btn-nav-search" data-bs-toggle="modal" data-bs-target="#globalSearchModal" title="Search Platform (Ctrl + K)" aria-label="Search Platform">
+                    <i data-lucide="search" class="icon-xs"></i>
+                    <span class="nav-search-label">Search...</span>
+                    <kbd class="nav-search-kbd">Ctrl K</kbd>
                 </button>
 
-                <!-- CAREER ASSESSMENT CTA (Interaction Blue) -->
+                <!-- CAREER ASSESSMENT CTA -->
                 <a href="{{ url_for('assessment.start') }}" class="btn btn-nav-assessment d-inline-flex align-items-center gap-2">
                     <i data-lucide="bar-chart-2" class="icon-sm"></i>
                     <span>Career Assessment</span>
                 </a>
 
-                <!-- AI CAREER MENTOR CTA (Deep Navy) -->
+                <!-- AI CAREER MENTOR CTA -->
                 <a href="{{ url_for('chatbot.home') }}" class="btn btn-nav-mentor d-inline-flex align-items-center gap-2">
                     <i data-lucide="bot" class="icon-sm"></i>
                     <span>AI Career Mentor</span>
@@ -243,20 +277,25 @@
 
                 {% if session.get("user_id") %}
 
-                    {% if session.get("role") == "admin" %}
-                    <a class="btn btn-outline-secondary btn-sm" href="{{ url_for('admin.dashboard') }}">
-                        <i data-lucide="shield" class="icon-xs"></i>
-                        <span>Admin</span>
-                    </a>
-                    {% endif %}
-
-                    <!-- USER ACCOUNT DROPDOWN -->
+                    <!-- USER ACCOUNT DROPDOWN WITH ADMIN BADGE -->
                     <div class="dropdown">
                         <button class="btn btn-nav-login dropdown-toggle d-inline-flex align-items-center gap-2" type="button" id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
                             <i data-lucide="user" class="icon-xs"></i>
                             <span>{{ session.get("user_name") or "Account" }}</span>
+                            {% if session.get("role") == "admin" %}
+                            <span class="badge bg-primary text-white" style="font-size: 0.65rem; padding: 0.2rem 0.45rem;">Admin</span>
+                            {% endif %}
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm border py-2" aria-labelledby="userMenuBtn">
+                            {% if session.get("role") == "admin" %}
+                            <li>
+                                <a class="dropdown-item py-2 d-flex align-items-center gap-2 fw-semibold text-primary" href="{{ url_for('admin.dashboard') }}">
+                                    <i data-lucide="shield" class="icon-xs text-primary"></i>
+                                    <span>Admin Dashboard</span>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            {% endif %}
                             <li>
                                 <a class="dropdown-item py-2 d-flex align-items-center gap-2" href="{{ url_for('dashboard.home') }}">
                                     <i data-lucide="layout-dashboard" class="icon-xs text-muted"></i>

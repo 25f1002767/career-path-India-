@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}Opportunity Control Center | Admin | MPath{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('admin.dashboard') }}" class="text-decoration-none text-muted">Admin</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Opportunity Control Center</li>
+        </ol>
+    </nav>
+
+    <!-- HEADER SECTION -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-semibold small">
+                <i data-lucide="shield-check" class="icon-xs"></i>
+                <span>National Examination Governance &amp; Registry</span>
+            </div>
+            <h1 class="fw-bold text-dark display-6 mb-1">Opportunity Control Center</h1>
+            <p class="text-muted fs-6 mb-0">
+                Manage statutory examinations, verify official notification URLs, monitor exam cycles, and audit data quality.
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('admin.opportunity_sources') }}" class="btn btn-outline-primary px-3">
+                <i data-lucide="database" class="icon-xs"></i> Source Registry
+            </a>
+            <a href="{{ url_for('admin.opportunity_quality_dashboard') }}" class="btn btn-outline-info text-dark px-3">
+                <i data-lucide="check-circle-2" class="icon-xs"></i> Quality Audit
+            </a>
+            <form method="POST" action="{{ url_for('admin.sync_statutory_sources') }}" class="d-inline">
+                <button type="submit" class="btn btn-primary px-3 shadow-sm fw-semibold">
+                    <i data-lucide="refresh-cw" class="icon-xs"></i> Sync Statutory Catalog
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- STATS CARDS -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                <span class="text-muted small fw-semibold">Total Opportunities</span>
+                <h3 class="fw-bold mb-0 text-dark">{{ stats.total }}</h3>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                <span class="text-muted small fw-semibold">Officially Verified</span>
+                <h3 class="fw-bold mb-0 text-success">{{ stats.verified }}</h3>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                <span class="text-muted small fw-semibold">Requires Review</span>
+                <h3 class="fw-bold mb-0 text-warning">{{ stats.needs_review }}</h3>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 text-center bg-white h-100">
+                <span class="text-muted small fw-semibold">Statutory Sources</span>
+                <h3 class="fw-bold mb-0 text-primary">{{ stats.sources }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-white">
+        <form method="GET" action="{{ url_for('admin.opportunities_list') }}" class="row g-2 align-items-center">
+            <div class="col-md-5">
+                <input type="text" name="search" class="form-control form-control-sm" placeholder="Search by exam name or conducting authority..." value="{{ search }}">
+            </div>
+            <div class="col-md-3">
+                <select name="category" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <option value="">All Categories</option>
+                    {% for cat in categories %}
+                    <option value="{{ cat }}" {% if cat == selected_category %}selected{% endif %}>{{ cat }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select name="verification" class="form-select form-select-sm" onchange="this.form.submit()">
+                    <option value="">All Verification Statuses</option>
+                    <option value="VERIFIED_OFFICIAL" {% if selected_verification == 'VERIFIED_OFFICIAL' %}selected{% endif %}>VERIFIED_OFFICIAL</option>
+                    <option value="VERIFIED_GOVERNMENT" {% if selected_verification == 'VERIFIED_GOVERNMENT' %}selected{% endif %}>VERIFIED_GOVERNMENT</option>
+                    <option value="NEEDS_REVIEW" {% if selected_verification == 'NEEDS_REVIEW' %}selected{% endif %}>NEEDS_REVIEW</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-sm btn-primary w-100">Filter</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- OPPORTUNITIES TABLE -->
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white mb-4">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-4">ID</th>
+                        <th>Examination &amp; Conducting Authority</th>
+                        <th>Category</th>
+                        <th>Min Qualification</th>
+                        <th>Age Limits</th>
+                        <th>Status</th>
+                        <th>Verification</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ex in exams %}
+                    <tr>
+                        <td class="ps-4 text-muted fw-bold small">#{{ ex.id }}</td>
+                        <td>
+                            <div class="fw-bold text-dark">{{ ex.exam_name }}</div>
+                            <div class="text-muted small">
+                                <i data-lucide="building" class="icon-xs"></i> {{ ex.conducting_body }} &bull; {{ ex.state or 'National' }}
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge bg-light text-dark border small">{{ ex.category or 'General' }}</span>
+                        </td>
+                        <td class="small text-muted">
+                            {{ ex.qualification or ex.minimum_qualification or 'Specified in Notification' }}
+                        </td>
+                        <td class="small">
+                            {% if ex.age_min or ex.age_max %}
+                            <span class="text-dark fw-semibold">{{ ex.age_min or 'Any' }} - {{ ex.age_max or 'Any' }} yrs</span>
+                            {% else %}
+                            <span class="text-muted">Standard rules</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% set display_status = ex.display_status %}
+                            <span class="badge bg-{{ display_status[1] }} small">
+                                {{ display_status[0] }}
+                            </span>
+                        </td>
+                        <td>
+                            {% if ex.verification_status in ['VERIFIED_OFFICIAL', 'VERIFIED_GOVERNMENT'] %}
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 small">
+                                <i data-lucide="check" class="icon-xs"></i> Verified
+                            </span>
+                            {% else %}
+                            <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 small">
+                                Needs Review
+                            </span>
+                            {% endif %}
+                        </td>
+                        <td class="text-end pe-4">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ url_for('admin.opportunity_edit', exam_id=ex.id) }}" class="btn btn-outline-secondary" title="Edit Opportunity">
+                                    <i data-lucide="edit-2" class="icon-xs"></i>
+                                </a>
+                                <a href="{{ url_for('exam.exam_detail', exam_id=ex.id) }}" class="btn btn-outline-primary" target="_blank" title="View Public Dossier">
+                                    <i data-lucide="external-link" class="icon-xs"></i>
+                                </a>
+                                {% if ex.verification_status != 'VERIFIED_OFFICIAL' %}
+                                <form method="POST" action="{{ url_for('admin.toggle_exam_verification', exam_id=ex.id) }}" class="d-inline">
+                                    <input type="hidden" name="status" value="VERIFIED_OFFICIAL">
+                                    <button type="submit" class="btn btn-outline-success" title="Mark Verified">
+                                        <i data-lucide="check" class="icon-xs"></i>
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center py-4 text-muted">
+                            No examinations match the selected search or filter criteria.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- PAGINATION -->
+        {% if pagination.pages > 1 %}
+        <div class="card-footer bg-white border-0 py-3">
+            <nav aria-label="Page navigation">
+                <ul class="pagination pagination-sm justify-content-center mb-0">
+                    {% if pagination.has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('admin.opportunities_list', page=pagination.prev_num, search=search, category=selected_category, verification=selected_verification) }}">Previous</a>
+                    </li>
+                    {% endif %}
+                    <li class="page-item disabled">
+                        <span class="page-link text-muted">Page {{ pagination.page }} of {{ pagination.pages }}</span>
+                    </li>
+                    {% if pagination.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="{{ url_for('admin.opportunities_list', page=pagination.next_num, search=search, category=selected_category, verification=selected_verification) }}">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

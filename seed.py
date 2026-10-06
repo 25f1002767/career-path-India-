@@ -14,8 +14,12 @@ if __name__ == "__main__":
                 print("Seeding courses and institutional degree mappings...")
                 from scripts.seed_comprehensive_colleges import seed_courses_and_colleges
                 seed_courses_and_colleges()
+
+            # Ensure all internship application links are 100% verified
+            from scripts.update_internship_urls import update_database
+            update_database()
     except Exception as e:
-        print(f"Course verification note: {e}")
+        print(f"Course/Internship verification note: {e}")
 
     print("\nDatabase Successfully Synchronized!")
 

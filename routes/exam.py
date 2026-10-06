@@ -12,6 +12,8 @@ from sqlalchemy import or_, func
 
 from extensions import db
 from models.exam import GovernmentExam
+from models.exam_cycle import ExamCycle
+from models.opportunity_tracker import StudentOpportunityTracker
 from models.saved_opportunity import SavedOpportunity
 from models.student_profile import StudentProfile
 from models.career import Career
@@ -408,3 +410,192 @@ def toggle_save(exam_id):
         flash(f"{exam_obj.exam_name} saved to your profile!", "success")
 
     return redirect(request.referrer or url_for("exam.exam_list"))
+
+
+# =========================================================================
+# 7. EXAM COMPARISON ENGINE (Side-by-side comparison of 2-3 exams)
+# =========================================================================
+
+@exam.route("/compare")
+def compare_exams():
+    # Accept multiple id query parameters (e.g. ?id=1&id=2 or ?ids=1,2)
+    id_list = request.args.getlist("id")
+    ids_param = request.args.get("ids", "").strip()
+    if ids_param:
+        for p in ids_param.split(","):
+            if p.strip() and p.strip().isdigit():
+                id_list.append(int(p.strip()))
+
+    selected_ids = []
+    for item in id_list:
+        try:
+            val = int(item)
+            if val not in selected_ids:
+                selected_ids.append(val)
+        except (ValueError, TypeError):
+            continue
+
+    selected_ids = selected_ids[:3]  # Max 3 exams
+
+    compared_exams = []
+    if selected_ids:
+        compared_exams = GovernmentExam.query.filter(GovernmentExam.id.in_(selected_ids)).all()
+        # Preserve order of selection
+        order_map = {eid: idx for idx, eid in enumerate(selected_ids)}
+        compared_exams.sort(key=lambda x: order_map.get(x.id, 99))
+
+    # All exams for selection dropdown
+    all_exams = GovernmentExam.query.order_by(GovernmentExam.exam_name.asc()).all()
+
+    return render_template(
+        "exam/compare.html",
+        compared_exams=compared_exams,
+        selected_ids=selected_ids,
+        all_exams=all_exams
+    )
+
+
+# =========================================================================
+# 8. STUDENT OPPORTUNITY TRACKER (Personalized status & deadline management)
+# =========================================================================
+
+@exam.route("/tracker")
+def student_tracker():
+    if "user_id" not in session:
+        flash("Please log in to access your Opportunity Tracker.", "info")
+        return redirect(url_for("auth.login"))
+
+    user_id = session["user_id"]
+    trackers = StudentOpportunityTracker.query.filter_by(user_id=user_id).order_by(StudentOpportunityTracker.updated_at.desc()).all()
+
+    status_counts = {
+        "total": len(trackers),
+        "PREPARING": 0,
+        "APPLIED": 0,
+        "ADMIT_CARD_DOWNLOADED": 0,
+        "APPEARED": 0,
+        "QUALIFIED": 0,
+        "MISSED": 0
+    }
+
+    for t in trackers:
+        st = t.application_status or "PREPARING"
+        if st in status_counts:
+            status_counts[st] += 1
+
+    return render_template(
+        "exam/tracker.html",
+        trackers=trackers,
+        counts=status_counts
+    )
+
+
+@exam.route("/track/<int:exam_id>", methods=["GET", "POST"])
+def track_opportunity(exam_id):
+    if "user_id" not in session:
+        flash("Please log in to track this examination.", "info")
+        return redirect(url_for("auth.login"))
+
+    user_id = session["user_id"]
+    exam_obj = GovernmentExam.query.get_or_404(exam_id)
+
+    existing = StudentOpportunityTracker.query.filter_by(user_id=user_id, exam_id=exam_id).first()
+
+    if request.method == "POST":
+        status = request.form.get("status", "PREPARING").strip()
+        target_year = request.form.get("target_year", type=int)
+        app_no = request.form.get("application_number", "").strip()
+        roll_no = request.form.get("roll_number", "").strip()
+        exam_center = request.form.get("exam_center", "").strip()
+        target_date_str = request.form.get("target_exam_date", "").strip()
+        notes = request.form.get("notes", "").strip()
+
+        from datetime import datetime
+        target_date = None
+        if target_date_str:
+            try:
+                target_date = datetime.strptime(target_date_str, "%Y-%m-%d").date()
+            except ValueError:
+                target_date = None
+
+        if not existing:
+            existing = StudentOpportunityTracker(
+                user_id=user_id,
+                exam_id=exam_id,
+                target_year=target_year or 2026,
+                application_status=status,
+                application_number=app_no,
+                roll_number=roll_no,
+                exam_center=exam_center,
+                target_exam_date=target_date,
+                notes=notes
+            )
+            db.session.add(existing)
+            flash(f"Added {exam_obj.exam_name} to your Opportunity Tracker!", "success")
+        else:
+            existing.application_status = status
+            if target_year:
+                existing.target_year = target_year
+            existing.application_number = app_no
+            existing.roll_number = roll_no
+            existing.exam_center = exam_center
+            if target_date:
+                existing.target_exam_date = target_date
+            existing.notes = notes
+            flash(f"Updated tracking details for {exam_obj.exam_name}!", "success")
+
+        db.session.commit()
+        return redirect(url_for("exam.student_tracker"))
+
+    # Quick toggle via GET
+    if not existing:
+        tracker = StudentOpportunityTracker(
+            user_id=user_id,
+            exam_id=exam_id,
+            target_year=2026,
+            application_status="PREPARING"
+        )
+        db.session.add(tracker)
+        db.session.commit()
+        flash(f"{exam_obj.exam_name} added to your tracker as 'Preparing'.", "success")
+    else:
+        flash(f"{exam_obj.exam_name} is already in your tracker.", "info")
+
+    return redirect(request.referrer or url_for("exam.student_tracker"))
+
+
+@exam.route("/tracker/update/<int:tracker_id>", methods=["POST"])
+def update_tracker(tracker_id):
+    if "user_id" not in session:
+        return jsonify({"success": False, "message": "Login required"}), 401
+
+    tracker = StudentOpportunityTracker.query.filter_by(id=tracker_id, user_id=session["user_id"]).first_or_404()
+    status = request.form.get("status") or request.json.get("status") if request.is_json else None
+    notes = request.form.get("notes") or request.json.get("notes") if request.is_json else None
+
+    if status:
+        tracker.application_status = status
+    if notes is not None:
+        tracker.notes = notes
+
+    db.session.commit()
+    if request.is_json:
+        return jsonify({"success": True, "message": "Updated successfully"})
+
+    flash("Tracker updated successfully.", "success")
+    return redirect(url_for("exam.student_tracker"))
+
+
+@exam.route("/tracker/delete/<int:tracker_id>", methods=["POST"])
+def delete_tracker(tracker_id):
+    if "user_id" not in session:
+        flash("Login required.", "warning")
+        return redirect(url_for("auth.login"))
+
+    tracker = StudentOpportunityTracker.query.filter_by(id=tracker_id, user_id=session["user_id"]).first_or_404()
+    exam_name = tracker.exam.exam_name if tracker.exam else "Opportunity"
+    db.session.delete(tracker)
+    db.session.commit()
+
+    flash(f"Removed {exam_name} from your tracker.", "info")
+    return redirect(url_for("exam.student_tracker"))

@@ -19,6 +19,13 @@ from .scholarship import (
     ScholarshipApplicationClick
 )
 from .internship import Internship
+from .organisation import Organisation
+from .internship_source import InternshipSource
+from .internship_tracker import StudentInternshipTracker, SavedInternship
+from .internship_import_log import InternshipImportLog
+from .opportunity_source import OpportunitySource
+from .exam_cycle import ExamCycle
+from .opportunity_tracker import StudentOpportunityTracker, OpportunityChangeLog
 from .exam import GovernmentExam
 from .roadmap import CareerRoadmap
 from .learning_progress import LearningProgress
@@ -50,6 +57,10 @@ __all__ = [
     "ScholarshipApplicationDocument",
     "ScholarshipApplicationClick",
     "Internship",
+    "OpportunitySource",
+    "ExamCycle",
+    "StudentOpportunityTracker",
+    "OpportunityChangeLog",
     "GovernmentExam",
     "CareerRoadmap",
     "LearningProgress",

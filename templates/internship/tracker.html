@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}My Internship Application Tracker | MPath Career Counselling{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-lg-5">
+
+    <!-- Header -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+        <div>
+            <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-primary bg-opacity-10 text-primary small fw-semibold mb-2">
+                <i data-lucide="clipboard-list" class="icon-xs"></i>
+                <span>Application Lifecycle Management</span>
+            </div>
+            <h1 class="fw-bold mb-1">My Internship Application Tracker</h1>
+            <p class="text-muted mb-0">Track your application pipeline, shortlist milestones, and interview schedules in one place.</p>
+        </div>
+
+        <a href="{{ url_for('internship.internship_list') }}" class="btn btn-outline-primary btn-sm">
+            <i data-lucide="plus" class="icon-xs me-1"></i> Discover More Internships
+        </a>
+    </div>
+
+    <!-- Tracker Cards -->
+    {% if trackers %}
+    <div class="row g-3 mb-4">
+        {% for tr in trackers %}
+        <div class="col-lg-6">
+            <div class="card border shadow-sm p-4 rounded-3 bg-white h-100">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                    <span class="badge bg-primary bg-opacity-10 text-primary fs-6 px-3 py-1">
+                        {{ tr.status }}
+                    </span>
+                    <span class="text-muted small">Updated {{ tr.updated_at.strftime('%d %b %Y') }}</span>
+                </div>
+
+                <h5 class="fw-bold mb-1">
+                    <a href="{{ url_for('internship.internship_detail', slug=tr.internship.slug) }}" class="text-dark text-decoration-none">
+                        {{ tr.internship.title }}
+                    </a>
+                </h5>
+
+                <div class="small text-muted mb-3">
+                    {{ tr.internship.organisation_name }} &bull; {{ tr.internship.location }}
+                </div>
+
+                {% if tr.notes %}
+                <div class="p-2 rounded-2 bg-light small text-muted mb-3">
+                    <strong>Notes:</strong> {{ tr.notes }}
+                </div>
+                {% endif %}
+
+                <!-- Quick Update Form -->
+                <form action="{{ url_for('internship.update_tracker', tracker_id=tr.id) }}" method="POST" class="mt-auto pt-2 border-top">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-8">
+                            <select name="status" class="form-select form-select-sm">
+                                <option value="Planning to Apply" {% if tr.status == 'Planning to Apply' %}selected{% endif %}>Planning to Apply</option>
+                                <option value="Applied" {% if tr.status == 'Applied' %}selected{% endif %}>Applied on Portal</option>
+                                <option value="Shortlisted" {% if tr.status == 'Shortlisted' %}selected{% endif %}>Shortlisted</option>
+                                <option value="Interview Scheduled" {% if tr.status == 'Interview Scheduled' %}selected{% endif %}>Interview Scheduled</option>
+                                <option value="Selected" {% if tr.status == 'Selected' %}selected{% endif %}>Selected / Offer Received</option>
+                                <option value="Rejected" {% if tr.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+                                <option value="Completed" {% if tr.status == 'Completed' %}selected{% endif %}>Completed Internship</option>
+                            </select>
+                        </div>
+                        <div class="col-4 d-grid">
+                            <button type="submit" class="btn btn-outline-secondary btn-sm">Update</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="card p-5 border text-center bg-white rounded-3 mb-4">
+        <div class="mb-3">
+            <i data-lucide="clipboard" class="icon-lg text-muted"></i>
+        </div>
+        <h5 class="fw-bold">No Active Applications Tracked</h5>
+        <p class="text-muted small max-w-500 mx-auto">
+            When you find internships that interest you in the Explorer, click "Track Application" to monitor your progress here.
+        </p>
+        <div>
+            <a href="{{ url_for('internship.internship_list') }}" class="btn btn-primary btn-sm px-4">
+                Explore Internships
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Bookmarked / Saved Items -->
+    {% if saved_items %}
+    <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+        <i data-lucide="bookmark" class="icon-sm text-warning"></i> Saved Opportunities ({{ saved_items|length }})
+    </h5>
+    <div class="row g-3">
+        {% for sv in saved_items %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card p-3 border shadow-sm rounded-3 bg-white">
+                <h6 class="fw-bold mb-1 text-truncate">
+                    <a href="{{ url_for('internship.internship_detail', slug=sv.internship.slug) }}" class="text-dark text-decoration-none">
+                        {{ sv.internship.title }}
+                    </a>
+                </h6>
+                <div class="small text-muted mb-2">{{ sv.internship.organisation_name }}</div>
+                <div class="d-flex justify-content-between align-items-center pt-2 border-top">
+                    <span class="small fw-semibold text-primary">{{ sv.internship.stipend }}</span>
+                    <a href="{{ url_for('internship.toggle_save', internship_id=sv.internship.id) }}" class="btn btn-sm btn-outline-danger py-0 px-2" style="font-size: 0.75rem;">
+                        Remove
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}

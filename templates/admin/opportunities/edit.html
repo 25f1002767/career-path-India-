@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Examination: {{ exam.exam_name }} | Admin | MPath{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-md-5">
+
+    <!-- BREADCRUMBS -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('admin.dashboard') }}" class="text-decoration-none text-muted">Admin</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('admin.opportunities_list') }}" class="text-decoration-none text-muted">Opportunities</a></li>
+            <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Edit #{{ exam.id }}</li>
+        </ol>
+    </nav>
+
+    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+            <div>
+                <h2 class="fw-bold text-dark mb-1">Edit Examination Dossier</h2>
+                <div class="text-muted small">ID #{{ exam.id }} &bull; {{ exam.exam_name }}</div>
+            </div>
+            <div>
+                <a href="{{ url_for('admin.opportunities_list') }}" class="btn btn-outline-secondary">
+                    <i data-lucide="arrow-left" class="icon-xs"></i> Back to Catalog
+                </a>
+            </div>
+        </div>
+
+        <form method="POST" action="{{ url_for('admin.opportunity_edit', exam_id=exam.id) }}">
+            <div class="row g-3">
+                <!-- Basic Info -->
+                <div class="col-md-8">
+                    <label class="form-label small fw-semibold text-muted">Examination Full Name</label>
+                    <input type="text" name="exam_name" class="form-control" value="{{ exam.exam_name }}" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Short Name / Acronym</label>
+                    <input type="text" name="short_name" class="form-control" value="{{ exam.short_name or '' }}">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Conducting Authority / Organization</label>
+                    <input type="text" name="conducting_organisation" class="form-control" value="{{ exam.conducting_organisation or exam.conducted_by or '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Category</label>
+                    <input type="text" name="category" class="form-control" value="{{ exam.category or '' }}">
+                </div>
+
+                <!-- Status & Verification -->
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Application Cycle Status</label>
+                    <select name="status" class="form-select">
+                        <option value="UPCOMING" {% if exam.status == 'UPCOMING' %}selected{% endif %}>Upcoming</option>
+                        <option value="APPLICATION_OPEN" {% if exam.status == 'APPLICATION_OPEN' %}selected{% endif %}>Application Open</option>
+                        <option value="APPLICATION_CLOSING_SOON" {% if exam.status == 'APPLICATION_CLOSING_SOON' %}selected{% endif %}>Closing Soon</option>
+                        <option value="APPLICATION_CLOSED" {% if exam.status == 'APPLICATION_CLOSED' %}selected{% endif %}>Application Closed</option>
+                        <option value="EXAM_SCHEDULED" {% if exam.status == 'EXAM_SCHEDULED' %}selected{% endif %}>Exam Scheduled</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Verification Status</label>
+                    <select name="verification_status" class="form-select">
+                        <option value="VERIFIED_OFFICIAL" {% if exam.verification_status == 'VERIFIED_OFFICIAL' %}selected{% endif %}>VERIFIED_OFFICIAL (Direct statutory authority)</option>
+                        <option value="VERIFIED_GOVERNMENT" {% if exam.verification_status == 'VERIFIED_GOVERNMENT' %}selected{% endif %}>VERIFIED_GOVERNMENT (Official government body)</option>
+                        <option value="NEEDS_REVIEW" {% if exam.verification_status == 'NEEDS_REVIEW' %}selected{% endif %}>NEEDS_REVIEW (Requires manual audit)</option>
+                    </select>
+                </div>
+
+                <!-- Eligibility -->
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Educational Qualification</label>
+                    <input type="text" name="qualification" class="form-control" value="{{ exam.qualification or exam.minimum_qualification or '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Permitted Streams</label>
+                    <input type="text" name="streams" class="form-control" value="{{ exam.streams or '' }}" placeholder="Any, PCM, PCB, Commerce...">
+                </div>
+
+                <!-- Age Limits -->
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Minimum Age</label>
+                    <input type="number" name="age_min" class="form-control" value="{{ exam.age_min or '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Maximum Age</label>
+                    <input type="number" name="age_max" class="form-control" value="{{ exam.age_max or '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Age Relaxation Rules</label>
+                    <input type="text" name="age_relaxation" class="form-control" value="{{ exam.age_relaxation or '' }}" placeholder="SC/ST: 5 yrs, OBC: 3 yrs">
+                </div>
+
+                <!-- Logistics & Selection -->
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Selection Process / Stages</label>
+                    <input type="text" name="selection_process" class="form-control" value="{{ exam.selection_process or '' }}">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold text-muted">Salary / Remuneration</label>
+                    <input type="text" name="salary" class="form-control" value="{{ exam.salary or '' }}">
+                </div>
+
+                <!-- URLs -->
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Official Authority Website</label>
+                    <input type="url" name="official_website" class="form-control" value="{{ exam.official_website or exam.official_url or '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Online Application Portal</label>
+                    <input type="url" name="application_url" class="form-control" value="{{ exam.application_url or '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small fw-semibold text-muted">Official Notification PDF URL</label>
+                    <input type="url" name="notification_url" class="form-control" value="{{ exam.notification_url or '' }}">
+                </div>
+
+                <div class="col-12 mt-4 pt-3 border-top d-flex justify-content-end gap-2">
+                    <a href="{{ url_for('admin.opportunities_list') }}" class="btn btn-outline-secondary px-4">Cancel</a>
+                    <button type="submit" class="btn btn-primary px-4 fw-semibold">
+                        <i data-lucide="save" class="icon-xs"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

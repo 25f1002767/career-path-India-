@@ -1,0 +1,466 @@
+{% extends "base.html" %}
+
+{% block title %}{{ internship.title }} | {{ internship.organisation_name }} | MPath National Internships{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-lg-5">
+
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb" class="mb-3">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a href="{{ url_for('main.index') }}" class="text-decoration-none">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('internship.internship_list') }}" class="text-decoration-none">Internships</a></li>
+            {% if internship.category %}
+            <li class="breadcrumb-item"><a href="{{ url_for('internship.internship_list', category=internship.category) }}" class="text-decoration-none">{{ internship.category }}</a></li>
+            {% endif %}
+            <li class="breadcrumb-item active text-truncate" style="max-width: 250px;" aria-current="page">{{ internship.title }}</li>
+        </ol>
+    </nav>
+
+    <!-- Header Dossier Card -->
+    {% set status_info = internship.display_status %}
+    <div class="card border-0 shadow-sm p-4 p-lg-5 mb-4 rounded-4" style="background-color: #0039A8 !important; background: linear-gradient(135deg, #0039A8 0%, #002875 100%) !important; color: #ffffff !important;">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-3">
+            <div>
+                <div class="d-flex flex-wrap gap-2 mb-2">
+                    <span class="badge bg-white bg-opacity-20 text-white">
+                        <i data-lucide="laptop" class="icon-xs me-1"></i> {{ internship.work_mode }}
+                    </span>
+                    {% if internship.scheme_name %}
+                    <span class="badge bg-info bg-opacity-20 text-white border border-info border-opacity-25">
+                        <i data-lucide="award" class="icon-xs me-1"></i> {{ internship.scheme_name }}
+                    </span>
+                    {% endif %}
+                    <span class="badge bg-success bg-opacity-20 text-white border border-success border-opacity-25">
+                        <i data-lucide="shield-check" class="icon-xs me-1"></i> {{ internship.verification_status }} Source
+                    </span>
+                    <span class="badge bg-{{ status_info[1] }} bg-opacity-20 text-white border border-{{ status_info[1] }} border-opacity-25">
+                        {{ status_info[0] }}
+                    </span>
+                </div>
+
+                <h1 class="display-6 fw-bold text-white mb-2">{{ internship.title }}</h1>
+
+                <div class="fs-5 text-white-50">
+                    {% if internship.organisation %}
+                    <a href="{{ url_for('internship.organisation_detail', slug=internship.organisation.slug) }}" class="text-info text-decoration-none fw-semibold">
+                        {{ internship.organisation_name }}
+                    </a>
+                    {% else %}
+                    <span class="text-info fw-semibold">{{ internship.organisation_name }}</span>
+                    {% endif %}
+                    <span class="mx-2">&bull;</span>
+                    <span>{{ internship.location or 'All India' }}</span>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                {% if internship.primary_apply_url %}
+                <a href="{{ url_for('internship.apply_redirect', id=internship.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 fw-semibold shadow-sm">
+                    Apply on Official Portal <i data-lucide="external-link" class="icon-xs ms-1"></i>
+                </a>
+                {% endif %}
+
+                <a href="{{ url_for('internship.toggle_save', internship_id=internship.id) }}" class="btn {% if is_saved %}btn-warning{% else %}btn-outline-light{% endif %}" title="{% if is_saved %}Remove from Saved{% else %}Save Opportunity{% endif %}">
+                    <i data-lucide="bookmark" class="icon-xs me-1"></i> {% if is_saved %}Saved{% else %}Save{% endif %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Metrics Strip -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card border shadow-sm p-3 rounded-3 bg-white h-100">
+                <div class="small text-muted mb-1 d-flex align-items-center gap-1">
+                    <i data-lucide="banknote" class="icon-xs text-primary"></i> Monthly Stipend
+                </div>
+                <div class="fs-5 fw-bold text-dark">{{ internship.stipend or 'Provided' }}</div>
+                <div class="small text-muted">Fixed Compensation</div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card border shadow-sm p-3 rounded-3 bg-white h-100">
+                <div class="small text-muted mb-1 d-flex align-items-center gap-1">
+                    <i data-lucide="clock" class="icon-xs text-info"></i> Duration
+                </div>
+                <div class="fs-5 fw-bold text-dark">{{ internship.duration_text or (internship.duration_value ~ ' Months') }}</div>
+                <div class="small text-muted">{{ internship.working_hours or 'Full-Time Commitment' }}</div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card border shadow-sm p-3 rounded-3 bg-white h-100">
+                <div class="small text-muted mb-1 d-flex align-items-center gap-1">
+                    <i data-lucide="calendar" class="icon-xs text-danger"></i> Application Deadline
+                </div>
+                <div class="fs-5 fw-bold text-dark">{{ internship.deadline_text }}</div>
+                <div class="small text-muted">Strict Cut-off Date</div>
+            </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+            <div class="card border shadow-sm p-3 rounded-3 bg-white h-100">
+                <div class="small text-muted mb-1 d-flex align-items-center gap-1">
+                    <i data-lucide="award" class="icon-xs text-success"></i> Academic Value
+                </div>
+                <div class="fs-5 fw-bold text-dark">
+                    {% if internship.ppo_available %}PPO + Credits{% else %}Academic Credits{% endif %}
+                </div>
+                <div class="small text-muted">Official Certificate Provided</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Main Content Column -->
+        <div class="col-lg-8">
+
+            <!-- Personalized Match & Counselling Breakdown (if logged in) -->
+            {% if match_result %}
+            <div class="card border-primary border-opacity-25 shadow-sm p-4 mb-4 rounded-3 bg-white">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <div>
+                        <div class="d-inline-flex align-items-center gap-1 text-primary small fw-bold text-uppercase mb-1">
+                            <i data-lucide="sparkles" class="icon-xs"></i> AI Counselling Match Analysis
+                        </div>
+                        <h5 class="fw-bold mb-0">Deterministic Candidate Fit</h5>
+                    </div>
+                    <span class="badge bg-{{ match_result.tier_class }} fs-6 px-3 py-2">
+                        {{ match_result.tier }}: {{ match_result.score }}%
+                    </span>
+                </div>
+
+                <!-- Dimension Breakdown Bars -->
+                <div class="bg-light p-3 rounded-3 mb-3">
+                    <div class="row g-3 small">
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Academic & Degree Eligibility:</span>
+                                <strong>{{ match_result.breakdown.eligibility_score }}/25</strong>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-success" style="width: {{ (match_result.breakdown.eligibility_score / 25) * 100 }}%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Technical Skill Alignment:</span>
+                                <strong>{{ match_result.breakdown.skill_score }}/35</strong>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-primary" style="width: {{ (match_result.breakdown.skill_score / 35) * 100 }}%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Career Domain Alignment:</span>
+                                <strong>{{ match_result.breakdown.career_score }}/20</strong>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-info" style="width: {{ (match_result.breakdown.career_score / 20) * 100 }}%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Location & Mode Fit:</span>
+                                <strong>{{ match_result.breakdown.mode_score }}/10</strong>
+                            </div>
+                            <div class="progress" style="height: 6px;">
+                                <div class="progress-bar bg-warning" style="width: {{ (match_result.breakdown.mode_score / 10) * 100 }}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Counselling Rationale -->
+                <div class="small">
+                    <div class="mb-2">
+                        <strong class="text-dark">Why this opportunity fits you:</strong>
+                        <ul class="mb-2 ps-3 text-muted">
+                            {% for why in match_result.counselling.why_fits %}
+                            <li>{{ why }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    {% if match_result.missing_skills %}
+                    <div class="mb-2">
+                        <strong class="text-dark">Prerequisites / Gaps to bridge:</strong>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            {% for msk in match_result.missing_skills %}
+                            <span class="badge bg-light text-danger border border-danger border-opacity-25">{{ msk }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if match_result.counselling.recommended_next_step %}
+                    <div class="p-2 rounded-2 bg-info bg-opacity-10 text-dark border border-info border-opacity-25">
+                        <i data-lucide="compass" class="icon-xs me-1 text-primary"></i>
+                        <strong>Recommended Next Step:</strong> {{ match_result.counselling.recommended_next_step }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Section 1: Overview & Responsibilities -->
+            <div class="card border shadow-sm p-4 mb-4 rounded-3 bg-white">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="file-text" class="icon-sm text-primary"></i> Role Overview & Objectives
+                </h5>
+                <p class="text-muted leading-relaxed mb-4">
+                    {{ internship.description }}
+                </p>
+
+                {% if internship.responsibilities %}
+                <h6 class="fw-bold mb-2">Key Responsibilities & Deliverables</h6>
+                <div class="text-muted small mb-4 leading-relaxed">
+                    {{ internship.responsibilities }}
+                </div>
+                {% endif %}
+
+                {% if internship.learning_outcomes %}
+                <h6 class="fw-bold mb-2">Learning Outcomes & Competency Gains</h6>
+                <div class="text-muted small leading-relaxed">
+                    {{ internship.learning_outcomes }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Section 2: Eligibility & Candidate Requirements -->
+            <div class="card border shadow-sm p-4 mb-4 rounded-3 bg-white">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="check-square" class="icon-sm text-success"></i> Eligibility Criteria
+                </h5>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-2 h-100">
+                            <div class="small text-muted mb-1">Eligible Degrees</div>
+                            <div class="fw-semibold text-dark">{{ internship.eligible_degrees or 'B.Tech, BCA, B.Sc, B.Com, BBA, BA' }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-2 h-100">
+                            <div class="small text-muted mb-1">Academic Level</div>
+                            <div class="fw-semibold text-dark">{{ internship.minimum_qualification or 'Undergraduate / Postgraduate Student' }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-2 h-100">
+                            <div class="small text-muted mb-1">Eligible Streams</div>
+                            <div class="fw-semibold text-dark">{{ internship.eligible_streams or 'Relevant Discipline' }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light rounded-2 h-100">
+                            <div class="small text-muted mb-1">Minimum Percentage / CGPA</div>
+                            <div class="fw-semibold text-dark">
+                                {% if internship.minimum_percentage and internship.minimum_percentage > 0 %}
+                                {{ internship.minimum_percentage }}% Minimum Aggregate
+                                {% else %}
+                                Institutional Passing Criteria
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-muted small">
+                    <strong>Detailed Specification:</strong> {{ internship.eligibility or 'Open to enrolled students with valid college NOC or bona fide certificate.' }}
+                </div>
+            </div>
+
+            <!-- Section 3: Technical Skills & Selection Process -->
+            <div class="card border shadow-sm p-4 mb-4 rounded-3 bg-white">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="cpu" class="icon-sm text-info"></i> Required Skills & Selection Stages
+                </h5>
+
+                <div class="mb-4">
+                    <h6 class="fw-bold mb-2 small text-uppercase text-muted">Required Skills & Tools</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        {% for sk in internship.skills_list %}
+                        <span class="badge bg-light text-dark border px-3 py-2 fs-6 fw-normal">
+                            {{ sk }}
+                        </span>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="p-3 rounded-2 bg-light">
+                    <div class="small text-muted mb-1">Selection Workflow</div>
+                    <div class="fw-semibold text-dark mb-1">{{ internship.selection_process or 'Application Screening & Virtual / In-person Discussion' }}</div>
+                    <div class="small text-muted">Final selection is subject to document verification and supervisor confirmation.</div>
+                </div>
+            </div>
+
+            <!-- Section 4: Connected Career Bridges -->
+            <div class="card border shadow-sm p-4 mb-4 rounded-3 bg-white">
+                <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="git-merge" class="icon-sm text-primary"></i> Career Bridges in MPath
+                </h5>
+                <p class="small text-muted mb-3">
+                    This internship directly reinforces competencies required for the following high-demand careers in India:
+                </p>
+
+                <div class="row g-2 mb-3">
+                    {% for car in related_careers %}
+                    <div class="col-md-6">
+                        <div class="p-2 border rounded-2 d-flex justify-content-between align-items-center">
+                            <div>
+                                <div class="fw-semibold small">{{ car.title }}</div>
+                                <div class="text-muted" style="font-size: 0.75rem;">{{ car.industry or car.category or 'Industry Track' }}</div>
+                            </div>
+                            <a href="{{ url_for('career.career_detail', slug=car.slug) }}" class="btn btn-outline-primary btn-sm py-1 px-2" style="font-size: 0.75rem;">
+                                View Career
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Action Sidebar -->
+        <div class="col-lg-4">
+
+            <!-- Official Application Box -->
+            <div class="card border shadow-sm p-4 mb-4 rounded-3 bg-white sticky-top" style="top: 80px; z-index: 10;">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i data-lucide="shield-check" class="icon-sm text-success"></i>
+                    <h6 class="fw-bold mb-0">Official Application Channel</h6>
+                </div>
+
+                <div class="bg-light p-3 rounded-2 small mb-3">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Openings:</span>
+                        <strong class="text-dark">{{ internship.number_of_openings }} Positions</strong>
+                    </div>
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted">Deadline:</span>
+                        <strong class="text-dark">{{ internship.deadline_text }}</strong>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-muted">Application Fee:</span>
+                        <strong class="text-success">₹0 (Free / Prohibited)</strong>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mb-3">
+                    {% if internship.primary_apply_url %}
+                    <a href="{{ url_for('internship.apply_redirect', id=internship.id) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary py-2 fw-semibold shadow-sm" style="background-color: #0039A8 !important; border-color: #0039A8 !important;">
+                        Apply on Official Portal <i data-lucide="external-link" class="icon-xs ms-1"></i>
+                    </a>
+                    <div class="p-2 rounded bg-light border text-truncate small">
+                        <span class="text-muted"><i data-lucide="shield-check" class="icon-xs text-success me-1"></i> Destination:</span>
+                        <a href="{{ internship.primary_apply_url }}" target="_blank" rel="noopener noreferrer" class="text-primary text-decoration-none fw-semibold">
+                            {{ internship.primary_apply_url }}
+                        </a>
+                    </div>
+                    {% else %}
+                    <button class="btn btn-secondary py-2" disabled>
+                        Application Channel Closed
+                    </button>
+                    {% endif %}
+
+                    {% if session.get('user_id') %}
+                    <!-- Add to Application Tracker Modal Trigger -->
+                    <button type="button" class="btn btn-outline-primary py-2" data-bs-toggle="modal" data-bs-target="#trackerModal">
+                        <i data-lucide="clipboard-list" class="icon-xs me-1"></i> Track Application
+                    </button>
+                    {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary py-2 small">
+                        Log in to Track & Match
+                    </a>
+                    {% endif %}
+                </div>
+
+                <!-- Anti-Fraud Notice -->
+                <div class="p-2 rounded-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 small text-dark">
+                    <i data-lucide="alert-triangle" class="icon-xs text-warning me-1"></i>
+                    <strong>Statutory Caution:</strong> Official government schemes and leading corporations never demand payment or registration fees for internship applications.
+                </div>
+
+                <!-- Provenance & Source Registry -->
+                <div class="mt-4 pt-3 border-top small text-muted">
+                    <div class="fw-bold text-dark mb-1">Source Provenance</div>
+                    <div>Source: <strong>{{ internship.source_name or 'National Statutory Registry' }}</strong></div>
+                    <div>Verification: <span class="badge bg-success bg-opacity-10 text-success">{{ internship.verification_status }}</span></div>
+                    <div>Last Verified: {{ internship.last_verified_at.strftime('%d %b %Y') if internship.last_verified_at else 'Active' }}</div>
+                </div>
+            </div>
+
+            <!-- About Organization Card -->
+            <div class="card border shadow-sm p-4 mb-4 rounded-3 bg-white">
+                <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
+                    <i data-lucide="building" class="icon-sm text-primary"></i> About the Provider
+                </h6>
+                <div class="fw-bold text-dark mb-1">{{ internship.organisation_name }}</div>
+                <div class="small text-muted mb-3">{{ internship.organisation_type }} &bull; {{ internship.industry or 'Core Industry' }}</div>
+
+                {% if internship.organisation and internship.organisation.description %}
+                <p class="small text-muted mb-3 leading-relaxed">
+                    {{ internship.organisation.description[:180] }}...
+                </p>
+                {% endif %}
+
+                {% if internship.official_website %}
+                <a href="{{ internship.official_website }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm w-100">
+                    Official Website <i data-lucide="external-link" class="icon-xs ms-1"></i>
+                </a>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Add to Personal Tracker -->
+{% if session.get('user_id') %}
+<div class="modal fade" id="trackerModal" tabindex="-1" aria-labelledby="trackerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ url_for('internship.add_to_tracker', internship_id=internship.id) }}" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="trackerModalLabel">Track Application: {{ internship.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Current Application Stage</label>
+                        <select name="status" class="form-select">
+                            <option value="Planning to Apply">Planning to Apply</option>
+                            <option value="Applied" selected>Applied on Portal</option>
+                            <option value="Shortlisted">Shortlisted</option>
+                            <option value="Interview Scheduled">Interview Scheduled</option>
+                            <option value="Offer Received">Offer Received</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold">Personal Notes / Application Reference</label>
+                        <textarea name="notes" class="form-control" rows="3" placeholder="e.g. Submitted resume with recommendation letter on AICTE portal, ref #12345..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save to Tracker</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
